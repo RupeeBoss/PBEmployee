@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Dashboard" />
+
+        <!--<item
+           android:id="@+id/nav_oyemoney"
+           android:title="OyeMoney" />
+        <item
+            android:id="@+id/nav_pickupHistory"
+            android:title="Pick-up summary" />
+
+
+        <item
+            android:id="@+id/nav_offer"
+            android:title="Offers" />
+
+        <item
+            android:id="@+id/nav_referfriend"
+            android:title="Refer friends" />
+
+        <item
+            android:id="@+id/nav_pickup_friend"
+            android:title="Pickup for friend"
+            android:visible="false" />
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Logout" />-->
+
+    </group>
+</menu>

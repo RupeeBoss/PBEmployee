@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Policyboss</string>
+    <string name="title_activity_navigation">Policyboss</string>
+
+    <string name="openDrawer">Open navigation drawer</string>
+    <string name="closeDrawer">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_car_insurance">Car Details</string>
+
+</resources>
