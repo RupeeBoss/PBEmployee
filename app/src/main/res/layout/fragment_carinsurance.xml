@@ -2,31 +2,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:orientation="vertical"
     tools:context="com.android.policyboss.carinsurance.CarInsuranceFragment">
 
-    <EditText
-        style="@style/FullWidthEditText"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Registration no" />
+        android:layout_height="?attr/actionBarSize" />
 
-    <EditText
-        style="@style/FullWidthEditText"
+    <Button
+        android:id="@+id/btnNewCar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Registration no" />
+        android:background="@color/colorPrimary"
+        android:text="New Car"
+        android:layout_marginTop="12dp"
+        android:textColor="@android:color/white" />
 
-    <EditText
-        style="@style/FullWidthEditText"
+    <Button
+        android:id="@+id/btnRenewal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Registration no" />
-
-    <EditText
-        style="@style/FullWidthEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Registration no" />
-    
+        android:layout_marginTop="12dp"
+        android:background="@color/colorPrimary"
+        android:text="Renewal"
+        android:textColor="@android:color/white" />
 </LinearLayout>

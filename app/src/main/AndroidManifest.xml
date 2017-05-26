@@ -3,6 +3,7 @@
     package="com.android.policyboss">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -30,6 +31,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".carinsurance.RenewalCarActivity"
+            android:label="@string/title_activity_renewal_car"
+            android:parentActivityName=".carinsurance.CarInsuranceActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
     </application>
 
