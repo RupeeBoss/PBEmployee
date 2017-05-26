@@ -1,6 +1,9 @@
 package com.android.policyboss.carinsurance;
 
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,7 +34,19 @@ public class CarInsuranceFragment extends BaseFragment implements View.OnClickLi
         View viewCar = inflater.inflate(R.layout.fragment_carinsurance, container, false);
         init(viewCar);
         setListener();
+        startAnimation();
         return viewCar;
+    }
+
+    private void startAnimation() {
+       /* ObjectAnimator animX = ObjectAnimator.ofFloat(btnNewCar, "y", 500f);
+        ObjectAnimator animY = ObjectAnimator.ofFloat(btnRenewal, "y", 100f);
+        AnimatorSet animSetXY = new AnimatorSet();
+        animSetXY.playTogether(animX, animY);
+        animSetXY.start();*/
+
+        btnRenewal.animate().x(00f).y(500f).setDuration(1000);
+        btnNewCar.animate().x(00f).y(370f).setDuration(800);
     }
 
     private void setListener() {
