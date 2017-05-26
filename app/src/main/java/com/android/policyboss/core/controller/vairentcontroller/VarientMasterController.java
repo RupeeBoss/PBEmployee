@@ -42,6 +42,7 @@ public class VarientMasterController implements IVarientMaster {
             public void onResponse(retrofit.Response<VarientMasterResponse> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
 
+                    //iResponseSubcriber.OnSuccess();
                   //  final List<VarientEntity> varientEntities = response.body().;
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
