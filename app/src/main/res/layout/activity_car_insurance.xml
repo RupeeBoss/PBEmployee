@@ -67,8 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="24dp">
-
+            android:paddingTop="8dp">
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -85,20 +84,19 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="Buy or Renew Car Insurance"
-                        android:textAllCaps="true"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/application_primary_text_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-
                         android:background="#f6f6f6" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:padding="@dimen/gap">
 
                         <ImageView
                             android:layout_width="0dp"
@@ -126,20 +124,37 @@
                 android:layout_margin="@dimen/gap">
 
                 <LinearLayout
-                    style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Friends"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                        android:padding="8dp"
+                        android:text="Enter Registration Number"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textColor="@color/application_primary_text_color" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#f6f6f6" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/gap"
+                        android:hint="Enter Registration Number" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum IpsumLoreum IpsumLoreum IpsumLoreum Ipsum vLoreum IpsumLoreum Ipsum" />
+                        android:gravity="center"
+                        android:text="Don't Remember"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorPrimaryDark" />
+
 
                 </LinearLayout>
 
@@ -150,26 +165,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/gap">
 
-                <LinearLayout
-                    style="@style/Widget.CardContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Related"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum Ipsum Loreum IpsumLoreum IpsumLoreum IpsumLoreum Ipsum vLoreum IpsumLoreum Ipsum" />
-
-                </LinearLayout>
-
+                <include layout="@layout/layout_when_policy_expiring" />
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/gap">
+
+                <include layout="@layout/layout_which_car_you_drive" />
+            </android.support.v7.widget.CardView>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
