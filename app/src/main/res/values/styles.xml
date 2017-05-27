@@ -31,4 +31,21 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+
+    <style name="TextAppearence.TextInputLayout.Blue" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/divider</item>
+        <item name="android:textSize">10sp</item>
+
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">54dp</item>
+        <item name="android:background">@drawable/ediitext_style</item>
+        <item name="android:drawablePadding">14dp</item>
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:gravity">center_vertical</item>
+
+    </style>
 </resources>
