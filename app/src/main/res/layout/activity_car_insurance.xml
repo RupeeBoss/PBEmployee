@@ -120,11 +120,13 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+
+            <!--Renew-->
             <android.support.v7.widget.CardView
                 android:id="@+id/cvRegNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/gap"
+                android:layout_margin="@dimen/gap"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -138,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="Enter Registration Number"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/application_primary_text_color" />
 
                     <View
@@ -158,7 +160,7 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
-                            android:id="@+id/etRegNo"
+                            android:id="@+id/etRenewRegNo"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/ic_people_white"
                             android:hint="Enter Registration Number" />
@@ -253,11 +255,12 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+            <!--new-->
             <android.support.v7.widget.CardView
                 android:id="@+id/cvInvDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/gap"
+                android:layout_margin="@dimen/gap"
                 android:visibility="gone">
 
                 <LinearLayout
@@ -271,7 +274,7 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="First Registration / Invoice Date"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/application_primary_text_color" />
 
                     <View

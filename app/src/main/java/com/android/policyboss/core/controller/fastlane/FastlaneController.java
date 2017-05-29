@@ -35,7 +35,7 @@ public class FastlaneController implements IFastLane {
     }
 
     @Override
-    public void IRegistrationNumber(String vehicleNumber, final IResponseSubcriber iResponseSubcriber) {
+    public void getCarDetails(String vehicleNumber, final IResponseSubcriber iResponseSubcriber) {
 
         HashMap<String, String> body = new HashMap<String, String>();
         body.put("RegistrationNumber", vehicleNumber);

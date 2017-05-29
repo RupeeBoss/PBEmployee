@@ -1,25 +1,36 @@
 package com.android.policyboss.carinsurance;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.animation.Animate;
+import com.android.policyboss.core.APIResponse;
+import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.controller.fastlane.FastlaneController;
+import com.android.policyboss.core.response.FastLaneResponse;
 
-public class CarInsuranceActivity extends BaseActivity implements View.OnClickListener {
+public class CarInsuranceActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
 
     ImageView ivNewCar, ivRenewCar;
     CardView llBuyorRenew;
     CardView cvBuyorRenew, cvRegNo, cvInvDate;
     TextView tvBuyTiltle;
+
+    EditText etRenewRegNo, etInvDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +55,29 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         ivRenewCar.setOnClickListener(this);
         llBuyorRenew.setOnClickListener(this);
         cvBuyorRenew.setOnClickListener(this);
+
+        etRenewRegNo.addTextChangedListener(renewtextWatcher);
     }
+
+    TextWatcher renewtextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (count == 10) {
+                Toast.makeText(CarInsuranceActivity.this, "Digit reached :" + count, Toast.LENGTH_SHORT).show();
+                new FastlaneController(CarInsuranceActivity.this).getCarDetails(s.toString(), CarInsuranceActivity.this);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     private void init() {
         ivNewCar = (ImageView) findViewById(R.id.ivNewCar);
@@ -55,6 +88,8 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         cvInvDate = (CardView) findViewById(R.id.cvInvDate);
         tvBuyTiltle = (TextView) findViewById(R.id.tvBuyTiltle);
 
+        etRenewRegNo = (EditText) findViewById(R.id.etRenewRegNo);
+        etInvDate = (EditText) findViewById(R.id.etInvDate);
 
     }
 
@@ -63,7 +98,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.cvBuyorRenew:
                 if (llBuyorRenew.getVisibility() == View.VISIBLE) {
-                   // Animate.SlideUpAnimation(llBuyorRenew);
+                    // Animate.SlideUpAnimation(llBuyorRenew);
                     //llBuyorRenew.setVisibility(View.GONE);
                     tvBuyTiltle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow_bas_screen, 0);
                 } else {
@@ -93,4 +128,16 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    public void OnSuccess(APIResponse response, String message) {
+
+        if (response instanceof FastLaneResponse) {
+            //startActivity(new Intent(this,));
+        }
+    }
+
+    @Override
+    public void OnFailure(Throwable t) {
+
+    }
 }
