@@ -7,9 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 
-public class CarVarientDetailsActivity extends AppCompatActivity {
+public class CarVarientDetailsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,6 @@ public class CarVarientDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_car_varient_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
 }

@@ -7,9 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 
-public class CarAdditionalDetailsActivity extends AppCompatActivity {
+public class CarAdditionalDetailsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
