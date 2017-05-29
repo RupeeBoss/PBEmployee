@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.android.policyboss.carinsurance.CarVarientDetailsActivity"
+    tools:showIn="@layout/activity_car_varient_details">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/gap">
+
+                <include layout="@layout/layout_which_car_you_drive" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/gap">
+
+                <include layout="@layout/layout_which_fuel" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/gap">
+
+                <include layout="@layout/layout_which_varient" />
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>
