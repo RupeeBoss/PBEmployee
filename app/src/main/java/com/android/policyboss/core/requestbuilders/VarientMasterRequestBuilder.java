@@ -1,11 +1,9 @@
 package com.android.policyboss.core.requestbuilders;
 
 import com.android.policyboss.core.RetroRequestBuilder;
-import com.android.policyboss.core.requestmodels.VarientMasterRequestEntity;
 import com.android.policyboss.core.response.VarientMasterResponse;
 
 import retrofit.Call;
-import retrofit.http.Body;
 import retrofit.http.Headers;
 import retrofit.http.POST;
 
@@ -14,6 +12,9 @@ import retrofit.http.POST;
  */
 
 public class VarientMasterRequestBuilder extends RetroRequestBuilder {
+
+    public final static String SUB_URL = "/PBService.svc";
+
     public VarientMasterRequestBuilder.VarientMasterNetworkService getService() {
 
         return super.build().create(VarientMasterRequestBuilder.VarientMasterNetworkService.class);
@@ -24,8 +25,10 @@ public class VarientMasterRequestBuilder extends RetroRequestBuilder {
                 "UserName: test",
                 "Password: test@123"
         })
-        @POST(RetroRequestBuilder.secondaryUrl + "/VariantMaster")
-        Call<VarientMasterResponse> getVarient(@Body VarientMasterRequestEntity varientMasterRequestEntity);
+
+
+        @POST(SUB_URL + "/VariantMasterService")
+        Call<VarientMasterResponse> getVarient();
 
 
     }
