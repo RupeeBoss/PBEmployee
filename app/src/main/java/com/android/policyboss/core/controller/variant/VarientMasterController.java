@@ -1,20 +1,17 @@
-package com.android.policyboss.core.controller.vairentcontroller;
+package com.android.policyboss.core.controller.variant;
 
 import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.controller.database.RealmDatabaseController;
 import com.android.policyboss.core.requestbuilders.VarientMasterRequestBuilder;
-import com.android.policyboss.core.requestmodels.VarientMasterRequestEntity;
 import com.android.policyboss.core.response.VarientMasterResponse;
-import com.android.policyboss.core.responsemodels.VarientEntity;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.List;
 
 import io.realm.Realm;
-import io.realm.internal.IOException;
 import retrofit.Callback;
 import retrofit.Retrofit;
 
@@ -36,29 +33,18 @@ public class VarientMasterController implements IVarientMaster {
 
 
     @Override
-    public void getVarientMaster(VarientMasterRequestEntity varientMasterRequestEntity, final IResponseSubcriber iResponseSubcriber) {
-        varientMasterNetworkService.getVarient(varientMasterRequestEntity).enqueue(new Callback<VarientMasterResponse>() {
+    public void getVarientMaster(final IResponseSubcriber iResponseSubcriber) {
+        varientMasterNetworkService.getVarient().enqueue(new Callback<VarientMasterResponse>() {
             @Override
             public void onResponse(retrofit.Response<VarientMasterResponse> response, Retrofit retrofit) {
-                if (response.isSuccess()) {
 
-                    //iResponseSubcriber.OnSuccess();
-                  //  final List<VarientEntity> varientEntities = response.body().;
-                    realm.executeTransaction(new Realm.Transaction() {
-                        @Override
-                        public void execute(Realm realm) {
-
-                            try {
-                                realm.deleteAll();
-                               // realm.copyToRealmOrUpdate(varientEntities);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            } finally {
-
-                            }
-                        }
-                    });
+                if (response.body().getStatusNo() == 0) {
+                    new RealmDatabaseController(realm).insertVariantMaster(response.body().getVariantList());
+                    iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Oops,Something went wrong..!"));
                 }
+
             }
 
             @Override

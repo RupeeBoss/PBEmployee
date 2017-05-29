@@ -14,21 +14,8 @@ import retrofit.Retrofit;
 
 public abstract class RetroRequestBuilder {
 
-//http://49.50.95.141:97/EducationAppWebService.svc/GetQuestionsByLogin
-//protected String basicUrl = "http://49.50.95.141:97";
-///EducationAppWebService.svc/GetQuestionsByLogin
+    public static String URL = "http://49.50.95.141:192";
 
-    //live url
-    protected String basicUrl = "http://uat.lpolicyboss.com";
-    public final static String secondaryUrl = "/quotes/api/";
-
-    //uat url
-    //protected String basicUrl = "http://49.50.95.141:99";
-    //public final static String secondaryUrl = "/EducationAppWebService.svc";
-
-    //uat url
-    //protected String basicUrl = "http://uat.oyeraddi.com";
-    //public final static String secondaryUrl = "/EducationappUat/EducationAppWebService.svc/";
     static Retrofit restAdapter = null;
 
 
@@ -42,7 +29,7 @@ public abstract class RetroRequestBuilder {
             httpClient.setConnectTimeout(90, TimeUnit.SECONDS);
             httpClient.interceptors().add(logging);
             restAdapter = new Retrofit.Builder()
-                    .baseUrl(basicUrl)
+                    .baseUrl(URL)
                     .client(httpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
