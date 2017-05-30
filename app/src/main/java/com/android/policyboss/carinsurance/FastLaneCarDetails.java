@@ -1,20 +1,20 @@
 package com.android.policyboss.carinsurance;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.utility.Constants;
 
-public class FastLaneCarDetails extends BaseActivity {
-
+public class FastLaneCarDetails extends BaseActivity implements View.OnClickListener {
+    Button btnCont;
     QuoteRequestEntity quoteRequestEntity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,25 @@ public class FastLaneCarDetails extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
+        init();
+        setListener();
 
     }
 
+    private void setListener() {
+        btnCont.setOnClickListener(this);
+    }
+
+    private void init() {
+        btnCont = (Button) findViewById(R.id.btnCont);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnCont:
+                startActivity(new Intent(FastLaneCarDetails.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+                break;
+        }
+    }
 }

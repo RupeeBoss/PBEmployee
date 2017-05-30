@@ -50,8 +50,14 @@ public class CarDetailsActivity extends BaseActivity {
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
         init_widgets();
         setListeners();
-        showOrHideLayout();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showOrHideLayout();
     }
 
     private void fetchMasterFromDatabase() {
@@ -72,6 +78,9 @@ public class CarDetailsActivity extends BaseActivity {
             llVarientDetails.setVisibility(View.VISIBLE);
         } else if (quoteRequestEntity.isRenew()) {
             llWhenPolicyExpiring.setVisibility(View.VISIBLE);
+        } else if (quoteRequestEntity.isDontRem()) {
+            llWhenPolicyExpiring.setVisibility(View.VISIBLE);
+            llVarientDetails.setVisibility(View.VISIBLE);
         }
     }
 
