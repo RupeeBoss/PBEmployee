@@ -1,5 +1,6 @@
 package com.android.policyboss.carinsurance;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,16 +22,23 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.fastlane.FastlaneController;
+import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.response.FastLaneResponse;
+import com.android.policyboss.utility.Constants;
+import com.android.policyboss.utility.DateTimePicker;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CarInsuranceActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
-
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
     ImageView ivNewCar, ivRenewCar;
     CardView llBuyorRenew;
     CardView cvBuyorRenew, cvRegNo, cvInvDate;
     TextView tvBuyTiltle, txtDontRem;
 
     EditText etRenewRegNo, etInvDate;
+    QuoteRequestEntity quoteRequestEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +52,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Car Insurance");
         collapsingToolbar.setExpandedTitleTextColor(ColorStateList.valueOf(getResources().getColor(R.color.application_secondary_text_color)));
-
-
+        quoteRequestEntity = new QuoteRequestEntity();
         init();
         setClickListeners();
 
@@ -57,7 +65,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         cvBuyorRenew.setOnClickListener(this);
         txtDontRem.setOnClickListener(this);
         etRenewRegNo.addTextChangedListener(renewtextWatcher);
-        //etInvDate.setOnClickListener();
+        etInvDate.setOnClickListener(datePickerDialog);
     }
 
     TextWatcher renewtextWatcher = new TextWatcher() {
@@ -68,7 +76,8 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (count == 10) {
+            if (s.length() == 10) {
+                showDialog();
                 new FastlaneController(CarInsuranceActivity.this).getCarDetails(s.toString(), CarInsuranceActivity.this);
             }
         }
@@ -132,12 +141,38 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     public void OnSuccess(APIResponse response, String message) {
 
         if (response instanceof FastLaneResponse) {
-            startActivity(new Intent(this,FastLaneCarDetails.class));
+            cancelDialog();
+            quoteRequestEntity.setRenew(true);
+
+            startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity));
         }
     }
 
     @Override
     public void OnFailure(Throwable t) {
-
+        cancelDialog();
+        Toast.makeText(this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
     }
+
+
+    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Constants.hideKeyBoard(view, CarInsuranceActivity.this);
+            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    if (view.isShown()) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                        etInvDate.setText(currentDay);
+                        quoteRequestEntity.setNew(true);
+                        startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+                        //etDate.setTag(R.id.et_date, calendar.getTime());
+                    }
+                }
+            });
+        }
+    };
 }
