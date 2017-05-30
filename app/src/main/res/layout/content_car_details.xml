@@ -45,9 +45,10 @@
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
+                        android:id="@+id/etPolicyExpDate"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
-                        android:hint="Date Of First Registration" />
+                        android:hint="Your Policy Expiry Date" />
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -63,6 +64,7 @@
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
+                        android:id="@+id/etFirstRegDate"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
                         android:hint="Date Of First Registration" />
@@ -76,64 +78,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
-                <android.support.design.widget.TextInputLayout
 
+                <AutoCompleteTextView
+                    android:id="@+id/autoCarMake"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
-                    android:clipToPadding="false"
-                    android:gravity="bottom"
-                    android:paddingTop="4dp"
-                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                    <EditText
-                        style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/ic_people_white"
-                        android:hint="Which Car You Drive?" />
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_people_white"
+                    android:hint="Which car do you drive ?" />
 
 
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-
+                <Spinner
+                    android:visibility="gone"
+                    android:id="@+id/spCarMake"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
-                    android:clipToPadding="false"
-                    android:gravity="bottom"
-                    android:paddingTop="4dp"
-                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_bg"></Spinner>
 
-                    <EditText
-                        style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/ic_people_white"
-                        android:hint="Which fuel does your car run on?" />
-
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-
+                <Spinner
+                    android:visibility="gone"
+                    android:id="@+id/spCarFuelType"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
-                    android:clipToPadding="false"
-                    android:gravity="bottom"
-                    android:paddingTop="4dp"
-                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                    <EditText
-                        style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/ic_people_white"
-                        android:hint="Please Select the Car Variant ?" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_bg"></Spinner>
 
 
-                </android.support.design.widget.TextInputLayout>
+                <Spinner
+                    android:id="@+id/spCarVarient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_bg"></Spinner>
 
                 <AutoCompleteTextView
                     android:layout_width="match_parent"
