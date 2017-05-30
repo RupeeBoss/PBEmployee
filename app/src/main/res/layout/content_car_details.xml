@@ -136,6 +136,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <AutoCompleteTextView
+                    android:id="@+id/autocomp_City"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

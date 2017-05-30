@@ -44,6 +44,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         collapsingToolbar.setTitle("Car Insurance");
         collapsingToolbar.setExpandedTitleTextColor(ColorStateList.valueOf(getResources().getColor(R.color.application_secondary_text_color)));
 
+
         init();
         setClickListeners();
 
