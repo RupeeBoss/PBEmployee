@@ -52,7 +52,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Car Insurance");
         collapsingToolbar.setExpandedTitleTextColor(ColorStateList.valueOf(getResources().getColor(R.color.application_secondary_text_color)));
-
+        quoteRequestEntity = new QuoteRequestEntity();
         init();
         setClickListeners();
 
@@ -65,7 +65,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         cvBuyorRenew.setOnClickListener(this);
         txtDontRem.setOnClickListener(this);
         etRenewRegNo.addTextChangedListener(renewtextWatcher);
-        //etInvDate.setOnClickListener();
+        etInvDate.setOnClickListener(datePickerDialog);
     }
 
     TextWatcher renewtextWatcher = new TextWatcher() {
@@ -76,7 +76,8 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (count == 10) {
+            if (s.length() == 10) {
+                showDialog();
                 new FastlaneController(CarInsuranceActivity.this).getCarDetails(s.toString(), CarInsuranceActivity.this);
             }
         }
@@ -140,14 +141,17 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     public void OnSuccess(APIResponse response, String message) {
 
         if (response instanceof FastLaneResponse) {
+            cancelDialog();
             quoteRequestEntity.setRenew(true);
+
             startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity));
         }
     }
 
     @Override
     public void OnFailure(Throwable t) {
-
+        cancelDialog();
+        Toast.makeText(this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -158,14 +162,15 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
             DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(year, monthOfYear, dayOfMonth);
-                    String currentDay = simpleDateFormat.format(calendar.getTime());
-                    etInvDate.setText(currentDay);
-                    quoteRequestEntity.setNew(true);
-                    startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
-                    //etDate.setTag(R.id.et_date, calendar.getTime());
+                    if (view.isShown()) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                        etInvDate.setText(currentDay);
+                        quoteRequestEntity.setNew(true);
+                        startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+                        //etDate.setTag(R.id.et_date, calendar.getTime());
+                    }
                 }
             });
         }

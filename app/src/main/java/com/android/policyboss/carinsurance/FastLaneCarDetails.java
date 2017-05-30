@@ -7,10 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.models.QuoteRequestEntity;
+import com.android.policyboss.utility.Constants;
 
-public class FastLaneCarDetails extends AppCompatActivity {
+public class FastLaneCarDetails extends BaseActivity {
 
+    QuoteRequestEntity quoteRequestEntity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +22,8 @@ public class FastLaneCarDetails extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
+
     }
 
 }
