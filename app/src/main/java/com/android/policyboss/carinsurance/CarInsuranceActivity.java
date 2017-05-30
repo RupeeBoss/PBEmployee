@@ -68,7 +68,6 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (count == 10) {
-                Toast.makeText(CarInsuranceActivity.this, "Digit reached :" + count, Toast.LENGTH_SHORT).show();
                 new FastlaneController(CarInsuranceActivity.this).getCarDetails(s.toString(), CarInsuranceActivity.this);
             }
         }

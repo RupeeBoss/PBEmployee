@@ -2,21 +2,15 @@ package com.android.policyboss.splashscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.database.RealmDatabaseController;
 import com.android.policyboss.core.controller.variant.VarientMasterController;
-import com.android.policyboss.core.models.MakeEntity;
-import com.android.policyboss.core.response.VarientMasterResponse;
+import com.android.policyboss.core.response.AllMastersResponse;
 import com.android.policyboss.navigationview.HomeActivity;
-
-import java.util.List;
 
 import io.realm.Realm;
 
@@ -28,9 +22,11 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
-        // realm = Realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
 
-        new VarientMasterController(this, realm).getVarientMaster(this);
+        //fetch all master tables
+        new VarientMasterController(this, realm).getAllMasters(this);
+        new VarientMasterController(this, realm).getAllCityMasters(this);
 
     }
 
@@ -38,7 +34,7 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
     @Override
     public void OnSuccess(APIResponse response, String message) {
 
-        if (response instanceof VarientMasterResponse) {
+        if (response instanceof AllMastersResponse) {
             if (response.getStatusNo() == 0) {
                 finish();
                 startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
@@ -55,6 +51,7 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        if (!realm.isClosed())
+            realm.close();
     }
 }

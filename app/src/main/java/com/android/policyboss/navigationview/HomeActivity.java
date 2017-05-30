@@ -17,10 +17,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.controller.database.RealmDatabaseController;
+import com.android.policyboss.core.models.MakeMasterEntity;
 import com.android.policyboss.dashboard.DashboardFragment;
 
-public class HomeActivity extends AppCompatActivity {
+import java.util.List;
+
+import io.realm.Realm;
+
+public class HomeActivity extends BaseActivity {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -38,7 +45,6 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG_HOME = "Dashboard";
 
 
-
     private Toolbar toolbar;
 
     //set current selected fragment TAG
@@ -50,6 +56,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setSupportActionBar(toolbar);
         initialise_widgets();
+        realm = Realm.getDefaultInstance();
+
+        List<MakeMasterEntity> listMake = new RealmDatabaseController(realm).getMasterMake();
         mHandler = new Handler();
         // initializing navigation menu
         setUpNavigationView();
