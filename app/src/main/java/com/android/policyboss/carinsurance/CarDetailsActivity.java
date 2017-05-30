@@ -6,19 +6,44 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.utility.Constants;
 
-public class CarDetailsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
+
+public class CarDetailsActivity extends BaseActivity {
 
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
+    DatabaseController databaseController;
+
+    List<String> cityList;
+    List<String> makeList;
+    List<String> modelList;
+    List<String> variantList;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!realm.isClosed())
+            realm.close();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
+        realm = Realm.getDefaultInstance();
+        databaseController = new DatabaseController(this, realm);
+        initialise_list();
+        fetchMasterFromDatabase();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -27,6 +52,19 @@ public class CarDetailsActivity extends AppCompatActivity {
         setListeners();
         showOrHideLayout();
 
+    }
+
+    private void fetchMasterFromDatabase() {
+        cityList = databaseController.getCity();
+        makeList = databaseController.getMakeList();
+
+    }
+
+    private void initialise_list() {
+        cityList = new ArrayList<>();
+        makeList = new ArrayList<>();
+        modelList = new ArrayList<>();
+        variantList = new ArrayList<>();
     }
 
     private void showOrHideLayout() {
