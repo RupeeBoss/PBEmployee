@@ -8,6 +8,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -98,6 +99,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         tvBuyTiltle = (TextView) findViewById(R.id.tvBuyTiltle);
         txtDontRem = (TextView) findViewById(R.id.txtDontRem);
         etRenewRegNo = (EditText) findViewById(R.id.etRenewRegNo);
+        etRenewRegNo.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
         etInvDate = (EditText) findViewById(R.id.etInvDate);
 
     }
