@@ -50,8 +50,14 @@ public class CarDetailsActivity extends BaseActivity {
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
         init_widgets();
         setListeners();
-        showOrHideLayout();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showOrHideLayout();
     }
 
     private void fetchMasterFromDatabase() {
