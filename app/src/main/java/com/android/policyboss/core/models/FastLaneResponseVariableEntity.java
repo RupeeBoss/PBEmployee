@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class FastLaneResponseVariableEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class FastLaneResponseVariableEntity implements Parcelable {
             /**
              * chasi_no : MA3EHKD1S00829016
              * color : GRANITEGR
@@ -244,4 +247,79 @@ public class FastLaneResponseVariableEntity {
             public void setVh_class_desc(String vh_class_desc) {
                 this.vh_class_desc = vh_class_desc;
             }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.chasi_no);
+        dest.writeString(this.color);
+        dest.writeString(this.cubic_cap);
+        dest.writeString(this.eng_no);
+        dest.writeString(this.fla_cubic_cap);
+        dest.writeString(this.fla_fuel_type_desc);
+        dest.writeString(this.fla_maker_desc);
+        dest.writeString(this.fla_model_desc);
+        dest.writeString(this.fla_seat_cap);
+        dest.writeString(this.fla_variant);
+        dest.writeString(this.fla_vh_class_desc);
+        dest.writeString(this.fuel_type_desc);
+        dest.writeString(this.maker_desc);
+        dest.writeString(this.maker_model);
+        dest.writeString(this.manu_yr);
+        dest.writeString(this.purchase_dt);
+        dest.writeString(this.regn_dt);
+        dest.writeString(this.regn_no);
+        dest.writeString(this.rto_cd);
+        dest.writeString(this.rto_name);
+        dest.writeString(this.seat_cap);
+        dest.writeString(this.state_cd);
+        dest.writeString(this.vehicle_cd);
+        dest.writeString(this.vh_class_desc);
+    }
+
+    public FastLaneResponseVariableEntity() {
+    }
+
+    protected FastLaneResponseVariableEntity(Parcel in) {
+        this.chasi_no = in.readString();
+        this.color = in.readString();
+        this.cubic_cap = in.readString();
+        this.eng_no = in.readString();
+        this.fla_cubic_cap = in.readString();
+        this.fla_fuel_type_desc = in.readString();
+        this.fla_maker_desc = in.readString();
+        this.fla_model_desc = in.readString();
+        this.fla_seat_cap = in.readString();
+        this.fla_variant = in.readString();
+        this.fla_vh_class_desc = in.readString();
+        this.fuel_type_desc = in.readString();
+        this.maker_desc = in.readString();
+        this.maker_model = in.readString();
+        this.manu_yr = in.readString();
+        this.purchase_dt = in.readString();
+        this.regn_dt = in.readString();
+        this.regn_no = in.readString();
+        this.rto_cd = in.readString();
+        this.rto_name = in.readString();
+        this.seat_cap = in.readString();
+        this.state_cd = in.readString();
+        this.vehicle_cd = in.readString();
+        this.vh_class_desc = in.readString();
+    }
+
+    public static final Parcelable.Creator<FastLaneResponseVariableEntity> CREATOR = new Parcelable.Creator<FastLaneResponseVariableEntity>() {
+        @Override
+        public FastLaneResponseVariableEntity createFromParcel(Parcel source) {
+            return new FastLaneResponseVariableEntity(source);
         }
+
+        @Override
+        public FastLaneResponseVariableEntity[] newArray(int size) {
+            return new FastLaneResponseVariableEntity[size];
+        }
+    };
+}

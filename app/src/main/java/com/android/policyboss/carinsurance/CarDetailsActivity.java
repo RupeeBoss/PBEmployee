@@ -1,10 +1,12 @@
 package com.android.policyboss.carinsurance;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
@@ -27,6 +29,14 @@ public class CarDetailsActivity extends BaseActivity {
     List<String> makeList;
     List<String> modelList;
     List<String> variantList;
+
+    ArrayAdapter<String> makeAdapter;
+    ArrayAdapter cityAdapter;
+    ArrayAdapter modelAdapter;
+    ArrayAdapter varientAdapter;
+
+    Spinner spCarMake, spCarFuelType, spCarVarient;
+    AutoCompleteTextView autoCarMake;
 
     @Override
     protected void onDestroy() {
@@ -51,7 +61,24 @@ public class CarDetailsActivity extends BaseActivity {
         init_widgets();
         setListeners();
 
+        bindingAdapters();
 
+
+    }
+
+    private void bindingAdapters() {
+
+        makeAdapter = new
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, makeList);
+        autoCarMake.setAdapter(makeAdapter);
+        autoCarMake.setThreshold(2);
+
+        modelAdapter = new
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, modelList);
+        varientAdapter = new
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, variantList);
+        cityAdapter = new
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, cityList);
     }
 
     @Override
@@ -93,6 +120,12 @@ public class CarDetailsActivity extends BaseActivity {
         llAdditionalDetails = (LinearLayout) findViewById(R.id.llAdditionalDetails);
         llAdditionAcc = (LinearLayout) findViewById(R.id.llAdditionAcc);
         llNcb = (LinearLayout) findViewById(R.id.llNcb);
+        spCarMake = (Spinner) findViewById(R.id.spCarMake);
+        spCarFuelType = (Spinner) findViewById(R.id.spCarFuelType);
+        spCarVarient = (Spinner) findViewById(R.id.spCarVarient);
+
+
+        autoCarMake = (AutoCompleteTextView) findViewById(R.id.autoCarMake);
     }
 
 

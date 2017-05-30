@@ -99,7 +99,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         tvBuyTiltle = (TextView) findViewById(R.id.tvBuyTiltle);
         txtDontRem = (TextView) findViewById(R.id.txtDontRem);
         etRenewRegNo = (EditText) findViewById(R.id.etRenewRegNo);
-        etRenewRegNo.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
+        etRenewRegNo.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         etInvDate = (EditText) findViewById(R.id.etInvDate);
 
     }
@@ -137,8 +137,10 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
                 break;
             case R.id.txtDontRem:
+                quoteRequestEntity.setRenew(false);
+                quoteRequestEntity.setNew(false);
                 quoteRequestEntity.setDontRem(true);
-                startActivity(new Intent(CarInsuranceActivity.this,CarDetailsActivity.class).putExtra(Constants.QUOTE,quoteRequestEntity));
+                startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
         }
     }
 
@@ -147,9 +149,11 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
         if (response instanceof FastLaneResponse) {
             cancelDialog();
+            quoteRequestEntity.setNew(false);
             quoteRequestEntity.setRenew(true);
-
-            startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+            quoteRequestEntity.setDontRem(false);
+            startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity)
+                    .putExtra("FASTLANE", ((FastLaneResponse) response).getFastLaneEntity()));
         }
     }
 
@@ -172,6 +176,8 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
                         calendar.set(year, monthOfYear, dayOfMonth);
                         String currentDay = simpleDateFormat.format(calendar.getTime());
                         etInvDate.setText(currentDay);
+                        quoteRequestEntity.setDontRem(false);
+                        quoteRequestEntity.setRenew(false);
                         quoteRequestEntity.setNew(true);
                         startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
                         //etDate.setTag(R.id.et_date, calendar.getTime());
