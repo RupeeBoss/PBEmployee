@@ -37,5 +37,6 @@
         <item>Universal Sompo General Insurance Co. Ltd. </item>
 
     </string-array>
+    <string name="title_activity_new_car_insurance">NewCarInsuranceActivity</string>
     <string name="title_activity_car_details">Car Details</string>
 </resources>
