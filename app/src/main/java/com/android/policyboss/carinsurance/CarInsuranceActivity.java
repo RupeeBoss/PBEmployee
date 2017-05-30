@@ -1,6 +1,5 @@
 package com.android.policyboss.carinsurance;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.animation.Animate;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.fastlane.FastlaneController;
@@ -28,7 +26,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     ImageView ivNewCar, ivRenewCar;
     CardView llBuyorRenew;
     CardView cvBuyorRenew, cvRegNo, cvInvDate;
-    TextView tvBuyTiltle;
+    TextView tvBuyTiltle, txtDontRem;
 
     EditText etRenewRegNo, etInvDate;
 
@@ -55,7 +53,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         ivRenewCar.setOnClickListener(this);
         llBuyorRenew.setOnClickListener(this);
         cvBuyorRenew.setOnClickListener(this);
-
+        txtDontRem.setOnClickListener(this);
         etRenewRegNo.addTextChangedListener(renewtextWatcher);
     }
 
@@ -87,7 +85,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         cvRegNo = (CardView) findViewById(R.id.cvRegNo);
         cvInvDate = (CardView) findViewById(R.id.cvInvDate);
         tvBuyTiltle = (TextView) findViewById(R.id.tvBuyTiltle);
-
+        txtDontRem = (TextView) findViewById(R.id.txtDontRem);
         etRenewRegNo = (EditText) findViewById(R.id.etRenewRegNo);
         etInvDate = (EditText) findViewById(R.id.etInvDate);
 
