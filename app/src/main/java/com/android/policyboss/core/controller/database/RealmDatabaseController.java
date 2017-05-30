@@ -102,12 +102,12 @@ public class RealmDatabaseController {
             return (List<VehicleMasterEntity>) weakReference.get(VEHICLE_TABLE);
         }
 
-        List<VehicleMasterEntity> listMake = realm.where(VehicleMasterEntity.class).findAll();
-        if (listMake != null) {
-            weakReference.put(VEHICLE_TABLE, listMake);
+        List<VehicleMasterEntity> list_Make = realm.where(VehicleMasterEntity.class).findAll();
+        if (list_Make != null) {
+            weakReference.put(VEHICLE_TABLE, list_Make);
         } else {
             return (List<VehicleMasterEntity>) weakReference.get(VEHICLE_TABLE);
         }
-        return listMake;
+        return list_Make;
     }
 }
