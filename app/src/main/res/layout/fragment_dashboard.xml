@@ -12,6 +12,12 @@
         android:layout_weight="35"
         android:background="@color/colorPrimaryDark">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/policy_banner_1" />
+
     </LinearLayout>
 
     <LinearLayout

@@ -7,5 +7,5 @@ import com.android.policyboss.core.IResponseSubcriber;
  */
 
 public interface IFastLane {
-    void IRegistrationNumber(String vehicleNumber, IResponseSubcriber iResponseSubcriber);
+    void getCarDetails(String vehicleNumber, IResponseSubcriber iResponseSubcriber);
 }

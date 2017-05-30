@@ -1,18 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (C) 2015 The Android Open Source Project
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~      http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
--->
+<?xml version="1.0" encoding="utf-8"?>
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -67,126 +53,332 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="24dp">
-
+            android:paddingTop="8dp">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/cvBuyorRenew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/gap">
+                android:layout_marginTop="@dimen/gap">
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvBuyTiltle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:drawablePadding="5dp"
+                        android:drawableRight="@drawable/right_arrow_bas_screen"
                         android:padding="8dp"
                         android:text="Buy or Renew Car Insurance"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textColor="@color/application_primary_text_color" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#f6f6f6" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/llBuyorRenew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/gap">
+
+                    <ImageView
+                        android:id="@+id/ivNewCar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/gap"
+                        android:src="@drawable/new_car" />
+
+
+                    <ImageView
+                        android:id="@+id/ivRenewCar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/gap"
+                        android:src="@drawable/renew_old_car" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <!--Renew-->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvRegNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/gap"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/gap">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Enter Registration Number"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/application_primary_text_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/divider"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp" />
+                        android:background="#f6f6f6" />
 
-                    <LinearLayout
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/emailWrapperxcv"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_margin="8dp"
+                        android:layout_marginTop="0dp"
+                        android:clipToPadding="false"
+                        android:gravity="bottom"
+                        android:paddingTop="4dp"
+                        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                        <EditText
+                            android:id="@+id/etRenewRegNo"
+                            style="@style/EditTextStyle"
+                            android:drawableLeft="@drawable/ic_people_white"
+                            android:hint="Enter Registration Number" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="@dimen/gap"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Don't Remember"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="italic" />
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
 
-                        <ImageView
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Don't Remember"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/colorPrimaryDark" />
+
+                        android:orientation="vertical">
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/emailWrapper"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_margin="8dp"
+                            android:layout_marginTop="0dp"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            android:paddingTop="4dp"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/txtEmail"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/ic_people_white"
+                                android:hint="Email address" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        &lt;!&ndash;         <android.support.design.widget.TextInputLayout
+                                     android:layout_width="match_parent"
+                                     android:layout_height="54dp"
+                                     android:layout_margin="8dp"
+                                     android:layout_marginTop="0dp"
+                                     android:clipToPadding="false"
+                                     android:gravity="bottom"
+                                     android:paddingTop="4dp"
+                                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                        <include layout="@layout/layout_when_policy_expiring" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/gap">
+                                     <EditText
+                                         style="@style/EditTextStyle"
+                                         android:drawableStart="@drawable/ic_people_white"
+                                         android:hint="Email address"
+                                         android:inputType="textEmailAddress" />
+
+                                 </android.support.design.widget.TextInputLayout>&ndash;&gt;
+
+                        <Spinner
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/gap"
-                            android:src="@drawable/new_car" />
+                            android:layout_margin="8dp"
+                            android:background="@drawable/spinner_bg"
+                            android:entries="@array/array_insurance_company"
 
+                        <include layout="@layout/layout_which_car_you_drive" />
+                    </android.support.v7.widget.CardView>
+                            android:spinnerMode="dropdown"></Spinner>
 
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:padding="@dimen/gap"
-                            android:src="@drawable/renew_old_car" />
-                    </LinearLayout>
+                    </LinearLayout>-->
+                    <!--</android.support.v7.widget.CardView>-->
+
 
                 </LinearLayout>
-
             </android.support.v7.widget.CardView>
 
-            <!--  <android.support.v7.widget.CardView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="@dimen/gap">-->
-
-            <!--<LinearLayout
+            <!--new-->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvInvDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/gap"
+                android:visibility="gone">
 
-                android:orientation="vertical">
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/emailWrapper"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
-                    android:clipToPadding="false"
-                    android:gravity="bottom"
-                    android:paddingTop="4dp"
-                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                    <EditText
-                        android:id="@+id/txtEmail"
-                        style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/ic_people_white"
-                        android:hint="Email address" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                &lt;!&ndash;         <android.support.design.widget.TextInputLayout
-                             android:layout_width="match_parent"
-                             android:layout_height="54dp"
-                             android:layout_margin="8dp"
-                             android:layout_marginTop="0dp"
-                             android:clipToPadding="false"
-                             android:gravity="bottom"
-                             android:paddingTop="4dp"
-                             app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                             <EditText
-                                 style="@style/EditTextStyle"
-                                 android:drawableStart="@drawable/ic_people_white"
-                                 android:hint="Email address"
-                                 android:inputType="textEmailAddress" />
-
-                         </android.support.design.widget.TextInputLayout>&ndash;&gt;
-
-                <Spinner
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/spinner_bg"
-                    android:entries="@array/array_insurance_company"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/gap">
 
-                    android:spinnerMode="dropdown"></Spinner>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="First Registration / Invoice Date"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/application_primary_text_color" />
 
-            </LinearLayout>-->
-            <!--</android.support.v7.widget.CardView>-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#f6f6f6" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/emailWrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_margin="8dp"
+                        android:layout_marginTop="0dp"
+                        android:clipToPadding="false"
+                        android:gravity="bottom"
+                        android:paddingTop="4dp"
+                        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                        <EditText
+                            android:id="@+id/etInvDate"
+                            style="@style/EditTextStyle"
+                            android:drawableLeft="@drawable/ic_people_white"
+                            android:hint="First Registration / Invoice Date" />
+
+                    </android.support.design.widget.TextInputLayout>
 
 
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Don't Remember"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/colorPrimaryDark" />
+
+                        android:orientation="vertical">
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/emailWrapper"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_margin="8dp"
+                            android:layout_marginTop="0dp"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            android:paddingTop="4dp"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/txtEmail"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/ic_people_white"
+                                android:hint="Email address" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        &lt;!&ndash;         <android.support.design.widget.TextInputLayout
+                                     android:layout_width="match_parent"
+                                     android:layout_height="54dp"
+                                     android:layout_margin="8dp"
+                                     android:layout_marginTop="0dp"
+                                     android:clipToPadding="false"
+                                     android:gravity="bottom"
+                                     android:paddingTop="4dp"
+                                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                        <include layout="@layout/layout_when_policy_expiring" />
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/gap">
+                                     <EditText
+                                         style="@style/EditTextStyle"
+                                         android:drawableStart="@drawable/ic_people_white"
+                                         android:hint="Email address"
+                                         android:inputType="textEmailAddress" />
+
+                                 </android.support.design.widget.TextInputLayout>&ndash;&gt;
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:background="@drawable/spinner_bg"
+                            android:entries="@array/array_insurance_company"
+
+                        <include layout="@layout/layout_which_car_you_drive" />
+                    </android.support.v7.widget.CardView>
+                            android:spinnerMode="dropdown"></Spinner>
+
+                    </LinearLayout>-->
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
-
 
 </android.support.design.widget.CoordinatorLayout>

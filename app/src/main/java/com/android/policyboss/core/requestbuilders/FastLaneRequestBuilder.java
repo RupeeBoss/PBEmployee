@@ -26,7 +26,7 @@ public class FastLaneRequestBuilder extends RetroRequestBuilder {
 
     public interface FastLaneNetworkService {
 
-        @POST(SUB_URL + "/VariantMasterService")
+        @POST(SUB_URL + "/FastLaneService")
         Call<FastLaneResponse> getVehicleDetails(@Body HashMap<String, String> body);
 
 

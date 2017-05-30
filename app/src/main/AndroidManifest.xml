@@ -41,7 +41,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
-
+        <activity
+            android:name=".carinsurance.CarVarientDetailsActivity"
+            android:label="@string/title_activity_car_varient_details"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".carinsurance.CarAdditionalDetailsActivity"
+            android:label="@string/title_activity_car_additional_details"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

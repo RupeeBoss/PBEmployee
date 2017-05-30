@@ -9,6 +9,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_car_insurance">Car Details</string>
     <string name="title_activity_renewal_car">Car details</string>
+    <string name="title_activity_car_varient_details">Car Insurance</string>
+    <string name="title_activity_car_additional_details">Car Insurance</string>
 
 
     <string-array name="array_insurance_company">
