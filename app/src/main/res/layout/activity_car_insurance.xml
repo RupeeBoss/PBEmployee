@@ -160,7 +160,6 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
-                            android:textAllCaps="true"
                             android:id="@+id/etRenewRegNo"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/ic_people_white"
@@ -296,10 +295,10 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
-                            android:focusable="false"
                             android:id="@+id/etInvDate"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/ic_people_white"
+                            android:focusable="false"
                             android:hint="First Registration / Invoice Date" />
 
                     </android.support.design.widget.TextInputLayout>
