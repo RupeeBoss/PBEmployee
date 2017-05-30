@@ -137,6 +137,8 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
                 break;
             case R.id.txtDontRem:
+                quoteRequestEntity.setRenew(false);
+                quoteRequestEntity.setNew(false);
                 quoteRequestEntity.setDontRem(true);
                 startActivity(new Intent(CarInsuranceActivity.this,CarDetailsActivity.class).putExtra(Constants.QUOTE,quoteRequestEntity));
         }
@@ -147,8 +149,9 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
         if (response instanceof FastLaneResponse) {
             cancelDialog();
+            quoteRequestEntity.setNew(false);
             quoteRequestEntity.setRenew(true);
-
+            quoteRequestEntity.setDontRem(false);
             startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity));
         }
     }
@@ -172,6 +175,8 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
                         calendar.set(year, monthOfYear, dayOfMonth);
                         String currentDay = simpleDateFormat.format(calendar.getTime());
                         etInvDate.setText(currentDay);
+                        quoteRequestEntity.setDontRem(false);
+                        quoteRequestEntity.setRenew(false);
                         quoteRequestEntity.setNew(true);
                         startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
                         //etDate.setTag(R.id.et_date, calendar.getTime());

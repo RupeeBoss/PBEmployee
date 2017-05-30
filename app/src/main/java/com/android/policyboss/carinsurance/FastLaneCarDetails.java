@@ -40,6 +40,9 @@ public class FastLaneCarDetails extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCont:
+                quoteRequestEntity.setNew(false);
+                quoteRequestEntity.setRenew(true);
+                quoteRequestEntity.setDontRem(false);
                 startActivity(new Intent(FastLaneCarDetails.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
                 break;
         }
