@@ -79,6 +79,16 @@ public class QuoteRequestEntity implements Parcelable {
     private boolean isRenew;
     private boolean isInfoCorrect;
 
+    public boolean isDontRem() {
+        return dontRem;
+    }
+
+    public void setDontRem(boolean dontRem) {
+        this.dontRem = dontRem;
+    }
+
+    private boolean dontRem;
+
     private int ProductID;
     private String ExShowRoomPrice;
     private String ExpectedIDV;
@@ -423,6 +433,7 @@ public class QuoteRequestEntity implements Parcelable {
         dest.writeByte(this.isNew ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isRenew ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isInfoCorrect ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.dontRem ? (byte) 1 : (byte) 0);
         dest.writeInt(this.ProductID);
         dest.writeString(this.ExShowRoomPrice);
         dest.writeString(this.ExpectedIDV);
@@ -469,6 +480,7 @@ public class QuoteRequestEntity implements Parcelable {
         this.isNew = in.readByte() != 0;
         this.isRenew = in.readByte() != 0;
         this.isInfoCorrect = in.readByte() != 0;
+        this.dontRem = in.readByte() != 0;
         this.ProductID = in.readInt();
         this.ExShowRoomPrice = in.readString();
         this.ExpectedIDV = in.readString();

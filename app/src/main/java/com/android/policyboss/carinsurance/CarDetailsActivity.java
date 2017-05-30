@@ -34,6 +34,9 @@ public class CarDetailsActivity extends AppCompatActivity {
             llVarientDetails.setVisibility(View.VISIBLE);
         } else if (quoteRequestEntity.isRenew()) {
             llWhenPolicyExpiring.setVisibility(View.VISIBLE);
+        } else if (quoteRequestEntity.isDontRem()) {
+            llWhenPolicyExpiring.setVisibility(View.VISIBLE);
+            llVarientDetails.setVisibility(View.VISIBLE);
         }
     }
 

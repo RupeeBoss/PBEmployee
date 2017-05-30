@@ -134,6 +134,9 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
                 //cvRegNo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
                 break;
+            case R.id.txtDontRem:
+                quoteRequestEntity.setDontRem(true);
+                startActivity(new Intent(CarInsuranceActivity.this,CarDetailsActivity.class).putExtra(Constants.QUOTE,quoteRequestEntity));
         }
     }
 
