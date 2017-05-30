@@ -1,5 +1,6 @@
 package com.android.policyboss.carinsurance;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -55,6 +56,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         cvBuyorRenew.setOnClickListener(this);
         txtDontRem.setOnClickListener(this);
         etRenewRegNo.addTextChangedListener(renewtextWatcher);
+        //etInvDate.setOnClickListener();
     }
 
     TextWatcher renewtextWatcher = new TextWatcher() {
@@ -130,7 +132,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     public void OnSuccess(APIResponse response, String message) {
 
         if (response instanceof FastLaneResponse) {
-            //startActivity(new Intent(this,));
+            startActivity(new Intent(this,FastLaneCarDetails.class));
         }
     }
 
