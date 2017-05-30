@@ -1,9 +1,14 @@
 package com.android.policyboss.core.requestbuilders;
 
 import com.android.policyboss.core.RetroRequestBuilder;
+import com.android.policyboss.core.response.AllCityMasterResponse;
+import com.android.policyboss.core.response.AllMastersResponse;
 import com.android.policyboss.core.response.VarientMasterResponse;
 
+import java.util.HashMap;
+
 import retrofit.Call;
+import retrofit.http.Body;
 import retrofit.http.Headers;
 import retrofit.http.POST;
 
@@ -30,6 +35,10 @@ public class VarientMasterRequestBuilder extends RetroRequestBuilder {
         @POST(SUB_URL + "/VariantMasterService")
         Call<VarientMasterResponse> getVarient();
 
+        @POST(SUB_URL + "/GetAllMasterService")
+        Call<AllMastersResponse> getAllMasters(@Body HashMap<String, String> body);
 
+        @POST(SUB_URL + "/GetVechicalCityService")
+        Call<AllCityMasterResponse> getAllCity();
     }
 }

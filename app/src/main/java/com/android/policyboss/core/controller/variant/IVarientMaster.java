@@ -7,5 +7,9 @@ import com.android.policyboss.core.IResponseSubcriber;
  */
 
 public interface IVarientMaster {
-    void getVarientMaster( IResponseSubcriber iResponseSubcriber);
+    void getVarientMaster(IResponseSubcriber iResponseSubcriber);
+
+    void getAllMasters(IResponseSubcriber iResponseSubcriber);
+
+    void getAllCityMasters(IResponseSubcriber iResponseSubcriber);
 }
