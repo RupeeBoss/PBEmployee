@@ -1,25 +1,35 @@
 package com.android.policyboss.carinsurance;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.APIResponse;
+import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
+import com.android.policyboss.core.controller.motorquote.MotorQuote;
 import com.android.policyboss.core.models.QuoteRequestEntity;
+import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
+import com.android.policyboss.core.response.MotorQuotesResponse;
+
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +38,7 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener ,View.OnClickListener,IResponseSubcriber {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
@@ -55,6 +65,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     AutoCompleteTextView autoCarMake, autoCity;
     Switch switchAdditional, switchNcb;
     EditText etManufactYear;
+    Button btnGetQuote;
 
     @Override
     protected void onDestroy() {
@@ -231,6 +242,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         switchAdditional = (Switch) findViewById(R.id.switchAdditional);
         switchNcb = (Switch) findViewById(R.id.switchNcb);
         etManufactYear = (EditText) findViewById(R.id.etManufactYear);
+        btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
+        btnGetQuote.setOnClickListener(this);
         spWhenPolicyExp = (Spinner) findViewById(R.id.spWhenPolicyExp);
         spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
         spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
@@ -276,5 +289,94 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                     llNcb.setVisibility(View.GONE);
                 }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnGetQuote) {
+            getQuoteData();
+        }
+
+    }
+
+    @Override
+    public void OnSuccess(APIResponse response, String message) {
+
+        cancelDialog();
+        if (response instanceof MotorQuotesResponse) {
+
+            try {
+                MotorQuotesResponse getQuoteResponse = ((MotorQuotesResponse) response);
+
+                startActivity(new Intent(this,CarQuoteGenerate.class)
+                .putExtra(Constants.MOTOR_QUOTE_DATA,getQuoteResponse));
+
+            }
+           catch (Exception ex)
+           {
+               ex.printStackTrace();
+           }
+        }
+    }
+
+    @Override
+    public void OnFailure(Throwable t) {
+        cancelDialog();
+        Toast.makeText(this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void getQuoteData() {
+        MotorQuotesReqEntity quotesReqEntity = new MotorQuotesReqEntity();
+
+        quotesReqEntity.setVehicleNo("");
+        quotesReqEntity.setCustomerReferenceID("");
+        quotesReqEntity.setProductID(1);
+        quotesReqEntity.setExpectedIDV(0);
+        quotesReqEntity.setIDVinExpiryPolicy(0);
+        quotesReqEntity.setDateofPurchaseofCar("2017-05-30");
+        quotesReqEntity.setVD_Amount(0);
+        quotesReqEntity.setPACoverValue(0);
+        quotesReqEntity.setVehicleCity_Id(580);
+        quotesReqEntity.setProfession_Id(6);
+
+        quotesReqEntity.setValueOfElectricalAccessories(0);
+        quotesReqEntity.setValueOfNonElectricalAccessories(0);
+        quotesReqEntity.setValueOfBiFuelKit(0);
+        quotesReqEntity.setCurrentNCB(0);
+        quotesReqEntity.setIsClaimInExpiringPolicy(false);
+        quotesReqEntity.setApplyAntiTheftDiscount(false);
+        quotesReqEntity.setApplyAutomobileAssociationDiscount(false);
+        quotesReqEntity.setAutomobileAssociationName("");
+        quotesReqEntity.setAutomobileMembershipExpiryDate("");
+        quotesReqEntity.setAutomobileAssociationMembershipNumber("");
+
+        quotesReqEntity.setPaidDriverCover(false);
+        quotesReqEntity.setOwnerDOB("");
+        quotesReqEntity.setPreveious_Insurer_Id(0);
+        quotesReqEntity.setManufacturingYear(2017);
+        quotesReqEntity.setPolicyExpiryDate("2017-06-24");
+        quotesReqEntity.setVehicleRegisteredName(1);
+        quotesReqEntity.setVariant_ID(690);
+        quotesReqEntity.setRegistrationNumber("");
+        quotesReqEntity.setPlaceofRegistration("");
+        quotesReqEntity.setVehicleType("1");
+
+        quotesReqEntity.setExisting_CustomerReferenceID("");
+        quotesReqEntity.setContactName("Umesh");
+        quotesReqEntity.setContactEmail("");
+        quotesReqEntity.setContactMobile("");
+        quotesReqEntity.setLandmarkEmployeeCode("");
+        quotesReqEntity.setSupportsAgentID(123);
+        quotesReqEntity.setSessionID("59e979ed-dfc7-4d79-9f28-d427a554917e");
+        quotesReqEntity.setSourceType("APP");
+        quotesReqEntity.setInsurerIDArray("");
+
+        Gson gson = new Gson();
+      String strJson = gson.toJson(quotesReqEntity);
+
+        showDialog();
+        new MotorQuote(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
+
+
     }
 }

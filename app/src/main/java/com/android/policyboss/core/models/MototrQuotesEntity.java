@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public  class MototrQuotesEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public  class MototrQuotesEntity implements Parcelable {
         /**
          * AddOnRate : 0
          * AddOn_Id : 0
@@ -89,7 +92,64 @@ public  class MototrQuotesEntity {
         private int Variant_ID;
         private int VoluntaryDeductions;
 
-        public int getAddOnRate() {
+    protected MototrQuotesEntity(Parcel in) {
+        AddOnRate = in.readInt();
+        AddOn_Id = in.readInt();
+        AddOn_Name = in.readString();
+        AddOn_Premium = in.readInt();
+        AddOn_Type = in.readString();
+        AddOn_TypeId = in.readInt();
+        AgeDiscount = in.readInt();
+        AntiTheftDiscount = in.readInt();
+        AutomobileAssociationMembershipPremium = in.readInt();
+        BasicOwnDamage = in.readInt();
+        BiFuelKitLiabilityPremium = in.readInt();
+        BiFuelKitPremium = in.readInt();
+        CustomerReferenceID = in.readInt();
+        ElectricalAcessoriesPremium = in.readInt();
+        GrossODPremium = in.readInt();
+        IDV = in.readInt();
+        InsurerId = in.readInt();
+        InsurerLogoName = in.readString();
+        InsurerName = in.readString();
+        LegalLiabilityPremiumForPaidDriver = in.readInt();
+        NetODAfterTariffDiscount = in.readInt();
+        NetPayablePayablePremium = in.readInt();
+        NoClaimBonus = in.readInt();
+        NoClaimBonusPercentage = in.readInt();
+        NonElectricalAccessoriesPremium = in.readInt();
+        ODDiscount = in.readInt();
+        PersonalAccidentCoverForOwnerDriver = in.readInt();
+        PersonalAccidentCoverForUnammedPassenger = in.readInt();
+        ProductPlan_Id = in.readInt();
+        ProfessionDiscount = in.readInt();
+        ProposerPageUrl = in.readString();
+        QuoteId = in.readInt();
+        QuoteStatus = in.readString();
+        ServiceTax = in.readInt();
+        ThirdPartyLiablityPremium = in.readInt();
+        TotalLiabilityPremium = in.readInt();
+        TotalODPremium = in.readInt();
+        TotalOwnDamagePremium = in.readInt();
+        TotalPremium = in.readInt();
+        UnderwriterLoading = in.readInt();
+        Variant_ID = in.readInt();
+        VoluntaryDeductions = in.readInt();
+    }
+
+    public static final Creator<MototrQuotesEntity> CREATOR = new Creator<MototrQuotesEntity>() {
+        @Override
+        public MototrQuotesEntity createFromParcel(Parcel in) {
+            return new MototrQuotesEntity(in);
+        }
+
+        @Override
+        public MototrQuotesEntity[] newArray(int size) {
+            return new MototrQuotesEntity[size];
+        }
+    };
+
+    public int getAddOnRate() {
             return AddOnRate;
         }
 
@@ -424,4 +484,57 @@ public  class MototrQuotesEntity {
         public void setVoluntaryDeductions(int VoluntaryDeductions) {
             this.VoluntaryDeductions = VoluntaryDeductions;
         }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(AddOnRate);
+        dest.writeInt(AddOn_Id);
+        dest.writeString(AddOn_Name);
+        dest.writeInt(AddOn_Premium);
+        dest.writeString(AddOn_Type);
+        dest.writeInt(AddOn_TypeId);
+        dest.writeInt(AgeDiscount);
+        dest.writeInt(AntiTheftDiscount);
+        dest.writeInt(AutomobileAssociationMembershipPremium);
+        dest.writeInt(BasicOwnDamage);
+        dest.writeInt(BiFuelKitLiabilityPremium);
+        dest.writeInt(BiFuelKitPremium);
+        dest.writeInt(CustomerReferenceID);
+        dest.writeInt(ElectricalAcessoriesPremium);
+        dest.writeInt(GrossODPremium);
+        dest.writeInt(IDV);
+        dest.writeInt(InsurerId);
+        dest.writeString(InsurerLogoName);
+        dest.writeString(InsurerName);
+        dest.writeInt(LegalLiabilityPremiumForPaidDriver);
+        dest.writeInt(NetODAfterTariffDiscount);
+        dest.writeInt(NetPayablePayablePremium);
+        dest.writeInt(NoClaimBonus);
+        dest.writeInt(NoClaimBonusPercentage);
+        dest.writeInt(NonElectricalAccessoriesPremium);
+        dest.writeInt(ODDiscount);
+        dest.writeInt(PersonalAccidentCoverForOwnerDriver);
+        dest.writeInt(PersonalAccidentCoverForUnammedPassenger);
+        dest.writeInt(ProductPlan_Id);
+        dest.writeInt(ProfessionDiscount);
+        dest.writeString(ProposerPageUrl);
+        dest.writeInt(QuoteId);
+        dest.writeString(QuoteStatus);
+        dest.writeInt(ServiceTax);
+        dest.writeInt(ThirdPartyLiablityPremium);
+        dest.writeInt(TotalLiabilityPremium);
+        dest.writeInt(TotalODPremium);
+        dest.writeInt(TotalOwnDamagePremium);
+        dest.writeInt(TotalPremium);
+        dest.writeInt(UnderwriterLoading);
+        dest.writeInt(Variant_ID);
+        dest.writeInt(VoluntaryDeductions);
+    }
+
+
+}
