@@ -1,16 +1,14 @@
 package com.android.policyboss.core.controller.database;
 
-import com.android.policyboss.core.models.MakeEntity;
-import com.android.policyboss.core.models.ModelEntity;
-import com.android.policyboss.core.models.VariantEntity;
+import com.android.policyboss.core.models.MakeMasterEntity;
+import com.android.policyboss.core.models.ModelMasterEntity;
 import com.android.policyboss.core.models.VariantMasterEntity;
+import com.android.policyboss.core.models.VehicleMasterEntity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 /**
  * Created by Nilesh Birhade on 29-05-2017.
@@ -20,6 +18,7 @@ public class RealmDatabaseController {
     private static final String MAKE_TABLE = "make_entity";
     private static final String MODEL_TABLE = "model_entity";
     private static final String VARIANT_TABLE = "variant_entity";
+    private static final String VEHICLE_TABLE = "vehicle_entity";
 
     Realm realm;
     HashMap<String, Object> weakReference;
@@ -29,85 +28,88 @@ public class RealmDatabaseController {
         weakReference = new HashMap<String, Object>();
     }
 
-    public void insertVariantMaster(final List<VariantMasterEntity> list) {
+    public void insertMasterTables(final List<MakeMasterEntity> listMake,
+                                   final List<ModelMasterEntity> listModel,
+                                   final List<VariantMasterEntity> listVariant) {
+
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                realm.copyToRealmOrUpdate(list);
+                realm.copyToRealmOrUpdate(listMake);
+                realm.copyToRealmOrUpdate(listVariant);
+                realm.copyToRealmOrUpdate(listModel);
             }
         });
+
     }
 
+    public void insertMasterVehicleTables(final List<VehicleMasterEntity> listVehicle) {
 
-    public List<ModelEntity> getModelMaster() {
-        if ((List<ModelEntity>) weakReference.get(MODEL_TABLE) != null) {
-            return (List<ModelEntity>) weakReference.get(MODEL_TABLE);
-        }
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealmOrUpdate(listVehicle);
 
-        List<ModelEntity> list = new ArrayList<>();
-        RealmResults<VariantMasterEntity> modelList = realm.where(VariantMasterEntity.class)
-                .distinct("Model_ID").sort("Model_Name");
-
-        if (modelList.size() != 0) {
-            for (int i = 0; i < modelList.size(); i++) {
-                ModelEntity modelEntity = new ModelEntity();
-                modelEntity.setModel_ID(modelList.get(i).getModel_ID());
-                modelEntity.setModel_Name(modelList.get(i).getModel_Name());
-                list.add(modelEntity);
             }
-            weakReference.put(MODEL_TABLE, list);
-        }
-
-        return list;
+        });
 
     }
 
-
-    public List<VariantEntity> getVariantMaster() {
-        if ((List<VariantEntity>) weakReference.get(VARIANT_TABLE) != null) {
-            return (List<VariantEntity>) weakReference.get(VARIANT_TABLE);
+    public List<MakeMasterEntity> getMasterMake() {
+        if ((List<MakeMasterEntity>) weakReference.get(MAKE_TABLE) != null) {
+            return (List<MakeMasterEntity>) weakReference.get(MAKE_TABLE);
         }
 
-        List<VariantEntity> list = new ArrayList<>();
-        RealmResults<VariantMasterEntity> variantList = realm.where(VariantMasterEntity.class)
-                .distinct("Variant_Id").sort("Variant_Name");
-
-        if (variantList.size() != 0) {
-            for (int i = 0; i < variantList.size(); i++) {
-                VariantEntity variantEntity = new VariantEntity();
-                variantEntity.setVariant_Id(variantList.get(i).getVariant_Id());
-                variantEntity.setVariant_Name(variantList.get(i).getVariant_Name());
-                list.add(variantEntity);
-            }
-            weakReference.put(VARIANT_TABLE, list);
+        List<MakeMasterEntity> listMake = realm.where(MakeMasterEntity.class).findAll();
+        if (listMake != null) {
+            weakReference.put(MAKE_TABLE, listMake);
+        } else {
+            return (List<MakeMasterEntity>) weakReference.get(MAKE_TABLE);
         }
-
-        return list;
-
+        return listMake;
     }
 
-
-    public List<MakeEntity> getMakeMaster() {
-
-        if ((List<MakeEntity>) weakReference.get(MAKE_TABLE) != null) {
-            return (List<MakeEntity>) weakReference.get(MAKE_TABLE);
+    public List<ModelMasterEntity> getMasterModel() {
+        if ((List<ModelMasterEntity>) weakReference.get(MODEL_TABLE) != null) {
+            return (List<ModelMasterEntity>) weakReference.get(MODEL_TABLE);
         }
 
-        List<MakeEntity> list = new ArrayList<>();
-        RealmResults<VariantMasterEntity> makeList = realm.where(VariantMasterEntity.class)
-                .distinct("Make_ID").sort("Make_Name");
-
-        if (makeList.size() != 0) {
-            for (int i = 0; i < makeList.size(); i++) {
-                MakeEntity makeEntity = new MakeEntity();
-                makeEntity.setMake_ID(makeList.get(i).getMake_ID());
-                makeEntity.setMake_Name(makeList.get(i).getMake_Name());
-                list.add(makeEntity);
-            }
-            weakReference.put(MAKE_TABLE, list);
+        List<ModelMasterEntity> listModel = realm.where(ModelMasterEntity.class).findAll();
+        if (listModel != null) {
+            weakReference.put(MODEL_TABLE, listModel);
+        } else {
+            return (List<ModelMasterEntity>) weakReference.get(MODEL_TABLE);
         }
-
-        return list;
+        return listModel;
     }
+
+    public List<VariantMasterEntity> getMasterVariant() {
+        if ((List<VariantMasterEntity>) weakReference.get(VARIANT_TABLE) != null) {
+            return (List<VariantMasterEntity>) weakReference.get(VARIANT_TABLE);
+        }
+
+        List<VariantMasterEntity> listModel = realm.where(VariantMasterEntity.class).findAll();
+        if (listModel != null) {
+            weakReference.put(VARIANT_TABLE, listModel);
+        } else {
+            return (List<VariantMasterEntity>) weakReference.get(VARIANT_TABLE);
+        }
+        return listModel;
+    }
+
+    public List<VehicleMasterEntity> getMasterVehicle() {
+        if ((List<VehicleMasterEntity>) weakReference.get(VEHICLE_TABLE) != null) {
+            return (List<VehicleMasterEntity>) weakReference.get(VEHICLE_TABLE);
+        }
+
+        List<VehicleMasterEntity> list_Make = realm.where(VehicleMasterEntity.class).findAll();
+        if (list_Make != null) {
+            weakReference.put(VEHICLE_TABLE, list_Make);
+        } else {
+            return (List<VehicleMasterEntity>) weakReference.get(VEHICLE_TABLE);
+        }
+        return list_Make;
+    }
+
 
 }

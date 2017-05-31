@@ -1,46 +1,44 @@
-package com.android.policyboss.core.controller.fastlane;
+package com.android.policyboss.core.controller.motorquote;
 
 import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.database.RealmDatabaseController;
-import com.android.policyboss.core.controller.variant.IVarientMaster;
+import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
 import com.android.policyboss.core.requestbuilders.FastLaneRequestBuilder;
-import com.android.policyboss.core.requestbuilders.VarientMasterRequestBuilder;
+import com.android.policyboss.core.requestbuilders.MotorQuotesRequestBuilder;
 import com.android.policyboss.core.response.FastLaneResponse;
-import com.android.policyboss.core.response.VarientMasterResponse;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
-import io.realm.Realm;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
 /**
- * Created by Rajeev Ranjan on 24/05/2017.
+ * Created by IN-RB on 31-05-2017.
  */
 
-public class FastlaneController implements IFastLane {
+public class MotorQuote implements Imotorquote {
 
-    FastLaneRequestBuilder.FastLaneNetworkService fastLaneNetworkService;
+
+
+    MotorQuotesRequestBuilder.MotorQuotesNetworkService motorQuotesNetworkService;
     Context mContext;
 
-    public FastlaneController(Context context) {
-        fastLaneNetworkService = new FastLaneRequestBuilder().getService();
-        mContext = context;
+
+    public MotorQuote(Context mContext) {
+        motorQuotesNetworkService = new  MotorQuotesRequestBuilder().getService();
+        this.mContext = mContext;
     }
 
     @Override
-    public void getCarDetails(String vehicleNumber, final IResponseSubcriber iResponseSubcriber) {
+    public void getQuoteDetails(MotorQuotesReqEntity motorQuotesReqEntity,final IResponseSubcriber iResponseSubcriber) {
 
-        HashMap<String, String> body = new HashMap<String, String>();
-        body.put("RegistrationNumber", vehicleNumber);
 
-        fastLaneNetworkService.getVehicleDetails(body).enqueue(new Callback<FastLaneResponse>() {
+        motorQuotesNetworkService.getQuoteDetails(motorQuotesReqEntity).enqueue(new Callback<FastLaneResponse>() {
             @Override
             public void onResponse(Response<FastLaneResponse> response, Retrofit retrofit) {
                 if (response.body().getStatusNo() == 0) {

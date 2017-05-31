@@ -33,4 +33,8 @@
     <color name="textyellow">#ff9f1c</color>
 
 
+    <color name="textview">#eeeeee</color>
+    <color name="blue">#3977b5</color>
+
+
 </resources>

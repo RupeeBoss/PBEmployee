@@ -22,7 +22,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
-        realm = Realm.getDefaultInstance();
+
     }
 
     @Override
@@ -40,8 +40,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (!realm.isClosed())
-            realm.close();
+
     }
 
     public void cancelDialog() {
