@@ -14,7 +14,7 @@ public interface IDBController {
 
     List<String> getModelList(int makeID);
 
-    int getModelID(String modelName);
+    int getModelID(int makeID, String modelName);
 
 
     List<String> getVariantList(int modelID);
@@ -25,5 +25,8 @@ public interface IDBController {
 
     int getCityID(String cityName);
 
+    List<String> getFuelType(int modelID);
+
+    int getFuelID(String fuelID,int modelID);
 
 }

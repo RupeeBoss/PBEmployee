@@ -52,7 +52,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.txtCarInsurance:
                 startActivity(new Intent(getActivity(), CarInsuranceActivity.class));
-                Toast.makeText(getActivity(), "Car insurance", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Car insurance", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txtHealthInsurance:
                 Toast.makeText(getActivity(), "Health insurance", Toast.LENGTH_SHORT).show();
