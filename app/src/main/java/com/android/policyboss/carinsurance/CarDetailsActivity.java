@@ -40,7 +40,7 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener ,View.OnClickListener,IResponseSubcriber {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
@@ -68,7 +68,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     Switch switchAdditional, switchNcb;
     EditText etManufactYear;
     Button btnGetQuote;
-    MotorQuotesResponse getQuoteResponse;
 
     @Override
     protected void onDestroy() {
@@ -309,7 +308,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         if (response instanceof MotorQuotesResponse) {
 
             try {
-                getQuoteResponse = ((MotorQuotesResponse) response);
+                MotorQuotesResponse getQuoteResponse = ((MotorQuotesResponse) response);
 
                 startActivity(new Intent(this,QuoteGenerateActivity.class)
                 .putExtra(Constants.MOTOR_QUOTE_DATA,getQuoteResponse));
