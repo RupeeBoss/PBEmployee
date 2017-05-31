@@ -54,18 +54,13 @@ public class DatabaseController implements IDBController {
 
     //endregion
 
-    public List<VariantMasterEntity> getFuelType(String modelID) {
-        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class).equalTo("Model_ID", modelID).findAll();
-        return list;
-    }
-
     //region Model
 
     @Override
     public List<String> getModelList(int makeID) {
         List<String> listModel = new ArrayList<>();
         // List<ModelMasterEntity> listModelMaster = dbController.getMasterModel();
-        List<ModelMasterEntity> list = realm.where(ModelMasterEntity.class).equalTo("Make_ID", "" + makeID).findAll();
+        List<ModelMasterEntity> list = realm.where(ModelMasterEntity.class).equalTo("Make_ID", makeID).findAll();
 
         for (int i = 0; i < list.size(); i++) {
             listModel.add(list.get(i).getModel_Name());
@@ -77,7 +72,7 @@ public class DatabaseController implements IDBController {
     public int getModelID(int makeID, String modelName) {
         // List<ModelMasterEntity> listModelMaster = dbController.getMasterModel();
 
-        List<ModelMasterEntity> list = realm.where(ModelMasterEntity.class).equalTo("Make_ID", "" + makeID).findAll();
+        List<ModelMasterEntity> list = realm.where(ModelMasterEntity.class).equalTo("Make_ID", makeID).findAll();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getModel_Name().equals(modelName)) {
@@ -96,7 +91,7 @@ public class DatabaseController implements IDBController {
         List<String> listFuelType = new ArrayList<>();
         // List<VariantMasterEntity> listVariantMaster = dbController.getMasterVariant();
 
-        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class).equalTo("Model_ID", "" + modelID).findAll();
+        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class).equalTo("Model_ID", modelID).distinct("Fuel_Name");
 
         for (int i = 0; i < list.size(); i++) {
             listFuelType.add(list.get(i).getFuel_Name());
@@ -123,7 +118,7 @@ public class DatabaseController implements IDBController {
         List<String> listVarient = new ArrayList<>();
         // List<VariantMasterEntity> listVariantMaster = dbController.getMasterVariant();
 
-        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class).equalTo("Model_ID", "" + modelID).findAll();
+        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class).equalTo("Model_ID", modelID).findAll();
 
         for (int i = 0; i < list.size(); i++) {
             listVarient.add(list.get(i).getVariant_Name());

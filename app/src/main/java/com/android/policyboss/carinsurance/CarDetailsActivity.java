@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
@@ -38,7 +37,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     List<String> cityList;
     List<String> makeList;
     List<String> modelList;
+    List<String> fuelList;
     List<String> variantList;
+
+    int makeId, modelID, fuelId, varientId;
 
     ArrayAdapter<String> makeAdapter;
     ArrayAdapter<String> cityAdapter;
@@ -129,28 +131,79 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     private void setListeners() {
 
         etManufactYear.setOnClickListener(datePickerDialog);
-
+        switchNcb.setOnCheckedChangeListener(this);
+        switchAdditional.setOnCheckedChangeListener(this);
 
         autoCarMake.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Toast.makeText(CarDetailsActivity.this, "" + makeAdapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
+                makeId = databaseController.getMakeID(makeAdapter.getItem(position).toString());
+                modelList = databaseController.getModelList(makeId);
+                //Toast.makeText(CarDetailsActivity.this, "" + makeAdapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
                 modelAdapter = new
-                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, databaseController.getModelList(databaseController.getMakeID(makeAdapter.getItem(position).toString())));
+                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, modelList);
                 spCarModel.setVisibility(View.VISIBLE);
                 spCarModel.setAdapter(modelAdapter);
 
-                fuelAdapter = new
+
+
+
+
+
+
+
+
+               /* fuelAdapter = new
                         ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.fuel_type));
                 spCarFuelType.setVisibility(View.VISIBLE);
                 spCarFuelType.setAdapter(fuelAdapter);
                 varientAdapter = new
                         ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, databaseController.getVariantList(databaseController.getModelID(modelAdapter.getItem(position).toString())));
                 spCarVarient.setVisibility(View.VISIBLE);
-                spCarVarient.setAdapter(varientAdapter);
+                spCarVarient.setAdapter(varientAdapter);*/
             }
         });
+
+        spCarModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                modelID = databaseController.getModelID(makeId, modelAdapter.getItem(position).toString());
+
+                variantList = databaseController.getVariantList(modelID);
+                varientAdapter = new ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, variantList);
+                spCarVarient.setVisibility(View.VISIBLE);
+                spCarVarient.setAdapter(varientAdapter);
+
+
+                fuelList = databaseController.getFuelType(modelID);
+                fuelAdapter = new
+                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, fuelList);
+                spCarFuelType.setVisibility(View.VISIBLE);
+                spCarFuelType.setAdapter(fuelAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spCarVarient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+              /*  variantList = databaseController.getVariantList(modelID);
+                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());*/
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void init_widgets() {
