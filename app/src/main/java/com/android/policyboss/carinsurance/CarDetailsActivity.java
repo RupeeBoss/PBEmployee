@@ -177,6 +177,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                         ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, fuelList);
                 spCarFuelType.setVisibility(View.VISIBLE);
                 spCarFuelType.setAdapter(fuelAdapter);
+                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());
+                fuelId = databaseController.getFuelID(fuelAdapter.getItem(position).toString(), modelID);
             }
 
             @Override
@@ -184,14 +186,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             }
         });
-
+        //region varient Spinner
         spCarVarient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-              /*  variantList = databaseController.getVariantList(modelID);
-                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());*/
-
-
+                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());
             }
 
             @Override
@@ -199,6 +198,21 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             }
         });
+        //endregion
+
+        //region fuel Spinner
+        spCarFuelType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                fuelId = databaseController.getFuelID(fuelAdapter.getItem(position).toString(), modelID);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //endregion
 
 
     }
@@ -212,7 +226,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         spCarFuelType = (Spinner) findViewById(R.id.spCarFuelType);
         spCarVarient = (Spinner) findViewById(R.id.spCarVarient);
         spCarModel = (Spinner) findViewById(R.id.spCarModel);
-
         autoCarMake = (AutoCompleteTextView) findViewById(R.id.autoCarMake);
         autoCity = (AutoCompleteTextView) findViewById(R.id.autoCity);
         switchAdditional = (Switch) findViewById(R.id.switchAdditional);
@@ -220,7 +233,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         etManufactYear = (EditText) findViewById(R.id.etManufactYear);
         spWhenPolicyExp = (Spinner) findViewById(R.id.spWhenPolicyExp);
         spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
-        spNcbPercent = (Spinner)findViewById(R.id.spNcbPercent);
+        spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
     }
 
     protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
