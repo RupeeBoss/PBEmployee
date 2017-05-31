@@ -40,7 +40,7 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, IResponseSubcriber {
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
@@ -59,8 +59,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     ArrayAdapter<String> modelAdapter;
     ArrayAdapter<String> varientAdapter;
     ArrayAdapter<String> fuelAdapter;
+    ArrayAdapter<String> prevInsAdapter;
+    ArrayAdapter<String> policyExpAdapter;
+    ArrayAdapter<String> ncbPerctAdapter;
 
-    Spinner spCarModel, spCarFuelType, spCarVarient;
+    Spinner spCarModel, spCarFuelType, spCarVarient, spWhenPolicyExp, spPrevInsurer, spNcbPercent;
     AutoCompleteTextView autoCarMake, autoCity;
     Switch switchAdditional, switchNcb;
     EditText etManufactYear;
@@ -109,6 +112,16 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, cityList);
         autoCity.setAdapter(cityAdapter);
         autoCity.setThreshold(1);
+
+        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_insurance_company));
+        spPrevInsurer.setAdapter(prevInsAdapter);
+
+
+        policyExpAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.policy_expiry));
+        spWhenPolicyExp.setAdapter(policyExpAdapter);
+
+        ncbPerctAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ncb_percent));
+        spNcbPercent.setAdapter(ncbPerctAdapter);
     }
 
     @Override
@@ -159,23 +172,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                         ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, modelList);
                 spCarModel.setVisibility(View.VISIBLE);
                 spCarModel.setAdapter(modelAdapter);
-
-
-
-
-
-
-
-
-
-               /* fuelAdapter = new
-                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.fuel_type));
-                spCarFuelType.setVisibility(View.VISIBLE);
-                spCarFuelType.setAdapter(fuelAdapter);
-                varientAdapter = new
-                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, databaseController.getVariantList(databaseController.getModelID(modelAdapter.getItem(position).toString())));
-                spCarVarient.setVisibility(View.VISIBLE);
-                spCarVarient.setAdapter(varientAdapter);*/
             }
         });
 
@@ -195,6 +191,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                         ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, fuelList);
                 spCarFuelType.setVisibility(View.VISIBLE);
                 spCarFuelType.setAdapter(fuelAdapter);
+                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());
+                fuelId = databaseController.getFuelID(fuelAdapter.getItem(position).toString(), modelID);
             }
 
             @Override
@@ -202,14 +200,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             }
         });
-
+        //region varient Spinner
         spCarVarient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-              /*  variantList = databaseController.getVariantList(modelID);
-                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());*/
-
-
+                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());
             }
 
             @Override
@@ -217,6 +212,22 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             }
         });
+        //endregion
+
+        //region fuel Spinner
+        spCarFuelType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                fuelId = databaseController.getFuelID(fuelAdapter.getItem(position).toString(), modelID);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //endregion
+
 
     }
 
@@ -229,7 +240,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         spCarFuelType = (Spinner) findViewById(R.id.spCarFuelType);
         spCarVarient = (Spinner) findViewById(R.id.spCarVarient);
         spCarModel = (Spinner) findViewById(R.id.spCarModel);
-
         autoCarMake = (AutoCompleteTextView) findViewById(R.id.autoCarMake);
         autoCity = (AutoCompleteTextView) findViewById(R.id.autoCity);
         switchAdditional = (Switch) findViewById(R.id.switchAdditional);
@@ -237,6 +247,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         etManufactYear = (EditText) findViewById(R.id.etManufactYear);
         btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
         btnGetQuote.setOnClickListener(this);
+        spWhenPolicyExp = (Spinner) findViewById(R.id.spWhenPolicyExp);
+        spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
+        spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
     }
 
     protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
@@ -266,6 +279,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             case R.id.switchAdditional:
                 if (isChecked) {
                     llAdditionAcc.setVisibility(View.VISIBLE);
+                    llAdditionAcc.requestFocus();
                 } else {
                     llAdditionAcc.setVisibility(View.GONE);
                 }
@@ -273,10 +287,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             case R.id.switchNcb:
                 if (isChecked) {
                     llNcb.setVisibility(View.VISIBLE);
+                    llNcb.requestFocus();
                 } else {
                     llNcb.setVisibility(View.GONE);
                 }
-
         }
     }
 

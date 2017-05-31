@@ -7,7 +7,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-       <!-- <item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!-- <item name="android:statusBarColor">@android:color/transparent</item>-->
         <item name="android:windowBackground">@color/background</item>
         <!--<item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>-->
@@ -41,8 +41,7 @@
     <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">54dp</item>
-        <item name="android:background">@drawable/ediitext_style</item>
-        <item name="android:drawablePadding">14dp</item>
+        <item name="android:background">@drawable/edittext_round_corner</item>
         <item name="android:paddingLeft">18dp</item>
         <item name="android:paddingRight">18dp</item>
         <item name="android:gravity">center_vertical</item>
