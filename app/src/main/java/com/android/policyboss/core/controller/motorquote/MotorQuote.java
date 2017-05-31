@@ -7,6 +7,7 @@ import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
 import com.android.policyboss.core.requestbuilders.FastLaneRequestBuilder;
 import com.android.policyboss.core.requestbuilders.MotorQuotesRequestBuilder;
 import com.android.policyboss.core.response.FastLaneResponse;
+import com.android.policyboss.core.response.MotorQuotesResponse;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -38,9 +39,9 @@ public class MotorQuote implements Imotorquote {
     public void getQuoteDetails(MotorQuotesReqEntity motorQuotesReqEntity,final IResponseSubcriber iResponseSubcriber) {
 
 
-        motorQuotesNetworkService.getQuoteDetails(motorQuotesReqEntity).enqueue(new Callback<FastLaneResponse>() {
+        motorQuotesNetworkService.getQuoteDetails(motorQuotesReqEntity).enqueue(new Callback<MotorQuotesResponse>() {
             @Override
-            public void onResponse(Response<FastLaneResponse> response, Retrofit retrofit) {
+            public void onResponse(Response<MotorQuotesResponse> response, Retrofit retrofit) {
                 if (response.body().getStatusNo() == 0) {
                     iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
                 } else {

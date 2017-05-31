@@ -46,4 +46,5 @@
     <string name="title_activity_new_car_insurance">NewCarInsuranceActivity</string>
     <string name="title_activity_car_details">Car Details</string>
     <string name="title_activity_fast_lane_car_details">Car Details</string>
+    <string name="title_activity_quote_generate">Quote Details</string>
 </resources>

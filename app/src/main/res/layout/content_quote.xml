@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_quote_generate"
-    tools:context="com.android.policyboss.quotegenerate.QuoteGenerateActivity">
+    tools:context=".carinsurance.quotegenerate.QuoteGenerateActivity">
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
