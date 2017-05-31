@@ -1,13 +1,18 @@
 package com.android.policyboss.carinsurance;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -15,14 +20,17 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.utility.Constants;
+import com.android.policyboss.utility.DateTimePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity {
-
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
     DatabaseController databaseController;
@@ -33,12 +41,15 @@ public class CarDetailsActivity extends BaseActivity {
     List<String> variantList;
 
     ArrayAdapter<String> makeAdapter;
-    ArrayAdapter cityAdapter;
-    ArrayAdapter modelAdapter;
-    ArrayAdapter varientAdapter;
+    ArrayAdapter<String> cityAdapter;
+    ArrayAdapter<String> modelAdapter;
+    ArrayAdapter<String> varientAdapter;
+    ArrayAdapter<String> fuelAdapter;
 
-    Spinner spCarMake, spCarFuelType, spCarVarient;
-    AutoCompleteTextView autoCarMake;
+    Spinner spCarModel, spCarFuelType, spCarVarient;
+    AutoCompleteTextView autoCarMake, autoCity;
+    Switch switchAdditional, switchNcb;
+    EditText etManufactYear;
 
     @Override
     protected void onDestroy() {
@@ -75,12 +86,13 @@ public class CarDetailsActivity extends BaseActivity {
         autoCarMake.setAdapter(makeAdapter);
         autoCarMake.setThreshold(1);
 
-        modelAdapter = new
-                ArrayAdapter(this, android.R.layout.simple_list_item_1, modelList);
+
         varientAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, variantList);
         cityAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, cityList);
+        autoCity.setAdapter(cityAdapter);
+        autoCity.setThreshold(1);
     }
 
     @Override
@@ -92,6 +104,7 @@ public class CarDetailsActivity extends BaseActivity {
     private void fetchMasterFromDatabase() {
         cityList = databaseController.getCity();
         makeList = databaseController.getMakeList();
+        //modelList = databaseController.getModelList(0);
 
     }
 
@@ -115,11 +128,27 @@ public class CarDetailsActivity extends BaseActivity {
 
     private void setListeners() {
 
+        etManufactYear.setOnClickListener(datePickerDialog);
+
+
         autoCarMake.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Toast.makeText(CarDetailsActivity.this, "" + makeAdapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
+                modelAdapter = new
+                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, databaseController.getModelList(databaseController.getMakeID(makeAdapter.getItem(position).toString())));
+                spCarModel.setVisibility(View.VISIBLE);
+                spCarModel.setAdapter(modelAdapter);
+
+                fuelAdapter = new
+                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.fuel_type));
+                spCarFuelType.setVisibility(View.VISIBLE);
+                spCarFuelType.setAdapter(fuelAdapter);
+                varientAdapter = new
+                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, databaseController.getVariantList(databaseController.getModelID(modelAdapter.getItem(position).toString())));
+                spCarVarient.setVisibility(View.VISIBLE);
+                spCarVarient.setAdapter(varientAdapter);
             }
         });
     }
@@ -130,13 +159,55 @@ public class CarDetailsActivity extends BaseActivity {
         llAdditionalDetails = (LinearLayout) findViewById(R.id.llAdditionalDetails);
         llAdditionAcc = (LinearLayout) findViewById(R.id.llAdditionAcc);
         llNcb = (LinearLayout) findViewById(R.id.llNcb);
-        spCarMake = (Spinner) findViewById(R.id.spCarMake);
         spCarFuelType = (Spinner) findViewById(R.id.spCarFuelType);
         spCarVarient = (Spinner) findViewById(R.id.spCarVarient);
-
+        spCarModel = (Spinner) findViewById(R.id.spCarModel);
 
         autoCarMake = (AutoCompleteTextView) findViewById(R.id.autoCarMake);
+        autoCity = (AutoCompleteTextView) findViewById(R.id.autoCity);
+        switchAdditional = (Switch) findViewById(R.id.switchAdditional);
+        switchNcb = (Switch) findViewById(R.id.switchNcb);
+        etManufactYear = (EditText) findViewById(R.id.etManufactYear);
     }
 
+    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Constants.hideKeyBoard(view, CarDetailsActivity.this);
+            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    if (view.isShown()) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                        etManufactYear.setText(currentDay);
+                        //startActivity(new Intent(CarDetailsActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+                        //etDate.setTag(R.id.et_date, calendar.getTime());
+                    }
+                }
+            });
+        }
+    };
 
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.switchAdditional:
+                if (isChecked) {
+                    llAdditionAcc.setVisibility(View.VISIBLE);
+                } else {
+                    llAdditionAcc.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.switchNcb:
+                if (isChecked) {
+                    llNcb.setVisibility(View.VISIBLE);
+                } else {
+                    llNcb.setVisibility(View.GONE);
+                }
+
+        }
+    }
 }
