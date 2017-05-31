@@ -76,6 +76,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.quotegenerate.QuoteGenerateActivity" />
         </activity>
+        <activity
+            android:name=".carinsurance.PopUpCardQuoteActivity"
+            android:label="@string/title_activity_pop_up_card_quote"
+            android:theme="@style/Theme.AppCompat.Dialog" android:noHistory="true"></activity>
     </application>
 
 </manifest>
