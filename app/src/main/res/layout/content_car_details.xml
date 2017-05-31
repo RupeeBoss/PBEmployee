@@ -15,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="12dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -92,14 +93,15 @@
                     android:paddingTop="4dp"
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/autoCarMake"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/gap"
+                <AutoCompleteTextView
+                    android:id="@+id/autoCarMake"
+                    style="@style/EditTextStyle"
+                    android:layout_margin="5dp"
+                    android:hint="Which car do you drive ?"
+
                         android:dropDownHeight="wrap_content"
                         android:dropDownWidth="wrap_content"
-                        android:hint="Which car do you drive ?"
+
                         android:padding="@dimen/gap" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -108,6 +110,7 @@
                     android:id="@+id/spCarModel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
@@ -116,6 +119,7 @@
                     android:id="@+id/spCarFuelType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
@@ -124,8 +128,10 @@
                     android:id="@+id/spCarVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
+
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -139,9 +145,8 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/autoCity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/gap"
+                        android:layout_margin="5dp"
+                        style="@style/EditTextStyle"
                         android:hint="Place of registration"
                         android:padding="@dimen/gap" />
                 </android.support.design.widget.TextInputLayout>
@@ -172,13 +177,14 @@
                 android:id="@+id/llAdditionalDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="12dp"
                 android:orientation="vertical">
 
                 <Switch
                     android:id="@+id/switchAdditional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/gap"
                     android:text="Have you added additional accessories\n to your vehicle?" />
 
                 <LinearLayout
@@ -189,10 +195,8 @@
                     android:visibility="gone">
 
                     <android.support.design.widget.TextInputLayout
-
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:layout_margin="8dp"
                         android:layout_marginTop="0dp"
                         android:clipToPadding="false"
                         android:gravity="bottom"
@@ -208,10 +212,8 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:layout_margin="8dp"
                         android:layout_marginTop="0dp"
                         android:clipToPadding="false"
                         android:gravity="bottom"
@@ -231,7 +233,7 @@
                     android:id="@+id/switchNcb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/gap"
+                    android:layout_marginTop="16dp"
                     android:text="Has any claim been made in the existing policy?" />
 
                 <LinearLayout
