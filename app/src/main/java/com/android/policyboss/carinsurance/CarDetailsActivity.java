@@ -1,12 +1,17 @@
 package com.android.policyboss.carinsurance;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
@@ -23,6 +28,9 @@ public class CarDetailsActivity extends BaseActivity {
 
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
+    AutoCompleteTextView autvCity;
+    ArrayAdapter<String> cityAdapter;
+    private Realm realm  ;
     DatabaseController databaseController;
 
     List<String> cityList;
@@ -58,6 +66,7 @@ public class CarDetailsActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
+        realm  = Realm.getDefaultInstance();
         init_widgets();
         setListeners();
 
@@ -71,7 +80,7 @@ public class CarDetailsActivity extends BaseActivity {
         makeAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, makeList);
         autoCarMake.setAdapter(makeAdapter);
-        autoCarMake.setThreshold(2);
+        autoCarMake.setThreshold(1);
 
         modelAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, modelList);
@@ -112,9 +121,25 @@ public class CarDetailsActivity extends BaseActivity {
     }
 
     private void setListeners() {
+        loadAutoComplete();
+
+        autoCarMake.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(CarDetailsActivity.this, "" + makeAdapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void init_widgets() {
+        llWhenPolicyExpiring = (LinearLayout)findViewById(R.id.llWhenPolicyExpiring);
+        llVarientDetails = (LinearLayout)findViewById(R.id.llVarientDetails);
+        llAdditionalDetails = (LinearLayout)findViewById(R.id.llAdditionalDetails);
+        llAdditionAcc = (LinearLayout)findViewById(R.id.llAdditionAcc);
+        llNcb = (LinearLayout)findViewById(R.id.llNcb);
+        autvCity = (AutoCompleteTextView)findViewById(R.id.autocomp_City);
+
         llWhenPolicyExpiring = (LinearLayout) findViewById(R.id.llWhenPolicyExpiring);
         llVarientDetails = (LinearLayout) findViewById(R.id.llVarientDetails);
         llAdditionalDetails = (LinearLayout) findViewById(R.id.llAdditionalDetails);
@@ -128,5 +153,25 @@ public class CarDetailsActivity extends BaseActivity {
         autoCarMake = (AutoCompleteTextView) findViewById(R.id.autoCarMake);
     }
 
+    private void loadAutoComplete() {
+        cityAdapter = new ArrayAdapter<String>(CarDetailsActivity.this,
+                android.R.layout.simple_spinner_item, new DatabaseController(this,realm).getCity());
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        autvCity.setThreshold(2);//will start working from first character
+        autvCity.setAdapter(cityAdapter);//setting the adapter data into the AutoCompleteTextView
+//        actv.setTextColor(Color.RED);
+        llWhenPolicyExpiring = (LinearLayout) findViewById(R.id.llWhenPolicyExpiring);
+        llVarientDetails = (LinearLayout) findViewById(R.id.llVarientDetails);
+        llAdditionalDetails = (LinearLayout) findViewById(R.id.llAdditionalDetails);
+        llAdditionAcc = (LinearLayout) findViewById(R.id.llAdditionAcc);
+        llNcb = (LinearLayout) findViewById(R.id.llNcb);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 
 }
