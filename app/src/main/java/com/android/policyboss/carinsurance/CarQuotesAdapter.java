@@ -1,4 +1,4 @@
-package com.android.policyboss.quotegenerate;
+package com.android.policyboss.carinsurance;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import com.android.policyboss.R;
 
 /**
- * Created by IN-RB on 30-05-2017.
+ * Created by IN-RB on 31-05-2017.
  */
 
-public class QuotesAdapter extends RecyclerView.Adapter<QuotesAdapter.QuotesItem>{
+public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.QuotesItem> {
 
     @Override
     public QuotesItem onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_quotes_item,parent,false);
-        return  new QuotesItem(view);
+        return  new CarQuotesAdapter.QuotesItem(view);
     }
 
     @Override

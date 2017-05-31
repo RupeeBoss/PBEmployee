@@ -67,6 +67,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
+        <activity android:name=".carinsurance.CarQuoteGenerate"></activity>
     </application>
 
 </manifest>
