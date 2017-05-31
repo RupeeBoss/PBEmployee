@@ -83,17 +83,15 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCarMake"
-                    style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/gap"
-                    android:drawableLeft="@drawable/ic_people_white"
                     android:hint="Which car do you drive ?"
                     android:padding="@dimen/gap" />
 
 
                 <Spinner
-                    android:id="@+id/spCarMake"
+                    android:id="@+id/spCarModel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_bg"
@@ -111,18 +109,16 @@
                     android:id="@+id/spCarVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_bg"></Spinner>
+                    android:background="@drawable/spinner_bg"
+                    android:visibility="gone"></Spinner>
 
                 <AutoCompleteTextView
-                    android:id="@+id/autocomp_City"
+                    android:id="@+id/autoCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Search City..."
-                    android:textColor="@color/blue"
-                    android:theme="@style/Autocomplete"
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp"
-                    android:dropDownVerticalOffset="10dp"/>
+                    android:layout_margin="@dimen/gap"
+                    android:hint="Enter City"
+                    android:padding="@dimen/gap" />
 
                 <android.support.design.widget.TextInputLayout
 
@@ -136,6 +132,7 @@
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
+                        android:id="@+id/etManufactYear"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
                         android:hint="Year of manufacturing?" />
@@ -151,7 +148,7 @@
                 android:orientation="vertical">
 
                 <Switch
-
+                    android:id="@+id/switchAdditional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Have you added additional accessories\n to your vehicle?" />
@@ -160,7 +157,8 @@
                     android:id="@+id/llAdditionAcc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <android.support.design.widget.TextInputLayout
 
@@ -202,7 +200,7 @@
                 </LinearLayout>
 
                 <Switch
-
+                    android:id="@+id/switchNcb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Has any claim been made in the existing policy?" />
@@ -211,7 +209,8 @@
                     android:id="@+id/llNcb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <Spinner
                         android:layout_width="match_parent"
