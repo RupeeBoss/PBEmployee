@@ -83,25 +83,28 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCarMake"
+                    style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/gap"
                     android:drawableLeft="@drawable/ic_people_white"
-                    android:hint="Which car do you drive ?" />
+                    android:hint="Which car do you drive ?"
+                    android:padding="@dimen/gap" />
 
 
                 <Spinner
-                    android:visibility="gone"
                     android:id="@+id/spCarMake"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_bg"></Spinner>
+                    android:background="@drawable/spinner_bg"
+                    android:visibility="gone"></Spinner>
 
                 <Spinner
-                    android:visibility="gone"
                     android:id="@+id/spCarFuelType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_bg"></Spinner>
+                    android:background="@drawable/spinner_bg"
+                    android:visibility="gone"></Spinner>
 
 
                 <Spinner

@@ -3,10 +3,12 @@ package com.android.policyboss.carinsurance;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
@@ -71,7 +73,7 @@ public class CarDetailsActivity extends BaseActivity {
         makeAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, makeList);
         autoCarMake.setAdapter(makeAdapter);
-        autoCarMake.setThreshold(2);
+        autoCarMake.setThreshold(1);
 
         modelAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, modelList);
@@ -112,6 +114,14 @@ public class CarDetailsActivity extends BaseActivity {
     }
 
     private void setListeners() {
+
+        autoCarMake.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(CarDetailsActivity.this, "" + makeAdapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void init_widgets() {
