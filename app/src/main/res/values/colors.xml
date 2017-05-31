@@ -11,5 +11,5 @@
     <color name="textview">#eeeeee</color>
     <color name="blue">#3977b5</color>
 
-
+    <color name="edittext_border">#cfcfcf</color>
 </resources>

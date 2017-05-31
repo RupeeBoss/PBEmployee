@@ -15,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="12dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -83,17 +84,16 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCarMake"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/gap"
-                    android:hint="Which car do you drive ?"
-                    android:padding="@dimen/gap" />
+                    style="@style/EditTextStyle"
+                    android:layout_margin="5dp"
+                    android:hint="Which car do you drive ?" />
 
 
                 <Spinner
                     android:id="@+id/spCarModel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
@@ -101,6 +101,7 @@
                     android:id="@+id/spCarFuelType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
@@ -109,32 +110,28 @@
                     android:id="@+id/spCarVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/gap"
-                    android:hint="Enter City"
-                    android:padding="@dimen/gap" />
+                    style="@style/EditTextStyle"
+                    android:layout_margin="5dp"
+                    android:hint="Enter City" />
 
                 <android.support.design.widget.TextInputLayout
-
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
                     android:layout_marginTop="0dp"
                     android:clipToPadding="false"
                     android:gravity="bottom"
-                    android:paddingTop="4dp"
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
                         android:id="@+id/etManufactYear"
                         style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/ic_people_white"
                         android:hint="Year of manufacturing?" />
 
 
@@ -145,6 +142,8 @@
                 android:id="@+id/llAdditionalDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="12dp"
                 android:orientation="vertical">
 
                 <Switch
@@ -161,10 +160,8 @@
                     android:visibility="gone">
 
                     <android.support.design.widget.TextInputLayout
-
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:layout_margin="8dp"
                         android:layout_marginTop="0dp"
                         android:clipToPadding="false"
                         android:gravity="bottom"
@@ -180,10 +177,8 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
-
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:layout_margin="8dp"
                         android:layout_marginTop="0dp"
                         android:clipToPadding="false"
                         android:gravity="bottom"
@@ -203,6 +198,7 @@
                     android:id="@+id/switchNcb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:text="Has any claim been made in the existing policy?" />
 
                 <LinearLayout
