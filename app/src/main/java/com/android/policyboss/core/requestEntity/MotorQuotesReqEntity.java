@@ -1,5 +1,7 @@
 package com.android.policyboss.core.requestEntity;
 
+import android.os.Parcelable;
+
 /**
  * Created by IN-RB on 31-05-2017.
  */
