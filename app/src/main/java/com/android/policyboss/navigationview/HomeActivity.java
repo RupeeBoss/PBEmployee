@@ -58,7 +58,7 @@ public class HomeActivity extends BaseActivity {
         initialise_widgets();
         realm = Realm.getDefaultInstance();
 
-        List<MakeMasterEntity> listMake = new RealmDatabaseController(realm).getMasterMake();
+
         mHandler = new Handler();
         // initializing navigation menu
         setUpNavigationView();
