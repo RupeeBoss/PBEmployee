@@ -32,6 +32,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class CarInsuranceActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
+
+    public static final String FASTLANE_DATA = "fastlane_response";
+
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
     ImageView ivNewCar, ivRenewCar;
     CardView llBuyorRenew;
@@ -79,6 +82,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() == 10) {
                 showDialog();
+                Constants.hideKeyBoard(ivNewCar, CarInsuranceActivity.this);
                 new FastlaneController(CarInsuranceActivity.this).getCarDetails(s.toString(), CarInsuranceActivity.this);
             }
         }
@@ -153,7 +157,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
             quoteRequestEntity.setRenew(true);
             quoteRequestEntity.setDontRem(false);
             startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity)
-                    .putExtra("FASTLANE", ((FastLaneResponse) response).getFastLaneEntity()));
+                    .putExtra(FASTLANE_DATA, ((FastLaneResponse) response).getFLResponse()));
         }
     }
 
