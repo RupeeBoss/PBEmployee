@@ -37,4 +37,6 @@
         <item>Universal Sompo General Insurance Co. Ltd. </item>
 
     </string-array>
+    <string name="title_activity_quote">quote</string>
+    <string name="action_settings">Settings</string>
 </resources>
