@@ -1,7 +1,9 @@
 package com.android.policyboss.carinsurance;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -9,14 +11,21 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.APIResponse;
+import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
+import com.android.policyboss.core.controller.motorquote.MotorQuote;
 import com.android.policyboss.core.models.QuoteRequestEntity;
+import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
+import com.android.policyboss.core.response.FastLaneResponse;
+import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.utility.Constants;
 
 import java.util.ArrayList;
@@ -24,12 +33,15 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity {
+import static com.android.policyboss.carinsurance.CarInsuranceActivity.FASTLANE_DATA;
+import static com.android.policyboss.carinsurance.CarInsuranceActivity.MOTOR_QUOTE_DATA;
+
+public class CarDetailsActivity extends BaseActivity implements View.OnClickListener , IResponseSubcriber{
 
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
     AutoCompleteTextView autvCity;
-    ArrayAdapter<String> cityAdapter;
+   Button btnGetQuote;
     private Realm realm  ;
     DatabaseController databaseController;
 
@@ -149,8 +161,11 @@ public class CarDetailsActivity extends BaseActivity {
         spCarFuelType = (Spinner) findViewById(R.id.spCarFuelType);
         spCarVarient = (Spinner) findViewById(R.id.spCarVarient);
 
+        btnGetQuote = (Button)findViewById(R.id.btnGetQuote);
 
         autoCarMake = (AutoCompleteTextView) findViewById(R.id.autoCarMake);
+
+        btnGetQuote.setOnClickListener(this);
     }
 
     private void loadAutoComplete() {
@@ -169,9 +184,41 @@ public class CarDetailsActivity extends BaseActivity {
 
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close();
+    public void onClick(View v) {
+
+        if(v.getId() == R.id.btnGetQuote )
+        {
+            //Toast.makeText(this,"AA",Toast.LENGTH_SHORT).show();
+
+
+        }
     }
 
+
+    private  void getQuote()
+    {
+        MotorQuotesReqEntity motorQuotesReqEntity = new MotorQuotesReqEntity();
+
+        new MotorQuote(this).getQuoteDetails(motorQuotesReqEntity, CarDetailsActivity.this);
+    }
+    @Override
+    public void OnSuccess(APIResponse response, String message) {
+
+        if (response instanceof MotorQuotesResponse) {
+            cancelDialog();
+            quoteRequestEntity.setNew(false);
+            quoteRequestEntity.setRenew(true);
+            quoteRequestEntity.setDontRem(false);
+//            startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity)
+//                    .putExtra(MOTOR_QUOTE_DATA, ((MotorQuotesResponse) response).getMototrQuotes()));
+
+        }
+
+    }
+
+    @Override
+    public void OnFailure(Throwable t) {
+        cancelDialog();
+        Toast.makeText(this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+    }
 }

@@ -1,5 +1,8 @@
 package com.android.policyboss.core.response;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.models.MototrQuotesEntity;
 
@@ -9,10 +12,26 @@ import java.util.List;
  * Created by IN-RB on 31-05-2017.
  */
 
-public class MotorQuotesResponse extends APIResponse {
+public class MotorQuotesResponse extends APIResponse implements Parcelable {
 
 
     private List<MototrQuotesEntity> MototrQuotes;
+
+    protected MotorQuotesResponse(Parcel in) {
+        MototrQuotes = in.createTypedArrayList(MototrQuotesEntity.CREATOR);
+    }
+
+    public static final Creator<MotorQuotesResponse> CREATOR = new Creator<MotorQuotesResponse>() {
+        @Override
+        public MotorQuotesResponse createFromParcel(Parcel in) {
+            return new MotorQuotesResponse(in);
+        }
+
+        @Override
+        public MotorQuotesResponse[] newArray(int size) {
+            return new MotorQuotesResponse[size];
+        }
+    };
 
     public List<MototrQuotesEntity> getMototrQuotes() {
         return MototrQuotes;
@@ -23,4 +42,13 @@ public class MotorQuotesResponse extends APIResponse {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(MototrQuotes);
+    }
 }
