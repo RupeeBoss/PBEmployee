@@ -47,8 +47,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     ArrayAdapter<String> modelAdapter;
     ArrayAdapter<String> varientAdapter;
     ArrayAdapter<String> fuelAdapter;
+    ArrayAdapter<String> prevInsAdapter;
+    ArrayAdapter<String> policyExpAdapter;
+    ArrayAdapter<String> ncbPerctAdapter;
 
-    Spinner spCarModel, spCarFuelType, spCarVarient;
+    Spinner spCarModel, spCarFuelType, spCarVarient, spWhenPolicyExp, spPrevInsurer, spNcbPercent;
     AutoCompleteTextView autoCarMake, autoCity;
     Switch switchAdditional, switchNcb;
     EditText etManufactYear;
@@ -95,6 +98,16 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, cityList);
         autoCity.setAdapter(cityAdapter);
         autoCity.setThreshold(1);
+
+        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_insurance_company));
+        spPrevInsurer.setAdapter(prevInsAdapter);
+
+
+        policyExpAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.policy_expiry));
+        spWhenPolicyExp.setAdapter(policyExpAdapter);
+
+        ncbPerctAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ncb_percent));
+        spNcbPercent.setAdapter(ncbPerctAdapter);
     }
 
     @Override
@@ -145,23 +158,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                         ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, modelList);
                 spCarModel.setVisibility(View.VISIBLE);
                 spCarModel.setAdapter(modelAdapter);
-
-
-
-
-
-
-
-
-
-               /* fuelAdapter = new
-                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.fuel_type));
-                spCarFuelType.setVisibility(View.VISIBLE);
-                spCarFuelType.setAdapter(fuelAdapter);
-                varientAdapter = new
-                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, databaseController.getVariantList(databaseController.getModelID(modelAdapter.getItem(position).toString())));
-                spCarVarient.setVisibility(View.VISIBLE);
-                spCarVarient.setAdapter(varientAdapter);*/
             }
         });
 
@@ -204,6 +200,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             }
         });
 
+
     }
 
     private void init_widgets() {
@@ -221,6 +218,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         switchAdditional = (Switch) findViewById(R.id.switchAdditional);
         switchNcb = (Switch) findViewById(R.id.switchNcb);
         etManufactYear = (EditText) findViewById(R.id.etManufactYear);
+        spWhenPolicyExp = (Spinner) findViewById(R.id.spWhenPolicyExp);
+        spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
+        spNcbPercent = (Spinner)findViewById(R.id.spNcbPercent);
     }
 
     protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
@@ -250,6 +250,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             case R.id.switchAdditional:
                 if (isChecked) {
                     llAdditionAcc.setVisibility(View.VISIBLE);
+                    llAdditionAcc.requestFocus();
                 } else {
                     llAdditionAcc.setVisibility(View.GONE);
                 }
@@ -257,10 +258,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             case R.id.switchNcb:
                 if (isChecked) {
                     llNcb.setVisibility(View.VISIBLE);
+                    llNcb.requestFocus();
                 } else {
                     llNcb.setVisibility(View.GONE);
                 }
-
         }
     }
 }

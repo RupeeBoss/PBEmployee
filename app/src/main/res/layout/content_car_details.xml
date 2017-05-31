@@ -25,11 +25,13 @@
                 android:visibility="gone">
 
                 <Spinner
+                    android:id="@+id/spWhenPolicyExp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_bg"></Spinner>
 
                 <Spinner
+                    android:id="@+id/spPrevInsurer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_bg"></Spinner>
@@ -80,14 +82,26 @@
                 android:orientation="vertical"
                 android:visibility="visible">
 
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoCarMake"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/gap"
-                    android:hint="Which car do you drive ?"
-                    android:padding="@dimen/gap" />
+                    android:layout_height="54dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="0dp"
+                    android:clipToPadding="false"
+                    android:gravity="bottom"
+                    android:paddingTop="4dp"
+                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCarMake"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/gap"
+                        android:dropDownHeight="wrap_content"
+                        android:dropDownWidth="wrap_content"
+                        android:hint="Which car do you drive ?"
+                        android:padding="@dimen/gap" />
+                </android.support.design.widget.TextInputLayout>
 
 
                 <Spinner
@@ -96,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
+
 
                 <Spinner
                     android:id="@+id/spCarFuelType"
@@ -112,13 +127,24 @@
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
-                <AutoCompleteTextView
-                    android:id="@+id/autoCity"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/gap"
-                    android:hint="Enter City"
-                    android:padding="@dimen/gap" />
+                    android:layout_height="54dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="0dp"
+                    android:clipToPadding="false"
+                    android:gravity="bottom"
+                    android:paddingTop="4dp"
+                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/gap"
+                        android:hint="Place of registration"
+                        android:padding="@dimen/gap" />
+                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
 
@@ -135,6 +161,7 @@
                         android:id="@+id/etManufactYear"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
+                        android:focusable="false"
                         android:hint="Year of manufacturing?" />
 
 
@@ -151,6 +178,7 @@
                     android:id="@+id/switchAdditional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/gap"
                     android:text="Have you added additional accessories\n to your vehicle?" />
 
                 <LinearLayout
@@ -203,6 +231,7 @@
                     android:id="@+id/switchNcb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/gap"
                     android:text="Has any claim been made in the existing policy?" />
 
                 <LinearLayout
@@ -213,6 +242,7 @@
                     android:visibility="gone">
 
                     <Spinner
+                        android:id="@+id/spNcbPercent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/spinner_bg"></Spinner>
