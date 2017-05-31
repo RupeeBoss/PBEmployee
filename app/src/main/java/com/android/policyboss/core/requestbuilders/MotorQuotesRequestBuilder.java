@@ -1,6 +1,7 @@
 package com.android.policyboss.core.requestbuilders;
 
 import com.android.policyboss.core.RetroRequestBuilder;
+import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
 import com.android.policyboss.core.response.FastLaneResponse;
 
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class MotorQuotesRequestBuilder extends RetroRequestBuilder {
     public interface MotorQuotesNetworkService {
 
         @POST(SUB_URL + "/GETMotorQuotes")
-        Call<FastLaneResponse> getQuoteDetails(@Body HashMap<String, String> body);
+        Call<FastLaneResponse> getQuoteDetails(@Body MotorQuotesReqEntity body);
 
 
     }
