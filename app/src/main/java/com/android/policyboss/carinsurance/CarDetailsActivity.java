@@ -15,12 +15,15 @@ import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.utility.Constants;
 
+import io.realm.Realm;
+
 public class CarDetailsActivity extends BaseActivity {
 
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
     AutoCompleteTextView autvCity;
     ArrayAdapter<String> cityAdapter;
+    private Realm realm  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class CarDetailsActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
+        realm  = Realm.getDefaultInstance();
         init_widgets();
         setListeners();
         showOrHideLayout();
@@ -62,7 +66,7 @@ public class CarDetailsActivity extends BaseActivity {
         cityAdapter = new ArrayAdapter<String>(CarDetailsActivity.this,
                 android.R.layout.simple_spinner_item, new DatabaseController(this,realm).getCity());
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        autvCity.setThreshold(1);//will start working from first character
+        autvCity.setThreshold(2);//will start working from first character
         autvCity.setAdapter(cityAdapter);//setting the adapter data into the AutoCompleteTextView
 //        actv.setTextColor(Color.RED);
         llWhenPolicyExpiring = (LinearLayout) findViewById(R.id.llWhenPolicyExpiring);
@@ -72,5 +76,11 @@ public class CarDetailsActivity extends BaseActivity {
         llNcb = (LinearLayout) findViewById(R.id.llNcb);
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 
 }
