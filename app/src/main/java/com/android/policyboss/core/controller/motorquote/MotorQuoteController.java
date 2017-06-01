@@ -4,15 +4,12 @@ import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
-import com.android.policyboss.core.requestbuilders.FastLaneRequestBuilder;
 import com.android.policyboss.core.requestbuilders.MotorQuotesRequestBuilder;
-import com.android.policyboss.core.response.FastLaneResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.HashMap;
 
 import retrofit.Callback;
 import retrofit.Response;
@@ -22,7 +19,7 @@ import retrofit.Retrofit;
  * Created by IN-RB on 31-05-2017.
  */
 
-public class MotorQuote implements Imotorquote {
+public class MotorQuoteController implements IMotorquote {
 
 
 
@@ -30,7 +27,7 @@ public class MotorQuote implements Imotorquote {
     Context mContext;
 
 
-    public MotorQuote(Context mContext) {
+    public MotorQuoteController(Context mContext) {
         motorQuotesNetworkService = new  MotorQuotesRequestBuilder().getService();
         this.mContext = mContext;
     }

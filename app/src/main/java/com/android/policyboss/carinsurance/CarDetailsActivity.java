@@ -22,7 +22,7 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
-import com.android.policyboss.core.controller.motorquote.MotorQuote;
+import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
 import com.android.policyboss.core.response.MotorQuotesResponse;
@@ -375,7 +375,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
       String strJson = gson.toJson(quotesReqEntity);
 
         showDialog();
-        new MotorQuote(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
+        new MotorQuoteController(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
 
 
     }
