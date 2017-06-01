@@ -32,9 +32,7 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
 
         editor = Constants.getSharedPreferenceEditor(this);
 
-        // initialise all insurence and profession
-        new DatabaseController(this, realm).MapInsurence();
-        new DatabaseController(this, realm).MapProfession();
+
 
 
         //fetch all master tables

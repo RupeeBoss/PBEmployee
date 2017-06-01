@@ -36,7 +36,7 @@ public class DatabaseController implements IDBController {
     //region mapping Insurence and Profession
 
     public void MapInsurence() {
-        hashMapInsurence = new HashMap<String, Integer>();
+
         hashMapInsurence.put("Bajaj Allianz General Insurance Co. Ltd.", 1);
         hashMapInsurence.put("Bharti Axa General Insurance Co.Ltd.", 2);
         hashMapInsurence.put("Cholamandalam MS General Insurance Co.Ltd.", 3);
@@ -62,11 +62,13 @@ public class DatabaseController implements IDBController {
     }
 
     public int getInsurenceID(String insurenceName) {
+        hashMapInsurence = new HashMap<String, Integer>();
+        MapInsurence();
         return hashMapInsurence.get(insurenceName);
     }
 
     public void MapProfession() {
-        hashMapProfession = new HashMap<String, Integer>();
+
         hashMapProfession.put("Practicing Chartered Accountant", 1);
         hashMapProfession.put("Teacher in Govt.recognized Institutions", 2);
         hashMapProfession.put("Doctors registered with Government", 3);
@@ -77,6 +79,8 @@ public class DatabaseController implements IDBController {
     }
 
     public int getProfessionalID(String professionName) {
+        hashMapProfession = new HashMap<String, Integer>();
+        MapProfession();
         return hashMapProfession.get(professionName);
     }
 

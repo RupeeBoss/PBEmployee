@@ -38,7 +38,7 @@ import io.realm.Realm;
 
 public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, IResponseSubcriber {
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
@@ -80,9 +80,15 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
+        QuoteRequestEntity entity = new QuoteRequestEntity();
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
         initialise_list();
+
+        // initialise all insurence and profession
+        //new DatabaseController(this, realm).MapInsurence();
+        //new DatabaseController(this, realm).MapProfession();
+
         quoteRequestEntity = new QuoteRequestEntity();
         fastLaneResponseEntity = new FastLaneResponse.FLResponseBean();
         fetchMasterFromDatabase();
@@ -369,28 +375,50 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             setInputParametrs();
             showDialog();
-            new MotorQuoteController(this).getQuoteDetails(quoteRequestEntity, CarDetailsActivity.this);
+            new MotorQuoteController(this).getQuoteDetails(createQuoteRequest(quoteRequestEntity,fastLaneResponseEntity), CarDetailsActivity.this);
 
         }
     }
 
     private void setInputParametrs() {
 
+        quoteRequestEntity.setSourceType("APP");
         quoteRequestEntity.setProductID(1);
-        quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
         quoteRequestEntity.setProfession_Id(6);
-        quoteRequestEntity.setVariant_ID(varientId);
-        quoteRequestEntity.setVehicleRegisteredName(1);
-        quoteRequestEntity.setSupportsAgentID(2);
-        quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
-        quoteRequestEntity.setDateofPurchaseofCar("" + fastLaneResponseEntity.getRegistration_Date());
-        quoteRequestEntity.setManufacturingYear(Integer.parseInt(etManufactYear.getText().toString()));
         quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
+        quoteRequestEntity.setManufacturingYear(Integer.parseInt(etManufactYear.getText().toString()));
+
+        if (quoteRequestEntity.isRenew()) {
+            quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+            quoteRequestEntity.setDateofPurchaseofCar("" + fastLaneResponseEntity.getRegistration_Date());
+            quoteRequestEntity.setVariant_ID(fastLaneResponseEntity.getVariant_Id());
+            quoteRequestEntity.setPolicyExpiryDate(simpleDateFormat.format(etPolicyExpDate.getText().toString()));
+            quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
+
+        } else {
+            quoteRequestEntity.setVariant_ID(varientId);
+            quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
+            quoteRequestEntity.setPolicyExpiryDate("");
+        }
+
+
+        quoteRequestEntity.setVehicleRegisteredName(1);
+        quoteRequestEntity.setSupportsAgentID(2);
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
 
     }
+
+    //region create Quote
+
+    public QuoteRequestEntity createQuoteRequest(QuoteRequestEntity quoteRequestEntity,FastLaneResponse.FLResponseBean fastlane) {
+        QuoteRequestEntity entity = new QuoteRequestEntity();
+        return entity;
+    }
+
+    //endregion
+
 
     //region Quote response
 
