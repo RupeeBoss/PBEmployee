@@ -19,6 +19,7 @@ import android.widget.Switch;
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.controller.database.DatabaseController;
+import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
@@ -374,7 +375,54 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setVehicleRegisteredName(1);
         quoteRequestEntity.setSupportsAgentID(2);
 
-        //insurese id ...
+        quotesReqEntity.setVehicleNo("");
+        quotesReqEntity.setCustomerReferenceID("");
+        quotesReqEntity.setProductID(1);
+        quotesReqEntity.setExpectedIDV(0);
+        quotesReqEntity.setIDVinExpiryPolicy(0);
+        quotesReqEntity.setDateofPurchaseofCar("2017-05-30");
+        quotesReqEntity.setVD_Amount(0);
+        quotesReqEntity.setPACoverValue(0);
+        quotesReqEntity.setVehicleCity_Id(580);
+        quotesReqEntity.setProfession_Id(6);
+
+        quotesReqEntity.setValueOfElectricalAccessories(0);
+        quotesReqEntity.setValueOfNonElectricalAccessories(0);
+        quotesReqEntity.setValueOfBiFuelKit(0);
+        quotesReqEntity.setCurrentNCB(0);
+        quotesReqEntity.setIsClaimInExpiringPolicy(false);
+        quotesReqEntity.setApplyAntiTheftDiscount(false);
+        quotesReqEntity.setApplyAutomobileAssociationDiscount(false);
+        quotesReqEntity.setAutomobileAssociationName("");
+        quotesReqEntity.setAutomobileMembershipExpiryDate("");
+        quotesReqEntity.setAutomobileAssociationMembershipNumber("");
+
+        quotesReqEntity.setPaidDriverCover(false);
+        quotesReqEntity.setOwnerDOB("");
+        quotesReqEntity.setPreveious_Insurer_Id(0);
+        quotesReqEntity.setManufacturingYear(2017);
+        quotesReqEntity.setPolicyExpiryDate("2017-06-24");
+        quotesReqEntity.setVehicleRegisteredName(1);
+        quotesReqEntity.setVariant_ID(690);
+        quotesReqEntity.setRegistrationNumber("");
+        quotesReqEntity.setPlaceofRegistration("");
+        quotesReqEntity.setVehicleType("1");
+
+        quotesReqEntity.setExisting_CustomerReferenceID("");
+        quotesReqEntity.setContactName("Umesh");
+        quotesReqEntity.setContactEmail("");
+        quotesReqEntity.setContactMobile("");
+        quotesReqEntity.setLandmarkEmployeeCode("");
+        quotesReqEntity.setSupportsAgentID(123);
+        quotesReqEntity.setSessionID("59e979ed-dfc7-4d79-9f28-d427a554917e");
+        quotesReqEntity.setSourceType("APP");
+        quotesReqEntity.setInsurerIDArray("");
+
+        Gson gson = new Gson();
+      String strJson = gson.toJson(quotesReqEntity);
+
+        showDialog();
+        new MotorQuoteController(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
 
 
     }
