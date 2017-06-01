@@ -1,9 +1,9 @@
 package com.android.policyboss.carinsurance;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,12 +15,17 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.APIResponse;
+import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
+import com.android.policyboss.core.response.FastLaneResponse;
+import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
@@ -31,11 +36,13 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, IResponseSubcriber {
+
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-yyyy");
     SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
+    FastLaneResponse.FLResponseBean fastLaneResponseEntity;
     DatabaseController databaseController;
 
     List<String> cityList;
@@ -76,12 +83,15 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
         initialise_list();
+        quoteRequestEntity = new QuoteRequestEntity();
+        fastLaneResponseEntity = new FastLaneResponse.FLResponseBean();
         fetchMasterFromDatabase();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
+        fastLaneResponseEntity = getIntent().getParcelableExtra(CarInsuranceActivity.FASTLANE_DATA);
         init_widgets();
         setListeners();
 
@@ -140,6 +150,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         if (quoteRequestEntity.isNew()) {
             llVarientDetails.setVisibility(View.VISIBLE);
         } else if (quoteRequestEntity.isRenew()) {
+            llVarientDetails.setVisibility(View.GONE);
             llWhenPolicyExpiring.setVisibility(View.VISIBLE);
         } else if (quoteRequestEntity.isDontRem()) {
             llWhenPolicyExpiring.setVisibility(View.VISIBLE);
@@ -259,7 +270,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
     }
 
-     //region  datepickerdialog
+    //region  datepickerdialog
     protected View.OnClickListener firstDatePickerDialog = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -354,14 +365,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         if (v.getId() == R.id.btnGetQuote) {
 
             varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
-
             fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
 
-            Log.d("ID", "var : " + varientId + " fuel: " + fuelId + " make :" + makeId + " model" + modelID);
-
-
             setInputParametrs();
-
+            showDialog();
+            new MotorQuoteController(this).getQuoteDetails(quoteRequestEntity, CarDetailsActivity.this);
 
         }
     }
@@ -374,8 +382,39 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setVariant_ID(varientId);
         quoteRequestEntity.setVehicleRegisteredName(1);
         quoteRequestEntity.setSupportsAgentID(2);
+        quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+        quoteRequestEntity.setDateofPurchaseofCar("" + fastLaneResponseEntity.getRegistration_Date());
+        quoteRequestEntity.setManufacturingYear(Integer.parseInt(etManufactYear.getText().toString()));
+        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
+        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
+        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
+        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
 
-        quotesReqEntity.setVehicleNo("");
+    }
+
+    //region Quote response
+
+    @Override
+    public void OnSuccess(APIResponse response, String message) {
+        cancelDialog();
+        if (response instanceof MotorQuotesResponse) {
+            if (response.getStatusNo() == 0) {
+                startActivity(new Intent(this, CarQuoteGenerate.class)
+                        .putExtra(Constants.MOTOR_QUOTE_DATA, (MotorQuotesResponse) response));
+            }
+        }
+    }
+
+    @Override
+    public void OnFailure(Throwable t) {
+        cancelDialog();
+        Toast.makeText(this, t.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    //endregion
+
+    //region rahul commented
+    /*  quotesReqEntity.setVehicleNo("");
         quotesReqEntity.setCustomerReferenceID("");
         quotesReqEntity.setProductID(1);
         quotesReqEntity.setExpectedIDV(0);
@@ -420,10 +459,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
         Gson gson = new Gson();
       String strJson = gson.toJson(quotesReqEntity);
-
         showDialog();
         new MotorQuoteController(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
-
-
-    }
+*/
+    //endregion
 }

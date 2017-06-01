@@ -29,7 +29,8 @@
                     android:id="@+id/spWhenPolicyExp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_bg"></Spinner>
+                    android:background="@drawable/spinner_bg"
+                    android:visibility="gone"></Spinner>
 
                 <Spinner
                     android:id="@+id/spPrevInsurer"
@@ -48,10 +49,10 @@
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
-                        android:focusable="false"
                         android:id="@+id/etPolicyExpDate"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
+                        android:focusable="false"
                         android:hint="Your Policy Expiry Date" />
 
 
@@ -68,10 +69,10 @@
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
-                        android:focusable="false"
                         android:id="@+id/etFirstRegDate"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
+                        android:focusable="false"
                         android:hint="Date Of First Registration" />
 
 
@@ -182,10 +183,10 @@
                 android:orientation="vertical">
 
                 <Switch
-                    android:padding="@dimen/gap"
                     android:id="@+id/switchAdditional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/gap"
                     android:text="Have you added additional accessories\n to your vehicle?" />
 
                 <LinearLayout

@@ -3,6 +3,7 @@ package com.android.policyboss.core.controller.motorquote;
 import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
 import com.android.policyboss.core.requestbuilders.MotorQuotesRequestBuilder;
 import com.android.policyboss.core.response.MotorQuotesResponse;
@@ -33,10 +34,10 @@ public class MotorQuoteController implements IMotorquote {
     }
 
     @Override
-    public void getQuoteDetails(MotorQuotesReqEntity motorQuotesReqEntity,final IResponseSubcriber iResponseSubcriber) {
+    public void getQuoteDetails(QuoteRequestEntity quoteRequestEntity, final IResponseSubcriber iResponseSubcriber) {
 
 
-        motorQuotesNetworkService.getQuoteDetails(motorQuotesReqEntity).enqueue(new Callback<MotorQuotesResponse>() {
+        motorQuotesNetworkService.getQuoteDetails(quoteRequestEntity).enqueue(new Callback<MotorQuotesResponse>() {
             @Override
             public void onResponse(Response<MotorQuotesResponse> response, Retrofit retrofit) {
                 if (response.body().getStatusNo() == 0) {

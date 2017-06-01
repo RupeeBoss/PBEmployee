@@ -66,7 +66,7 @@ public class FastLaneCarDetails extends BaseActivity implements View.OnClickList
                 quoteRequestEntity.setNew(false);
                 quoteRequestEntity.setRenew(true);
                 quoteRequestEntity.setDontRem(false);
-                startActivity(new Intent(FastLaneCarDetails.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+                startActivity(new Intent(FastLaneCarDetails.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity).putExtra(CarInsuranceActivity.FASTLANE_DATA, fastLaneResponseEntity));
                 break;
         }
     }
