@@ -48,6 +48,7 @@
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
+                        android:focusable="false"
                         android:id="@+id/etPolicyExpDate"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
@@ -67,6 +68,7 @@
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
+                        android:focusable="false"
                         android:id="@+id/etFirstRegDate"
                         style="@style/EditTextStyle"
                         android:drawableLeft="@drawable/ic_people_white"
@@ -93,15 +95,13 @@
                     android:paddingTop="4dp"
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
-                <AutoCompleteTextView
-                    android:id="@+id/autoCarMake"
-                    style="@style/EditTextStyle"
-                    android:layout_margin="5dp"
-                    android:hint="Which car do you drive ?"
-
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCarMake"
+                        style="@style/EditTextStyle"
+                        android:layout_margin="5dp"
                         android:dropDownHeight="wrap_content"
                         android:dropDownWidth="wrap_content"
-
+                        android:hint="Which car do you drive ?"
                         android:padding="@dimen/gap" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -145,8 +145,8 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/autoCity"
-                        android:layout_margin="5dp"
                         style="@style/EditTextStyle"
+                        android:layout_margin="5dp"
                         android:hint="Place of registration"
                         android:padding="@dimen/gap" />
                 </android.support.design.widget.TextInputLayout>
@@ -182,6 +182,7 @@
                 android:orientation="vertical">
 
                 <Switch
+                    android:padding="@dimen/gap"
                     android:id="@+id/switchAdditional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -204,9 +205,11 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
+                            android:id="@+id/etElecAcc"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/ic_people_white"
-                            android:hint="Electrical Accessories" />
+                            android:hint="Electrical Accessories"
+                            android:inputType="number" />
 
 
                     </android.support.design.widget.TextInputLayout>
@@ -221,9 +224,11 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
+                            android:id="@+id/etNonElecAcc"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/ic_people_white"
-                            android:hint="Non-Electrical Accessories" />
+                            android:hint="Non-Electrical Accessories"
+                            android:inputType="number" />
 
 
                     </android.support.design.widget.TextInputLayout>
@@ -234,6 +239,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:padding="@dimen/gap"
                     android:text="Has any claim been made in the existing policy?" />
 
                 <LinearLayout

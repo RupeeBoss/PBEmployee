@@ -3,10 +3,12 @@ package com.android.policyboss.carinsurance;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -28,8 +30,9 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-yyyy");
+    SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
     DatabaseController databaseController;
@@ -54,7 +57,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     Spinner spCarModel, spCarFuelType, spCarVarient, spWhenPolicyExp, spPrevInsurer, spNcbPercent;
     AutoCompleteTextView autoCarMake, autoCity;
     Switch switchAdditional, switchNcb;
-    EditText etManufactYear;
+    EditText etManufactYear, etElecAcc, etNonElecAcc, etPolicyExpDate, etFirstRegDate;
+
+    Button btnGetQuote;
 
     @Override
     protected void onDestroy() {
@@ -143,42 +148,51 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
     private void setListeners() {
 
-        etManufactYear.setOnClickListener(datePickerDialog);
+        btnGetQuote.setOnClickListener(this);
+        etManufactYear.setOnClickListener(yearPickerDialog);
+        etFirstRegDate.setOnClickListener(firstDatePickerDialog);
         switchNcb.setOnCheckedChangeListener(this);
         switchAdditional.setOnCheckedChangeListener(this);
+        etPolicyExpDate.setOnClickListener(policyDatePickerDialog);
 
+        // region  Auto Complete car make
         autoCarMake.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 makeId = databaseController.getMakeID(makeAdapter.getItem(position).toString());
                 modelList = databaseController.getModelList(makeId);
-                //Toast.makeText(CarDetailsActivity.this, "" + makeAdapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
+
+                spCarModel.setVisibility(View.VISIBLE);
+
                 modelAdapter = new
                         ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, modelList);
-                spCarModel.setVisibility(View.VISIBLE);
                 spCarModel.setAdapter(modelAdapter);
             }
         });
+        //endregion
 
+        //region model spinner
         spCarModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                modelID = databaseController.getModelID(makeId, modelAdapter.getItem(position).toString());
 
-                variantList = databaseController.getVariantList(modelID);
-                varientAdapter = new ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, variantList);
+
                 spCarVarient.setVisibility(View.VISIBLE);
+
+                modelID = databaseController.getModelID(makeId, modelAdapter.getItem(position).toString());
+                variantList = databaseController.getVariantList(modelID);
+
+                varientAdapter = new ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, variantList);
                 spCarVarient.setAdapter(varientAdapter);
 
 
-                fuelList = databaseController.getFuelType(modelID);
-                fuelAdapter = new
-                        ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, fuelList);
                 spCarFuelType.setVisibility(View.VISIBLE);
+                fuelList = databaseController.getFuelType(modelID);
+                fuelAdapter = new ArrayAdapter(CarDetailsActivity.this, android.R.layout.simple_list_item_1, fuelList);
                 spCarFuelType.setAdapter(fuelAdapter);
-                varientId = databaseController.getVariantID(varientAdapter.getItem(position).toString());
-                fuelId = databaseController.getFuelID(fuelAdapter.getItem(position).toString(), modelID);
+
+
             }
 
             @Override
@@ -186,6 +200,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             }
         });
+        //endregion
+
         //region varient Spinner
         spCarVarient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -218,6 +234,12 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void init_widgets() {
+        etManufactYear = (EditText) findViewById(R.id.etManufactYear);
+        etFirstRegDate = (EditText) findViewById(R.id.etFirstRegDate);
+        etElecAcc = (EditText) findViewById(R.id.etElecAcc);
+        etNonElecAcc = (EditText) findViewById(R.id.etNonElecAcc);
+        btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
+        etPolicyExpDate = (EditText) findViewById(R.id.etPolicyExpDate);
         llWhenPolicyExpiring = (LinearLayout) findViewById(R.id.llWhenPolicyExpiring);
         llVarientDetails = (LinearLayout) findViewById(R.id.llVarientDetails);
         llAdditionalDetails = (LinearLayout) findViewById(R.id.llAdditionalDetails);
@@ -236,7 +258,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
     }
 
-    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
+     //region  datepickerdialog
+    protected View.OnClickListener firstDatePickerDialog = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Constants.hideKeyBoard(view, CarDetailsActivity.this);
@@ -247,6 +270,52 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
                         String currentDay = simpleDateFormat.format(calendar.getTime());
+                        etFirstRegDate.setText(currentDay);
+                        //startActivity(new Intent(CarDetailsActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+                        //etDate.setTag(R.id.et_date, calendar.getTime());
+                    }
+                }
+            });
+        }
+    };
+    //endregion
+
+
+    //region  datepickerdialog
+    protected View.OnClickListener policyDatePickerDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Constants.hideKeyBoard(view, CarDetailsActivity.this);
+            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    if (view.isShown()) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                        etPolicyExpDate.setText(currentDay);
+                        //startActivity(new Intent(CarDetailsActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
+                        //etDate.setTag(R.id.et_date, calendar.getTime());
+                    }
+                }
+            });
+        }
+    };
+    //endregion
+
+
+    //region   Year pickerdialog
+    protected View.OnClickListener yearPickerDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Constants.hideKeyBoard(view, CarDetailsActivity.this);
+            DateTimePicker.showYearPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    if (view.isShown()) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        String currentDay = yearDateFormat.format(calendar.getTime());
                         etManufactYear.setText(currentDay);
                         //startActivity(new Intent(CarDetailsActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
                         //etDate.setTag(R.id.et_date, calendar.getTime());
@@ -255,6 +324,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             });
         }
     };
+    //endregion
 
 
     @Override
@@ -276,5 +346,36 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                     llNcb.setVisibility(View.GONE);
                 }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnGetQuote) {
+
+            varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
+
+            fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
+
+            Log.d("ID", "var : " + varientId + " fuel: " + fuelId + " make :" + makeId + " model" + modelID);
+
+
+            setInputParametrs();
+
+
+        }
+    }
+
+    private void setInputParametrs() {
+
+        quoteRequestEntity.setProductID(1);
+        quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
+        quoteRequestEntity.setProfession_Id(6);
+        quoteRequestEntity.setVariant_ID(varientId);
+        quoteRequestEntity.setVehicleRegisteredName(1);
+        quoteRequestEntity.setSupportsAgentID(2);
+
+        //insurese id ...
+
+
     }
 }

@@ -12,6 +12,7 @@ import java.util.Calendar;
 public class DateTimePicker {
 
 
+
     public static void showDataPickerDialog(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
 
@@ -20,6 +21,23 @@ public class DateTimePicker {
         //always shows 1 day ahead in calender
         // added 1 day in calender
         calendar.add(Calendar.MONTH, -6);
+
+        // disable all before date,
+
+        //dialog.getDatePicker().setMinDate(calendar.getTimeInMillis() + 180 * 24 * 60 * 60 * 1000);
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+        dialog.show();
+    }
+
+    public static void showYearPickerDialog(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+        final Calendar calendar = Calendar.getInstance();
+
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR),0,0);
+
+        //always shows 1 day ahead in calender
+        // added 1 day in calender
+        //calendar.add(Calendar.MONTH, -6);
 
         // disable all before date,
 

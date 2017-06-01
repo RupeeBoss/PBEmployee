@@ -1,6 +1,7 @@
 package com.android.policyboss.core.controller.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.policyboss.core.models.MakeMasterEntity;
 import com.android.policyboss.core.models.ModelMasterEntity;
@@ -103,7 +104,7 @@ public class DatabaseController implements IDBController {
     public int getFuelID(String fuelType, int modelID) {
         VariantMasterEntity list = realm.where(VariantMasterEntity.class)
                 .equalTo("Fuel_Name", "" + fuelType)
-                .equalTo("Model_ID", "" + modelID).findFirst();
+                .equalTo("Model_ID", modelID).findFirst();
 
         return list.getFuel_ID();
     }
@@ -128,13 +129,13 @@ public class DatabaseController implements IDBController {
 
     @Override
     public int getVariantID(String variantName) {
-        List<VariantMasterEntity> listVariantMaster = dbController.getMasterVariant();
-        for (int i = 0; i < listVariantMaster.size(); i++) {
-            if (listVariantMaster.get(i).getVariant_Name().equals(variantName)) {
-                return listVariantMaster.get(i).getVariant_ID();
-            }
-        }
-        return 0;
+
+        Log.d("SS", variantName);
+        VariantMasterEntity entity = realm.where(VariantMasterEntity.class).equalTo("Variant_Name", variantName)
+                .findFirst();
+
+        Log.d("SSs", entity.getVariant_Name() + " " + entity.getVariant_ID());
+        return entity.getVariant_ID();
     }
 
 
