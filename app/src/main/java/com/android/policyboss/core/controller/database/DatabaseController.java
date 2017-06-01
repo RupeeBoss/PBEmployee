@@ -8,6 +8,7 @@ import com.android.policyboss.core.models.VariantMasterEntity;
 import com.android.policyboss.core.models.VehicleMasterEntity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import io.realm.Realm;
@@ -21,11 +22,65 @@ public class DatabaseController implements IDBController {
     Context context;
     RealmDatabaseController dbController;
 
+    HashMap<String, Integer> hashMapInsurence;
+    HashMap<String, Integer> hashMapProfession;
+
     public DatabaseController(Context context, Realm realm) {
         this.realm = realm;
         this.context = context;
         dbController = new RealmDatabaseController(this.realm);
+
     }
+
+    //region mapping Insurence and Profession
+
+    public void MapInsurence() {
+        hashMapInsurence = new HashMap<String, Integer>();
+        hashMapInsurence.put("Bajaj Allianz General Insurance Co. Ltd.", 1);
+        hashMapInsurence.put("Bharti Axa General Insurance Co.Ltd.", 2);
+        hashMapInsurence.put("Cholamandalam MS General Insurance Co.Ltd.", 3);
+        hashMapInsurence.put("Future Generali India Insurance Co.Ltd.", 4);
+        hashMapInsurence.put("HDFC ERGO General Insurance Co.Ltd.", 5);
+        hashMapInsurence.put("ICICI Lombard General Insurance Co.Ltd.", 6);
+        hashMapInsurence.put("IFFCO Tokio General Insurance Co.Ltd.", 7);
+        hashMapInsurence.put("L & T General Insurance Co.Ltd.", 15);
+        hashMapInsurence.put("Liberty Videocon General Insurance Co.Ltd.", 33);
+        hashMapInsurence.put("Magma HDI General Insurance Co.Ltd", 35);
+        hashMapInsurence.put("National Insurance Co.Ltd.", 8);
+        hashMapInsurence.put("Raheja QBE General Insurance Co.Ltd.", 16);
+        hashMapInsurence.put("Reliance General Insurance Co.Ltd.", 9);
+        hashMapInsurence.put("Royal Sundaram Alliance Insurance Co.Ltd", 10);
+        hashMapInsurence.put("SBI General Insurance Co.Ltd.", 17);
+        hashMapInsurence.put("Shriram General Insurance Co.Ltd.", 18);
+        hashMapInsurence.put("Tata AIG General Insurance Co.Ltd.", 11);
+        hashMapInsurence.put("The New India Assurance Co.Ltd.", 12);
+        hashMapInsurence.put("The Oriental Insurance Co.Ltd.", 13);
+        hashMapInsurence.put("United India Insurance Co.Ltd.", 14);
+        hashMapInsurence.put("Universal Sompo General Insurance Co.Ltd.", 19);
+
+    }
+
+    public int getInsurenceID(String insurenceName) {
+        return hashMapInsurence.get(insurenceName);
+    }
+
+    public void MapProfession() {
+        hashMapProfession = new HashMap<String, Integer>();
+        hashMapProfession.put("Practicing Chartered Accountant", 1);
+        hashMapProfession.put("Teacher in Govt.recognized Institutions", 2);
+        hashMapProfession.put("Doctors registered with Government", 3);
+        hashMapProfession.put("Defense and Para Military Service", 4);
+        hashMapProfession.put("Central / State Government Employees", 5);
+        hashMapProfession.put("Other", 6);
+
+    }
+
+    public int getProfessionalID(String professionName) {
+        return hashMapProfession.get(professionName);
+    }
+
+
+    //endregion
 
     //region Makedata
 
