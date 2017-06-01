@@ -13,7 +13,41 @@
     <string name="title_activity_car_additional_details">Car Insurance</string>
 
     <string name="popUpCard_title1">What is covered?</string>
-    <string name="popUpCard_body1">Own damage, third party liability,</string>
+    <string name="popUpCard_body1">Own damage, third party liability,\nPersonal accident for owner driver.</string>
+    <string name="popUpCard_body2">Coverages against riots, fire, theft,\nexplosion. </string>
+    <string name="popUpCard_body3">strikes, terrorist activities, malicious\ndeed and natural calamities. </string>
+
+    <string name="popUpCard2_title2">What is not covered?</string>
+    <string name="popUpCard2_body1">Normal wear &amp; tear Depreciation of\ncar Electrical &amp; mechanical failure.</string>
+    <string name="popUpCard2_body2">If person driving under the influence\nof alcohol or drugs, Person doesn’t\nhold valid driving licence, Nuclear risks.</string>
+    <string name="popUpCard2_body3">If car is used outside Indian &amp; for\n other purposes. </string>
+
+    <string name="popPremium1_hdr1">Plan Name: </string>
+    <string name="popPremium1_title1">Own damage premium</string>
+    <string name="popPremium1_basic">Basic OD</string>
+    <string name="popPremium1_OD">OD Discount</string>
+    <string name="popPremium1_NEA">NEA Premium</string>
+    <string name="popPremium1_EA">EA Premium</string>
+    <string name="popPremium1_Bi">Bi Fuel Kit Premium</string>
+    <string name="popPremium1_Anti">Anti Theft Discount</string>
+    <string name="popPremium1_Vol">Voluntary Discount</string>
+
+    <string name="popPremium1_AAI">AAI Discount</string>
+    <string name="popPremium1_NCB">NCB</string>
+    <string name="popPremium1_Age">Age Discount</string>
+    <string name="popPremium1_Prof">Profession Discount</string>
+    <string name="popPremium1_Undrewritting">Underwriter Loading</string>
+    <string name="popPremium1_totalOD">Total OD Premium (A)</string>
+
+    <string name="popPremium2_hdr1">Car Model: </string>
+    <string name="popPremium2_title1">Third Party Premium</string>
+    <string name="popPremium2_basic">Basic 3rd Party Premium</string>
+    <string name="popPremium2_Unnamed">Unnamed PA Cover for Passenger</string>
+    <string name="popPremium2_PA">PA Cover for Owner Driver</string>
+    <string name="popPremium2_Legal"> Legal Liability to Paid Driver</string>
+    <string name="popPremium2_Bi">Bi Fuel Kit Liability</string>
+    <string name="popPremium1_totalLiab">Total Liability Premium</string>
+
 
     <string-array name="array_insurance_company">
         <item>Bajaj Allianz General Insurance Co. Ltd.</item>
@@ -57,4 +91,5 @@
     <string name="title_activity_fast_lane_car_details">Car Details</string>
     <string name="title_activity_quote_generate">Quote Details</string>
     <string name="title_activity_pop_up_card_quote">PopUpCardQuoteActivity</string>
+    <string name="title_activity_pop_up_premium">PopUpPremiumActivity</string>
 </resources>

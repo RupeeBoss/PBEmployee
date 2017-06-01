@@ -10,15 +10,14 @@ import android.view.ViewGroup;
 
 import com.android.policyboss.R;
 
-public class PopUpCardQuoteActivity extends AppCompatActivity {
+public class PopUpPremiumActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop_up_card_quote);
+        setContentView(R.layout.activity_pop_up_premium);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setFinishOnTouchOutside(false);
-
 
     }
 
