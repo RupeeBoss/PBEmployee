@@ -150,9 +150,9 @@ public class QuoteRequestEntity implements Parcelable {
         PlaceofRegistration = "";
         VehicleType = "";
         Existing_CustomerReferenceID = "";
-        ContactName = "";
-        ContactEmail = "";
-        ContactMobile = "";
+        ContactName = "Rajeev Ranjan";
+        ContactEmail = "pramod.parit@policyboss.com";
+        ContactMobile = "8093793198";
         LandmarkEmployeeCode = "";
         SupportsAgentID = 2;
         SessionID = "";
@@ -589,7 +589,6 @@ public class QuoteRequestEntity implements Parcelable {
         dest.writeByte(this.isInfoCorrect ? (byte) 1 : (byte) 0);
         dest.writeByte(this.dontRem ? (byte) 1 : (byte) 0);
     }
-
 
 
     protected QuoteRequestEntity(Parcel in) {

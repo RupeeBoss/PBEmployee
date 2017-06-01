@@ -7,7 +7,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -70,7 +70,8 @@
         <activity
             android:name=".carinsurance.PopUpCardQuoteActivity"
             android:label="@string/title_activity_pop_up_card_quote"
-            android:theme="@style/Theme.AppCompat.Dialog" android:noHistory="true"></activity>
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Dialog"></activity>
 
         <activity
             android:name=".carinsurance.CarQuoteGenerate"
