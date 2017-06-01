@@ -34,6 +34,7 @@ import java.util.Calendar;
 public class CarInsuranceActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
 
     public static final String FASTLANE_DATA = "fastlane_response";
+    public static final String MOTOR_QUOTE_DATA = "motorquote_response";
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
     ImageView ivNewCar, ivRenewCar;
