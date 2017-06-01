@@ -1,7 +1,9 @@
 package com.android.policyboss.core.controller.database;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.android.policyboss.R;
 import com.android.policyboss.core.models.MakeMasterEntity;
 import com.android.policyboss.core.models.ModelMasterEntity;
 import com.android.policyboss.core.models.VariantMasterEntity;
@@ -10,6 +12,7 @@ import com.android.policyboss.core.models.VehicleMasterEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import io.realm.Realm;
 
@@ -25,6 +28,8 @@ public class DatabaseController implements IDBController {
     HashMap<String, Integer> hashMapInsurence;
     HashMap<String, Integer> hashMapProfession;
 
+    static HashMap<Integer,Integer> hasMapCarInsuranceImage;
+
     public DatabaseController(Context context, Realm realm) {
         this.realm = realm;
         this.context = context;
@@ -35,7 +40,7 @@ public class DatabaseController implements IDBController {
     //region mapping Insurence and Profession
 
     public void MapInsurence() {
-        hashMapInsurence = new HashMap<String, Integer>();
+
         hashMapInsurence.put("Bajaj Allianz General Insurance Co. Ltd.", 1);
         hashMapInsurence.put("Bharti Axa General Insurance Co.Ltd.", 2);
         hashMapInsurence.put("Cholamandalam MS General Insurance Co.Ltd.", 3);
@@ -61,11 +66,13 @@ public class DatabaseController implements IDBController {
     }
 
     public int getInsurenceID(String insurenceName) {
+        hashMapInsurence = new HashMap<String, Integer>();
+        MapInsurence();
         return hashMapInsurence.get(insurenceName);
     }
 
     public void MapProfession() {
-        hashMapProfession = new HashMap<String, Integer>();
+
         hashMapProfession.put("Practicing Chartered Accountant", 1);
         hashMapProfession.put("Teacher in Govt.recognized Institutions", 2);
         hashMapProfession.put("Doctors registered with Government", 3);
@@ -76,6 +83,8 @@ public class DatabaseController implements IDBController {
     }
 
     public int getProfessionalID(String professionName) {
+        hashMapProfession = new HashMap<String, Integer>();
+        MapProfession();
         return hashMapProfession.get(professionName);
     }
 
@@ -158,7 +167,7 @@ public class DatabaseController implements IDBController {
     public int getFuelID(String fuelType, int modelID) {
         VariantMasterEntity list = realm.where(VariantMasterEntity.class)
                 .equalTo("Fuel_Name", "" + fuelType)
-                .equalTo("Model_ID", "" + modelID).findFirst();
+                .equalTo("Model_ID", modelID).findFirst();
 
         return list.getFuel_ID();
     }
@@ -183,13 +192,13 @@ public class DatabaseController implements IDBController {
 
     @Override
     public int getVariantID(String variantName) {
-        List<VariantMasterEntity> listVariantMaster = dbController.getMasterVariant();
-        for (int i = 0; i < listVariantMaster.size(); i++) {
-            if (listVariantMaster.get(i).getVariant_Name().equals(variantName)) {
-                return listVariantMaster.get(i).getVariant_ID();
-            }
-        }
-        return 0;
+
+        Log.d("SS", variantName);
+        VariantMasterEntity entity = realm.where(VariantMasterEntity.class).equalTo("Variant_Name", variantName)
+                .findFirst();
+
+        Log.d("SSs", entity.getVariant_Name() + " " + entity.getVariant_ID());
+        return entity.getVariant_ID();
     }
 
 
@@ -218,6 +227,42 @@ public class DatabaseController implements IDBController {
             }
         }
         return 0;
+    }
+
+    //endregion
+
+    //region Car Insurance
+
+    public static  void MapCarInsuranceImage() {
+
+        hasMapCarInsuranceImage.put(1, R.drawable.carins1);
+        hasMapCarInsuranceImage.put(2,R.drawable.carins2);
+        hasMapCarInsuranceImage.put(3,R.drawable.carins3);
+        hasMapCarInsuranceImage.put(4,R.drawable.carins4);
+
+        hasMapCarInsuranceImage.put(5,R.drawable.carins5);
+        hasMapCarInsuranceImage.put(6,R.drawable.carins6);
+        hasMapCarInsuranceImage.put(7,R.drawable.carins7);
+        hasMapCarInsuranceImage.put(8,R.drawable.carins8);
+        hasMapCarInsuranceImage.put(9,R.drawable.carins9);
+        hasMapCarInsuranceImage.put(10,R.drawable.carins10);
+        hasMapCarInsuranceImage.put(11,R.drawable.carins11);
+        hasMapCarInsuranceImage.put(12,R.drawable.carins12);
+        hasMapCarInsuranceImage.put(14,R.drawable.carins14);
+        hasMapCarInsuranceImage.put(15,R.drawable.carins15);
+        hasMapCarInsuranceImage.put(16,R.drawable.carins16);
+        hasMapCarInsuranceImage.put(17,R.drawable.carins17);
+        hasMapCarInsuranceImage.put(18,R.drawable.carins18);
+        hasMapCarInsuranceImage.put(19,R.drawable.carins19);
+        hasMapCarInsuranceImage.put(33,R.drawable.carins33);
+        hasMapCarInsuranceImage.put(35,R.drawable.carins35);
+
+    }
+    public static int getProfessionalID1(int pic) {
+
+        hasMapCarInsuranceImage = new HashMap<Integer,Integer>();
+        MapCarInsuranceImage();
+        return hasMapCarInsuranceImage.get(pic);
     }
 
     //endregion

@@ -9,6 +9,90 @@ import android.os.Parcelable;
 
 public class QuoteRequestEntity implements Parcelable {
 
+    /**
+     * VehicleNo :
+     * CustomerReferenceID :
+     * ProductID : 1
+     * ExShowRoomPrice : 0
+     * ExpectedIDV : 0
+     * IDVinExpiryPolicy : 0
+     * DateofPurchaseofCar : 2017-05-30
+     * VD_Amount : 0
+     * PACoverValue : 0
+     * VehicleCity_Id : 580
+     * Profession_Id : 6
+     * ValueOfElectricalAccessories : 0
+     * ValueOfNonElectricalAccessories : 0
+     * ValueOfBiFuelKit : 0
+     * CurrentNCB : 0
+     * IsClaimInExpiringPolicy : false
+     * ApplyAntiTheftDiscount : false
+     * ApplyAutomobileAssociationDiscount : false
+     * AutomobileAssociationName :
+     * AutomobileMembershipExpiryDate :
+     * AutomobileAssociationMembershipNumber :
+     * PaidDriverCover : false
+     * OwnerDOB : null
+     * Preveious_Insurer_Id : 0
+     * ManufacturingYear : 2017
+     * PolicyExpiryDate : null
+     * VehicleRegisteredName : 1
+     * Variant_ID : 690
+     * RegistrationNumber :
+     * PlaceofRegistration :
+     * VehicleType : 1
+     * Existing_CustomerReferenceID :
+     * ContactName : sagar
+     * ContactEmail :
+     * ContactMobile :
+     * LandmarkEmployeeCode :
+     * SupportsAgentID : 123
+     * SessionID : 59e979ed-dfc7-4d79-9f28-d427a554917e
+     * SourceType : APP
+     * InsurerIDArray :
+     */
+
+    private String VehicleNo;
+    private String CustomerReferenceID;
+    private int ProductID;
+    private String ExShowRoomPrice;
+    private String ExpectedIDV;
+    private String IDVinExpiryPolicy;
+    private String DateofPurchaseofCar;
+    private String VD_Amount;
+    private String PACoverValue;
+    private int VehicleCity_Id;
+    private int Profession_Id;
+    private String ValueOfElectricalAccessories;
+    private String ValueOfNonElectricalAccessories;
+    private String ValueOfBiFuelKit;
+    private String CurrentNCB;
+    private boolean IsClaimInExpiringPolicy;
+    private boolean ApplyAntiTheftDiscount;
+    private boolean ApplyAutomobileAssociationDiscount;
+    private String AutomobileAssociationName;
+    private String AutomobileMembershipExpiryDate;
+    private String AutomobileAssociationMembershipNumber;
+    private boolean PaidDriverCover;
+    private String OwnerDOB;
+    private String Preveious_Insurer_Id;
+    private int ManufacturingYear;
+    private String PolicyExpiryDate;
+    private int VehicleRegisteredName;
+    private int Variant_ID;
+    private String RegistrationNumber;
+    private String PlaceofRegistration;
+    private String VehicleType;
+    private String Existing_CustomerReferenceID;
+    private String ContactName;
+    private String ContactEmail;
+    private String ContactMobile;
+    private String LandmarkEmployeeCode;
+    private int SupportsAgentID;
+    private String SessionID;
+    private String SourceType;
+    private String InsurerIDArray;
+
     public boolean isNew() {
         return isNew;
     }
@@ -31,6 +115,49 @@ public class QuoteRequestEntity implements Parcelable {
 
     public void setInfoCorrect(boolean infoCorrect) {
         isInfoCorrect = infoCorrect;
+    }
+
+    public QuoteRequestEntity() {
+        VehicleNo = "";
+        CustomerReferenceID = "";
+        ProductID = 1;
+        ExShowRoomPrice = "";
+        ExpectedIDV = "";
+        this.IDVinExpiryPolicy = IDVinExpiryPolicy;
+        //DateofPurchaseofCar = dateofPurchaseofCar;
+        this.VD_Amount = VD_Amount;
+        this.PACoverValue = PACoverValue;
+
+        Profession_Id = 6;
+        ValueOfElectricalAccessories = "0";
+        ValueOfNonElectricalAccessories = "0";
+        ValueOfBiFuelKit = "0";
+        CurrentNCB = "0";
+        IsClaimInExpiringPolicy = false;
+        ApplyAntiTheftDiscount = false;
+        ApplyAutomobileAssociationDiscount = false;
+        AutomobileAssociationName = "";
+        AutomobileMembershipExpiryDate = "";
+        AutomobileAssociationMembershipNumber = "";
+        PaidDriverCover = false;
+        OwnerDOB = null;
+        Preveious_Insurer_Id = "0";
+        //ManufacturingYear = "";
+        PolicyExpiryDate = "";
+        VehicleRegisteredName = 1;
+        //Variant_ID = variant_ID;
+        RegistrationNumber = "";
+        PlaceofRegistration = "";
+        VehicleType = "";
+        Existing_CustomerReferenceID = "";
+        ContactName = "";
+        ContactEmail = "";
+        ContactMobile = "";
+        LandmarkEmployeeCode = "";
+        SupportsAgentID = 2;
+        SessionID = "";
+        SourceType = "APP";
+        InsurerIDArray = "";
     }
 
     /**
@@ -69,7 +196,7 @@ public class QuoteRequestEntity implements Parcelable {
      * LandmarkEmployeeCode :
      * SessionID : 123456788
      * SupportsAgentID : 2
-
+     * <p>
      * Policy_Expiry_Date : 2017-05-24
      * InsurerIDArray :
      */
@@ -89,43 +216,22 @@ public class QuoteRequestEntity implements Parcelable {
 
     private boolean dontRem;
 
-    private int ProductID;
-    private String ExShowRoomPrice;
-    private String ExpectedIDV;
-    private int IDVinExpiryPolicy;
-    private String DateofPurchaseofCar;
-    private int VD_Amount;
-    private int PACoverValue;
-    private int VehicleCity_Id;
-    private int Profession_Id;
-    private int ValueOfElectricalAccessories;
-    private int ValueOfNonElectricalAccessories;
-    private int ValueOfBiFuelKit;
-    private int CurrentNCB;
-    private boolean IsClaimInExpiringPolicy;
-    private boolean ApplyAntiTheftDiscount;
-    private boolean ApplyAutomobileAssociationDiscount;
-    private String AutomobileAssociationName;
-    private String AutomobileMembershipExpiryDate;
-    private String AutomobileAssociationMembershipNumber;
-    private boolean PaidDriverCover;
-    private String OwnerDOB;
-    private int Preveious_Insurer_Id;
-    private int ManufacturingYear;
-    private int VehicleRegisteredName;
-    private int Variant_ID;
-    private String RegistrationNumber;
-    private String PlaceofRegistration;
-    private String VehicleType;
-    private String Existing_CustomerReferenceID;
-    private String ContactName;
-    private String ContactEmail;
-    private String ContactMobile;
-    private String LandmarkEmployeeCode;
-    private String SessionID;
-    private int SupportsAgentID;
-    private String Policy_Expiry_Date;
-    private String InsurerIDArray;
+
+    public String getVehicleNo() {
+        return VehicleNo;
+    }
+
+    public void setVehicleNo(String VehicleNo) {
+        this.VehicleNo = VehicleNo;
+    }
+
+    public String getCustomerReferenceID() {
+        return CustomerReferenceID;
+    }
+
+    public void setCustomerReferenceID(String CustomerReferenceID) {
+        this.CustomerReferenceID = CustomerReferenceID;
+    }
 
     public int getProductID() {
         return ProductID;
@@ -151,11 +257,11 @@ public class QuoteRequestEntity implements Parcelable {
         this.ExpectedIDV = ExpectedIDV;
     }
 
-    public int getIDVinExpiryPolicy() {
+    public String getIDVinExpiryPolicy() {
         return IDVinExpiryPolicy;
     }
 
-    public void setIDVinExpiryPolicy(int IDVinExpiryPolicy) {
+    public void setIDVinExpiryPolicy(String IDVinExpiryPolicy) {
         this.IDVinExpiryPolicy = IDVinExpiryPolicy;
     }
 
@@ -167,19 +273,19 @@ public class QuoteRequestEntity implements Parcelable {
         this.DateofPurchaseofCar = DateofPurchaseofCar;
     }
 
-    public int getVD_Amount() {
+    public String getVD_Amount() {
         return VD_Amount;
     }
 
-    public void setVD_Amount(int VD_Amount) {
+    public void setVD_Amount(String VD_Amount) {
         this.VD_Amount = VD_Amount;
     }
 
-    public int getPACoverValue() {
+    public String getPACoverValue() {
         return PACoverValue;
     }
 
-    public void setPACoverValue(int PACoverValue) {
+    public void setPACoverValue(String PACoverValue) {
         this.PACoverValue = PACoverValue;
     }
 
@@ -199,35 +305,35 @@ public class QuoteRequestEntity implements Parcelable {
         this.Profession_Id = Profession_Id;
     }
 
-    public int getValueOfElectricalAccessories() {
+    public String getValueOfElectricalAccessories() {
         return ValueOfElectricalAccessories;
     }
 
-    public void setValueOfElectricalAccessories(int ValueOfElectricalAccessories) {
+    public void setValueOfElectricalAccessories(String ValueOfElectricalAccessories) {
         this.ValueOfElectricalAccessories = ValueOfElectricalAccessories;
     }
 
-    public int getValueOfNonElectricalAccessories() {
+    public String getValueOfNonElectricalAccessories() {
         return ValueOfNonElectricalAccessories;
     }
 
-    public void setValueOfNonElectricalAccessories(int ValueOfNonElectricalAccessories) {
+    public void setValueOfNonElectricalAccessories(String ValueOfNonElectricalAccessories) {
         this.ValueOfNonElectricalAccessories = ValueOfNonElectricalAccessories;
     }
 
-    public int getValueOfBiFuelKit() {
+    public String getValueOfBiFuelKit() {
         return ValueOfBiFuelKit;
     }
 
-    public void setValueOfBiFuelKit(int ValueOfBiFuelKit) {
+    public void setValueOfBiFuelKit(String ValueOfBiFuelKit) {
         this.ValueOfBiFuelKit = ValueOfBiFuelKit;
     }
 
-    public int getCurrentNCB() {
+    public String getCurrentNCB() {
         return CurrentNCB;
     }
 
-    public void setCurrentNCB(int CurrentNCB) {
+    public void setCurrentNCB(String CurrentNCB) {
         this.CurrentNCB = CurrentNCB;
     }
 
@@ -295,11 +401,11 @@ public class QuoteRequestEntity implements Parcelable {
         this.OwnerDOB = OwnerDOB;
     }
 
-    public int getPreveious_Insurer_Id() {
+    public String getPreveious_Insurer_Id() {
         return Preveious_Insurer_Id;
     }
 
-    public void setPreveious_Insurer_Id(int Preveious_Insurer_Id) {
+    public void setPreveious_Insurer_Id(String Preveious_Insurer_Id) {
         this.Preveious_Insurer_Id = Preveious_Insurer_Id;
     }
 
@@ -309,6 +415,14 @@ public class QuoteRequestEntity implements Parcelable {
 
     public void setManufacturingYear(int ManufacturingYear) {
         this.ManufacturingYear = ManufacturingYear;
+    }
+
+    public String getPolicyExpiryDate() {
+        return PolicyExpiryDate;
+    }
+
+    public void setPolicyExpiryDate(String PolicyExpiryDate) {
+        this.PolicyExpiryDate = PolicyExpiryDate;
     }
 
     public int getVehicleRegisteredName() {
@@ -391,14 +505,6 @@ public class QuoteRequestEntity implements Parcelable {
         this.LandmarkEmployeeCode = LandmarkEmployeeCode;
     }
 
-    public String getSessionID() {
-        return SessionID;
-    }
-
-    public void setSessionID(String SessionID) {
-        this.SessionID = SessionID;
-    }
-
     public int getSupportsAgentID() {
         return SupportsAgentID;
     }
@@ -407,12 +513,20 @@ public class QuoteRequestEntity implements Parcelable {
         this.SupportsAgentID = SupportsAgentID;
     }
 
-    public String getPolicy_Expiry_Date() {
-        return Policy_Expiry_Date;
+    public String getSessionID() {
+        return SessionID;
     }
 
-    public void setPolicy_Expiry_Date(String Policy_Expiry_Date) {
-        this.Policy_Expiry_Date = Policy_Expiry_Date;
+    public void setSessionID(String SessionID) {
+        this.SessionID = SessionID;
+    }
+
+    public String getSourceType() {
+        return SourceType;
+    }
+
+    public void setSourceType(String SourceType) {
+        this.SourceType = SourceType;
     }
 
     public String getInsurerIDArray() {
@@ -430,23 +544,21 @@ public class QuoteRequestEntity implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeByte(this.isNew ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.isRenew ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.isInfoCorrect ? (byte) 1 : (byte) 0);
-        dest.writeByte(this.dontRem ? (byte) 1 : (byte) 0);
+        dest.writeString(this.VehicleNo);
+        dest.writeString(this.CustomerReferenceID);
         dest.writeInt(this.ProductID);
         dest.writeString(this.ExShowRoomPrice);
         dest.writeString(this.ExpectedIDV);
-        dest.writeInt(this.IDVinExpiryPolicy);
+        dest.writeString(this.IDVinExpiryPolicy);
         dest.writeString(this.DateofPurchaseofCar);
-        dest.writeInt(this.VD_Amount);
-        dest.writeInt(this.PACoverValue);
+        dest.writeString(this.VD_Amount);
+        dest.writeString(this.PACoverValue);
         dest.writeInt(this.VehicleCity_Id);
         dest.writeInt(this.Profession_Id);
-        dest.writeInt(this.ValueOfElectricalAccessories);
-        dest.writeInt(this.ValueOfNonElectricalAccessories);
-        dest.writeInt(this.ValueOfBiFuelKit);
-        dest.writeInt(this.CurrentNCB);
+        dest.writeString(this.ValueOfElectricalAccessories);
+        dest.writeString(this.ValueOfNonElectricalAccessories);
+        dest.writeString(this.ValueOfBiFuelKit);
+        dest.writeString(this.CurrentNCB);
         dest.writeByte(this.IsClaimInExpiringPolicy ? (byte) 1 : (byte) 0);
         dest.writeByte(this.ApplyAntiTheftDiscount ? (byte) 1 : (byte) 0);
         dest.writeByte(this.ApplyAutomobileAssociationDiscount ? (byte) 1 : (byte) 0);
@@ -455,8 +567,9 @@ public class QuoteRequestEntity implements Parcelable {
         dest.writeString(this.AutomobileAssociationMembershipNumber);
         dest.writeByte(this.PaidDriverCover ? (byte) 1 : (byte) 0);
         dest.writeString(this.OwnerDOB);
-        dest.writeInt(this.Preveious_Insurer_Id);
+        dest.writeString(this.Preveious_Insurer_Id);
         dest.writeInt(this.ManufacturingYear);
+        dest.writeString(this.PolicyExpiryDate);
         dest.writeInt(this.VehicleRegisteredName);
         dest.writeInt(this.Variant_ID);
         dest.writeString(this.RegistrationNumber);
@@ -467,33 +580,34 @@ public class QuoteRequestEntity implements Parcelable {
         dest.writeString(this.ContactEmail);
         dest.writeString(this.ContactMobile);
         dest.writeString(this.LandmarkEmployeeCode);
-        dest.writeString(this.SessionID);
         dest.writeInt(this.SupportsAgentID);
-        dest.writeString(this.Policy_Expiry_Date);
+        dest.writeString(this.SessionID);
+        dest.writeString(this.SourceType);
         dest.writeString(this.InsurerIDArray);
+        dest.writeByte(this.isNew ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isRenew ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isInfoCorrect ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.dontRem ? (byte) 1 : (byte) 0);
     }
 
-    public QuoteRequestEntity() {
-    }
+
 
     protected QuoteRequestEntity(Parcel in) {
-        this.isNew = in.readByte() != 0;
-        this.isRenew = in.readByte() != 0;
-        this.isInfoCorrect = in.readByte() != 0;
-        this.dontRem = in.readByte() != 0;
+        this.VehicleNo = in.readString();
+        this.CustomerReferenceID = in.readString();
         this.ProductID = in.readInt();
         this.ExShowRoomPrice = in.readString();
         this.ExpectedIDV = in.readString();
-        this.IDVinExpiryPolicy = in.readInt();
+        this.IDVinExpiryPolicy = in.readString();
         this.DateofPurchaseofCar = in.readString();
-        this.VD_Amount = in.readInt();
-        this.PACoverValue = in.readInt();
+        this.VD_Amount = in.readString();
+        this.PACoverValue = in.readString();
         this.VehicleCity_Id = in.readInt();
         this.Profession_Id = in.readInt();
-        this.ValueOfElectricalAccessories = in.readInt();
-        this.ValueOfNonElectricalAccessories = in.readInt();
-        this.ValueOfBiFuelKit = in.readInt();
-        this.CurrentNCB = in.readInt();
+        this.ValueOfElectricalAccessories = in.readString();
+        this.ValueOfNonElectricalAccessories = in.readString();
+        this.ValueOfBiFuelKit = in.readString();
+        this.CurrentNCB = in.readString();
         this.IsClaimInExpiringPolicy = in.readByte() != 0;
         this.ApplyAntiTheftDiscount = in.readByte() != 0;
         this.ApplyAutomobileAssociationDiscount = in.readByte() != 0;
@@ -502,8 +616,9 @@ public class QuoteRequestEntity implements Parcelable {
         this.AutomobileAssociationMembershipNumber = in.readString();
         this.PaidDriverCover = in.readByte() != 0;
         this.OwnerDOB = in.readString();
-        this.Preveious_Insurer_Id = in.readInt();
+        this.Preveious_Insurer_Id = in.readString();
         this.ManufacturingYear = in.readInt();
+        this.PolicyExpiryDate = in.readString();
         this.VehicleRegisteredName = in.readInt();
         this.Variant_ID = in.readInt();
         this.RegistrationNumber = in.readString();
@@ -514,10 +629,14 @@ public class QuoteRequestEntity implements Parcelable {
         this.ContactEmail = in.readString();
         this.ContactMobile = in.readString();
         this.LandmarkEmployeeCode = in.readString();
-        this.SessionID = in.readString();
         this.SupportsAgentID = in.readInt();
-        this.Policy_Expiry_Date = in.readString();
+        this.SessionID = in.readString();
+        this.SourceType = in.readString();
         this.InsurerIDArray = in.readString();
+        this.isNew = in.readByte() != 0;
+        this.isRenew = in.readByte() != 0;
+        this.isInfoCorrect = in.readByte() != 0;
+        this.dontRem = in.readByte() != 0;
     }
 
     public static final Parcelable.Creator<QuoteRequestEntity> CREATOR = new Parcelable.Creator<QuoteRequestEntity>() {
