@@ -1,6 +1,7 @@
 package com.android.policyboss.core.controller.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.MakeMasterEntity;
@@ -39,7 +40,7 @@ public class DatabaseController implements IDBController {
     //region mapping Insurence and Profession
 
     public void MapInsurence() {
-        hashMapInsurence = new HashMap<String, Integer>();
+
         hashMapInsurence.put("Bajaj Allianz General Insurance Co. Ltd.", 1);
         hashMapInsurence.put("Bharti Axa General Insurance Co.Ltd.", 2);
         hashMapInsurence.put("Cholamandalam MS General Insurance Co.Ltd.", 3);
@@ -65,11 +66,13 @@ public class DatabaseController implements IDBController {
     }
 
     public int getInsurenceID(String insurenceName) {
+        hashMapInsurence = new HashMap<String, Integer>();
+        MapInsurence();
         return hashMapInsurence.get(insurenceName);
     }
 
     public void MapProfession() {
-        hashMapProfession = new HashMap<String, Integer>();
+
         hashMapProfession.put("Practicing Chartered Accountant", 1);
         hashMapProfession.put("Teacher in Govt.recognized Institutions", 2);
         hashMapProfession.put("Doctors registered with Government", 3);
@@ -80,6 +83,8 @@ public class DatabaseController implements IDBController {
     }
 
     public int getProfessionalID(String professionName) {
+        hashMapProfession = new HashMap<String, Integer>();
+        MapProfession();
         return hashMapProfession.get(professionName);
     }
 
@@ -162,7 +167,7 @@ public class DatabaseController implements IDBController {
     public int getFuelID(String fuelType, int modelID) {
         VariantMasterEntity list = realm.where(VariantMasterEntity.class)
                 .equalTo("Fuel_Name", "" + fuelType)
-                .equalTo("Model_ID", "" + modelID).findFirst();
+                .equalTo("Model_ID", modelID).findFirst();
 
         return list.getFuel_ID();
     }
@@ -187,13 +192,13 @@ public class DatabaseController implements IDBController {
 
     @Override
     public int getVariantID(String variantName) {
-        List<VariantMasterEntity> listVariantMaster = dbController.getMasterVariant();
-        for (int i = 0; i < listVariantMaster.size(); i++) {
-            if (listVariantMaster.get(i).getVariant_Name().equals(variantName)) {
-                return listVariantMaster.get(i).getVariant_ID();
-            }
-        }
-        return 0;
+
+        Log.d("SS", variantName);
+        VariantMasterEntity entity = realm.where(VariantMasterEntity.class).equalTo("Variant_Name", variantName)
+                .findFirst();
+
+        Log.d("SSs", entity.getVariant_Name() + " " + entity.getVariant_ID());
+        return entity.getVariant_ID();
     }
 
 

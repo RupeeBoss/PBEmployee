@@ -184,6 +184,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
                         quoteRequestEntity.setDontRem(false);
                         quoteRequestEntity.setRenew(false);
                         quoteRequestEntity.setNew(true);
+                        quoteRequestEntity.setDateofPurchaseofCar(etInvDate.getText().toString());
                         startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
                         //etDate.setTag(R.id.et_date, calendar.getTime());
                     }
