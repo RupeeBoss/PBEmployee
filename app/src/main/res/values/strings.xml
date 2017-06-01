@@ -92,4 +92,5 @@
     <string name="title_activity_quote_generate">Quote Details</string>
     <string name="title_activity_pop_up_card_quote">PopUpCardQuoteActivity</string>
     <string name="title_activity_pop_up_premium">PopUpPremiumActivity</string>
+    <string name="title_activitycard_quote">Car Quote</string>
 </resources>

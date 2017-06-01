@@ -10,6 +10,7 @@ import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.controller.variant.VarientMasterController;
 import com.android.policyboss.core.response.AllMastersResponse;
 import com.android.policyboss.navigationview.HomeActivity;
@@ -30,6 +31,11 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
         realm = Realm.getDefaultInstance();
 
         editor = Constants.getSharedPreferenceEditor(this);
+
+        // initialise all insurence and profession
+        new DatabaseController(this, realm).MapInsurence();
+        new DatabaseController(this, realm).MapProfession();
+
 
         //fetch all master tables
         if (!Constants.getSharedPreference(this).getBoolean(Constants.SHARED_PREF_ALL_MASTER, false)) {

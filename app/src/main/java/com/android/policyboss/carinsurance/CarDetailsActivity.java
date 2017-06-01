@@ -22,13 +22,11 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
-import com.android.policyboss.core.controller.motorquote.MotorQuote;
-import com.android.policyboss.core.models.MototrQuotesEntity;
+import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 
-import com.android.policyboss.quotegenerate.QuoteGenerateActivity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 import com.google.gson.Gson;
@@ -310,7 +308,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             try {
                 MotorQuotesResponse getQuoteResponse = ((MotorQuotesResponse) response);
 
-                startActivity(new Intent(this,QuoteGenerateActivity.class)
+                startActivity(new Intent(this,CarQuoteGenerate.class)
                 .putExtra(Constants.MOTOR_QUOTE_DATA,getQuoteResponse));
 
             }
@@ -377,7 +375,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
       String strJson = gson.toJson(quotesReqEntity);
 
         showDialog();
-        new MotorQuote(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
+        new MotorQuoteController(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
 
 
     }

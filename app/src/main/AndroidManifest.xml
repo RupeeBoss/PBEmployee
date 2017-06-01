@@ -68,13 +68,19 @@
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
         <activity
-            android:name=".quotegenerate.QuoteGenerateActivity"
-            android:label="@string/title_activity_quote_generate"
-            android:parentActivityName=".carinsurance.CarDetailsActivity"
+            android:name=".carinsurance.PopUpCardQuoteActivity"
+            android:label="@string/title_activity_pop_up_card_quote"
+            android:theme="@style/Theme.AppCompat.Dialog" android:noHistory="true"></activity>
+
+        <activity
+            android:name=".carinsurance.CarQuoteGenerate"
+            android:label="@string/title_activitycard_quote"
+            android:parentActivityName=".carinsurance.CarInsuranceActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.policyboss.quotegenerate.QuoteGenerateActivity" />
+                android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
         <activity
             android:name=".carinsurance.PopUpCardQuoteActivity"
