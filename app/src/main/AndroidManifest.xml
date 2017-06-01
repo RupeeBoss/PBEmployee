@@ -71,6 +71,8 @@
             android:name=".carinsurance.PopUpCardQuoteActivity"
             android:label="@string/title_activity_pop_up_card_quote"
             android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Dialog"></activity>
 
         <activity
@@ -83,6 +85,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
+
+        <activity
+            android:name=".carinsurance.PremiumPopUpActivity"
+            android:label="@string/title_activity_premium_pop_up"
+            android:theme="@style/Theme.AppCompat.Dialog"></activity>
     </application>
 
 </manifest>

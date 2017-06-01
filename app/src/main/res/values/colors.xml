@@ -31,7 +31,13 @@
     <color name="textblue">#4da0ce</color>
     <color name="textgrey">#a09d9d</color>
     <color name="textyellow">#ff9f1c</color>
+    <color name="lbltext">#808080</color>
+    <color name="bg_popUp">#ededed</color>
+    <color name="bg_popUpTotal">#dff0d8</color>
+    <color name="text_popUpTotal">#5c8e5c</color>
 
+    <color name="bg_popUpHdr">#f1dddd</color>
+    <color name="text_popUpHdr">#c07675</color>
 
     <color name="textview">#eeeeee</color>
     <color name="blue">#3977b5</color>

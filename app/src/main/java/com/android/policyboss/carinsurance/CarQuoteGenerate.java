@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
@@ -58,5 +59,18 @@ public class CarQuoteGenerate extends BaseActivity {
 //                .putExtra("QUOTE_ID", getQuoteResponse.getQuote_id())
 //        );
     }
+
+    public void redirectToPopUpPremium(MototrQuotesEntity entity) {
+        startActivity(new Intent(this, PremiumPopUpActivity.class)
+                .putExtra(Constants.QUOTE_ENTITY, entity));
+
+
+    }
+
+    public void redirectToPopUpCard(MototrQuotesEntity entity) {
+
+        startActivity(new Intent(this, PopUpCardQuoteActivity.class));
+    }
+
 
 }
