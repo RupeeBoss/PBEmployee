@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -375,7 +376,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             setInputParametrs();
             showDialog();
-            new MotorQuoteController(this).getQuoteDetails(createQuoteRequest(quoteRequestEntity,fastLaneResponseEntity), CarDetailsActivity.this);
+            new MotorQuoteController(this).getQuoteDetails(quoteRequestEntity, CarDetailsActivity.this);
 
         }
     }
@@ -407,12 +408,13 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setVehicleRegisteredName(1);
         quoteRequestEntity.setSupportsAgentID(2);
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
+        Log.d("CAR_QUOTE_REQUEST", quoteRequestEntity.toString());
 
     }
 
     //region create Quote
 
-    public QuoteRequestEntity createQuoteRequest(QuoteRequestEntity quoteRequestEntity,FastLaneResponse.FLResponseBean fastlane) {
+    public QuoteRequestEntity createQuoteRequest(QuoteRequestEntity quoteRequestEntity, FastLaneResponse.FLResponseBean fastlane) {
         QuoteRequestEntity entity = new QuoteRequestEntity();
         return entity;
     }
