@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.policyboss.R;
@@ -30,6 +31,7 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
     public class QuotesItem extends RecyclerView.ViewHolder{
         TextView tvcomprehensiveName, tvidvAmt, tvpremium, tvpolicyterm,  btnBuyNoew;
+        LinearLayout lyPremiumBreakup ,lymoredetail;
         ImageView ivBankLogo;
 
         public QuotesItem(View itemView) {
@@ -41,6 +43,9 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
             btnBuyNoew = (TextView) itemView.findViewById(R.id.btnBuyNoew);
             ivBankLogo = (ImageView) itemView.findViewById(R.id.ivBankLogo);
+
+            lyPremiumBreakup = (LinearLayout)itemView.findViewById(R.id.lyPremiumBreakup);
+            lymoredetail = (LinearLayout)itemView.findViewById(R.id.lymoredetail);
            // ivInfo = (ImageView) itemView.findViewById(R.id.ivInfo);
 
         }
@@ -76,12 +81,23 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
             }
         });
-//        holder.ivInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mContext.startActivity(new Intent(mContext, QuoteInfoActivity.class).putExtra("QUOTEINFO", quoteEntity));
-//            }
-//        });
+
+        holder.lyPremiumBreakup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((CarQuoteGenerate) mContext).redirectToPopUpPremium(quoteEntity);
+
+            }
+        });
+
+        holder.lymoredetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CarQuoteGenerate) mContext).redirectToPopUpCard(quoteEntity);
+            }
+        });
+
 
     }
 

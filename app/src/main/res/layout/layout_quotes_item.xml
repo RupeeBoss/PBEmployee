@@ -419,6 +419,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/lyPremiumBreakup"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
@@ -439,6 +440,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lymoredetail"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
