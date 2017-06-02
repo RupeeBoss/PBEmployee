@@ -15,7 +15,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="12dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -23,55 +22,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <Spinner
                     android:id="@+id/spWhenPolicyExp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:background="@drawable/spinner_bg"
-                    android:visibility="gone"></Spinner>
+                    android:paddingLeft="30dp"
+                    android:visibility="gone" />
 
                 <Spinner
                     android:id="@+id/spPrevInsurer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/spinner_bg"></Spinner>
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
+                    android:background="@drawable/spinner_insurance_bg"
+                    android:paddingLeft="30dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:clipToPadding="false"
                     android:gravity="bottom"
-                    android:paddingTop="4dp"
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
                         android:id="@+id/etPolicyExpDate"
                         style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/ic_people_white"
+                        android:drawableLeft="@drawable/date_range"
                         android:focusable="false"
                         android:hint="Your Policy Expiry Date" />
-
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:clipToPadding="false"
                     android:gravity="bottom"
-                    android:paddingTop="4dp"
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <EditText
                         android:id="@+id/etFirstRegDate"
                         style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/ic_people_white"
+                        android:drawableLeft="@drawable/date_range"
                         android:focusable="false"
                         android:hint="Date Of First Registration" />
 
@@ -89,21 +95,20 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:clipToPadding="false"
                     android:gravity="bottom"
-                    android:paddingTop="4dp"
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <AutoCompleteTextView
                         android:id="@+id/autoCarMake"
                         style="@style/EditTextStyle"
-                        android:layout_margin="5dp"
+                        android:drawableLeft="@drawable/car_black"
                         android:dropDownHeight="wrap_content"
                         android:dropDownWidth="wrap_content"
-                        android:hint="Which car do you drive ?"
-                        android:padding="@dimen/gap" />
+                        android:hint="Which car do you drive ?" />
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -111,7 +116,9 @@
                     android:id="@+id/spCarModel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
@@ -120,16 +127,21 @@
                     android:id="@+id/spCarFuelType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
 
                 <Spinner
+
                     android:id="@+id/spCarVarient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:background="@drawable/spinner_bg"
                     android:visibility="gone"></Spinner>
 
@@ -137,27 +149,29 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:clipToPadding="false"
                     android:gravity="bottom"
-                    android:paddingTop="4dp"
                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                     <AutoCompleteTextView
                         android:id="@+id/autoCity"
                         style="@style/EditTextStyle"
-                        android:layout_margin="5dp"
-                        android:hint="Place of registration"
-                        android:padding="@dimen/gap" />
+                        android:drawableLeft="@drawable/place_black"
+                        android:hint="Place of registration" />
                 </android.support.design.widget.TextInputLayout>
 
                 <Spinner
                     android:id="@+id/spManufactureYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/spinner_bg"></Spinner>
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
+                    android:background="@drawable/spinner_bg"
+                    android:paddingLeft="30dp"></Spinner>
 
             </LinearLayout>
 
@@ -165,15 +179,17 @@
                 android:id="@+id/llAdditionalDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginTop="12dp"
+
+                android:layout_marginTop="@dimen/gap"
                 android:orientation="vertical">
 
                 <Switch
                     android:id="@+id/switchAdditional"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/gap"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:text="Have you added additional accessories\n to your vehicle?" />
 
                 <LinearLayout
@@ -186,16 +202,17 @@
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="@dimen/gap"
+                        android:layout_marginRight="@dimen/gap"
+                        android:layout_marginTop="@dimen/gap"
                         android:clipToPadding="false"
                         android:gravity="bottom"
-                        android:paddingTop="4dp"
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
                             android:id="@+id/etElecAcc"
                             style="@style/EditTextStyle"
-                            android:drawableLeft="@drawable/ic_people_white"
+                            android:drawableLeft="@drawable/electrical"
                             android:hint="Electrical Accessories"
                             android:inputType="number" />
 
@@ -205,16 +222,17 @@
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="@dimen/gap"
+                        android:layout_marginRight="@dimen/gap"
+                        android:layout_marginTop="@dimen/gap"
                         android:clipToPadding="false"
                         android:gravity="bottom"
-                        android:paddingTop="4dp"
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
                             android:id="@+id/etNonElecAcc"
                             style="@style/EditTextStyle"
-                            android:drawableLeft="@drawable/ic_people_white"
+                            android:drawableLeft="@drawable/non_electrical"
                             android:hint="Non-Electrical Accessories"
                             android:inputType="number" />
 
@@ -226,14 +244,18 @@
                     android:id="@+id/switchNcb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="@dimen/gap"
-                    android:text="Has any claim been made in the existing policy?" />
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
+                    android:text="Has any claim been made in the existing policy? (%)" />
 
                 <LinearLayout
                     android:id="@+id/llNcb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -241,15 +263,20 @@
                         android:id="@+id/spNcbPercent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/spinner_bg"></Spinner>
+                        android:background="@drawable/spinner_bg"
+                        android:paddingLeft="30dp"></Spinner>
                 </LinearLayout>
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnGetQuote"
+                style="@style/ButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="@dimen/gap"
                 android:text="GET QUOTE" />
 
         </LinearLayout>
