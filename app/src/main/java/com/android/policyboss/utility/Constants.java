@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -19,6 +23,22 @@ public class Constants {
     public static final String  QUOTE_ENTITY = "quote_entity";
     public static final String MOTOR_QUOTE_DATA = "motor_quote_data";
 
+
+    public static List<String> getPastFifteenYear() {
+        ArrayList<String> arrayListYear = new ArrayList<>();
+        int year, startYear, endYear;
+
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        startYear = year;
+        endYear = startYear - 15;
+
+        for (int i = startYear; i >= endYear; i--) {
+            arrayListYear.add("" + i);
+        }
+
+        return arrayListYear;
+    }
 
     public static void hideKeyBoard(View view, Context context) {
         if (view != null) {

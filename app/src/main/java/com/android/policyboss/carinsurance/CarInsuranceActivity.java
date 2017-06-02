@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
     EditText etRenewRegNo, etInvDate;
     QuoteRequestEntity quoteRequestEntity;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
