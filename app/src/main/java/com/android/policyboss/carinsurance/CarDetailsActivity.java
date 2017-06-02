@@ -396,16 +396,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
     }
 
-    //region create Quote
-
-    public QuoteRequestEntity createQuoteRequest(QuoteRequestEntity quoteRequestEntity,FastLaneResponse.FLResponseBean fastlane) {
-        QuoteRequestEntity entity = new QuoteRequestEntity();
-        return entity;
-    }
-
-    //endregion
-
-
     //region Quote response
 
     @Override
