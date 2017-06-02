@@ -49,30 +49,6 @@
     <string name="popPremium1_totalLiab">Total Liability Premium</string>
 
 
-    <string-array name="array_insurance_company">
-        <item>Bajaj Allianz General Insurance Co. Ltd.</item>
-        <item>Bharti Axa General Insurance Co. Ltd.</item>
-        <item>Cholamandalam MS General Insurance Co. Ltd.</item>
-        <item> Future Generali India Insurance Co. Ltd.</item>
-        <item> HDFC ERGO General Insurance Co. Ltd.</item>
-        <item> ICICI Lombard General Insurance Co. Ltd.</item>
-        <item>IFFCO Tokio General Insurance Co. Ltd.</item>
-        <item>L&amp;T General Insurance Co. Ltd. </item>
-        <item>Liberty Videocon General Insurance Co. Ltd.</item>
-        <item>Magma HDI General Insurance Co. Ltd</item>
-        <item> National Insurance Co.Ltd.</item>
-        <item> Raheja QBE General Insurance Co. Ltd. </item>
-        <item> Reliance General Insurance Co. Ltd.</item>
-        <item>Royal Sundaram Alliance Insurance Co. Ltd</item>
-        <item>SBI General Insurance Co. Ltd. </item>
-        <item>Shriram General Insurance Co. Ltd. </item>
-        <item>Tata AIG General Insurance Co. Ltd.</item>
-        <item>The New India Assurance Co. Ltd.</item>
-        <item>The Oriental Insurance Co. Ltd.</item>
-        <item>United India Insurance Co. Ltd.</item>
-        <item>Universal Sompo General Insurance Co. Ltd. </item>
-
-    </string-array>
     <string-array name="policy_expiry">
         <item>Today</item>
         <item>Next 45 Days</item>

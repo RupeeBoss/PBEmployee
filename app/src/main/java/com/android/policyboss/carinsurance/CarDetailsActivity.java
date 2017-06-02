@@ -52,6 +52,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     List<String> fuelList;
     List<String> variantList;
     List<String> yearList;
+    List<String> insurerList;
 
     int makeId, modelID, fuelId, varientId;
 
@@ -129,7 +130,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         autoCity.setAdapter(cityAdapter);
         autoCity.setThreshold(1);
 
-        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_insurance_company));
+        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, insurerList);
         spPrevInsurer.setAdapter(prevInsAdapter);
 
 
@@ -150,6 +151,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         cityList = databaseController.getCity();
         makeList = databaseController.getMakeList();
         yearList = Constants.getPastFifteenYear();
+        insurerList = databaseController.getInsurerList();
         //modelList = databaseController.getModelList(0);
 
     }
@@ -376,17 +378,21 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setManufacturingYear(Integer.parseInt(spManufactureYear.getSelectedItem().toString()));
 
         if (quoteRequestEntity.isRenew()) {
+            //quoteRequestEntity.setRe(fastLaneResponseEntity.getRegistration_Date());
             quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
-            quoteRequestEntity.setDateofPurchaseofCar("" + fastLaneResponseEntity.getRegistration_Date());
+            quoteRequestEntity.setDateofPurchaseofCar("" + changeDateFormat(fastLaneResponseEntity.getPurchase_Date()));
             quoteRequestEntity.setVariant_ID(fastLaneResponseEntity.getVariant_Id());
-            quoteRequestEntity.setPolicyExpiryDate(""+simpleDateFormat.format(etPolicyExpDate.getText().toString()));
+            quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
             quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
+            quoteRequestEntity.setManufacturingYear(Integer.parseInt(fastLaneResponseEntity.getManufacture_Year()));
 
         } else {
             varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
             quoteRequestEntity.setVariant_ID(varientId);
             quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
-            quoteRequestEntity.setPolicyExpiryDate("");
+        }
+        if (quoteRequestEntity.isDontRem()) {
+            quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
         }
 
 
@@ -395,6 +401,13 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
         Log.d("CAR_QUOTE_REQUEST", quoteRequestEntity.toString());
 
+    }
+
+
+    public String changeDateFormat(String date) {
+        String[] parts = date.split("/");
+        String newDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+        return newDate;
     }
 
     //region Quote response

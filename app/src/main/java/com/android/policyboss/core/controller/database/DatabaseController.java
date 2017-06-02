@@ -12,7 +12,6 @@ import com.android.policyboss.core.models.VehicleMasterEntity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import io.realm.Realm;
 
@@ -24,11 +23,10 @@ public class DatabaseController implements IDBController {
     Realm realm;
     Context context;
     RealmDatabaseController dbController;
-
     HashMap<String, Integer> hashMapInsurence;
     HashMap<String, Integer> hashMapProfession;
 
-    static HashMap<Integer,Integer> hasMapCarInsuranceImage;
+    static HashMap<Integer, Integer> hasMapCarInsuranceImage;
 
     public DatabaseController(Context context, Realm realm) {
         this.realm = realm;
@@ -69,6 +67,13 @@ public class DatabaseController implements IDBController {
         hashMapInsurence = new HashMap<String, Integer>();
         MapInsurence();
         return hashMapInsurence.get(insurenceName);
+    }
+
+    public List<String> getInsurerList() {
+        hashMapInsurence = new HashMap<String, Integer>();
+        MapInsurence();
+        return new ArrayList<String>(hashMapInsurence.keySet());
+
     }
 
     public void MapProfession() {
@@ -233,34 +238,35 @@ public class DatabaseController implements IDBController {
 
     //region Car Insurance
 
-    public static  void MapCarInsuranceImage() {
+    public static void MapCarInsuranceImage() {
 
         hasMapCarInsuranceImage.put(1, R.drawable.carins1);
-        hasMapCarInsuranceImage.put(2,R.drawable.carins2);
-        hasMapCarInsuranceImage.put(3,R.drawable.carins3);
-        hasMapCarInsuranceImage.put(4,R.drawable.carins4);
+        hasMapCarInsuranceImage.put(2, R.drawable.carins2);
+        hasMapCarInsuranceImage.put(3, R.drawable.carins3);
+        hasMapCarInsuranceImage.put(4, R.drawable.carins4);
 
-        hasMapCarInsuranceImage.put(5,R.drawable.carins5);
-        hasMapCarInsuranceImage.put(6,R.drawable.carins6);
-        hasMapCarInsuranceImage.put(7,R.drawable.carins7);
-        hasMapCarInsuranceImage.put(8,R.drawable.carins8);
-        hasMapCarInsuranceImage.put(9,R.drawable.carins9);
-        hasMapCarInsuranceImage.put(10,R.drawable.carins10);
-        hasMapCarInsuranceImage.put(11,R.drawable.carins11);
-        hasMapCarInsuranceImage.put(12,R.drawable.carins12);
-        hasMapCarInsuranceImage.put(14,R.drawable.carins14);
-        hasMapCarInsuranceImage.put(15,R.drawable.carins15);
-        hasMapCarInsuranceImage.put(16,R.drawable.carins16);
-        hasMapCarInsuranceImage.put(17,R.drawable.carins17);
-        hasMapCarInsuranceImage.put(18,R.drawable.carins18);
-        hasMapCarInsuranceImage.put(19,R.drawable.carins19);
-        hasMapCarInsuranceImage.put(33,R.drawable.carins33);
-        hasMapCarInsuranceImage.put(35,R.drawable.carins35);
+        hasMapCarInsuranceImage.put(5, R.drawable.carins5);
+        hasMapCarInsuranceImage.put(6, R.drawable.carins6);
+        hasMapCarInsuranceImage.put(7, R.drawable.carins7);
+        hasMapCarInsuranceImage.put(8, R.drawable.carins8);
+        hasMapCarInsuranceImage.put(9, R.drawable.carins9);
+        hasMapCarInsuranceImage.put(10, R.drawable.carins10);
+        hasMapCarInsuranceImage.put(11, R.drawable.carins11);
+        hasMapCarInsuranceImage.put(12, R.drawable.carins12);
+        hasMapCarInsuranceImage.put(14, R.drawable.carins14);
+        hasMapCarInsuranceImage.put(15, R.drawable.carins15);
+        hasMapCarInsuranceImage.put(16, R.drawable.carins16);
+        hasMapCarInsuranceImage.put(17, R.drawable.carins17);
+        hasMapCarInsuranceImage.put(18, R.drawable.carins18);
+        hasMapCarInsuranceImage.put(19, R.drawable.carins19);
+        hasMapCarInsuranceImage.put(33, R.drawable.carins33);
+        hasMapCarInsuranceImage.put(35, R.drawable.carins35);
 
     }
+
     public static int getProfessionalID1(int pic) {
 
-        hasMapCarInsuranceImage = new HashMap<Integer,Integer>();
+        hasMapCarInsuranceImage = new HashMap<Integer, Integer>();
         MapCarInsuranceImage();
         return hasMapCarInsuranceImage.get(pic);
     }
