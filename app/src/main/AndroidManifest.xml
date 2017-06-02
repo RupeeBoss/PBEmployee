@@ -72,8 +72,7 @@
             android:label="@string/title_activity_pop_up_card_quote"
             android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Dialog" />
-            android:noHistory="true"
-            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+
 
         <activity
             android:name=".carinsurance.CarQuoteGenerate"

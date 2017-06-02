@@ -371,8 +371,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     public void onClick(View v) {
         if (v.getId() == R.id.btnGetQuote) {
 
-            varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
-            fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
+
+            //fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
 
             setInputParametrs();
             showDialog();
@@ -399,6 +399,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
 
         } else {
+            varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
             quoteRequestEntity.setVariant_ID(varientId);
             quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
             quoteRequestEntity.setPolicyExpiryDate("");
