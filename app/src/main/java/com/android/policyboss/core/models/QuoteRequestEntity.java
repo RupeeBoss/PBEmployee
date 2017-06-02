@@ -124,7 +124,7 @@ public class QuoteRequestEntity implements Parcelable {
         ExShowRoomPrice = "";
         ExpectedIDV = "";
         this.IDVinExpiryPolicy = IDVinExpiryPolicy;
-        //DateofPurchaseofCar = dateofPurchaseofCar;
+        DateofPurchaseofCar = "";
         this.VD_Amount = VD_Amount;
         this.PACoverValue = PACoverValue;
 

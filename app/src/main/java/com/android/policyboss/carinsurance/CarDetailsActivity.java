@@ -379,7 +379,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
             quoteRequestEntity.setDateofPurchaseofCar("" + fastLaneResponseEntity.getRegistration_Date());
             quoteRequestEntity.setVariant_ID(fastLaneResponseEntity.getVariant_Id());
-            quoteRequestEntity.setPolicyExpiryDate(simpleDateFormat.format(etPolicyExpDate.getText().toString()));
+            quoteRequestEntity.setPolicyExpiryDate(""+simpleDateFormat.format(etPolicyExpDate.getText().toString()));
             quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
 
         } else {
