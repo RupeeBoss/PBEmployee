@@ -20,7 +20,7 @@ public class DateTimePicker {
 
         //always shows 1 day ahead in calender
         // added 1 day in calender
-        calendar.add(Calendar.MONTH, -6);
+       // calendar.add(Calendar.MONTH, -6);
 
         // disable all before date,
 

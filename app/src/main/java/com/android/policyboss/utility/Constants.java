@@ -20,6 +20,8 @@ public class Constants {
     public static final String SHARED_PREFERENCE_POLICYBOSS = "shared_policyboss";
     public static final String SHARED_PREF_ALL_MASTER = "shared_policyboss";
 
+    public static final String   MOTOR_QUOTE_DATA = "motor_quote_data";
+    public static final String  QUOTE_ENTITY = "quote_entity";
     public static final String MOTOR_QUOTE_DATA = "motor_quote_data";
 
 

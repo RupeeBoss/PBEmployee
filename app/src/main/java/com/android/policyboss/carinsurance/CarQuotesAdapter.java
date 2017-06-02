@@ -7,13 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.policyboss.R;
+import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.bumptech.glide.Glide;
 import java.math.BigDecimal;
 import java.util.List;
+
+import static com.android.policyboss.core.controller.database.DatabaseController.getProfessionalID1;
 
 /**
  * Created by IN-RB on 31-05-2017.
@@ -30,6 +34,7 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
     public class QuotesItem extends RecyclerView.ViewHolder{
         TextView tvcomprehensiveName, tvidvAmt, tvpremium, tvpolicyterm,  btnBuyNoew;
+        LinearLayout lyPremiumBreakup ,lymoredetail;
         ImageView ivBankLogo;
 
         public QuotesItem(View itemView) {
@@ -41,6 +46,9 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
             btnBuyNoew = (TextView) itemView.findViewById(R.id.btnBuyNoew);
             ivBankLogo = (ImageView) itemView.findViewById(R.id.ivBankLogo);
+
+            lyPremiumBreakup = (LinearLayout)itemView.findViewById(R.id.lyPremiumBreakup);
+            lymoredetail = (LinearLayout)itemView.findViewById(R.id.lymoredetail);
            // ivInfo = (ImageView) itemView.findViewById(R.id.ivInfo);
 
         }
@@ -55,16 +63,31 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
     @Override
     public void onBindViewHolder(QuotesItem holder, int position) {
         final MototrQuotesEntity quoteEntity = quoteEntities.get(position);
-        holder.tvcomprehensiveName.setText("Comprehensive  + " + quoteEntity.getAddOn_Name());
+        String comprehen = "Comprehensive";
+        if(quoteEntity.getAddOn_Name()!=null)
+        {
+            if(quoteEntity.getAddOn_Name().isEmpty()) {
+              //  comprehen = "";
+            }else {
+                String[] txt1 = quoteEntity.getAddOn_Name().split("'+'");
+                for (int i = 0; i < txt1.length; i++) {
+                    comprehen = "Comprehensive +" + txt1[i];
+                }
+            }
+        }
+        else {
+            //comprehen = "Comprehensive";
+        }
+        holder.tvcomprehensiveName.setText(comprehen);
         holder.tvidvAmt.setText("" + quoteEntity.getIDV());
-        holder.tvpremium.setText("" + quoteEntity.getAddOn_Premium());
+        holder.tvpremium.setText("" + quoteEntity.getTotalPremium());
         holder.tvpolicyterm.setText("1 Year");
 //        holder.tvLoanTenure.setText("" + quoteEntity.getLoanTenure());
 //        holder.tvProcessingFee.setText("" + quoteEntity.getProcessingfee());
 //        holder.tvEligibleLoan.setText("" + BigDecimal.valueOf(quoteEntity.getLoan_eligible()).toPlainString());
-//        Glide.with(mContext)
-//                .load(quoteEntity.get())
-//                .into(holder.ivBankLogo);
+        Glide.with(mContext)
+                .load(getProfessionalID1(quoteEntity.getInsurerId()))
+                .into(holder.ivBankLogo);
         //change Fresco
 
 
@@ -76,12 +99,23 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
             }
         });
-//        holder.ivInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mContext.startActivity(new Intent(mContext, QuoteInfoActivity.class).putExtra("QUOTEINFO", quoteEntity));
-//            }
-//        });
+
+        holder.lyPremiumBreakup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((CarQuoteGenerate) mContext).redirectToPopUpPremium(quoteEntity);
+
+            }
+        });
+
+        holder.lymoredetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CarQuoteGenerate) mContext).redirectToPopUpCard(quoteEntity);
+            }
+        });
+
 
     }
 
