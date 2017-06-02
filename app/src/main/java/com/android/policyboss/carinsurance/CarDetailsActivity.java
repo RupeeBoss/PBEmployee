@@ -50,9 +50,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     List<String> modelList;
     List<String> fuelList;
     List<String> variantList;
+    List<String> yearList;
 
     int makeId, modelID, fuelId, varientId;
 
+    ArrayAdapter<String> yearAdapter;
     ArrayAdapter<String> makeAdapter;
     ArrayAdapter<String> cityAdapter;
     ArrayAdapter<String> modelAdapter;
@@ -65,7 +67,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     Spinner spCarModel, spCarFuelType, spCarVarient, spWhenPolicyExp, spPrevInsurer, spNcbPercent;
     AutoCompleteTextView autoCarMake, autoCity;
     Switch switchAdditional, switchNcb;
-    EditText etManufactYear, etElecAcc, etNonElecAcc, etPolicyExpDate, etFirstRegDate;
+    EditText etElecAcc, etNonElecAcc, etPolicyExpDate, etFirstRegDate;
+
+    Spinner spManufactureYear;
+    ;
 
     Button btnGetQuote;
 
@@ -80,6 +85,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
+        init_widgets();
+        setListeners();
+
         QuoteRequestEntity entity = new QuoteRequestEntity();
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
@@ -98,15 +106,14 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
         fastLaneResponseEntity = getIntent().getParcelableExtra(CarInsuranceActivity.FASTLANE_DATA);
-        init_widgets();
-        setListeners();
-
         bindingAdapters();
-
-
     }
 
     private void bindingAdapters() {
+
+        yearAdapter = new
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, yearList);
+        spManufactureYear.setAdapter(yearAdapter);
 
         makeAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, makeList);
@@ -141,6 +148,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     private void fetchMasterFromDatabase() {
         cityList = databaseController.getCity();
         makeList = databaseController.getMakeList();
+        yearList = Constants.getPastFifteenYear();
         //modelList = databaseController.getModelList(0);
 
     }
@@ -150,6 +158,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         makeList = new ArrayList<>();
         modelList = new ArrayList<>();
         variantList = new ArrayList<>();
+        yearList = new ArrayList<>();
     }
 
     private void showOrHideLayout() {
@@ -167,7 +176,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     private void setListeners() {
 
         btnGetQuote.setOnClickListener(this);
-        etManufactYear.setOnClickListener(yearPickerDialog);
         etFirstRegDate.setOnClickListener(firstDatePickerDialog);
         switchNcb.setOnCheckedChangeListener(this);
         switchAdditional.setOnCheckedChangeListener(this);
@@ -252,7 +260,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void init_widgets() {
-        etManufactYear = (EditText) findViewById(R.id.etManufactYear);
+
+        spManufactureYear = (Spinner) findViewById(R.id.spManufactureYear);
         etFirstRegDate = (EditText) findViewById(R.id.etFirstRegDate);
         etElecAcc = (EditText) findViewById(R.id.etElecAcc);
         etNonElecAcc = (EditText) findViewById(R.id.etNonElecAcc);
@@ -270,7 +279,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         autoCity = (AutoCompleteTextView) findViewById(R.id.autoCity);
         switchAdditional = (Switch) findViewById(R.id.switchAdditional);
         switchNcb = (Switch) findViewById(R.id.switchNcb);
-        etManufactYear = (EditText) findViewById(R.id.etManufactYear);
         spWhenPolicyExp = (Spinner) findViewById(R.id.spWhenPolicyExp);
         spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
         spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
@@ -321,30 +329,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     };
     //endregion
 
-
-    //region   Year pickerdialog
-    protected View.OnClickListener yearPickerDialog = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Constants.hideKeyBoard(view, CarDetailsActivity.this);
-            DateTimePicker.showYearPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    if (view.isShown()) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(year, monthOfYear, dayOfMonth);
-                        String currentDay = yearDateFormat.format(calendar.getTime());
-                        etManufactYear.setText(currentDay);
-                        //startActivity(new Intent(CarDetailsActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
-                        //etDate.setTag(R.id.et_date, calendar.getTime());
-                    }
-                }
-            });
-        }
-    };
-    //endregion
-
-
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -375,7 +359,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             setInputParametrs();
             showDialog();
-            new MotorQuoteController(this).getQuoteDetails(createQuoteRequest(quoteRequestEntity,fastLaneResponseEntity), CarDetailsActivity.this);
+            new MotorQuoteController(this).getQuoteDetails(createQuoteRequest(quoteRequestEntity, fastLaneResponseEntity), CarDetailsActivity.this);
 
         }
     }
@@ -388,7 +372,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
-        quoteRequestEntity.setManufacturingYear(Integer.parseInt(etManufactYear.getText().toString()));
+        quoteRequestEntity.setManufacturingYear(Integer.parseInt(spManufactureYear.getSelectedItem().toString()));
 
         if (quoteRequestEntity.isRenew()) {
             quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
@@ -412,7 +396,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
     //region create Quote
 
-    public QuoteRequestEntity createQuoteRequest(QuoteRequestEntity quoteRequestEntity,FastLaneResponse.FLResponseBean fastlane) {
+    public QuoteRequestEntity createQuoteRequest(QuoteRequestEntity quoteRequestEntity, FastLaneResponse.FLResponseBean fastlane) {
         QuoteRequestEntity entity = new QuoteRequestEntity();
         return entity;
     }
