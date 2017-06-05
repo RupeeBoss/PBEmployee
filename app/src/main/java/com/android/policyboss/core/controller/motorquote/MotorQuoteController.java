@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.models.QuoteRequestEntity;
-import com.android.policyboss.core.requestEntity.MotorQuotesReqEntity;
 import com.android.policyboss.core.requestbuilders.MotorQuotesRequestBuilder;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 

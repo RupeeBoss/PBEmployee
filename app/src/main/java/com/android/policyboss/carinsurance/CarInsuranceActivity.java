@@ -15,7 +15,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +36,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     public static final String FASTLANE_DATA = "fastlane_response";
     public static final String MOTOR_QUOTE_DATA = "motorquote_response";
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     ImageView ivNewCar, ivRenewCar;
     CardView llBuyorRenew;
     CardView cvBuyorRenew, cvRegNo, cvInvDate;
@@ -176,7 +175,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         @Override
         public void onClick(View view) {
             Constants.hideKeyBoard(view, CarInsuranceActivity.this);
-            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+            DateTimePicker.showPrevSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     if (view.isShown()) {

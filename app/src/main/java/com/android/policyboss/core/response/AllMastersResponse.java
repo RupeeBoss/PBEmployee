@@ -2,11 +2,6 @@ package com.android.policyboss.core.response;
 
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.models.AllMasterResponseEntity;
-import com.android.policyboss.core.models.MakeMasterEntity;
-import com.android.policyboss.core.models.ModelMasterEntity;
-import com.android.policyboss.core.models.VariantMasterEntity;
-
-import java.util.List;
 
 /**
  * Created by Nilesh Birhade on 30-05-2017.

@@ -6,7 +6,6 @@
     <string name="closeDrawer">Close navigation drawer</string>
     <string name="copyright_content">Powered by PolicyBoss.com</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_car_insurance">Car Details</string>
     <string name="title_activity_renewal_car">Car details</string>
     <string name="title_activity_car_varient_details">Car Insurance</string>
@@ -62,12 +61,9 @@
         <item>50</item>
         <item>65</item>
     </string-array>
-    <string name="title_activity_new_car_insurance">NewCarInsuranceActivity</string>
     <string name="title_activity_car_details">Car Details</string>
     <string name="title_activity_fast_lane_car_details">Car Details</string>
-    <string name="title_activity_quote_generate">Quote Details</string>
     <string name="title_activity_pop_up_card_quote">More details</string>
-    <string name="title_activity_pop_up_premium">PopUpPremiumActivity</string>
     <string name="title_activitycard_quote">Car Quote</string>
     <string name="title_activity_premium_pop_up">Premium Break up Details</string>
 </resources>

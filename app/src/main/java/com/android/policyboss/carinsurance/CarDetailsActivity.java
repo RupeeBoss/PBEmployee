@@ -40,7 +40,6 @@ import io.realm.Realm;
 public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, IResponseSubcriber {
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
     FastLaneResponse.FLResponseBean fastLaneResponseEntity;
@@ -72,7 +71,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     EditText etElecAcc, etNonElecAcc, etPolicyExpDate, etFirstRegDate;
 
     Spinner spManufactureYear;
-    ;
 
     Button btnGetQuote;
 
@@ -182,7 +180,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         etFirstRegDate.setOnClickListener(firstDatePickerDialog);
         switchNcb.setOnCheckedChangeListener(this);
         switchAdditional.setOnCheckedChangeListener(this);
-        etPolicyExpDate.setOnClickListener(policyDatePickerDialog);
+        etPolicyExpDate.setOnClickListener(policyExpDatePickerDialog);
 
         // region  Auto Complete car make
         autoCarMake.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -292,7 +290,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         @Override
         public void onClick(View view) {
             Constants.hideKeyBoard(view, CarDetailsActivity.this);
-            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+            DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     if (view.isShown()) {
@@ -311,11 +309,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
 
     //region  datepickerdialog
-    protected View.OnClickListener policyDatePickerDialog = new View.OnClickListener() {
+    protected View.OnClickListener policyExpDatePickerDialog = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Constants.hideKeyBoard(view, CarDetailsActivity.this);
-            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+            DateTimePicker.showNextSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     if (view.isShown()) {
@@ -360,7 +358,13 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
             //fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
 
-            setInputParametrs();
+            //setInputParametrs();
+            if (quoteRequestEntity.isNew())
+                setInputParametersNew();
+            else if (quoteRequestEntity.isRenew())
+                setInputParametersReNew();
+            else if (quoteRequestEntity.isDontRem())
+                setInputParametersDontRemember();
             showDialog();
             new MotorQuoteController(this).getQuoteDetails(quoteRequestEntity, CarDetailsActivity.this);
 
@@ -372,6 +376,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setSourceType("APP");
         quoteRequestEntity.setProductID(1);
         quoteRequestEntity.setProfession_Id(6);
+
         quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
@@ -393,6 +398,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         }
         if (quoteRequestEntity.isDontRem()) {
             quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
+            quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+            quoteRequestEntity.setDateofPurchaseofCar(etFirstRegDate.getText().toString());
         }
 
 
@@ -400,6 +407,52 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setSupportsAgentID(2);
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
         Log.d("CAR_QUOTE_REQUEST", quoteRequestEntity.toString());
+
+    }
+
+
+    private void setInputParametersNew() {
+
+        varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
+        quoteRequestEntity.setVariant_ID(varientId);
+        quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
+        quoteRequestEntity.setManufacturingYear(Integer.parseInt(spManufactureYear.getSelectedItem().toString()));
+
+        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
+        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
+        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
+        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
+
+    }
+
+    private void setInputParametersReNew() {
+        quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+        quoteRequestEntity.setDateofPurchaseofCar("" + changeDateFormat(fastLaneResponseEntity.getPurchase_Date()));
+        quoteRequestEntity.setVariant_ID(fastLaneResponseEntity.getVariant_Id());
+        quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
+        quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
+        quoteRequestEntity.setManufacturingYear(Integer.parseInt(fastLaneResponseEntity.getManufacture_Year()));
+
+        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
+        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
+        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
+        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
+    }
+
+    private void setInputParametersDontRemember() {
+
+        quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+        quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
+        quoteRequestEntity.setDateofPurchaseofCar(etFirstRegDate.getText().toString());
+        varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
+        quoteRequestEntity.setVariant_ID(varientId);
+        quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
+        quoteRequestEntity.setManufacturingYear(Integer.parseInt(spManufactureYear.getSelectedItem().toString()));
+
+        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
+        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
+        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
+        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
 
     }
 

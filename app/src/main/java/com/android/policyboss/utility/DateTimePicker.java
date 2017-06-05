@@ -12,15 +12,14 @@ import java.util.Calendar;
 public class DateTimePicker {
 
 
-
     public static void showDataPickerDialog(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
 
-        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) + 1);
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
         //always shows 1 day ahead in calender
         // added 1 day in calender
-       // calendar.add(Calendar.MONTH, -6);
+        // calendar.add(Calendar.MONTH, -6);
 
         // disable all before date,
 
@@ -30,22 +29,6 @@ public class DateTimePicker {
         dialog.show();
     }
 
-    public static void showYearPickerDialog(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
-        final Calendar calendar = Calendar.getInstance();
-
-        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR),0,0);
-
-        //always shows 1 day ahead in calender
-        // added 1 day in calender
-        //calendar.add(Calendar.MONTH, -6);
-
-        // disable all before date,
-
-        //dialog.getDatePicker().setMinDate(calendar.getTimeInMillis() + 180 * 24 * 60 * 60 * 1000);
-        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
-
-        dialog.show();
-    }
 
     public static void showTimePickerDialog(Context mContex, TimePickerDialog.OnTimeSetListener callBack) {
         final Calendar c = Calendar.getInstance();
@@ -57,6 +40,37 @@ public class DateTimePicker {
                 true);
 
         timePickerDialog.show();
+    }
+
+    public static void showNextSixMonthDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+        final Calendar calendar = Calendar.getInstance();
+
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+        calendar.add(Calendar.MONTH, 6);
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        dialog.show();
+    }
+
+    public static void showPrevSixMonthDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+        final Calendar calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        calendar.add(Calendar.MONTH, -6);
+        dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+        dialog.show();
+    }
+
+    public static void showFirstRegDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+        final Calendar calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        calendar.add(Calendar.MONTH, -9);
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        calendar.add(Calendar.MONTH, 9);
+        calendar.add(Calendar.YEAR,-15);
+        dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+        dialog.show();
     }
 
 }

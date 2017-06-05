@@ -1,7 +1,6 @@
 package com.android.policyboss.carinsurance;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.policyboss.R;
-import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.bumptech.glide.Glide;
-import java.math.BigDecimal;
+
 import java.util.List;
 
 import static com.android.policyboss.core.controller.database.DatabaseController.getProfessionalID1;

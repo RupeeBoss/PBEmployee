@@ -4,21 +4,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.controller.variant.VarientMasterController;
 import com.android.policyboss.core.response.AllMastersResponse;
 import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.utility.Constants;
-
-import java.util.ArrayList;
-import java.util.Calendar;
 
 import io.realm.Realm;
 
