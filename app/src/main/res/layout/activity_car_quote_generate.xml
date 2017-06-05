@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.android.policyboss.carinsurance.CarQuoteGenerate">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -24,4 +25,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_quote" />
+
+
 </android.support.design.widget.CoordinatorLayout>
