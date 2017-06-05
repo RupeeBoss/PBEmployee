@@ -72,8 +72,6 @@
             android:label="@string/title_activity_pop_up_card_quote"
             android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Dialog" />
-
-
         <activity
             android:name=".carinsurance.CarQuoteGenerate"
             android:label="@string/title_activitycard_quote"
@@ -84,11 +82,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
-
         <activity
             android:name=".carinsurance.PremiumPopUpActivity"
             android:label="@string/title_activity_premium_pop_up"
-            android:theme="@style/Theme.AppCompat.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".healthinsurance.HealthInsuranceActivity"
+            android:label="@string/title_activity_health_insurance"
+            android:parentActivityName=".navigationview.HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.navigationview.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

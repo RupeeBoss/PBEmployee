@@ -66,4 +66,67 @@
     <string name="title_activity_pop_up_card_quote">More details</string>
     <string name="title_activitycard_quote">Car Quote</string>
     <string name="title_activity_premium_pop_up">Premium Break up Details</string>
+    <string name="title_activity_health_insurance">Health Insurance</string>
+
+
+    <!--Health-->
+
+    <string-array name="health_sum_assured">
+        <item>Select sum assured in lakhs</item>
+        <item>100000</item>
+        <item>200000</item>
+        <item>300000</item>
+        <item>400000</item>
+        <item>500000</item>
+        <item>600000</item>
+        <item>700000</item>
+        <item>750000</item>
+        <item>800000</item>
+        <item>900000</item>
+        <item>700000</item>
+        <item>1000000</item>
+        <item>1200000</item>
+        <item>1500000</item>
+        <item>1800000</item>
+        <item>2000000</item>
+        <item>2500000</item>
+        <item>3000000</item>
+        <item>5000000</item>
+        <item>10000000</item>
+
+    </string-array>
+
+    <string-array name="health_cover">
+        <item>Who do you wish to cover</item>
+        <item>Self</item>
+        <item>Family</item>
+        <item>Parents</item>
+    </string-array>
+
+    <string-array name="health_family_type">
+        <item>Self</item>
+        <item>Spouse</item>
+        <item>Both</item>
+    </string-array>
+
+    <string-array name="health_parent_type">
+        <item>Father</item>
+        <item>Mother</item>
+        <item>Both</item>
+    </string-array>
+
+    <string-array name="health_family_kids">
+        <item>Select kids</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+
+    <string-array name="health_self_type">
+        <item>Married</item>
+        <item>UnMarried</item>
+    </string-array>
 </resources>

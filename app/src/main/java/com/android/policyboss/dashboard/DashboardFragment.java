@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.android.policyboss.BaseFragment;
 import com.android.policyboss.R;
 import com.android.policyboss.carinsurance.CarInsuranceActivity;
+import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,7 +56,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 //Toast.makeText(getActivity(), "Car insurance", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txtHealthInsurance:
-                Toast.makeText(getActivity(), "Health insurance", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), HealthInsuranceActivity.class));
                 break;
         }
     }
