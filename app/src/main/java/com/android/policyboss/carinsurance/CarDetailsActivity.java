@@ -2,10 +2,12 @@ package com.android.policyboss.carinsurance;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -71,6 +74,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     EditText etElecAcc, etNonElecAcc, etPolicyExpDate, etFirstRegDate;
 
     Spinner spManufactureYear;
+    ;
 
     Button btnGetQuote;
 
@@ -112,7 +116,32 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     private void bindingAdapters() {
 
         yearAdapter = new
-                ArrayAdapter(this, android.R.layout.simple_list_item_1, yearList);
+                ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList) {
+                    @Override
+                    public boolean isEnabled(int position) {
+                        if (position == 0) {
+                            // Disable the first item from Spinner
+                            // First item will be use for hint
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    @Override
+                    public View getDropDownView(int position, View convertView,
+                                                ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        if (position == 0) {
+                            // Set the hint text color gray
+                            tv.setTextColor(Color.GRAY);
+                        } else {
+                            tv.setTextColor(Color.BLACK);
+                        }
+                        return view;
+                    }
+                };
         spManufactureYear.setAdapter(yearAdapter);
 
         makeAdapter = new
@@ -376,7 +405,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setSourceType("APP");
         quoteRequestEntity.setProductID(1);
         quoteRequestEntity.setProfession_Id(6);
-
         quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
