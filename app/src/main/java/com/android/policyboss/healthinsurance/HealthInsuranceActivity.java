@@ -11,18 +11,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.controller.database.DatabaseController;
+import com.android.policyboss.core.models.CoverModelInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class HealthInsuranceActivity extends BaseActivity {
+import io.realm.Realm;
+
+public class HealthInsuranceActivity extends BaseActivity implements View.OnClickListener {
 
     Spinner spSumAssured, spCover, spCoverFor, spCoverForKids;
     ArrayAdapter<String> listsumAssured, listCover, listCoverFor, listCoverForKids;
+    ArrayAdapter<String> cityAdapter;
+    AutoCompleteTextView autoCity;
+    List<String> cityList;
+    DatabaseController databaseController;
+    Button btnContinue;
+
+
+    /*1	Self
+2	Spouse
+3	Kid
+4	Mother
+5	Father*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +53,16 @@ public class HealthInsuranceActivity extends BaseActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init_widgets();
-        prepareSpinnersData();
+
         setListeners();
         spCoverFor.setVisibility(View.GONE);
         spCoverForKids.setVisibility(View.GONE);
+        realm = Realm.getDefaultInstance();
+        databaseController = new DatabaseController(this, realm);
+        cityList = new ArrayList<>();
+        cityList = databaseController.getHealthCity();
+
+        prepareSpinnersData();
 
     }
 
@@ -70,7 +96,7 @@ public class HealthInsuranceActivity extends BaseActivity {
                 }
 
                 spCoverFor.setAdapter(listCoverFor);
-                // spCoverFor.setVisibility(View.VISIBLE);
+
             }
 
             @Override
@@ -79,20 +105,6 @@ public class HealthInsuranceActivity extends BaseActivity {
             }
         });
 
-        /*spCover.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != 0) {
-                    spCoverFor.setVisibility(View.VISIBLE);
-                } else {
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
     }
 
     private void prepareSpinnersData() {
@@ -190,15 +202,33 @@ public class HealthInsuranceActivity extends BaseActivity {
         spCoverForKids.setAdapter(listCoverForKids);
 
 
+        cityAdapter = new
+                ArrayAdapter(this, android.R.layout.simple_list_item_1, cityList);
+        autoCity.setAdapter(cityAdapter);
+        autoCity.setThreshold(1);
     }
 
 
     private void init_widgets() {
+        btnContinue = (Button) findViewById(R.id.btnContinue);
+        btnContinue.setOnClickListener(this);
         spSumAssured = (Spinner) findViewById(R.id.spSumAssured);
         spCover = (Spinner) findViewById(R.id.spCover);
         spCoverFor = (Spinner) findViewById(R.id.spCoverFor);
         spCoverForKids = (Spinner) findViewById(R.id.spCoverForKids);
-
+        autoCity = (AutoCompleteTextView) findViewById(R.id.autoCity);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btnContinue) {
+            if (spCover.getSelectedItemPosition() == 0) {
+                Toast.makeText(this, "Select insured amount.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            CoverModelInfo info = new CoverModelInfo();
+
+
+        }
+    }
 }
