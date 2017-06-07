@@ -30,7 +30,7 @@ public class HealthQuoteController implements IHealthQuote {
     }
 
     @Override
-    public void getCarQuotes(HealthRequestEntity healthRequestEntity, final IResponseSubcriber iResponseSubcriber) {
+    public void getHealthQuotes(HealthRequestEntity healthRequestEntity, final IResponseSubcriber iResponseSubcriber) {
 
         healthQuotesNetworkService.getHealthQuoteDetails(healthRequestEntity).enqueue(new Callback<HealthQuoteResponse>() {
             @Override

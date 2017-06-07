@@ -1,6 +1,9 @@
 package com.android.policyboss.core.requestEntity;
 
-public  class MemberListEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public  class MemberListEntity implements Parcelable {
         /**
          * MemberDOB : 01-01-1989
          * MemberGender : M
@@ -54,4 +57,41 @@ public  class MemberListEntity {
         public void setMemberTypeID(String MemberTypeID) {
             this.MemberTypeID = MemberTypeID;
         }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.MemberDOB);
+        dest.writeString(this.MemberGender);
+        dest.writeString(this.MemberNumber);
+        dest.writeString(this.MemberType);
+        dest.writeString(this.MemberTypeID);
+    }
+
+    public MemberListEntity() {
+    }
+
+    protected MemberListEntity(Parcel in) {
+        this.MemberDOB = in.readString();
+        this.MemberGender = in.readString();
+        this.MemberNumber = in.readString();
+        this.MemberType = in.readString();
+        this.MemberTypeID = in.readString();
+    }
+
+    public static final Parcelable.Creator<MemberListEntity> CREATOR = new Parcelable.Creator<MemberListEntity>() {
+        @Override
+        public MemberListEntity createFromParcel(Parcel source) {
+            return new MemberListEntity(source);
+        }
+
+        @Override
+        public MemberListEntity[] newArray(int size) {
+            return new MemberListEntity[size];
+        }
+    };
+}

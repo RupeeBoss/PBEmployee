@@ -108,7 +108,12 @@ public class DatabaseController implements IDBController {
     public int getHealthCityID(String cityName) {
         hashmapCity = new HashMap<String, Integer>();
         MapHealthCity();
-        return hashmapCity.get(cityName);
+        if (hashmapCity.get(cityName) != null) {
+            return hashmapCity.get(cityName);
+        } else {
+            return 0;
+        }
+
     }
 
     public void MapHealthCity() {
