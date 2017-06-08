@@ -1,7 +1,9 @@
 package com.android.policyboss.healthinsurance;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +36,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class HealthInsuranceAgeDetailActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
+
+    public static final String HEALTH_QUOTE = "health_quote";
 
     //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -761,8 +765,10 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
         cancelDialog();
         if (response instanceof HealthQuoteResponse) {
 
-            List<HealthQuotesEntity> list = ((HealthQuoteResponse) response).getHealthQuotes();
-            Log.d("TAG", "" + list.size());
+            if (((HealthQuoteResponse) response).getHealthQuotes() != null) {
+                startActivity(new Intent(this, HealthQuoteActivity.class)
+                        .putExtra(HEALTH_QUOTE, (HealthQuoteResponse) response));
+            }
         }
     }
 

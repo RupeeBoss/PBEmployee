@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class HealthQuotesEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class HealthQuotesEntity implements Parcelable {
     /**
      * BroucherDownloadLink : /
      * CustomerReferenceID : 53313
@@ -30,16 +33,16 @@ public class HealthQuotesEntity {
     private String BroucherDownloadLink;
     private int CustomerReferenceID;
     private String Deductible_Amount;
-    private int Discount;
+    private double Discount;
     private String DiscountPercent;
-    private int GrossPremium;
+    private double GrossPremium;
     private String Group_name;
     private int InsurerId;
     private String InsurerLogoName;
     private String InsurerName;
     private boolean IsOnlinePayment;
     private String KeyFeatures;
-    private int NetPremium;
+    private double NetPremium;
     private String OtherPlanID;
     private int PlanID;
     private String PlanName;
@@ -49,7 +52,7 @@ public class HealthQuotesEntity {
     private int QuoteId;
     private String QuoteStatus;
     private double ServiceTax;
-    private int SumInsured;
+    private double SumInsured;
 
     public String getBroucherDownloadLink() {
         return BroucherDownloadLink;
@@ -75,11 +78,11 @@ public class HealthQuotesEntity {
         this.Deductible_Amount = Deductible_Amount;
     }
 
-    public int getDiscount() {
+    public double getDiscount() {
         return Discount;
     }
 
-    public void setDiscount(int Discount) {
+    public void setDiscount(double Discount) {
         this.Discount = Discount;
     }
 
@@ -91,11 +94,11 @@ public class HealthQuotesEntity {
         this.DiscountPercent = DiscountPercent;
     }
 
-    public int getGrossPremium() {
+    public double getGrossPremium() {
         return GrossPremium;
     }
 
-    public void setGrossPremium(int GrossPremium) {
+    public void setGrossPremium(double GrossPremium) {
         this.GrossPremium = GrossPremium;
     }
 
@@ -147,11 +150,11 @@ public class HealthQuotesEntity {
         this.KeyFeatures = KeyFeatures;
     }
 
-    public int getNetPremium() {
+    public double getNetPremium() {
         return NetPremium;
     }
 
-    public void setNetPremium(int NetPremium) {
+    public void setNetPremium(double NetPremium) {
         this.NetPremium = NetPremium;
     }
 
@@ -227,11 +230,84 @@ public class HealthQuotesEntity {
         this.ServiceTax = ServiceTax;
     }
 
-    public int getSumInsured() {
+    public double getSumInsured() {
         return SumInsured;
     }
 
-    public void setSumInsured(int SumInsured) {
+    public void setSumInsured(double SumInsured) {
         this.SumInsured = SumInsured;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.BroucherDownloadLink);
+        dest.writeInt(this.CustomerReferenceID);
+        dest.writeString(this.Deductible_Amount);
+        dest.writeDouble(this.Discount);
+        dest.writeString(this.DiscountPercent);
+        dest.writeDouble(this.GrossPremium);
+        dest.writeString(this.Group_name);
+        dest.writeInt(this.InsurerId);
+        dest.writeString(this.InsurerLogoName);
+        dest.writeString(this.InsurerName);
+        dest.writeByte(this.IsOnlinePayment ? (byte) 1 : (byte) 0);
+        dest.writeString(this.KeyFeatures);
+        dest.writeDouble(this.NetPremium);
+        dest.writeString(this.OtherPlanID);
+        dest.writeInt(this.PlanID);
+        dest.writeString(this.PlanName);
+        dest.writeInt(this.PolicyTermYear);
+        dest.writeString(this.Premium);
+        dest.writeString(this.ProposerPageUrl);
+        dest.writeInt(this.QuoteId);
+        dest.writeString(this.QuoteStatus);
+        dest.writeDouble(this.ServiceTax);
+        dest.writeDouble(this.SumInsured);
+    }
+
+    public HealthQuotesEntity() {
+    }
+
+    protected HealthQuotesEntity(Parcel in) {
+        this.BroucherDownloadLink = in.readString();
+        this.CustomerReferenceID = in.readInt();
+        this.Deductible_Amount = in.readString();
+        this.Discount = in.readDouble();
+        this.DiscountPercent = in.readString();
+        this.GrossPremium = in.readDouble();
+        this.Group_name = in.readString();
+        this.InsurerId = in.readInt();
+        this.InsurerLogoName = in.readString();
+        this.InsurerName = in.readString();
+        this.IsOnlinePayment = in.readByte() != 0;
+        this.KeyFeatures = in.readString();
+        this.NetPremium = in.readDouble();
+        this.OtherPlanID = in.readString();
+        this.PlanID = in.readInt();
+        this.PlanName = in.readString();
+        this.PolicyTermYear = in.readInt();
+        this.Premium = in.readString();
+        this.ProposerPageUrl = in.readString();
+        this.QuoteId = in.readInt();
+        this.QuoteStatus = in.readString();
+        this.ServiceTax = in.readDouble();
+        this.SumInsured = in.readDouble();
+    }
+
+    public static final Parcelable.Creator<HealthQuotesEntity> CREATOR = new Parcelable.Creator<HealthQuotesEntity>() {
+        @Override
+        public HealthQuotesEntity createFromParcel(Parcel source) {
+            return new HealthQuotesEntity(source);
+        }
+
+        @Override
+        public HealthQuotesEntity[] newArray(int size) {
+            return new HealthQuotesEntity[size];
+        }
+    };
 }
