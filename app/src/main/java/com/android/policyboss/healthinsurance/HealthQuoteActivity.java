@@ -1,5 +1,6 @@
 package com.android.policyboss.healthinsurance;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +14,14 @@ import com.android.policyboss.R;
 import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.models.HealthQuotesEntity;
 import com.android.policyboss.core.response.HealthQuoteResponse;
+import com.android.policyboss.webview.WebViewBuyInsurenceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HealthQuoteActivity extends AppCompatActivity {
+
+    public static final String HEALTH_BUYNOW = "health_buy_now";
 
     HealthQuoteResponse healthQuoteResponse;
     List<HealthQuotesEntity> listHealthQuoteEntity;
@@ -41,6 +45,12 @@ public class HealthQuoteActivity extends AppCompatActivity {
             mAdapter = new HealthQuotesAdapter(this, listHealthQuoteEntity);
             rvHealthQuotes.setAdapter(mAdapter);
         }
+    }
+
+    public void BuyHealth(HealthQuotesEntity entity) {
+        Intent intent = new Intent(this, WebViewBuyInsurenceActivity.class);
+        intent.putExtra(HEALTH_BUYNOW, entity.getProposerPageUrl());
+        startActivity(intent);
     }
 
     private void initialise_widget() {

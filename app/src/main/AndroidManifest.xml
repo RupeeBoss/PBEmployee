@@ -113,6 +113,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity" />
         </activity>
+
+        <activity
+            android:name=".webview.WebViewBuyInsurenceActivity"
+            android:label="Buy insurence"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

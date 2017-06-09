@@ -62,7 +62,7 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
     public void onBindViewHolder(QuotesItem holder, int position) {
 
         if (holder instanceof QuotesItem) {
-            HealthQuotesEntity entity = listHealthQuotes.get(position);
+            final HealthQuotesEntity entity = listHealthQuotes.get(position);
             holder.txtInsuranceCompName.setText(entity.getInsurerName());
             holder.txtTotalPremium.setText("Premium amount Rs." + entity.getNetPremium());
             holder.txtSumAssured.setText("Sum insured " + entity.getSumInsured());
@@ -71,6 +71,13 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
             /*Glide.with(mContext)
                     .load(getProfessionalID1(entity.getInsurerId()))
                     .into(holder.imgInsuranceCompLogo);*/
+
+            holder.btnBuyNow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((HealthQuoteActivity) mContext).BuyHealth(entity);
+                }
+            });
         }
 
     }

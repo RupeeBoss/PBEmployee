@@ -78,7 +78,7 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
         }
         holder.tvcomprehensiveName.setText(comprehen);
         holder.tvidvAmt.setText("" + quoteEntity.getIDV());
-        holder.tvpremium.setText("" + quoteEntity.getTotalPremium());
+        holder.tvpremium.setText("" + quoteEntity.getNetPayablePayablePremium());
         holder.tvpolicyterm.setText("1 Year");
 //        holder.tvLoanTenure.setText("" + quoteEntity.getLoanTenure());
 //        holder.tvProcessingFee.setText("" + quoteEntity.getProcessingfee());
