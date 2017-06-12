@@ -12,7 +12,7 @@ import java.util.Calendar;
 public class DateTimePicker {
 
 
-    public static void showDataPickerDialog(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+    public static void showDatePickerDialog(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
 
         DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
@@ -68,9 +68,41 @@ public class DateTimePicker {
         calendar.add(Calendar.MONTH, -9);
         dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
         calendar.add(Calendar.MONTH, 9);
-        calendar.add(Calendar.YEAR,-15);
+        calendar.add(Calendar.YEAR, -15);
         dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
         dialog.show();
     }
 
+    public static void showHealthAgeDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+        final Calendar calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+//        calendar.add(Calendar.MONTH, -9);
+//       dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+//        calendar.add(Calendar.MONTH, 9);
+        calendar.add(Calendar.YEAR, -18);
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        dialog.show();
+    }
+
+    public static void showHealthParentAgeDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+        final Calendar calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+//        calendar.add(Calendar.MONTH, -9);
+//       dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+//        calendar.add(Calendar.MONTH, 9);
+        calendar.add(Calendar.YEAR, -36);
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        dialog.show();
+    }
+
+    public static void showHealthKidsAgeDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+        final Calendar calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+//        calendar.add(Calendar.MONTH, -9);
+//       dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+//        calendar.add(Calendar.MONTH, 9);
+        calendar.add(Calendar.MONTH, -3);
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        dialog.show();
+    }
 }

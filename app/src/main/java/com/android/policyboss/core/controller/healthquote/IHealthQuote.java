@@ -8,5 +8,5 @@ import com.android.policyboss.core.requestEntity.HealthRequestEntity;
  */
 
 public interface IHealthQuote {
-    void getCarQuotes(HealthRequestEntity healthRequestEntity, IResponseSubcriber iResponseSubcriber);
+    void getHealthQuotes(HealthRequestEntity healthRequestEntity, IResponseSubcriber iResponseSubcriber);
 }

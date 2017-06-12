@@ -95,6 +95,29 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
         </activity>
+        <activity
+            android:name=".healthinsurance.HealthInsuranceAgeDetailActivity"
+            android:label="@string/title_activity_health_insurance_age_detail"
+            android:parentActivityName=".healthinsurance.HealthInsuranceActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.healthinsurance.HealthInsuranceActivity" />
+        </activity>
+        <activity
+            android:name=".healthinsurance.HealthQuoteActivity"
+            android:label="@string/title_activity_health_quote"
+            android:parentActivityName=".healthinsurance.HealthInsuranceAgeDetailActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity" />
+        </activity>
+
+        <activity
+            android:name=".webview.WebViewBuyInsurenceActivity"
+            android:label="Buy insurence"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

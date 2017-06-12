@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity"
+    tools:showIn="@layout/activity_health_insurance_age_detail">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/gap"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvSelf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha=".8"
+                android:visibility="gone"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_marginLeft="@dimen/gap"
+                        android:layout_marginRight="@dimen/gap"
+                        android:layout_marginTop="@dimen/gap"
+                        android:clipToPadding="false"
+                        android:gravity="bottom"
+                        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                        <EditText
+                            android:id="@+id/etSelfDOB"
+                            style="@style/EditTextStyle"
+                            android:drawableLeft="@drawable/date_range"
+                            android:focusable="false"
+                            android:hint="Self" />
+
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/gap"
+                        android:layout_marginRight="@dimen/gap"
+                        android:layout_marginTop="@dimen/gap"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbSelfMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:text="Male" />
+
+                        <RadioButton
+                            android:id="@+id/rbSelfFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Female" />
+                    </RadioGroup>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <!--Family-->
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvFamily"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha=".8"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+
+                        android:id="@+id/llSelf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etFamilySelfDOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Self" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbFamilySelfMale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:text="Male" />
+
+                            <RadioButton
+                                android:id="@+id/rbFamilySelfFemale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Female" />
+                        </RadioGroup>
+                    </LinearLayout>
+                    <!--family spouse-->
+                    <LinearLayout
+                        android:id="@+id/llSpouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etFamilySpouseDOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Spouse" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbFamilySpouseMale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:text="Male" />
+
+                            <RadioButton
+                                android:id="@+id/rbFamilySpouseFemale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Female" />
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <!--family kid 1-->
+
+                    <LinearLayout
+                        android:id="@+id/llKid1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etFamilyKid1DOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Kid1" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid1MaleDOB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:text="Male" />
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid1Female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Female" />
+                        </RadioGroup>
+                    </LinearLayout>
+                    <!--family kid 2-->
+
+                    <LinearLayout
+                        android:id="@+id/llKid2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etFamilyKid2DOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Kid2" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid2Male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:text="Male" />
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid2Female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Female" />
+                        </RadioGroup>
+                    </LinearLayout>
+                    <!--family kid 3-->
+                    <LinearLayout
+                        android:id="@+id/llKid3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etFamilyKid3DOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Kid3" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid3Male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:text="Male" />
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid3Female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Female" />
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <!--family kid 4-->
+                    <LinearLayout
+                        android:id="@+id/llKid4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etFamilyKid4DOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Kid4" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid4Male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:text="Male" />
+
+                            <RadioButton
+                                android:id="@+id/rbFamilyKid4Female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Female" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <!--Parents-->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvParents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha=".8"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/llFather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etParentFatherDOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:hint="Father" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llMother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etParentMotherDOB"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:hint="Mother" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/btnContinue"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="@dimen/gap"
+                android:text="Continue" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

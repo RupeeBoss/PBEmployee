@@ -129,5 +129,6 @@
         <item>Married</item>
         <item>UnMarried</item>
     </string-array>
-    <string name="title_activity_health_dob_details">HealthDobDetailsActivity</string>
+    <string name="title_activity_health_insurance_age_detail">Age details</string>
+    <string name="title_activity_health_quote">Health Quotes</string>
 </resources>

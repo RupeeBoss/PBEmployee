@@ -1,12 +1,35 @@
 package com.android.policyboss.core.requestEntity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Rajeev Ranjan on 05/06/2017.
  */
 
-public class HealthRequestEntity {
+public class HealthRequestEntity implements Parcelable {
+    public HealthRequestEntity() {
+        CityID = 0;
+        ContactEmail = "pramod.parit@rupeeboss.com";
+        ContactMobile = "9930089092";
+        ContactName = "pramod parit";
+        DeductibleAmount = 0;
+        ExistingCustomerReferenceID = 0;
+        HealthType = "Health";
+        MaritalStatusID = 1;
+        PolicyFor = "";
+        PolicyTermYear = 1;
+        ProductID = 2;
+        SessionID = "";
+        SourceType = "APP";
+        SumInsured = "";
+        SupportsAgentID = 2;
+        MemberList = null;
+    }
+
     /**
      * CityID : 579
      * ContactEmail : pramod.parit@policyboss.com
@@ -25,6 +48,7 @@ public class HealthRequestEntity {
      * SumInsured : 300000
      * SupportsAgentID : 2
      */
+
 
     private int CityID;
     private String ContactEmail;
@@ -172,4 +196,62 @@ public class HealthRequestEntity {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.CityID);
+        dest.writeString(this.ContactEmail);
+        dest.writeString(this.ContactMobile);
+        dest.writeString(this.ContactName);
+        dest.writeInt(this.DeductibleAmount);
+        dest.writeInt(this.ExistingCustomerReferenceID);
+        dest.writeString(this.HealthType);
+        dest.writeInt(this.MaritalStatusID);
+        dest.writeString(this.PolicyFor);
+        dest.writeInt(this.PolicyTermYear);
+        dest.writeInt(this.ProductID);
+        dest.writeString(this.SessionID);
+        dest.writeString(this.SourceType);
+        dest.writeString(this.SumInsured);
+        dest.writeInt(this.SupportsAgentID);
+        dest.writeList(this.MemberList);
+    }
+
+
+
+    protected HealthRequestEntity(Parcel in) {
+        this.CityID = in.readInt();
+        this.ContactEmail = in.readString();
+        this.ContactMobile = in.readString();
+        this.ContactName = in.readString();
+        this.DeductibleAmount = in.readInt();
+        this.ExistingCustomerReferenceID = in.readInt();
+        this.HealthType = in.readString();
+        this.MaritalStatusID = in.readInt();
+        this.PolicyFor = in.readString();
+        this.PolicyTermYear = in.readInt();
+        this.ProductID = in.readInt();
+        this.SessionID = in.readString();
+        this.SourceType = in.readString();
+        this.SumInsured = in.readString();
+        this.SupportsAgentID = in.readInt();
+        this.MemberList = new ArrayList<MemberListEntity>();
+        in.readList(this.MemberList, MemberListEntity.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<HealthRequestEntity> CREATOR = new Parcelable.Creator<HealthRequestEntity>() {
+        @Override
+        public HealthRequestEntity createFromParcel(Parcel source) {
+            return new HealthRequestEntity(source);
+        }
+
+        @Override
+        public HealthRequestEntity[] newArray(int size) {
+            return new HealthRequestEntity[size];
+        }
+    };
 }

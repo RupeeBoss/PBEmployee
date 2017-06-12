@@ -11,9 +11,11 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.utility.Constants;
+import com.android.policyboss.webview.WebViewBuyInsurenceActivity;
 
 public class CarQuoteGenerate extends BaseActivity {
 
+    public static final String CAR_BUYNOW = "car_buy_now";
     MotorQuotesResponse getQuoteResponse;
     Toolbar toolbar;
     RecyclerView rvQuotes;
@@ -28,12 +30,13 @@ public class CarQuoteGenerate extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if (getIntent().getParcelableExtra(Constants.MOTOR_QUOTE_DATA) != null){
-            getQuoteResponse =getIntent().getParcelableExtra(Constants.MOTOR_QUOTE_DATA);
+        if (getIntent().getParcelableExtra(Constants.MOTOR_QUOTE_DATA) != null) {
+            getQuoteResponse = getIntent().getParcelableExtra(Constants.MOTOR_QUOTE_DATA);
             mAdapter = new CarQuotesAdapter(CarQuoteGenerate.this, getQuoteResponse.getMototrQuotes());
             rvQuotes.setAdapter(mAdapter);
         }
     }
+
     private void initialise_widget() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         rvQuotes = (RecyclerView) findViewById(R.id.rvQuotes);
@@ -56,6 +59,10 @@ public class CarQuoteGenerate extends BaseActivity {
 //                .putExtra("URL", getQuoteResponse.getUrl())
 //                .putExtra("QUOTE_ID", getQuoteResponse.getQuote_id())
 //        );
+
+        Intent intent = new Intent(this, WebViewBuyInsurenceActivity.class);
+        intent.putExtra(CAR_BUYNOW, entity.getProposerPageUrl());
+        startActivity(intent);
     }
 
     public void redirectToPopUpPremium(MototrQuotesEntity entity) {
