@@ -21,8 +21,8 @@ public abstract class RetroRequestBuilder {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient httpClient = new OkHttpClient();
-            httpClient.setReadTimeout(90, TimeUnit.SECONDS);
-            httpClient.setConnectTimeout(90, TimeUnit.SECONDS);
+            httpClient.setReadTimeout(600, TimeUnit.SECONDS);
+            httpClient.setConnectTimeout(600, TimeUnit.SECONDS);
             httpClient.interceptors().add(logging);
             restAdapter = new Retrofit.Builder()
                     .baseUrl(URL)
