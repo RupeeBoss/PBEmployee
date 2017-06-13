@@ -41,25 +41,10 @@ public class CarQuoteGenerate extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         rvQuotes = (RecyclerView) findViewById(R.id.rvQuotes);
         rvQuotes.setLayoutManager(new LinearLayoutManager(CarQuoteGenerate.this));
-//        rvQuotes.addItemDecoration(
-//                new DividerItemDecoration(ContextCompat.getDrawable(QuoteActivity.this,
-//                        R.drawable.item_decor)));
+
     }
 
     public void redirectToApplyLoan(MototrQuotesEntity entity) {
-//
-//        new QuoteController(this).sendSelectedQuoteInfo(String.valueOf(getQuoteResponse.getQuote_id()),
-//                String.valueOf(entity.getBank_Id()),
-//                entity.getRoi_type(),
-//                String.valueOf(entity.getLoan_eligible()),
-//                String.valueOf(entity.getProcessingfee()));
-
-//        startActivity(new Intent(this, HomeLoanApplyActivity.class)
-//                .putExtra("QUOTE_ENTITY", entity)
-//                .putExtra("URL", getQuoteResponse.getUrl())
-//                .putExtra("QUOTE_ID", getQuoteResponse.getQuote_id())
-//        );
-
         Intent intent = new Intent(this, WebViewBuyInsurenceActivity.class);
         intent.putExtra(CAR_BUYNOW, entity.getProposerPageUrl());
         startActivity(intent);

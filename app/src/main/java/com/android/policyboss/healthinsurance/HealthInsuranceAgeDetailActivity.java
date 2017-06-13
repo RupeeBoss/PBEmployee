@@ -28,6 +28,7 @@ import com.android.policyboss.core.models.HealthQuotesEntity;
 import com.android.policyboss.core.requestEntity.HealthRequestEntity;
 import com.android.policyboss.core.requestEntity.MemberListEntity;
 import com.android.policyboss.core.response.HealthQuoteResponse;
+import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
@@ -744,7 +745,7 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
                         }
 
                 healthRequestEntity.setMemberList(listHealthMember);
-
+                healthRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
                 showDialog();
                 new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
                 listHealthMember.clear();
