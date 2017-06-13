@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
 
 import io.realm.Realm;
@@ -35,6 +36,7 @@ public class HomeActivity extends BaseActivity {
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "Dashboard";
+    private static final String TAG_CREATE_LEAD = "Create Lead";
 
 
     private Toolbar toolbar;
@@ -85,6 +87,11 @@ public class HomeActivity extends BaseActivity {
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
+                    case R.id.nav_autoLead:
+                        navItemIndex = 1;
+                        CURRENT_TAG = TAG_CREATE_LEAD;
+                        break;
+
                     /*case R.id.nav_oyemoney:
                         navItemIndex = 1;
                         CURRENT_TAG = TAG_OYEMONEY;
@@ -212,6 +219,10 @@ public class HomeActivity extends BaseActivity {
             case 0:
                 // home
                 fragment = new DashboardFragment();
+                return fragment;
+            case 1:
+                // home
+                fragment = new CreateLeadFragment();
                 return fragment;
             /*case 1:
                 // photos

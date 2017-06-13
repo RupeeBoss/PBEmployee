@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.policyboss.leadcollection.FormActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="Vehicle Type" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <RadioButton
+                android:id="@+id/rbPrivateCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableRight="@drawable/fourwheeler"
+                android:text="Special car" />
+
+            <RadioButton
+                android:id="@+id/rb3WheelerCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableRight="@drawable/threewheeler"
+                android:text="3 wheeler" />
+
+            <RadioButton
+                android:id="@+id/rbLCV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableRight="@drawable/lcv"
+                android:text="LCV " />
+
+            <RadioButton
+                android:id="@+id/rb2Wheeler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableRight="@drawable/twowheeler"
+                android:text="2 Wheeler" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="Vehicle Number" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+
+            <EditText
+                android:id="@+id/etState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/et_border"
+                android:hint="XX"
+                android:maxLength="2"
+                android:padding="@dimen/activity_horizontal_margin" />
+
+            <EditText
+                android:id="@+id/etRTO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/et_border"
+                android:hint="XX"
+                android:inputType="number"
+                android:maxLength="2"
+                android:padding="@dimen/activity_horizontal_margin" />
+
+            <EditText
+                android:id="@+id/etSeries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/et_border"
+                android:hint="XX"
+                android:maxLength="2"
+                android:padding="@dimen/activity_horizontal_margin" />
+
+            <EditText
+                android:id="@+id/etVehicleNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/et_border"
+                android:hint="XXXX"
+                android:inputType="number"
+                android:maxLength="4"
+                android:padding="@dimen/activity_horizontal_margin" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_border"
+            android:hint="Name"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <EditText
+            android:id="@+id/etMobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_border"
+            android:hint="Mobile Number"
+            android:inputType="number"
+            android:maxLength="10"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_border"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <EditText
+            android:id="@+id/etPolicyExpire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_border"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Policy Expiry"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <TextView
+            android:id="@+id/txtRCbook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_border"
+            android:hint="Upload RC book"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <TextView
+            android:id="@+id/txtInsurance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_border"
+            android:hint="Upload Insurance"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <TextView
+            android:id="@+id/txtDrivingLicence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_border"
+            android:hint="Upload Driving Licence"
+            android:padding="@dimen/activity_horizontal_margin" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="?attr/colorPrimary"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="Submit"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

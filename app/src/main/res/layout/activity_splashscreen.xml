@@ -42,8 +42,8 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/splash_landmark"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/policyboss_splash" />
 </RelativeLayout>
