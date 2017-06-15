@@ -30,6 +30,7 @@ import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.response.FastLaneResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
+import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
@@ -400,45 +401,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         }
     }
 
-    private void setInputParametrs() {
-
-        quoteRequestEntity.setSourceType("APP");
-        quoteRequestEntity.setProductID(1);
-        quoteRequestEntity.setProfession_Id(6);
-        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
-        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
-        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
-        quoteRequestEntity.setManufacturingYear(Integer.parseInt(spManufactureYear.getSelectedItem().toString()));
-
-        if (quoteRequestEntity.isRenew()) {
-            //quoteRequestEntity.setRe(fastLaneResponseEntity.getRegistration_Date());
-            quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
-            quoteRequestEntity.setDateofPurchaseofCar("" + changeDateFormat(fastLaneResponseEntity.getPurchase_Date()));
-            quoteRequestEntity.setVariant_ID(fastLaneResponseEntity.getVariant_Id());
-            quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
-            quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
-            quoteRequestEntity.setManufacturingYear(Integer.parseInt(fastLaneResponseEntity.getManufacture_Year()));
-
-        } else {
-            varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
-            quoteRequestEntity.setVariant_ID(varientId);
-            quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
-        }
-        if (quoteRequestEntity.isDontRem()) {
-            quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
-            quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
-            quoteRequestEntity.setDateofPurchaseofCar(etFirstRegDate.getText().toString());
-        }
-
-
-        quoteRequestEntity.setVehicleRegisteredName(1);
-        quoteRequestEntity.setSupportsAgentID(2);
-        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
-        Log.d("CAR_QUOTE_REQUEST", quoteRequestEntity.toString());
-
-    }
-
-
     private void setInputParametersNew() {
 
         varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
@@ -450,6 +412,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
+
+        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
 
     }
 
@@ -465,6 +429,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
+
+        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
     }
 
     private void setInputParametersDontRemember() {
@@ -481,6 +447,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
+
+        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
 
     }
 
