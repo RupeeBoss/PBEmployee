@@ -31,6 +31,7 @@ import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.response.FastLaneResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.facade.LoginFacade;
+import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
@@ -41,7 +42,9 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, IResponseSubcriber {
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+
+    public static final String CAR_DETAIL = "CarDetailsActivity.class";
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
@@ -384,10 +387,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnGetQuote) {
-
-
             //fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
-
             //setInputParametrs();
             if (quoteRequestEntity.isNew())
                 setInputParametersNew();
@@ -395,8 +395,13 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                 setInputParametersReNew();
             else if (quoteRequestEntity.isDontRem())
                 setInputParametersDontRemember();
-            showDialog();
-            new MotorQuoteController(this).getQuoteDetails(quoteRequestEntity, CarDetailsActivity.this);
+
+
+            //TODO : redirect to customer detail
+            startActivity(new Intent(CarDetailsActivity.this, CustomerDetailsActivity.class)
+                    .putExtra(CAR_DETAIL, quoteRequestEntity));
+
+
 
         }
     }
@@ -459,75 +464,5 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         return newDate;
     }
 
-    //region Quote response
 
-    @Override
-    public void OnSuccess(APIResponse response, String message) {
-        cancelDialog();
-        if (response instanceof MotorQuotesResponse) {
-            if (response.getStatusNo() == 0) {
-                startActivity(new Intent(this, CarQuoteGenerate.class)
-                        .putExtra(Constants.MOTOR_QUOTE_DATA, (MotorQuotesResponse) response));
-            }
-        }
-    }
-
-    @Override
-    public void OnFailure(Throwable t) {
-        cancelDialog();
-        Toast.makeText(this, t.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-
-    //endregion
-
-    //region rahul commented
-    /*  quotesReqEntity.setVehicleNo("");
-        quotesReqEntity.setCustomerReferenceID("");
-        quotesReqEntity.setProductID(1);
-        quotesReqEntity.setExpectedIDV(0);
-        quotesReqEntity.setIDVinExpiryPolicy(0);
-        quotesReqEntity.setDateofPurchaseofCar("2017-05-30");
-        quotesReqEntity.setVD_Amount(0);
-        quotesReqEntity.setPACoverValue(0);
-        quotesReqEntity.setVehicleCity_Id(580);
-        quotesReqEntity.setProfession_Id(6);
-
-        quotesReqEntity.setValueOfElectricalAccessories(0);
-        quotesReqEntity.setValueOfNonElectricalAccessories(0);
-        quotesReqEntity.setValueOfBiFuelKit(0);
-        quotesReqEntity.setCurrentNCB(0);
-        quotesReqEntity.setIsClaimInExpiringPolicy(false);
-        quotesReqEntity.setApplyAntiTheftDiscount(false);
-        quotesReqEntity.setApplyAutomobileAssociationDiscount(false);
-        quotesReqEntity.setAutomobileAssociationName("");
-        quotesReqEntity.setAutomobileMembershipExpiryDate("");
-        quotesReqEntity.setAutomobileAssociationMembershipNumber("");
-
-        quotesReqEntity.setPaidDriverCover(false);
-        quotesReqEntity.setOwnerDOB("");
-        quotesReqEntity.setPreveious_Insurer_Id(0);
-        quotesReqEntity.setManufacturingYear(2017);
-        quotesReqEntity.setPolicyExpiryDate("2017-06-24");
-        quotesReqEntity.setVehicleRegisteredName(1);
-        quotesReqEntity.setVariant_ID(690);
-        quotesReqEntity.setRegistrationNumber("");
-        quotesReqEntity.setPlaceofRegistration("");
-        quotesReqEntity.setVehicleType("1");
-
-        quotesReqEntity.setExisting_CustomerReferenceID("");
-        quotesReqEntity.setContactName("Umesh");
-        quotesReqEntity.setContactEmail("");
-        quotesReqEntity.setContactMobile("");
-        quotesReqEntity.setLandmarkEmployeeCode("");
-        quotesReqEntity.setSupportsAgentID(123);
-        quotesReqEntity.setSessionID("59e979ed-dfc7-4d79-9f28-d427a554917e");
-        quotesReqEntity.setSourceType("APP");
-        quotesReqEntity.setInsurerIDArray("");
-
-        Gson gson = new Gson();
-      String strJson = gson.toJson(quotesReqEntity);
-        showDialog();
-        new MotorQuoteController(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
-*/
-    //endregion
 }

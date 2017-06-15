@@ -29,6 +29,7 @@ import com.android.policyboss.core.requestEntity.HealthRequestEntity;
 import com.android.policyboss.core.requestEntity.MemberListEntity;
 import com.android.policyboss.core.response.HealthQuoteResponse;
 import com.android.policyboss.facade.LoginFacade;
+import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
@@ -36,9 +37,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class HealthInsuranceAgeDetailActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
+public class HealthInsuranceAgeDetailActivity extends BaseActivity implements View.OnClickListener {
 
-    public static final String HEALTH_QUOTE = "health_quote";
+    public static final String HEALTH_QUOTE = "HealthInsuranceAgeDetailActivity.class";
 
     //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -67,6 +68,13 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
     List<MemberListEntity> listHealthMember;
     CoverModelInfo modelInfo;
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listHealthMember = new ArrayList<>();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +85,7 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
 
         init_widgets();
         setListener();
-        listHealthMember = new ArrayList<>();
+
 
         if (getIntent().getParcelableExtra(HealthInsuranceActivity.AGE_DETAIL_INFO) != null) {
             modelInfo = getIntent().getParcelableExtra(HealthInsuranceActivity.AGE_DETAIL_INFO);
@@ -746,9 +754,12 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
 
                 healthRequestEntity.setMemberList(listHealthMember);
                 healthRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
-                showDialog();
-                new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
-                listHealthMember.clear();
+
+                startActivity(new Intent(this, CustomerDetailsActivity.class)
+                        .putExtra(HEALTH_QUOTE, healthRequestEntity));
+
+
+                //listHealthMember.clear();
                 break;
         }
     }
@@ -760,7 +771,7 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
         //  healthRequestEntity = null;
     }
 
-    @Override
+    /*@Override
     public void OnSuccess(APIResponse response, String message) {
 
         cancelDialog();
@@ -777,5 +788,5 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
     public void OnFailure(Throwable t) {
         cancelDialog();
         Toast.makeText(this, t.getMessage(), Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }
