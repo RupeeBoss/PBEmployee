@@ -43,14 +43,14 @@ public class AuthenticationController implements IAuthentication {
             @Override
             public void onResponse(Response<LoginResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
+
                     if (response.body().getStatusNo() == 0) {
-                        if (response.body().getStatusNo() == 0) {
-                            new LoginFacade(mContext).storeUserCredentials(response.body().getUserResponse());
-                            iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
-                        } else {
-                            iResponseSubcriber.OnFailure(new RuntimeException("Failed to fetch information."));
-                        }
+                        new LoginFacade(mContext).storeUserCredentials(response.body().getUserResponse());
+                        iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
+                    } else {
+                        iResponseSubcriber.OnFailure(new RuntimeException(response.body().getMessage()));
                     }
+
                 } else {
                     iResponseSubcriber.OnFailure(new RuntimeException("Failed to fetch information."));
                 }

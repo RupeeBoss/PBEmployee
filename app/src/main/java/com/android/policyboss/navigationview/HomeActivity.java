@@ -17,6 +17,7 @@ import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
+import com.android.policyboss.salessupport.SalesSupportFragment;
 
 import io.realm.Realm;
 
@@ -37,6 +38,7 @@ public class HomeActivity extends BaseActivity {
     // tags used to attach the fragments
     private static final String TAG_HOME = "Dashboard";
     private static final String TAG_CREATE_LEAD = "Create Lead";
+    private static final String TAG_SALES_SUPPORT = "Sales support";
 
 
     private Toolbar toolbar;
@@ -92,11 +94,11 @@ public class HomeActivity extends BaseActivity {
                         CURRENT_TAG = TAG_CREATE_LEAD;
                         break;
 
-                    /*case R.id.nav_oyemoney:
-                        navItemIndex = 1;
-                        CURRENT_TAG = TAG_OYEMONEY;
+                    case R.id.nav_salesupport:
+                        navItemIndex = 2;
+                        CURRENT_TAG = TAG_SALES_SUPPORT;
                         break;
-                    case R.id.nav_pickupHistory:
+                    /*case R.id.nav_pickupHistory:
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_PICKUP_SUMMARY;
                         break;
@@ -224,11 +226,11 @@ public class HomeActivity extends BaseActivity {
                 // home
                 fragment = new CreateLeadFragment();
                 return fragment;
-            /*case 1:
-                // photos
-                fragment = new OyeMoneyFragmentNew();
-                return fragment;
             case 2:
+                // photos
+                fragment = new SalesSupportFragment();
+                return fragment;
+            /*case 2:
                 // movies fragment
                 fragment = new PickUpFragment();
                 return fragment;
