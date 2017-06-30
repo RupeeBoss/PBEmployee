@@ -20,7 +20,7 @@ import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
  */
 public class DashboardFragment extends BaseFragment implements View.OnClickListener {
 
-    TextView txtCarInsurance, txtHealthInsurance;
+    TextView txtCarInsurance, txtHealthInsurance, txtBikeInsurance;
 
 
     public DashboardFragment() {
@@ -41,11 +41,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private void setListener() {
         txtCarInsurance.setOnClickListener(this);
         txtHealthInsurance.setOnClickListener(this);
+        txtBikeInsurance.setOnClickListener(this);
     }
 
     private void initview(View view) {
         txtCarInsurance = (TextView) view.findViewById(R.id.txtCarInsurance);
         txtHealthInsurance = (TextView) view.findViewById(R.id.txtHealthInsurance);
+        txtBikeInsurance = (TextView) view.findViewById(R.id.txtBikeInsurance);
     }
 
     @Override
@@ -57,6 +59,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 break;
             case R.id.txtHealthInsurance:
                 startActivity(new Intent(getActivity(), HealthInsuranceActivity.class));
+                break;
+            case R.id.txtBikeInsurance:
                 break;
         }
     }
