@@ -123,16 +123,22 @@
             android:label="Buy insurence"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".personaldetail.CustomerDetailsActivity"
             android:label="@string/title_activity_customer_details"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".bikeinsurance.BikeInsuranceActivity"
+            android:label="@string/title_activity_bike_insurance"
+            android:parentActivityName=".navigationview.HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.navigationview.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>
