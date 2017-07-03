@@ -2,6 +2,7 @@ package com.android.policyboss.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +20,13 @@ import com.android.policyboss.core.controller.authentication.AuthenticationContr
 import com.android.policyboss.core.response.LoginResponse;
 import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.splashscreen.SplashScreenActivity;
+import com.android.policyboss.utility.QuotePuller;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
 
     EditText etEmployeeCode, etPassword;
     Button btnLogin;
+    private Handler mQuoteHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initwidgets();
+        mQuoteHandler = new Handler();
+        new QuotePuller(mQuoteHandler);
     }
 
     private void initwidgets() {

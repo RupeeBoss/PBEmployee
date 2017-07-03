@@ -18,6 +18,7 @@ import com.android.policyboss.R;
 import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
 import com.android.policyboss.salessupport.SalesSupportFragment;
+import com.android.policyboss.utility.QuotePuller;
 
 import io.realm.Realm;
 
@@ -46,6 +47,8 @@ public class HomeActivity extends BaseActivity {
     //set current selected fragment TAG
     public static String CURRENT_TAG = TAG_HOME;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,7 @@ public class HomeActivity extends BaseActivity {
 
 
         mHandler = new Handler();
+
         // initializing navigation menu
         setUpNavigationView();
 
@@ -65,6 +69,8 @@ public class HomeActivity extends BaseActivity {
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment(TAG_HOME);
         }
+
+
     }
 
     private void initialise_widgets() {
