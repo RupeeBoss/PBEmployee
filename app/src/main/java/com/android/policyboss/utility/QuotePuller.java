@@ -1,7 +1,9 @@
 package com.android.policyboss.utility;
 
+import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
+
+import com.android.policyboss.core.controller.bike.BikeController;
 
 /**
  * Created by Nilesh Birhade on 03-07-2017.
@@ -9,16 +11,20 @@ import android.util.Log;
 
 public class QuotePuller implements Runnable {
     Handler handler;
+    Context mContext;
 
-    public QuotePuller(Handler handler) {
+    public QuotePuller(Handler handler, Context context) {
         this.handler = handler;
+        mContext = context;
         run();
     }
 
     @Override
     public void run() {
-        Log.d("QuotePuller", "QuotePuller");
-        handler.postDelayed(this, 10000);
+        //10 second delay
+        new BikeController(mContext).getBikePremium();
+
+        handler.postDelayed(this, 1000);
     }
 
     public void removeHandler() {

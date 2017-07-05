@@ -26,7 +26,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     EditText etEmployeeCode, etPassword;
     Button btnLogin;
-    private Handler mQuoteHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initwidgets();
-        mQuoteHandler = new Handler();
-        new QuotePuller(mQuoteHandler);
+
     }
 
     private void initwidgets() {

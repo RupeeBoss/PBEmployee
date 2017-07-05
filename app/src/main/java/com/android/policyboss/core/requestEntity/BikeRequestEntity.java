@@ -1,5 +1,7 @@
 package com.android.policyboss.core.requestEntity;
 
+import com.android.policyboss.utility.Constants;
+
 /**
  * Created by Nilesh Birhade on 03-07-2017.
  */
@@ -8,8 +10,8 @@ public class BikeRequestEntity {
 
 
     /**
-     * product_id : 1
-     * vehicle_id : 685
+     * product_id : 10
+     * vehicle_id : 50783
      * rto_id : 100
      * vehicle_insurance_type : renew
      * vehicle_manf_date : 2015-07-05
@@ -35,8 +37,8 @@ public class BikeRequestEntity {
      * pa_named_passenger_si :
      * pa_unnamed_passenger_si :
      * pa_paid_driver_si :
-     * secret_key :
-     * client_key :
+     * secret_key : SECRET-ODARQ6JP-9V2Q-7BIM-0NNM-DNRTXRWMRTAL
+     * client_key : CLIENT-GLF2SRA5-CFIF-4X2T-HC1Z-CXV4ZWQTFQ3T
      */
 
     private int product_id;
@@ -290,7 +292,7 @@ public class BikeRequestEntity {
     }
 
     public void setSecret_key(String secret_key) {
-        this.secret_key = secret_key;
+        this.secret_key = Constants.SECRET_KEY;
     }
 
     public String getClient_key() {
@@ -298,6 +300,6 @@ public class BikeRequestEntity {
     }
 
     public void setClient_key(String client_key) {
-        this.client_key = client_key;
+        this.client_key = Constants.CLIENT_KEY;
     }
 }

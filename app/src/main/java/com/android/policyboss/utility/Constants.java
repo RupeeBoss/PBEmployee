@@ -17,6 +17,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Constants {
     public static final String QUOTE = "quote";
+    public static final String BIKEQUOTE_UNIQUEID = "bike_quote_uniqueid";
     public static final String SHARED_PREFERENCE_POLICYBOSS = "shared_policyboss";
     public static final String SHARED_PREF_ALL_MASTER = "shared_policyboss";
 
@@ -25,6 +26,10 @@ public class Constants {
 
     public static final String USER_CREDENTIAL = "login_user";
     public static final String USER_AUTO_LOGOFF = "auto_logoff";
+
+    public static final String SECRET_KEY = "SECRET-ODARQ6JP-9V2Q-7BIM-0NNM-DNRTXRWMRTAL";
+    public static final String CLIENT_KEY = "CLIENT-GLF2SRA5-CFIF-4X2T-HC1Z-CXV4ZWQTFQ3T";
+    public static final String VERSION_CODE = "2.0";
 
     public static List<String> getPastFifteenYear() {
         ArrayList<String> arrayListYear = new ArrayList<>();
