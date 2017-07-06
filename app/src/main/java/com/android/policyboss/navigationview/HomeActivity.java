@@ -18,7 +18,6 @@ import com.android.policyboss.R;
 import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
 import com.android.policyboss.salessupport.SalesSupportFragment;
-import com.android.policyboss.utility.QuotePuller;
 
 import io.realm.Realm;
 
