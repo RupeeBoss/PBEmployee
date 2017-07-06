@@ -71,9 +71,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
             }*/
 
-            showDialog();
+            /*showDialog();
             new AuthenticationController(this).login(etEmployeeCode.getText().toString(),
-                    etPassword.getText().toString(), this);
+                    etPassword.getText().toString(), this);*/
+            finish();
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
         }
     }
