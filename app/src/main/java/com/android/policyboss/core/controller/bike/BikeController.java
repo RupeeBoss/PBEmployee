@@ -60,27 +60,29 @@ public class BikeController implements IBike {
     }
 
     @Override
-    public void getBikePremium() {
+    public void getBikePremium(final IResponseSubcriber iResponseSubcriber) {
         BikePremiumRequestEntity entity = new BikePremiumRequestEntity();
         entity.setSecret_key(Constants.SECRET_KEY);
         entity.setClient_key(Constants.CLIENT_KEY);
         entity.setResponse_version(Constants.VERSION_CODE);
         //entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
-        entity.setSearch_reference_number("SRN-1CI7PKXM-B2JP-XDVF-UQDK-L0IZCTG9MRFR");
+        entity.setSearch_reference_number("SRN-BS0CRQM0-AQ4Z-X6DM-9JFH-SLOCEJHG5S2N");
         bikeQuotesNetworkService.getBikePremiumList(entity).enqueue(new Callback<BikePremiumResponse>() {
             @Override
             public void onResponse(Response<BikePremiumResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
 
-                    Log.d("BIKE_PREMIUM", response.body().getSummary().getStatusX());
+                    Log.d("BIKE_PREMIUM", response.body().getSummary().getStatus());
+                    iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
 
-                    if (!response.body().getSummary().getStatusX().equals("complete")) {
+                    if (!response.body().getSummary().getStatus().equals("complete")) {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                new BikeController(mContext).getBikePremium();
+                                new BikeController(mContext).getBikePremium(iResponseSubcriber);
                             }
                         }, 10000);
+                    } else {
 
                     }
 

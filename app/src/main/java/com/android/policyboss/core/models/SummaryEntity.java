@@ -38,7 +38,16 @@ public class SummaryEntity {
     private int vehicle_min_idv;
     private int vehicle_max_idv;
     private double Actual_Time;
+    private String Status;
     private CommonAddonEntity Common_Addon;
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
 
     public String get_id() {
         return _id;
