@@ -139,6 +139,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
         </activity>
+        <activity
+            android:name=".bikeinsurance.BikeQuoteActivity"
+            android:label="@string/title_activity_bike_quote"
+            android:parentActivityName=".navigationview.HomeActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
