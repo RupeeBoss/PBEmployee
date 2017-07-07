@@ -29,6 +29,8 @@ public class DatabaseController implements IDBController {
     HashMap<String, String> hashMapBikeVarient;
 
     static HashMap<Integer, Integer> hasMapCarInsuranceImage;
+    HashMap<String, String> hashMapAddons;
+
 
     public DatabaseController(Context context, Realm realm) {
         this.realm = realm;
@@ -36,6 +38,35 @@ public class DatabaseController implements IDBController {
         dbController = new RealmDatabaseController(this.realm);
 
     }
+
+
+    //region Addons
+
+    public void MapAddons() {
+        hashMapAddons.put("Ambulance Charge Cover", "addon_ambulance_charge_cover");
+        hashMapAddons.put("Consumable Cover", "addon_consumable_cover");
+        hashMapAddons.put("Daily Allowance Cover", "addon_daily_allowance_cover");
+        hashMapAddons.put("Engine Protection Cover", "addon_engine_protector_cover");
+        hashMapAddons.put("Hospital Cash Cover", "addon_hospital_cash_cover");
+        hashMapAddons.put("Hydrostatic Lock Cover", "addon_hydrostatic_lock_cover");
+        hashMapAddons.put("Inconvinenience Allowance Cover", "addon_inconvenience_allowance_cover");
+        hashMapAddons.put("Invoice Price Cover", "addon_invoice_price_cover");
+        hashMapAddons.put("Key Lock Cover", "addon_key_lock_cover");
+        hashMapAddons.put("Loss Time Protection", "addon_losstime_protection_cover");
+        hashMapAddons.put("Medical Expense", "addon_medical_expense_cover");
+        hashMapAddons.put("NCB Protection", "addon_ncb_protection_cover");
+        hashMapAddons.put("Passenger Assistance", "addon_passenger_assistance_cover");
+        hashMapAddons.put("Personal Belonging-Loss Cover", "addon_personal_belonging_loss_cover");
+        hashMapAddons.put("24X7 RoadSide Assistance", "addon_road_assist_cover");
+        hashMapAddons.put("Rodent bite Cover", "addon_rodent_bite_cover");
+        hashMapAddons.put("Tyre Coverage", "addon_tyre_coverage_cover");
+        hashMapAddons.put("Windshield Protection", "addon_windshield_cover");
+        hashMapAddons.put("Zero Depriciation", "addon_zero_dep_cover");
+
+    }
+
+
+    //endregion
 
     //region mapping Insurence and Profession
 
