@@ -127,7 +127,7 @@
                 android:id="@+id/cvRenew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -240,6 +240,7 @@
                             app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                             <EditText
+                                android:focusable="false"
                                 android:id="@+id/etPolicyExp"
                                 style="@style/EditTextStyle"
                                 android:drawableLeft="@drawable/date_range"
@@ -274,7 +275,7 @@
                             android:layout_marginRight="@dimen/gap"
                             android:layout_marginTop="@dimen/gap"
                             android:orientation="vertical"
-                            android:visibility="visible">
+                            android:visibility="gone">
 
                             <Spinner
                                 android:id="@+id/spNcbPercent"

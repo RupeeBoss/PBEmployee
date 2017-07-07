@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,7 +30,7 @@ import java.util.Calendar;
 
 import io.realm.Realm;
 
-public class BikeInsuranceActivity extends BaseActivity implements View.OnClickListener {
+public class BikeInsuranceActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     ImageView ivNewBike, ivRenewBike;
@@ -37,15 +38,15 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
     CardView cvBuyorRenew, cvInvDate;
     TextView tvBuyTiltle;
     DatabaseController databaseController;
-    EditText etInvDate, etManufactYearMonth, etPolicyExp;
+    EditText etInvDate, etPolicyExp;
     CardView cvNew, cvRenew;
-    LinearLayout llRenewBike;
-    Spinner spPrevInsurer, spNcbPercent;
+    LinearLayout llRenewBike, llNcb;
+    Spinner spNcbPercent, spPrevInsurer, spManufactureYear;
     Switch switchNcb;
     Button btnGetQuote;
     AutoCompleteTextView acBikeVarient, acRegPlace;
     boolean isVarientSelected, isPlaceSelected;
-    ArrayAdapter<String> cityAdapter, varientAdapter;
+    ArrayAdapter<String> cityAdapter, varientAdapter, ncbPerctAdapter, prevInsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,11 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
     }
 
     private void init() {
+        etPolicyExp = (EditText) findViewById(R.id.etPolicyExp);
+        spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
+        spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
+        llNcb = (LinearLayout) findViewById(R.id.llNcb);
+        switchNcb = (Switch) findViewById(R.id.switchNcb);
         ivNewBike = (ImageView) findViewById(R.id.ivNewBike);
         ivRenewBike = (ImageView) findViewById(R.id.ivRenewBike);
         llBuyorRenew = (CardView) findViewById(R.id.llBuyorRenew);
@@ -89,6 +95,21 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         acBikeVarient.setThreshold(2);
         //endregion
 
+        // region city adapter
+        cityAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, databaseController.getCity());
+        //preferedCityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spPreferedCity.setAdapter(preferedCityAdapter);
+        acRegPlace.setAdapter(cityAdapter);
+        acRegPlace.setThreshold(2);
+        //endregion
+
+        ncbPerctAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ncb_percent));
+        spNcbPercent.setAdapter(ncbPerctAdapter);
+
+        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, databaseController.getInsurerList());
+        spPrevInsurer.setAdapter(prevInsAdapter);
+
 
     }
 
@@ -98,6 +119,8 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         llBuyorRenew.setOnClickListener(this);
         cvBuyorRenew.setOnClickListener(this);
         etInvDate.setOnClickListener(datePickerDialog);
+        etPolicyExp.setOnClickListener(datePickerDialog);
+        switchNcb.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -160,5 +183,21 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
             });
         }
     };
-    // endregion
+
+    //endregion
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.switchNcb:
+                if (isChecked) {
+                    llNcb.setVisibility(View.VISIBLE);
+                    llNcb.requestFocus();
+                } else {
+                    llNcb.setVisibility(View.GONE);
+                }
+                break;
+        }
+
+    }
+
 }

@@ -56,9 +56,9 @@ public class DateTimePicker {
     public static void showPrevSixMonthDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
         DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        //dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
-        //calendar.add(Calendar.MONTH, -6);
-        //dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+        dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        calendar.add(Calendar.MONTH, -6);
+        dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
         dialog.show();
     }
 
