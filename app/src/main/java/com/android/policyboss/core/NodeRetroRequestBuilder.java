@@ -10,7 +10,7 @@ import retrofit.Retrofit;
 
 public abstract class NodeRetroRequestBuilder {
 
-    public static String URL = "http://uat-horizon.policyboss.com:4000";
+    public static String URL = "http://qa-horizon.policyboss.com:3000";
 
     static Retrofit restAdapter = null;
 

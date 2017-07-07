@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.android.policyboss.BaseFragment;
 import com.android.policyboss.R;
 import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
+import com.android.policyboss.bikeinsurance.BikeQuoteActivity;
 import com.android.policyboss.carinsurance.CarInsuranceActivity;
 import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 
@@ -62,7 +63,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 startActivity(new Intent(getActivity(), HealthInsuranceActivity.class));
                 break;
             case R.id.txtBikeInsurance:
-                startActivity(new Intent(getActivity(), BikeInsuranceActivity.class));
+                startActivity(new Intent(getActivity(), BikeQuoteActivity.class));
                 break;
         }
     }
