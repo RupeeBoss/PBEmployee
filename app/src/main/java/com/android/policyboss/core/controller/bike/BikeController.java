@@ -66,7 +66,7 @@ public class BikeController implements IBike {
         entity.setClient_key(Constants.CLIENT_KEY);
         entity.setResponse_version(Constants.VERSION_CODE);
         //entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
-        entity.setSearch_reference_number("SRN-BS0CRQM0-AQ4Z-X6DM-9JFH-SLOCEJHG5S2N");
+        entity.setSearch_reference_number("SRN-OF8ERANF-O1LI-09DQ-BWXQ-JTEX7QYWWSZZ");
         bikeQuotesNetworkService.getBikePremiumList(entity).enqueue(new Callback<BikePremiumResponse>() {
             @Override
             public void onResponse(Response<BikePremiumResponse> response, Retrofit retrofit) {

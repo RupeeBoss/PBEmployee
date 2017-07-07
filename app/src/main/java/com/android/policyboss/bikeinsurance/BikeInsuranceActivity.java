@@ -1,17 +1,21 @@
 package com.android.policyboss.bikeinsurance;
 
 import android.app.DatePickerDialog;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.policyboss.BaseActivity;
@@ -22,7 +26,6 @@ import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 
 import io.realm.Realm;
 
@@ -34,7 +37,15 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
     CardView cvBuyorRenew, cvInvDate;
     TextView tvBuyTiltle;
     DatabaseController databaseController;
-    EditText etInvDate;
+    EditText etInvDate, etManufactYearMonth, etPolicyExp;
+    CardView cvNew, cvRenew;
+    LinearLayout llRenewBike;
+    Spinner spPrevInsurer, spNcbPercent;
+    Switch switchNcb;
+    Button btnGetQuote;
+    AutoCompleteTextView acBikeVarient, acRegPlace;
+    boolean isVarientSelected, isPlaceSelected;
+    ArrayAdapter<String> cityAdapter, varientAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,8 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("Bike Insurance");
+        realm = Realm.getDefaultInstance();
+        databaseController = new DatabaseController(this, realm);
         //collapsingToolbar.setExpandedTitleTextColor(ColorStateList.valueOf(getResources().getColor(R.color.application_secondary_text_color)));
         init();
         setClickListeners();
@@ -60,6 +73,22 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         cvInvDate = (CardView) findViewById(R.id.cvInvDate);
         tvBuyTiltle = (TextView) findViewById(R.id.tvBuyTiltle);
         etInvDate = (EditText) findViewById(R.id.etInvDate);
+        //cvNew = (CardView) findViewById(R.id.cvNew);
+        cvRenew = (CardView) findViewById(R.id.cvRenew);
+        llRenewBike = (LinearLayout) findViewById(R.id.llRenewBike);
+        acBikeVarient = (AutoCompleteTextView) findViewById(R.id.acBikeVarient);
+        acRegPlace = (AutoCompleteTextView) findViewById(R.id.acRegPlace);
+
+
+        // region  bike varient adapter
+        varientAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, databaseController.getBikeVarientList());
+        //preferedCityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spPreferedCity.setAdapter(preferedCityAdapter);
+        acBikeVarient.setAdapter(varientAdapter);
+        acBikeVarient.setThreshold(2);
+        //endregion
+
 
     }
 
@@ -87,24 +116,26 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
 
                 break;
             case R.id.ivNewBike:
+                cvRenew.setVisibility(View.VISIBLE);
                 cvBuyorRenew.callOnClick();
                 ivNewBike.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click));
-
-                cvInvDate.setVisibility(View.VISIBLE);
+                llRenewBike.setVisibility(View.GONE);
                 //Animate.translateUpAnimation(cvInvDate, 1.0f, 1.0f, 0.0f, -llBuyorRenew.getHeight());
                 //cvInvDate.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
                 break;
             case R.id.ivRenewBike:
+                cvRenew.setVisibility(View.VISIBLE);
                 cvBuyorRenew.callOnClick();
                 ivRenewBike.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click));
-                cvInvDate.setVisibility(View.VISIBLE);
-
+                llRenewBike.setVisibility(View.VISIBLE);
                 //Animate.translateUpAnimation(cvRegNo, 1.0f, 1.0f, 0.0f, -llBuyorRenew.getHeight());
                 //cvRegNo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
                 break;
         }
     }
+
+    // region Date picker
 
     protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
         @Override
@@ -129,4 +160,5 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
             });
         }
     };
+    // endregion
 }
