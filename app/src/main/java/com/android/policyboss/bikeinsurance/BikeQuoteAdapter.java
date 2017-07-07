@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.ResponseEntity;
+import com.android.policyboss.core.response.BikePremiumResponse;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -24,89 +25,56 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
 
 
     Activity mContext;
-    List<ResponseEntity> bikeRespEntitytList;
+    BikePremiumResponse response;
+    List<ResponseEntity> listQuotes;
 
-    public BikeQuoteAdapter(Activity mContext ,List<ResponseEntity> bikeRespEntitytList) {
+    public BikeQuoteAdapter(Activity mContext, BikePremiumResponse response) {
         this.mContext = mContext;
-        this.bikeRespEntitytList = bikeRespEntitytList;
+        this.response = response;
+        this.listQuotes = response.getResponse();
     }
 
-    public class BikeQuoteItem extends RecyclerView.ViewHolder{
-        public TextView txtInsurerName ,txtNetPremium, txtServtax, txtFinalPremium;
-        ImageView ivBankLogo;
+    public class BikeQuoteItem extends RecyclerView.ViewHolder {
+        public TextView txtInsurerName, txtIDV, txtFinalPremium;
+        ImageView imgInsurerLogo;
+
         public BikeQuoteItem(View itemView) {
             super(itemView);
-            txtInsurerName = (TextView)itemView.findViewById(R.id.txtInsurerName);
-            txtNetPremium = (TextView)itemView.findViewById(R.id.txtNetPremium);
-            txtServtax = (TextView)itemView.findViewById(R.id.txtServtax);
-            txtFinalPremium = (TextView)itemView.findViewById(R.id.txtFinalPremium);
-            ivBankLogo = (ImageView)itemView.findViewById(R.id.ivBankLogo);
+            txtInsurerName = (TextView) itemView.findViewById(R.id.txtInsurerName);
+            txtIDV = (TextView) itemView.findViewById(R.id.txtIDV);
+            txtFinalPremium = (TextView) itemView.findViewById(R.id.txtFinalPremium);
+            imgInsurerLogo = (ImageView) itemView.findViewById(R.id.imgInsurerLogo);
         }
     }
 
     @Override
     public BikeQuoteItem onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_bikequote_item,parent,false);
+                .inflate(R.layout.layout_bikequote_item, parent, false);
         return new BikeQuoteAdapter.BikeQuoteItem(itemView);
     }
 
     @Override
     public void onBindViewHolder(BikeQuoteItem holder, int position) {
 
-        final  ResponseEntity responseEntity = bikeRespEntitytList.get(position);
+        final ResponseEntity responseEntity = listQuotes.get(position);
+
         holder.txtInsurerName.setText(responseEntity.getInsurer().getInsurer_Name());
-
-//        try{
-//            holder.txtNetPremium.setText("" + responseEntity.getPremium_Breakup().getNet_premium());
-//        }catch (Exception ex)
-//        {
-//            holder.txtNetPremium.setText("");
-//        }
-//
-//        try{
-//            holder.txtServtax.setText("" + responseEntity.getPremium_Breakup().getService_tax());
-//        }catch (Exception ex)
-//        {
-//            holder.txtServtax.setText("");
-//        }
-//
-//
-//
-//        try{
-//            holder.txtFinalPremium.setText("" + responseEntity.getPremium_Breakup().getFinal_premium());
-//        }catch (Exception ex)
-//        {
-//            holder.txtFinalPremium.setText("");
-//        }
-
-        ///////////////////////////////////////////////
-        if( responseEntity.getPremium_Breakup().getNet_premium() != null) {
-            holder.txtNetPremium.setText("" + responseEntity.getPremium_Breakup().getNet_premium());
-        }else{
-            holder.txtNetPremium.setText("");
-        }
-
-        if( responseEntity.getPremium_Breakup().getService_tax() != null) {
-            holder.txtServtax.setText("" + responseEntity.getPremium_Breakup().getService_tax());
-        }else{
-            holder.txtServtax.setText("");
-        }
-
-        if( responseEntity.getPremium_Breakup().getFinal_premium() != null) {
+        holder.txtIDV.setText(response.getSummary().getRequest_Product().getVehicle_expected_idv());
+        if (responseEntity.getPremium_Breakup().getFinal_premium() != null) {
             holder.txtFinalPremium.setText("" + responseEntity.getPremium_Breakup().getFinal_premium());
-        }else {
+        } else {
             holder.txtFinalPremium.setText("");
         }
 
         Glide.with(mContext)
                 .load(getProfessionalID1(responseEntity.getInsurer().getInsurer_ID()))
-                .into(holder.ivBankLogo);
+                .into(holder.imgInsurerLogo);
     }
 
 
     @Override
     public int getItemCount() {
-        return bikeRespEntitytList.size();
+        return listQuotes.size();
     }
 }

@@ -61,13 +61,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 
         cancelDialog();
         if (response instanceof BikePremiumResponse) {
-            Gson gson = new Gson();
-            String jsonInString = gson.toJson(response);
-            Log.d("SALES", "" + ((BikePremiumResponse) response).getResponse().size());
-            List<ResponseEntity> list = ((BikePremiumResponse) response).getResponse();
-            mListBikeQuotes = list;
-
-            mAdapter = new BikeQuoteAdapter(BikeQuoteActivity.this, mListBikeQuotes);
+            mAdapter = new BikeQuoteAdapter(BikeQuoteActivity.this, (BikePremiumResponse) response);
             bikeQuoteRecycler.setAdapter(mAdapter);
 
         }
@@ -77,7 +71,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void OnFailure(Throwable t) {
         cancelDialog();
-        Toast.makeText(BikeQuoteActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(BikeQuoteActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
     }
 }
