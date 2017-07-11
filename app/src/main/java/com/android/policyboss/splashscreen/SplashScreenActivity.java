@@ -41,7 +41,7 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
 
         // boolean isYesterday = LoginFacade.getDayDifference(Long.parseLong("1497332094000"));
         //fetch all master tables
-        if (Constants.getSharedPreference(this).getBoolean(Constants.SHARED_PREF_ALL_MASTER, false)) {
+        if (Constants.getSharedPreference(this).getBoolean(Constants.SHARED_PREF_ALL_MASTER, true)) {
             new VarientMasterController(this, realm).getAllMasters(this);
             new VarientMasterController(this, realm).getAllCityMasters(this);
         } else {

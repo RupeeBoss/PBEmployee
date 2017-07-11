@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_spinner"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-
-
     app:cardCornerRadius="5dp">
 
     <LinearLayout
@@ -29,7 +25,8 @@
                 android:id="@+id/imgInsurerLogo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="30"
+                android:layout_weight="40"
+                android:scaleType="fitXY"
                 android:src="@drawable/carins1" />
 
             <LinearLayout

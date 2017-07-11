@@ -10,7 +10,7 @@ import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 
 public interface IBike {
 
-    void getBikeQuote(BikeRequestEntity entity);
+    void getBikeQuote(BikeRequestEntity entity, IResponseSubcriber iResponseSubcriber);
 
     void getBikePremium(IResponseSubcriber iResponseSubcriber);
 }
