@@ -200,12 +200,6 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
                             etManufactYearMonth.setText(currentDay);
                         }
 
-                        /*quoteRequestEntity.setDontRem(false);
-                        quoteRequestEntity.setRenew(false);
-                        quoteRequestEntity.setNew(true);
-                        quoteRequestEntity.setDateofPurchaseofCar(etInvDate.getText().toString());
-                        startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
-                        //etDate.setTag(R.id.et_date, calendar.getTime());*/
                     }
                 }
             });
