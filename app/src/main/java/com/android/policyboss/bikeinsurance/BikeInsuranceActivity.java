@@ -1,6 +1,7 @@
 package com.android.policyboss.bikeinsurance;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.CardView;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.controller.database.DatabaseController;
+import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
@@ -38,7 +40,7 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
     CardView cvBuyorRenew, cvInvDate;
     TextView tvBuyTiltle;
     DatabaseController databaseController;
-    EditText etInvDate, etPolicyExp;
+    EditText etInvDate, etPolicyExp, etManufactYearMonth;
     CardView cvNew, cvRenew;
     LinearLayout llRenewBike, llNcb;
     Spinner spNcbPercent, spPrevInsurer, spManufactureYear;
@@ -47,6 +49,7 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
     AutoCompleteTextView acBikeVarient, acRegPlace;
     boolean isVarientSelected, isPlaceSelected;
     ArrayAdapter<String> cityAdapter, varientAdapter, ncbPerctAdapter, prevInsAdapter;
+    BikeRequestEntity bikeRequestEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,9 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
     }
 
     private void init() {
+        bikeRequestEntity = new BikeRequestEntity();
+        etManufactYearMonth = (EditText) findViewById(R.id.etManufactYearMonth);
+        btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
         etPolicyExp = (EditText) findViewById(R.id.etPolicyExp);
         spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
         spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
@@ -120,7 +126,9 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         cvBuyorRenew.setOnClickListener(this);
         etInvDate.setOnClickListener(datePickerDialog);
         etPolicyExp.setOnClickListener(datePickerDialog);
+        etManufactYearMonth.setOnClickListener(datePickerDialog);
         switchNcb.setOnCheckedChangeListener(this);
+        btnGetQuote.setOnClickListener(this);
     }
 
     @Override
@@ -155,6 +163,19 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
                 //cvRegNo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
                 break;
+            case R.id.btnGetQuote:
+                setRequest();
+                startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class).putExtra("BIKE_REQUEST", bikeRequestEntity));
+                break;
+        }
+    }
+
+    private void setRequest() {
+
+        bikeRequestEntity.setVehicle_registration_date(etInvDate.getText().toString());
+        bikeRequestEntity.setVehicle_insurance_type("new");
+        if (llRenewBike.getVisibility() == View.VISIBLE) {
+            bikeRequestEntity.setVehicle_insurance_type("renew");
         }
     }
 
@@ -162,16 +183,23 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
 
     protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
         @Override
-        public void onClick(View view) {
+        public void onClick(final View view) {
             Constants.hideKeyBoard(view, BikeInsuranceActivity.this);
             DateTimePicker.showPrevSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    if (view.isShown()) {
+                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                    if (view1.isShown()) {
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
                         String currentDay = simpleDateFormat.format(calendar.getTime());
-                        etInvDate.setText(currentDay);
+                        if (view.getId() == R.id.etInvDate) {
+                            etInvDate.setText(currentDay);
+                        } else if (view.getId() == R.id.etPolicyExp) {
+                            etPolicyExp.setText(currentDay);
+                        } else if (view.getId() == R.id.etManufactYearMonth) {
+                            etManufactYearMonth.setText(currentDay);
+                        }
+
                         /*quoteRequestEntity.setDontRem(false);
                         quoteRequestEntity.setRenew(false);
                         quoteRequestEntity.setNew(true);

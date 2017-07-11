@@ -17,6 +17,7 @@ import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.models.ResponseEntity;
+import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
 import com.google.gson.Gson;
 
@@ -27,6 +28,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     List<ResponseEntity> mListBikeQuotes;
     RecyclerView bikeQuoteRecycler;
     BikeQuoteAdapter mAdapter;
+    BikeRequestEntity bikeRequestEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        bikeRequestEntity = getIntent().getParcelableExtra("BIKE_REQUEST");
         initialize();
         showDialog();
         new BikeController(BikeQuoteActivity.this).getBikePremium(this);

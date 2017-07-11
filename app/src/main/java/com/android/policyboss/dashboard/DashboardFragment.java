@@ -63,7 +63,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 startActivity(new Intent(getActivity(), HealthInsuranceActivity.class));
                 break;
             case R.id.txtBikeInsurance:
-                startActivity(new Intent(getActivity(), BikeQuoteActivity.class));
+                startActivity(new Intent(getActivity(), BikeInsuranceActivity.class));
                 break;
         }
     }
