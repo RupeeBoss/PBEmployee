@@ -1,12 +1,15 @@
 package com.android.policyboss.core.requestEntity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.android.policyboss.utility.Constants;
 
 /**
  * Created by Nilesh Birhade on 03-07-2017.
  */
 
-public class BikeRequestEntity {
+public class BikeRequestEntity implements Parcelable {
 
 
     /**
@@ -70,6 +73,38 @@ public class BikeRequestEntity {
     private String pa_paid_driver_si;
     private String secret_key;
     private String client_key;
+
+    public BikeRequestEntity() {
+        this.product_id = 10;
+        this.vehicle_id = vehicle_id;
+        this.rto_id = rto_id;
+        this.vehicle_insurance_type = vehicle_insurance_type;
+        this.vehicle_manf_date = vehicle_manf_date;
+        this.vehicle_registration_date = vehicle_registration_date;
+        this.policy_expiry_date = policy_expiry_date;
+        this.vehicle_registration_type = vehicle_registration_type;
+        this.vehicle_ncb_current = vehicle_ncb_current;
+        this.is_claim_exists = is_claim_exists;
+        this.birth_date = birth_date;
+        this.method_type = method_type;
+        this.execution_async = execution_async;
+        this.registration_no = registration_no;
+        this.electrical_accessory = electrical_accessory;
+        this.non_electrical_accessory = non_electrical_accessory;
+        this.voluntary_deductible = voluntary_deductible;
+        this.is_llpd = is_llpd;
+        this.is_external_bifuel = is_external_bifuel;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.middle_name = middle_name;
+        this.external_bifuel_value = external_bifuel_value;
+        this.pa_owner_driver_si = pa_owner_driver_si;
+        this.pa_named_passenger_si = pa_named_passenger_si;
+        this.pa_unnamed_passenger_si = pa_unnamed_passenger_si;
+        this.pa_paid_driver_si = pa_paid_driver_si;
+        this.secret_key = secret_key;
+        this.client_key = client_key;
+    }
 
     public int getProduct_id() {
         return product_id;
@@ -302,4 +337,86 @@ public class BikeRequestEntity {
     public void setClient_key(String client_key) {
         this.client_key = Constants.CLIENT_KEY;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.product_id);
+        dest.writeInt(this.vehicle_id);
+        dest.writeInt(this.rto_id);
+        dest.writeString(this.vehicle_insurance_type);
+        dest.writeString(this.vehicle_manf_date);
+        dest.writeString(this.vehicle_registration_date);
+        dest.writeString(this.policy_expiry_date);
+        dest.writeString(this.vehicle_registration_type);
+        dest.writeString(this.vehicle_ncb_current);
+        dest.writeString(this.is_claim_exists);
+        dest.writeString(this.birth_date);
+        dest.writeString(this.method_type);
+        dest.writeString(this.execution_async);
+        dest.writeString(this.registration_no);
+        dest.writeString(this.electrical_accessory);
+        dest.writeString(this.non_electrical_accessory);
+        dest.writeString(this.voluntary_deductible);
+        dest.writeString(this.is_llpd);
+        dest.writeString(this.is_external_bifuel);
+        dest.writeString(this.first_name);
+        dest.writeString(this.last_name);
+        dest.writeString(this.middle_name);
+        dest.writeString(this.external_bifuel_value);
+        dest.writeString(this.pa_owner_driver_si);
+        dest.writeString(this.pa_named_passenger_si);
+        dest.writeString(this.pa_unnamed_passenger_si);
+        dest.writeString(this.pa_paid_driver_si);
+        dest.writeString(this.secret_key);
+        dest.writeString(this.client_key);
+    }
+
+    protected BikeRequestEntity(Parcel in) {
+        this.product_id = in.readInt();
+        this.vehicle_id = in.readInt();
+        this.rto_id = in.readInt();
+        this.vehicle_insurance_type = in.readString();
+        this.vehicle_manf_date = in.readString();
+        this.vehicle_registration_date = in.readString();
+        this.policy_expiry_date = in.readString();
+        this.vehicle_registration_type = in.readString();
+        this.vehicle_ncb_current = in.readString();
+        this.is_claim_exists = in.readString();
+        this.birth_date = in.readString();
+        this.method_type = in.readString();
+        this.execution_async = in.readString();
+        this.registration_no = in.readString();
+        this.electrical_accessory = in.readString();
+        this.non_electrical_accessory = in.readString();
+        this.voluntary_deductible = in.readString();
+        this.is_llpd = in.readString();
+        this.is_external_bifuel = in.readString();
+        this.first_name = in.readString();
+        this.last_name = in.readString();
+        this.middle_name = in.readString();
+        this.external_bifuel_value = in.readString();
+        this.pa_owner_driver_si = in.readString();
+        this.pa_named_passenger_si = in.readString();
+        this.pa_unnamed_passenger_si = in.readString();
+        this.pa_paid_driver_si = in.readString();
+        this.secret_key = in.readString();
+        this.client_key = in.readString();
+    }
+
+    public static final Parcelable.Creator<BikeRequestEntity> CREATOR = new Parcelable.Creator<BikeRequestEntity>() {
+        @Override
+        public BikeRequestEntity createFromParcel(Parcel source) {
+            return new BikeRequestEntity(source);
+        }
+
+        @Override
+        public BikeRequestEntity[] newArray(int size) {
+            return new BikeRequestEntity[size];
+        }
+    };
 }
