@@ -1,10 +1,12 @@
 package com.android.policyboss.core.response;
 
+import com.android.policyboss.core.APIResponse;
+
 /**
  * Created by Nilesh Birhade on 03-07-2017.
  */
 
-public class BikeUniqueResponse {
+public class BikeUniqueResponse extends APIResponse {
 
     /**
      * Summary : {"Request_Unique_Id":"SRN-3R2S96OF-FQOZ-UB85-HNED-CWGEWKB3WBEO"}
