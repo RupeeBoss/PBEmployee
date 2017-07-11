@@ -164,6 +164,34 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
 
                 break;
             case R.id.btnGetQuote:
+                if (etInvDate.getText().toString() != "") {
+                    etInvDate.requestFocus();
+                    etInvDate.setError("Enter Invoice Date");
+                    return;
+                }
+                if (acBikeVarient.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                    acBikeVarient.requestFocus();
+                    acBikeVarient.setError("Select Bike Varient");
+                    return;
+                }
+                if (acRegPlace.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                    acRegPlace.requestFocus();
+                    acRegPlace.setError("Enter Registration Place");
+                    return;
+                }
+                if (etManufactYearMonth.getText().toString() != "") {
+                    etManufactYearMonth.requestFocus();
+                    etManufactYearMonth.setError("Enter Manufacturing Date");
+                    return;
+                }
+
+                if (llRenewBike.getVisibility() == View.VISIBLE) {
+                    if (etPolicyExp.getText().toString() != "") {
+                        etPolicyExp.requestFocus();
+                        etPolicyExp.setError("Enter Policy Expiry Date");
+                        return;
+                    }
+                }
                 setRequest();
                 startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class).putExtra("BIKE_REQUEST", bikeRequestEntity));
                 break;
@@ -185,30 +213,46 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         @Override
         public void onClick(final View view) {
             Constants.hideKeyBoard(view, BikeInsuranceActivity.this);
-            DateTimePicker.showPrevSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                    if (view1.isShown()) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(year, monthOfYear, dayOfMonth);
-                        String currentDay = simpleDateFormat.format(calendar.getTime());
-                        if (view.getId() == R.id.etInvDate) {
+
+            if (view.getId() == R.id.etInvDate) {
+                DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
                             etInvDate.setText(currentDay);
-                        } else if (view.getId() == R.id.etPolicyExp) {
+                        }
+                    }
+                });
+
+            } else if (view.getId() == R.id.etPolicyExp) {
+                DateTimePicker.showNextSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
                             etPolicyExp.setText(currentDay);
-                        } else if (view.getId() == R.id.etManufactYearMonth) {
+                        }
+                    }
+                });
+            } else if (view.getId() == R.id.etManufactYearMonth) {
+                DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
                             etManufactYearMonth.setText(currentDay);
                         }
-
-                        /*quoteRequestEntity.setDontRem(false);
-                        quoteRequestEntity.setRenew(false);
-                        quoteRequestEntity.setNew(true);
-                        quoteRequestEntity.setDateofPurchaseofCar(etInvDate.getText().toString());
-                        startActivity(new Intent(CarInsuranceActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
-                        //etDate.setTag(R.id.et_date, calendar.getTime());*/
                     }
-                }
-            });
+                });
+            }
+
         }
     };
 
