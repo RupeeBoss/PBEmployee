@@ -1,6 +1,7 @@
 package com.android.policyboss.core.controller.bike;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 
@@ -40,21 +41,35 @@ public class BikeController implements IBike {
     }
 
     @Override
-    public void getBikeQuote(BikeRequestEntity bikeRequestEntity) {
+    public void getBikeQuote(BikeRequestEntity bikeRequestEntity, final IResponseSubcriber iResponseSubcriber) {
 
         bikeQuotesNetworkService.getBikeUniqueID(bikeRequestEntity).enqueue(new Callback<BikeUniqueResponse>() {
             @Override
             public void onResponse(Response<BikeUniqueResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
-                    Constants.getSharedPreferenceEditor(mContext)
-                            .putString(Constants.BIKEQUOTE_UNIQUEID,
-                                    response.body().getSummary().getRequest_Unique_Id());
+                    String UNIQUE = response.body().getSummary().getRequest_Unique_Id();
+                    SharedPreferences.Editor edit = Constants.getSharedPreferenceEditor(mContext);
+                    edit.putString(Constants.BIKEQUOTE_UNIQUEID,
+                            UNIQUE);
+                    edit.commit();
+                    iResponseSubcriber.OnSuccess(response.body(), "");
+
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Enable to reach server, Try again later"));
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-
+                if (t instanceof ConnectException) {
+                    iResponseSubcriber.OnFailure(t);
+                } else if (t instanceof SocketTimeoutException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof UnknownHostException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
+                }
             }
         });
     }
@@ -65,14 +80,12 @@ public class BikeController implements IBike {
         entity.setSecret_key(Constants.SECRET_KEY);
         entity.setClient_key(Constants.CLIENT_KEY);
         entity.setResponse_version(Constants.VERSION_CODE);
-        //entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
-        entity.setSearch_reference_number("SRN-OF8ERANF-O1LI-09DQ-BWXQ-JTEX7QYWWSZZ");
+        //Log.d("UNIQUE_REQUEST", Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
+        entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
         bikeQuotesNetworkService.getBikePremiumList(entity).enqueue(new Callback<BikePremiumResponse>() {
             @Override
             public void onResponse(Response<BikePremiumResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
-
-                    Log.d("BIKE_PREMIUM", response.body().getSummary().getStatus());
                     iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
 
                     if (!response.body().getSummary().getStatus().equals("complete")) {
@@ -87,13 +100,21 @@ public class BikeController implements IBike {
                     }
 
                 } else {
-                    Log.d("getBikePremium", "" + "Error");
+                    Log.d("BIKE_PREMIUM", "" + "Error");
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d("Error", t.getMessage());
+                if (t instanceof ConnectException) {
+                    iResponseSubcriber.OnFailure(t);
+                } else if (t instanceof SocketTimeoutException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof UnknownHostException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
+                }
             }
         });
 

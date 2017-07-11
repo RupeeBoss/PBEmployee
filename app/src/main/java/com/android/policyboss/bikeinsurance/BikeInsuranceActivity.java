@@ -22,17 +22,22 @@ import android.widget.TextView;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.core.APIResponse;
+import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
+import com.android.policyboss.core.response.BikeUniqueResponse;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import io.realm.Realm;
 
-public class BikeInsuranceActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class BikeInsuranceActivity extends BaseActivity implements IResponseSubcriber, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     ImageView ivNewBike, ivRenewBike;
@@ -85,27 +90,26 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         cvInvDate = (CardView) findViewById(R.id.cvInvDate);
         tvBuyTiltle = (TextView) findViewById(R.id.tvBuyTiltle);
         etInvDate = (EditText) findViewById(R.id.etInvDate);
-        //cvNew = (CardView) findViewById(R.id.cvNew);
         cvRenew = (CardView) findViewById(R.id.cvRenew);
         llRenewBike = (LinearLayout) findViewById(R.id.llRenewBike);
         acBikeVarient = (AutoCompleteTextView) findViewById(R.id.acBikeVarient);
         acRegPlace = (AutoCompleteTextView) findViewById(R.id.acRegPlace);
 
+        List<String> bikevariant = databaseController.getBikeVarientList();
+        List<String> city = databaseController.getCity();
+
 
         // region  bike varient adapter
         varientAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, databaseController.getBikeVarientList());
-        //preferedCityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spPreferedCity.setAdapter(preferedCityAdapter);
         acBikeVarient.setAdapter(varientAdapter);
         acBikeVarient.setThreshold(2);
+
         //endregion
 
         // region city adapter
         cityAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, databaseController.getCity());
-        //preferedCityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spPreferedCity.setAdapter(preferedCityAdapter);
         acRegPlace.setAdapter(cityAdapter);
         acRegPlace.setThreshold(2);
         //endregion
@@ -136,12 +140,8 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.cvBuyorRenew:
                 if (llBuyorRenew.getVisibility() == View.VISIBLE) {
-                    // Animate.SlideUpAnimation(llBuyorRenew);
-                    //llBuyorRenew.setVisibility(View.GONE);
                     tvBuyTiltle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.down_arrow_bas_screen, 0);
                 } else {
-                    //Animate.SlideDownAnimation(llBuyorRenew);
-                    //llBuyorRenew.setVisibility(View.VISIBLE);
                     tvBuyTiltle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.right_arrow_bas_screen, 0);
                 }
 
@@ -151,33 +151,83 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
                 cvBuyorRenew.callOnClick();
                 ivNewBike.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click));
                 llRenewBike.setVisibility(View.GONE);
-                //Animate.translateUpAnimation(cvInvDate, 1.0f, 1.0f, 0.0f, -llBuyorRenew.getHeight());
-                //cvInvDate.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
                 break;
             case R.id.ivRenewBike:
                 cvRenew.setVisibility(View.VISIBLE);
                 cvBuyorRenew.callOnClick();
                 ivRenewBike.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click));
                 llRenewBike.setVisibility(View.VISIBLE);
-                //Animate.translateUpAnimation(cvRegNo, 1.0f, 1.0f, 0.0f, -llBuyorRenew.getHeight());
-                //cvRegNo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 
                 break;
             case R.id.btnGetQuote:
+                if (etInvDate.getText().toString() != "") {
+                    etInvDate.requestFocus();
+                    etInvDate.setError("Enter Invoice Date");
+                    return;
+                }
+                if (acBikeVarient.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                    acBikeVarient.requestFocus();
+                    acBikeVarient.setError("Select Bike Varient");
+                    return;
+                }
+                if (acRegPlace.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                    acRegPlace.requestFocus();
+                    acRegPlace.setError("Enter Registration Place");
+                    return;
+                }
+                if (etManufactYearMonth.getText().toString() != "") {
+                    etManufactYearMonth.requestFocus();
+                    etManufactYearMonth.setError("Enter Manufacturing Date");
+                    return;
+                }
+
+                if (llRenewBike.getVisibility() == View.VISIBLE) {
+                    if (etPolicyExp.getText().toString() != "") {
+                        etPolicyExp.requestFocus();
+                        etPolicyExp.setError("Enter Policy Expiry Date");
+                        return;
+                    }
+                }
                 setRequest();
-                startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class).putExtra("BIKE_REQUEST", bikeRequestEntity));
+                new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+
                 break;
         }
     }
 
+    //region create bike request
     private void setRequest() {
 
         bikeRequestEntity.setVehicle_registration_date(etInvDate.getText().toString());
+        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
+        bikeRequestEntity.setVehicle_manf_date(etManufactYearMonth.getText().toString());
         bikeRequestEntity.setVehicle_insurance_type("new");
+        bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
+        bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
+        bikeRequestEntity.setExecution_async("yes");
+        bikeRequestEntity.setMethod_type("Premium");
+        bikeRequestEntity.setVehicle_insurance_type("Premium");
+        bikeRequestEntity.setIs_llpd("no");
+        bikeRequestEntity.setIs_external_bifuel("no");
+
+
         if (llRenewBike.getVisibility() == View.VISIBLE) {
             bikeRequestEntity.setVehicle_insurance_type("renew");
+            bikeRequestEntity.setPolicy_expiry_date(etPolicyExp.getText().toString());
+            databaseController.getInsurenceID((String) spPrevInsurer.getSelectedItem().toString());
+
+            if (switchNcb.isChecked()) {
+                bikeRequestEntity.setIs_claim_exists("yes");
+                bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
+            } else {
+                bikeRequestEntity.setIs_claim_exists("no");
+            }
         }
+
     }
+
+    //endregion
 
     // region Date picker
 
@@ -185,28 +235,52 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
         @Override
         public void onClick(final View view) {
             Constants.hideKeyBoard(view, BikeInsuranceActivity.this);
-            DateTimePicker.showPrevSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                    if (view1.isShown()) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(year, monthOfYear, dayOfMonth);
-                        String currentDay = simpleDateFormat.format(calendar.getTime());
-                        if (view.getId() == R.id.etInvDate) {
+
+            if (view.getId() == R.id.etInvDate) {
+                DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
                             etInvDate.setText(currentDay);
-                        } else if (view.getId() == R.id.etPolicyExp) {
+                        }
+                    }
+                });
+
+            } else if (view.getId() == R.id.etPolicyExp) {
+                DateTimePicker.showNextSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
                             etPolicyExp.setText(currentDay);
-                        } else if (view.getId() == R.id.etManufactYearMonth) {
+                        }
+                    }
+                });
+            } else if (view.getId() == R.id.etManufactYearMonth) {
+                DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
                             etManufactYearMonth.setText(currentDay);
                         }
 
                     }
-                }
-            });
+                });
+            }
+
         }
     };
 
     //endregion
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -222,4 +296,16 @@ public class BikeInsuranceActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    @Override
+    public void OnSuccess(APIResponse response, String message) {
+
+        if (response instanceof BikeUniqueResponse) {
+            startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class));
+        }
+    }
+
+    @Override
+    public void OnFailure(Throwable t) {
+
+    }
 }

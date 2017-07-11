@@ -73,37 +73,47 @@ public class BikeRequestEntity implements Parcelable {
     private String pa_paid_driver_si;
     private String secret_key;
     private String client_key;
+    private String prev_insurer_id;
+
 
     public BikeRequestEntity() {
         this.product_id = 10;
-        this.vehicle_id = vehicle_id;
-        this.rto_id = rto_id;
-        this.vehicle_insurance_type = vehicle_insurance_type;
-        this.vehicle_manf_date = vehicle_manf_date;
-        this.vehicle_registration_date = vehicle_registration_date;
-        this.policy_expiry_date = policy_expiry_date;
-        this.vehicle_registration_type = vehicle_registration_type;
-        this.vehicle_ncb_current = vehicle_ncb_current;
-        this.is_claim_exists = is_claim_exists;
-        this.birth_date = birth_date;
-        this.method_type = method_type;
-        this.execution_async = execution_async;
-        this.registration_no = registration_no;
-        this.electrical_accessory = electrical_accessory;
-        this.non_electrical_accessory = non_electrical_accessory;
-        this.voluntary_deductible = voluntary_deductible;
-        this.is_llpd = is_llpd;
-        this.is_external_bifuel = is_external_bifuel;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.middle_name = middle_name;
-        this.external_bifuel_value = external_bifuel_value;
-        this.pa_owner_driver_si = pa_owner_driver_si;
-        this.pa_named_passenger_si = pa_named_passenger_si;
-        this.pa_unnamed_passenger_si = pa_unnamed_passenger_si;
-        this.pa_paid_driver_si = pa_paid_driver_si;
-        this.secret_key = secret_key;
-        this.client_key = client_key;
+        this.vehicle_id = 0;
+        this.rto_id = 0;
+        this.vehicle_insurance_type = "";
+        this.vehicle_manf_date = "";
+        this.vehicle_registration_date = "";
+        this.policy_expiry_date = "";
+        this.vehicle_registration_type = "";
+        this.vehicle_ncb_current = "";
+        this.is_claim_exists = "";
+        this.birth_date = "";
+        this.method_type = "";
+        this.execution_async = "yes";
+        this.registration_no = "";
+        this.electrical_accessory = "";
+        this.non_electrical_accessory = "";
+        this.voluntary_deductible = "";
+        this.is_llpd = "";
+        this.is_external_bifuel = "";
+        this.first_name = "nilesh";
+        this.last_name = "birhade";
+        this.middle_name = "";
+        this.external_bifuel_value = "";
+        this.pa_owner_driver_si = "";
+        this.pa_named_passenger_si = "";
+        this.pa_unnamed_passenger_si = "";
+        this.pa_paid_driver_si = "";
+        this.secret_key = Constants.SECRET_KEY;
+        this.client_key = Constants.CLIENT_KEY;
+    }
+
+    public String getPrev_insurer_id() {
+        return prev_insurer_id;
+    }
+
+    public void setPrev_insurer_id(String prev_insurer_id) {
+        this.prev_insurer_id = prev_insurer_id;
     }
 
     public int getProduct_id() {
