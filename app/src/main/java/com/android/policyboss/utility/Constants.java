@@ -31,6 +31,8 @@ public class Constants {
     public static final String CLIENT_KEY = "CLIENT-GLF2SRA5-CFIF-4X2T-HC1Z-CXV4ZWQTFQ3T";
     public static final String VERSION_CODE = "2.0";
 
+    public static final String QUOTE_COUNTER = "quote_counter";
+
     public static List<String> getPastFifteenYear() {
         ArrayList<String> arrayListYear = new ArrayList<>();
         int year, startYear, endYear;
