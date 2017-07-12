@@ -160,29 +160,30 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
                 break;
             case R.id.btnGetQuote:
-                if (etInvDate.getText().toString() != "") {
+
+                if (etInvDate.getText().toString().equals("")) {
                     etInvDate.requestFocus();
                     etInvDate.setError("Enter Invoice Date");
                     return;
                 }
-                if (acBikeVarient.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                if (acBikeVarient.getText().toString().equals("") && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
                     acBikeVarient.requestFocus();
                     acBikeVarient.setError("Select Bike Varient");
                     return;
                 }
-                if (acRegPlace.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                if (acRegPlace.getText().toString().equals("") && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
                     acRegPlace.requestFocus();
                     acRegPlace.setError("Enter Registration Place");
                     return;
                 }
-                if (etManufactYearMonth.getText().toString() != "") {
+                if (etManufactYearMonth.getText().toString().equals("")) {
                     etManufactYearMonth.requestFocus();
                     etManufactYearMonth.setError("Enter Manufacturing Date");
                     return;
                 }
 
                 if (llRenewBike.getVisibility() == View.VISIBLE) {
-                    if (etPolicyExp.getText().toString() != "") {
+                    if (etPolicyExp.getText().toString().equals("")) {
                         etPolicyExp.requestFocus();
                         etPolicyExp.setError("Enter Policy Expiry Date");
                         return;

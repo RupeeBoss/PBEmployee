@@ -62,7 +62,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
         holder.txtInsurerName.setText(responseEntity.getInsurer().getInsurer_Name());
        // holder.txtIDV.setText(responseEntity);
         if (responseEntity.getPremium_Breakup().getFinal_premium() != null) {
-            holder.txtFinalPremium.setText("" + responseEntity.getPremium_Breakup().getFinal_premium());
+            holder.txtFinalPremium.setText("\u20B9 " +Math.round( responseEntity.getPremium_Breakup().getFinal_premium()));
         } else {
             holder.txtFinalPremium.setText("");
         }
