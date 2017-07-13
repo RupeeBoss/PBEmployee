@@ -22,12 +22,14 @@ import android.widget.TextView;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.carinsurance.CarDetailsActivity;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.BikeUniqueResponse;
+import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
@@ -38,6 +40,8 @@ import java.util.List;
 import io.realm.Realm;
 
 public class BikeInsuranceActivity extends BaseActivity implements IResponseSubcriber, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+
+    public static final String BIKE_INSURENCE = "BikeInsuranceActivity";
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     ImageView ivNewBike, ivRenewBike;
@@ -190,6 +194,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                     }
                 }
                 setRequest();
+
                 new BikeController(this).getBikeQuote(bikeRequestEntity, this);
 
                 break;
@@ -316,7 +321,10 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     public void OnSuccess(APIResponse response, String message) {
 
         if (response instanceof BikeUniqueResponse) {
-            startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class));
+            //TODO : redirect to customer detail
+            startActivity(new Intent(BikeInsuranceActivity.this, CustomerDetailsActivity.class)
+                    .putExtra(BIKE_INSURENCE, bikeRequestEntity));
+            // startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class));
         }
     }
 

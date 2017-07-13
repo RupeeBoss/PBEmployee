@@ -215,10 +215,10 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
-                            android:focusable="false"
                             android:id="@+id/etManufactYearMonth"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/date_range"
+                            android:focusable="false"
                             android:hint="Year-Month of manufacturing?" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -241,10 +241,10 @@
                             app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                             <EditText
-                                android:focusable="false"
                                 android:id="@+id/etPolicyExp"
                                 style="@style/EditTextStyle"
                                 android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
                                 android:hint="Your Policy Expiry Date" />
 
                         </android.support.design.widget.TextInputLayout>
@@ -297,7 +297,7 @@
                         android:layout_marginLeft="@dimen/gap"
                         android:layout_marginRight="@dimen/gap"
                         android:layout_marginTop="@dimen/gap"
-                        android:text="GET QUOTE" />
+                        android:text="NEXT" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

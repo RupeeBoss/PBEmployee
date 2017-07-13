@@ -74,6 +74,8 @@ public class BikeRequestEntity implements Parcelable {
     private String secret_key;
     private String client_key;
     private String prev_insurer_id;
+    private String email;
+    private String phone_no;
 
 
     public BikeRequestEntity() {
@@ -96,14 +98,16 @@ public class BikeRequestEntity implements Parcelable {
         this.voluntary_deductible = "";
         this.is_llpd = "";
         this.is_external_bifuel = "";
-        this.first_name = "nilesh";
-        this.last_name = "birhade";
+        this.first_name = "";
+        this.last_name = "";
         this.middle_name = "";
         this.external_bifuel_value = "";
         this.pa_owner_driver_si = "";
         this.pa_named_passenger_si = "";
         this.pa_unnamed_passenger_si = "";
         this.pa_paid_driver_si = "";
+        this.email = "";
+        this.phone_no = "";
         this.secret_key = Constants.SECRET_KEY;
         this.client_key = Constants.CLIENT_KEY;
     }
@@ -348,6 +352,23 @@ public class BikeRequestEntity implements Parcelable {
         this.client_key = Constants.CLIENT_KEY;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone_no() {
+        return phone_no;
+    }
+
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -384,6 +405,9 @@ public class BikeRequestEntity implements Parcelable {
         dest.writeString(this.pa_paid_driver_si);
         dest.writeString(this.secret_key);
         dest.writeString(this.client_key);
+        dest.writeString(this.prev_insurer_id);
+        dest.writeString(this.email);
+        dest.writeString(this.phone_no);
     }
 
     protected BikeRequestEntity(Parcel in) {
@@ -416,6 +440,9 @@ public class BikeRequestEntity implements Parcelable {
         this.pa_paid_driver_si = in.readString();
         this.secret_key = in.readString();
         this.client_key = in.readString();
+        this.prev_insurer_id = in.readString();
+        this.email = in.readString();
+        this.phone_no = in.readString();
     }
 
     public static final Parcelable.Creator<BikeRequestEntity> CREATOR = new Parcelable.Creator<BikeRequestEntity>() {
