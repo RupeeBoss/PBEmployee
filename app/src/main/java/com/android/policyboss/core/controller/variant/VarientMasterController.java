@@ -67,7 +67,7 @@ public class VarientMasterController implements IVarientMaster {
     }
 
     @Override
-    public void getAllMasters(final IResponseSubcriber iResponseSubcriber) {
+    public void  getAllMasters(final IResponseSubcriber iResponseSubcriber) {
 
         HashMap<String, String> body = new HashMap<String, String>();
         body.put("MasterId", "0");

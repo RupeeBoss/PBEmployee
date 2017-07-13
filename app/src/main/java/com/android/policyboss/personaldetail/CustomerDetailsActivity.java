@@ -13,14 +13,19 @@ import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
+import com.android.policyboss.bikeinsurance.BikeQuoteActivity;
 import com.android.policyboss.carinsurance.CarDetailsActivity;
 import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.controller.healthquote.HealthQuoteController;
 import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
+import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.requestEntity.HealthRequestEntity;
+import com.android.policyboss.core.response.BikeUniqueResponse;
 import com.android.policyboss.core.response.HealthQuoteResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity;
@@ -34,6 +39,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
     QuoteRequestEntity entity;
     String fromWhichClass = "";
     HealthRequestEntity healthRequestEntity;
+    BikeRequestEntity bikeRequestEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,9 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         } else if (getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE) != null) {
             healthRequestEntity = (HealthRequestEntity) getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE);
             fromWhichClass = HealthInsuranceAgeDetailActivity.HEALTH_QUOTE;
+        } else if (getIntent().getParcelableExtra(BikeInsuranceActivity.BIKE_INSURENCE) != null) {
+            bikeRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(BikeInsuranceActivity.BIKE_INSURENCE);
+            fromWhichClass = BikeInsuranceActivity.BIKE_INSURENCE;
         }
 
     }
@@ -95,6 +104,13 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 healthRequestEntity.setContactName(etCustomerName.getText().toString());
                 showDialog();
                 new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
+            } else if (fromWhichClass.equals(BikeInsuranceActivity.BIKE_INSURENCE)) {
+                //bike
+                bikeRequestEntity.setFirst_name(etCustomerName.getText().toString());
+                bikeRequestEntity.setPhone_no(etCustomerMobile.getText().toString());
+                bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
+                showDialog();
+                new BikeController(this).getBikeQuote(bikeRequestEntity, this);
             }
         }
     }
@@ -116,6 +132,8 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 startActivity(new Intent(this, HealthQuoteActivity.class)
                         .putExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE, (HealthQuoteResponse) response));
             }
+        } else if (response instanceof BikeUniqueResponse) {
+            startActivity(new Intent(this, BikeQuoteActivity.class));
         }
     }
 
