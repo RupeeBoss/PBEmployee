@@ -7,31 +7,31 @@
             android:title="Dashboard" />
         <item
             android:id="@+id/nav_autoLead"
-            android:title="CREATE LEAD" />
+            android:title="Create Lead" />
         <item
             android:id="@+id/nav_salesupport"
             android:title="Sales support" />
 
-        <!-- <item
-             android:id="@+id/nav_pickupHistory"
-             android:title="Pick-up summary" />
+        <item
+            android:id="@+id/nav_register_garaj"
+            android:title="Register Garage" />
 
+        <!--
+                 <item
+                     android:id="@+id/nav_offer"
+                     android:title="Offers" />
 
-         <item
-             android:id="@+id/nav_offer"
-             android:title="Offers" />
+                 <item
+                     android:id="@+id/nav_referfriend"
+                     android:title="Refer friends" />
 
-         <item
-             android:id="@+id/nav_referfriend"
-             android:title="Refer friends" />
-
-         <item
-             android:id="@+id/nav_pickup_friend"
-             android:title="Pickup for friend"
-             android:visible="false" />
-         <item
-             android:id="@+id/nav_logout"
-             android:title="Logout" />-->
+                 <item
+                     android:id="@+id/nav_pickup_friend"
+                     android:title="Pickup for friend"
+                     android:visible="false" />
+                 <item
+                     android:id="@+id/nav_logout"
+                     android:title="Logout" />-->
 
     </group>
 </menu>

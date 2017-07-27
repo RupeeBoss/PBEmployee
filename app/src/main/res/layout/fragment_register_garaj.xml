@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="90"
+        android:scrollbars="none">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spSegment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="@dimen/gap"
+                android:background="@drawable/spinner_bg"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/garage_segment"
+                android:paddingBottom="12dp"
+                android:paddingLeft="30dp"
+                android:paddingTop="12dp"></Spinner>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etName"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Enter Name"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Enter Address"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="3" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etCity"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Enter City"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etLandline"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Landline No"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etContactPerson"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Contact Person"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etMobile"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Mobile No"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Enter Email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etCustomerBase"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Total Existing Customer Base"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="@dimen/gap"
+                android:layout_marginRight="@dimen/gap"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:gravity="bottom"
+                app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                <EditText
+                    android:id="@+id/etRemarks"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:ellipsize="end"
+                    android:hint="Enter Remarks"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:text="Register"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

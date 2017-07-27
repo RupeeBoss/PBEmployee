@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.policyboss.BaseFragment;
 import com.android.policyboss.R;
 import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
-import com.android.policyboss.bikeinsurance.BikeQuoteActivity;
 import com.android.policyboss.carinsurance.CarInsuranceActivity;
 import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 
@@ -57,7 +55,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.txtCarInsurance:
                 startActivity(new Intent(getActivity(), CarInsuranceActivity.class));
-                //Toast.makeText(getActivity(), "Car insurance", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txtHealthInsurance:
                 startActivity(new Intent(getActivity(), HealthInsuranceActivity.class));

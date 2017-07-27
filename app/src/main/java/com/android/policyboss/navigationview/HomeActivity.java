@@ -17,6 +17,7 @@ import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
+import com.android.policyboss.garaj.RegisterGarageFragment;
 import com.android.policyboss.salessupport.SalesSupportFragment;
 
 import io.realm.Realm;
@@ -39,13 +40,12 @@ public class HomeActivity extends BaseActivity {
     private static final String TAG_HOME = "Dashboard";
     private static final String TAG_CREATE_LEAD = "Create Lead";
     private static final String TAG_SALES_SUPPORT = "Sales support";
-
+    private static final String TAG_REGISTER_GARAJ = "Register Garage";
 
     private Toolbar toolbar;
 
     //set current selected fragment TAG
     public static String CURRENT_TAG = TAG_HOME;
-
 
 
     @Override
@@ -103,11 +103,11 @@ public class HomeActivity extends BaseActivity {
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_SALES_SUPPORT;
                         break;
-                    /*case R.id.nav_pickupHistory:
-                        navItemIndex = 2;
-                        CURRENT_TAG = TAG_PICKUP_SUMMARY;
+                    case R.id.nav_register_garaj:
+                        navItemIndex = 3;
+                        CURRENT_TAG = TAG_REGISTER_GARAJ;
                         break;
-
+/*
                     case R.id.nav_offer:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_OFFERS;
@@ -235,11 +235,11 @@ public class HomeActivity extends BaseActivity {
                 // photos
                 fragment = new SalesSupportFragment();
                 return fragment;
-            /*case 2:
-                // movies fragment
-                fragment = new PickUpFragment();
-                return fragment;
             case 3:
+                // movies fragment
+                fragment = new RegisterGarageFragment();
+                return fragment;
+            /*case 3:
                 // notifications fragment
                 fragment = new OffersFragment();
                 return fragment;
@@ -300,4 +300,6 @@ public class HomeActivity extends BaseActivity {
         // refresh toolbar menu
         invalidateOptionsMenu();
     }
+
+
 }
