@@ -18,6 +18,7 @@ import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.garage.RegisterGarageController;
 import com.android.policyboss.core.requestEntity.RegisterGarajRequestEntity;
 import com.android.policyboss.core.response.GarajRegisterResponse;
+import com.android.policyboss.facade.LoginFacade;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,7 +75,8 @@ public class RegisterGarageFragment extends BaseFragment implements View.OnClick
             entity.setExistingCustomerBase(etCustomerBase.getText().toString());
             entity.setRemarks(etRemarks.getText().toString());
             entity.setSegmentId(spSegment.getSelectedItemPosition() + 1);
-
+            //Change when login is active
+            entity.setEmpId(40000521);
             showDialog();
             new RegisterGarageController(getContext()).registerGarage(entity, this);
 

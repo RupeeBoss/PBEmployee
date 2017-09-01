@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -61,14 +62,23 @@ public class HomeActivity extends BaseActivity {
 
         // initializing navigation menu
         setUpNavigationView();
-
-
         if (savedInstanceState == null) {
             navItemIndex = 0;
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment(TAG_HOME);
         }
 
+    }
+
+    //Show Garage menu only
+
+    private void ShowGarageMenu() {
+
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_home).setVisible(false);
+        nav_Menu.findItem(R.id.nav_autoLead).setVisible(false);
+        nav_Menu.findItem(R.id.nav_salesupport).setVisible(false);
 
     }
 
@@ -180,6 +190,7 @@ public class HomeActivity extends BaseActivity {
         // This code loads home fragment when back key is pressed
         // when user is in other fragment than home
         if (shouldLoadHomeFragOnBackPress) {
+
             // checking if user is on other navigation menu
             // rather than home
             if (navItemIndex != 0) {
@@ -205,6 +216,8 @@ public class HomeActivity extends BaseActivity {
                     }
                 }, 2000);
             }
+
+
         }
 
         // super.onBackPressed();

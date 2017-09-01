@@ -10,6 +10,8 @@ import retrofit.Retrofit;
 
 public abstract class NodeRetroRequestBuilder {
 
+    //qa-horizon.policyboss.com:3000/quote/premium_list_db
+
     public static String URL = "http://qa-horizon.policyboss.com:3000";
 
     static Retrofit restAdapter = null;

@@ -24,10 +24,7 @@ public class AuthenticationRequestBuilder extends RetroRequestBuilder {
     }
 
     public interface AuthenticationNetworkService {
-
         @POST(SUB_URL + "/Login")
         Call<LoginResponse> login(@Body HashMap<String, String> body);
-
-
     }
 }

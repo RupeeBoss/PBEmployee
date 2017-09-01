@@ -10,6 +10,9 @@ import retrofit.Retrofit;
 
 public abstract class GarageRetroRequestBuilder {
 
+    //http://www.policyboss.com/GarageAppService/PBService.svc
+    //public static String URL = "http://www.policyboss.com/GarageAppService";
+
     public static String URL = "http://qa.policyboss.com/GarageAppService";
 
     static Retrofit restAdapter = null;
