@@ -94,6 +94,8 @@ public class BikeController implements IBike {
         entity.setSecret_key(Constants.SECRET_KEY);
         entity.setClient_key(Constants.CLIENT_KEY);
         entity.setResponse_version(Constants.VERSION_CODE);
+        //entity.setExecution_async("no");
+
         entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
 
         if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {

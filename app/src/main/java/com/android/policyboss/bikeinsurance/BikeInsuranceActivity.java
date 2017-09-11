@@ -195,7 +195,11 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                 }
                 setRequest();
 
-                new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+               // showDialog("Initiate quotes..");
+               // new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+
+                startActivity(new Intent(BikeInsuranceActivity.this, CustomerDetailsActivity.class)
+                        .putExtra(BIKE_INSURENCE, bikeRequestEntity));
 
                 break;
         }
@@ -216,12 +220,13 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setVehicle_insurance_type("Premium");
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_external_bifuel("no");
+        bikeRequestEntity.setVehicle_registration_type("individual");
 
 
         if (llRenewBike.getVisibility() == View.VISIBLE) {
             bikeRequestEntity.setVehicle_insurance_type("renew");
             bikeRequestEntity.setPolicy_expiry_date(etPolicyExp.getText().toString());
-            databaseController.getInsurenceID((String) spPrevInsurer.getSelectedItem().toString());
+            bikeRequestEntity.setPrev_insurer_id(String.valueOf(databaseController.getInsurenceID((String) spPrevInsurer.getSelectedItem().toString())));
 
             if (switchNcb.isChecked()) {
                 bikeRequestEntity.setIs_claim_exists("yes");
@@ -319,7 +324,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
     @Override
     public void OnSuccess(APIResponse response, String message) {
-
+        cancelDialog();
         if (response instanceof BikeUniqueResponse) {
             //TODO : redirect to customer detail
             startActivity(new Intent(BikeInsuranceActivity.this, CustomerDetailsActivity.class)

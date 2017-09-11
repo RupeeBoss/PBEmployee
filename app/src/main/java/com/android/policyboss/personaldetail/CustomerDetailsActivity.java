@@ -107,7 +107,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
             } else if (fromWhichClass.equals(BikeInsuranceActivity.BIKE_INSURENCE)) {
                 //bike
                 bikeRequestEntity.setFirst_name(etCustomerName.getText().toString());
-                bikeRequestEntity.setPhone_no(etCustomerMobile.getText().toString());
+                bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
                 bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
                 showDialog();
                 new BikeController(this).getBikeQuote(bikeRequestEntity, this);

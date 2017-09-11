@@ -8,11 +8,12 @@ import java.util.concurrent.TimeUnit;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
-public abstract class NodeRetroRequestBuilder {
+public abstract class GarageRetroRequestBuilder {
 
-    //qa-horizon.policyboss.com:3000/quote/premium_list_db
+    //http://www.policyboss.com/GarageAppService/PBService.svc
+    //public static String URL = "http://www.policyboss.com/GarageAppService";
 
-    public static String URL = "http://qa-horizon.policyboss.com:3000";
+    public static String URL = "http://qa.policyboss.com/GarageAppService";
 
     static Retrofit restAdapter = null;
 

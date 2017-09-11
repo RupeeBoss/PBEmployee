@@ -61,6 +61,14 @@
         <item>50</item>
         <item>65</item>
     </string-array>
+
+    <string-array name="garage_segment">
+        <item>MAS</item>
+        <item>TAS</item>
+        <item>3M</item>
+        <item>Multi</item>
+    </string-array>
+
     <string name="title_activity_car_details">Car Details</string>
     <string name="title_activity_fast_lane_car_details">Car Details</string>
     <string name="title_activity_pop_up_card_quote">More details</string>
