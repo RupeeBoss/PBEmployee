@@ -33,7 +33,7 @@ import retrofit.Retrofit;
 
 public class BikeController implements IBike {
 
-    private static final long SLEEP_DELAY = 10000; // 10 seconds delay.
+    private static final long SLEEP_DELAY = 5000;//10000; // 10 seconds delay.
     BikeQuotesRequestBuilder.BikeQuotesNetworkService bikeQuotesNetworkService;
     Context mContext;
     Handler handler;
