@@ -117,7 +117,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                             for (int i = 0; i < itemsSelected.size(); i++) {
                                 selectedItems.add(databaseController.getAddonKey(items[i]));
                             }
-
+                            applyAddon(selectedItems, bikePremiumResponse);
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -142,15 +142,23 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 
     private void applyAddon(ArrayList<String> addonList, BikePremiumResponse bikeResponse) {
         List<ResponseEntity> list = new ArrayList<>();
-        for (ResponseEntity entity :
-                bikeResponse.getResponse()) {
 
-            if (entity.getAddon_List().getAddon_zero_dep_cover() != 0) {
-                Log.d("Zero dep", "" + entity.getAddon_List().getAddon_zero_dep_cover());
-                entity.getPremium_Breakup().setFinal_premium(getAddonPrice(entity.getAddon_List().getAddon_zero_dep_cover()));
+        for (int i = 0; i < addonList.size(); i++) {
+            if (addonList.get(i).matches("addon_zero_dep_cover")) {
+                for (ResponseEntity entity :
+                        bikeResponse.getResponse()) {
+
+                    if (entity.getAddon_List().getAddon_zero_dep_cover() != 0) {
+                        Log.d("Zero dep", "" + entity.getAddon_List().getAddon_zero_dep_cover());
+                        entity.getPremium_Breakup().setFinal_premium(getAddonPrice(entity.getAddon_List().getAddon_zero_dep_cover()));
+                    }
+                    list.add(entity);
+                }
             }
-            list.add(entity);
+
+
         }
+
 
         bikePremiumResponse.setResponse(list);
         rebindAdapter(bikePremiumResponse);
