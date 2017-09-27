@@ -150,7 +150,8 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 
                     if (entity.getAddon_List().getAddon_zero_dep_cover() != 0) {
                         Log.d("Zero dep", "" + entity.getAddon_List().getAddon_zero_dep_cover());
-                        entity.getPremium_Breakup().setFinal_premium(getAddonPrice(entity.getAddon_List().getAddon_zero_dep_cover()));
+                        double prevPremium = (entity.getPremium_Breakup().getFinal_premium() + entity.getAddon_List().getAddon_zero_dep_cover());
+                        entity.getPremium_Breakup().setFinal_premium(getAddonPrice(prevPremium));
                     }
                     list.add(entity);
                 }
