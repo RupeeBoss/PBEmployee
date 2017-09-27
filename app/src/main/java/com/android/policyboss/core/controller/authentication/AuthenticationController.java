@@ -37,7 +37,7 @@ public class AuthenticationController implements IAuthentication {
     @Override
     public void login(String empCode, String pass, final IResponseSubcriber iResponseSubcriber) {
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("EmpCode", empCode);
+        hashMap.put("Username", empCode);
         hashMap.put("Password", pass);
         authenticationNetworkService.login(hashMap).enqueue(new Callback<LoginResponse>() {
             @Override

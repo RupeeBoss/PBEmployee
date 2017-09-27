@@ -53,6 +53,10 @@ public class BaseActivity extends AppCompatActivity {
         dialog = ProgressDialog.show(this, "", "Loading...", true);
     }
 
+    public void showDialog(String message) {
+        dialog = ProgressDialog.show(this, "", message, true);
+    }
+
     public static boolean isValidVehicle(EditText editText) {
         String phoneNumberPattern = "^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$";
         String phoneNumberEntered = editText.getText().toString().trim();
@@ -69,7 +73,6 @@ public class BaseActivity extends AppCompatActivity {
         String emailEntered = editText.getText().toString().trim();
         return !(emailEntered.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailEntered).matches());
     }
-
 
 
 }

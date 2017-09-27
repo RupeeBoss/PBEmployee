@@ -57,7 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
             }
 
-            if (etPassword.getText().toString().length() < 6) {
+            if (etPassword.getText().toString().length() < 2) {
                 etPassword.setError("Minimum 6 character required");
                 etPassword.setFocusable(true);
                 return;
@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             showDialog();
             new AuthenticationController(this).login(etEmployeeCode.getText().toString(),
                     etPassword.getText().toString(), this);
-           // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
     }
 

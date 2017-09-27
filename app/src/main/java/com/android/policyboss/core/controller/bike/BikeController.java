@@ -3,6 +3,7 @@ package com.android.policyboss.core.controller.bike;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.android.policyboss.core.IResponseSubcriber;
@@ -32,12 +33,16 @@ import retrofit.Retrofit;
 
 public class BikeController implements IBike {
 
+    private static final long SLEEP_DELAY = 5000;//10000; // 10 seconds delay.
     BikeQuotesRequestBuilder.BikeQuotesNetworkService bikeQuotesNetworkService;
     Context mContext;
+    Handler handler;
+    IResponseSubcriber iResponseSubcriber;
 
     public BikeController(Context context) {
         bikeQuotesNetworkService = new BikeQuotesRequestBuilder().getService();
         mContext = context;
+        handler = new Handler();
     }
 
     @Override
@@ -48,6 +53,7 @@ public class BikeController implements IBike {
             public void onResponse(Response<BikeUniqueResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
                     String UNIQUE = response.body().getSummary().getRequest_Unique_Id();
+
                     SharedPreferences.Editor edit = Constants.getSharedPreferenceEditor(mContext);
                     edit.putString(Constants.BIKEQUOTE_UNIQUEID,
                             UNIQUE);
@@ -74,33 +80,53 @@ public class BikeController implements IBike {
         });
     }
 
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            new BikeController(mContext).getBikePremium(iResponseSubcriber);
+        }
+    };
+
     @Override
     public void getBikePremium(final IResponseSubcriber iResponseSubcriber) {
+        this.iResponseSubcriber = iResponseSubcriber;
         BikePremiumRequestEntity entity = new BikePremiumRequestEntity();
         entity.setSecret_key(Constants.SECRET_KEY);
         entity.setClient_key(Constants.CLIENT_KEY);
         entity.setResponse_version(Constants.VERSION_CODE);
-        //Log.d("UNIQUE_REQUEST", Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
+        //entity.setExecution_async("no");
+
         entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
+
+        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
+            Constants.getSharedPreferenceEditor(mContext).putInt(Constants.QUOTE_COUNTER,
+                    Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) + 1)
+                    .commit();
+        }
+
         bikeQuotesNetworkService.getBikePremiumList(entity).enqueue(new Callback<BikePremiumResponse>() {
             @Override
             public void onResponse(Response<BikePremiumResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
+
                     iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
 
                     if (!response.body().getSummary().getStatus().equals("complete")) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                new BikeController(mContext).getBikePremium(iResponseSubcriber);
-                            }
-                        }, 10000);
+                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
+                            //server request for pending quotes
+                            handler.postDelayed(runnable, SLEEP_DELAY);
+                        } else {
+                            //remove handler
+                            handler.removeCallbacks(runnable);
+                            //remove stored counters
+                            Constants.getSharedPreferenceEditor(mContext).remove(Constants.QUOTE_COUNTER).commit();
+                        }
                     } else {
-
+                        handler.removeCallbacks(runnable);
                     }
 
                 } else {
-                    Log.d("BIKE_PREMIUM", "" + "Error");
+                    iResponseSubcriber.OnFailure(new RuntimeException("No Quote found"));
                 }
             }
 

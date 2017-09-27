@@ -1,11 +1,17 @@
 package com.android.policyboss.bikeinsurance;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
@@ -22,22 +28,27 @@ import android.widget.TextView;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.carinsurance.CarDetailsActivity;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.BikeUniqueResponse;
+import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import io.realm.Realm;
 
 public class BikeInsuranceActivity extends BaseActivity implements IResponseSubcriber, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+
+    public static final String BIKE_INSURENCE = "BikeInsuranceActivity";
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     ImageView ivNewBike, ivRenewBike;
@@ -95,8 +106,8 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         acBikeVarient = (AutoCompleteTextView) findViewById(R.id.acBikeVarient);
         acRegPlace = (AutoCompleteTextView) findViewById(R.id.acRegPlace);
 
-        List<String> bikevariant = databaseController.getBikeVarientList();
-        List<String> city = databaseController.getCity();
+        //List<String> bikevariant = databaseController.getBikeVarientList();
+        // List<String> city = databaseController.getCity();
 
 
         // region  bike varient adapter
@@ -160,40 +171,47 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
                 break;
             case R.id.btnGetQuote:
-                if (etInvDate.getText().toString() != "") {
+
+                if (etInvDate.getText().toString().equals("")) {
                     etInvDate.requestFocus();
                     etInvDate.setError("Enter Invoice Date");
                     return;
                 }
-                if (acBikeVarient.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                if (acBikeVarient.getText().toString().equals("") && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
                     acBikeVarient.requestFocus();
                     acBikeVarient.setError("Select Bike Varient");
                     return;
                 }
-                if (acRegPlace.getText().toString() != "" && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+                if (acRegPlace.getText().toString().equals("") && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
                     acRegPlace.requestFocus();
                     acRegPlace.setError("Enter Registration Place");
                     return;
                 }
-                if (etManufactYearMonth.getText().toString() != "") {
+                if (etManufactYearMonth.getText().toString().equals("")) {
                     etManufactYearMonth.requestFocus();
                     etManufactYearMonth.setError("Enter Manufacturing Date");
                     return;
                 }
 
                 if (llRenewBike.getVisibility() == View.VISIBLE) {
-                    if (etPolicyExp.getText().toString() != "") {
+                    if (etPolicyExp.getText().toString().equals("")) {
                         etPolicyExp.requestFocus();
                         etPolicyExp.setError("Enter Policy Expiry Date");
                         return;
                     }
                 }
                 setRequest();
-                new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+
+                // showDialog("Initiate quotes..");
+                // new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+
+                startActivity(new Intent(BikeInsuranceActivity.this, CustomerDetailsActivity.class)
+                        .putExtra(BIKE_INSURENCE, bikeRequestEntity));
 
                 break;
         }
     }
+
 
     //region create bike request
     private void setRequest() {
@@ -210,12 +228,13 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setVehicle_insurance_type("Premium");
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_external_bifuel("no");
+        bikeRequestEntity.setVehicle_registration_type("individual");
 
 
         if (llRenewBike.getVisibility() == View.VISIBLE) {
             bikeRequestEntity.setVehicle_insurance_type("renew");
             bikeRequestEntity.setPolicy_expiry_date(etPolicyExp.getText().toString());
-            databaseController.getInsurenceID((String) spPrevInsurer.getSelectedItem().toString());
+            bikeRequestEntity.setPrev_insurer_id(String.valueOf(databaseController.getInsurenceID((String) spPrevInsurer.getSelectedItem().toString())));
 
             if (switchNcb.isChecked()) {
                 bikeRequestEntity.setIs_claim_exists("yes");
@@ -298,9 +317,12 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
     @Override
     public void OnSuccess(APIResponse response, String message) {
-
+        cancelDialog();
         if (response instanceof BikeUniqueResponse) {
-            startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class));
+            //TODO : redirect to customer detail
+            startActivity(new Intent(BikeInsuranceActivity.this, CustomerDetailsActivity.class)
+                    .putExtra(BIKE_INSURENCE, bikeRequestEntity));
+            // startActivity(new Intent(BikeInsuranceActivity.this, BikeQuoteActivity.class));
         }
     }
 
