@@ -43,6 +43,7 @@ public class CommonAddonEntity {
     private AddonWindshieldCoverEntity addon_windshield_cover;
     private AddonZeroDepCoverEntity addon_zero_dep_cover;
 
+
     public AddonAmbulanceChargeCoverEntity getAddon_ambulance_charge_cover() {
         return addon_ambulance_charge_cover;
     }
@@ -194,5 +195,6 @@ public class CommonAddonEntity {
     public void setAddon_zero_dep_cover(AddonZeroDepCoverEntity addon_zero_dep_cover) {
         this.addon_zero_dep_cover = addon_zero_dep_cover;
     }
+
 
 }
