@@ -417,8 +417,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
         quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
-
-        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
+        quoteRequestEntity.setSupportsAgentID(945);
+//        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
 
     }
 

@@ -149,18 +149,21 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                         bikeResponse.getResponse()) {
 
                     if (entity.getAddon_List().getAddon_zero_dep_cover() != 0) {
-                        Log.d("Zero dep", "" + entity.getAddon_List().getAddon_zero_dep_cover());
+                        Log.d("Zero", "" + entity.getAddon_List().getAddon_zero_dep_cover());
+                        Log.d("Zero final", "" + entity.getPremium_Breakup().getFinal_premium());
+                        int zero = entity.getAddon_List().getAddon_zero_dep_cover();
+                        double finalPre = entity.getPremium_Breakup().getFinal_premium();
+
+                        int ss = (int) (zero + finalPre);
+
+
                         double prevPremium = (entity.getPremium_Breakup().getFinal_premium() + entity.getAddon_List().getAddon_zero_dep_cover());
                         entity.getPremium_Breakup().setFinal_premium(getAddonPrice(prevPremium));
                     }
                     list.add(entity);
                 }
             }
-
-
         }
-
-
         bikePremiumResponse.setResponse(list);
         rebindAdapter(bikePremiumResponse);
 
