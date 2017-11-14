@@ -1,15 +1,13 @@
 package com.android.policyboss.core.models;
 
-public class AddonZeroDepCoverEntity {
+public class AddonRodentBiteCoverEntity {
     /**
-     * min : 234
-     * max : 239
+     * min : 100
+     * max : 100
      */
 
     private int min;
     private int max;
-    private boolean isSelected;
-
 
     public int getMin() {
         return min;
@@ -26,6 +24,9 @@ public class AddonZeroDepCoverEntity {
     public void setMax(int max) {
         this.max = max;
     }
+
+    private boolean isSelected;
+
     public boolean isSelected() {
         return isSelected;
     }
@@ -34,4 +35,3 @@ public class AddonZeroDepCoverEntity {
         isSelected = selected;
     }
 }
-       

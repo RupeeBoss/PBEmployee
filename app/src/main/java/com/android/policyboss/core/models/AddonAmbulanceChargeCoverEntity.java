@@ -1,15 +1,22 @@
 package com.android.policyboss.core.models;
 
-public class AddonZeroDepCoverEntity {
+public class AddonAmbulanceChargeCoverEntity {
     /**
-     * min : 234
-     * max : 239
+     * min : 100
+     * max : 100
      */
 
     private int min;
     private int max;
     private boolean isSelected;
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public int getMin() {
         return min;
@@ -26,12 +33,4 @@ public class AddonZeroDepCoverEntity {
     public void setMax(int max) {
         this.max = max;
     }
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
 }
-       
