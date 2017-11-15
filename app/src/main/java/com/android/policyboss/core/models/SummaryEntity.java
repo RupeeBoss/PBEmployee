@@ -1,34 +1,40 @@
 package com.android.policyboss.core.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class SummaryEntity {
     /**
-     * _id : 595c87480b49c83c70da2099
-     * Request_Id : 1057
-     * Request_Unique_Id : SRN-MQEQEEY5-GXDT-SFTT-KWTT-ACOPJBG3FCQZ
+     * _id : 5a0ab49b1f4d2b19e098bf79
+     * Request_Id : 8946
+     * Request_Unique_Id : SRN-XP0NTBTF-VH4C-33V4-7JVZ-Z9TCRILNPXFF
      * Client_Id : 4
-     * Request_Core : {"product_id":10,"vehicle_id":50783,"rto_id":100,"vehicle_insurance_type":"renew","vehicle_manf_date":"2015-07-05","vehicle_registration_date":"2015-07-20","policy_expiry_date":"2017-07-19","vehicle_registration_type":"individual","vehicle_ncb_current":"20","is_claim_exists":"no","birth_date":"1981-12-07","method_type":"Premium","execution_async":"yes","registration_no":"MH-01-PA-1234","electrical_accessory":"","non_electrical_accessory":"","voluntary_deductible":"","is_llpd":"no","is_external_bifuel":"no","first_name":"JP4IFQNU0X","last_name":"7VHV1TO8KC","middle_name":"GY44IHF9QI","external_bifuel_value":"0","pa_owner_driver_si":"","pa_named_passenger_si":"","pa_unnamed_passenger_si":"","pa_paid_driver_si":"","secret_key":"SECRET-ODARQ6JP-9V2Q-7BIM-0NNM-DNRTXRWMRTAL","client_key":"CLIENT-GLF2SRA5-CFIF-4X2T-HC1Z-CXV4ZWQTFQ3T","registration_no_1":"MH","registration_no_2":"01","registration_no_3":"PA","registration_no_4":"1234"}
-     * Request_Product : {"vehicle_insurance_type":"renew","vehicle_registration_type":"individual","vehicle_registration_date":"2015-07-20","vehicle_id":50783,"rto_id":100,"prev_insurer_id":"","is_claim_exists":"no","vehicle_ncb_current":"20","vehicle_ncb_next":"25","vehicle_age_year":2,"vehicle_age_month":24,"vehicle_manf_year":"2015","vehicle_expected_idv":"","registration_no":"MH-01-PA-1234","registration_no_1":"MH","registration_no_2":"01","registration_no_3":"PA","registration_no_4":"1234","policy_expiry_date":"2017-07-19","policy_start_date":"2017-07-20","pre_policy_start_date":"2016-07-20","policy_end_date":"2018-07-19","vehicle_manf_date":"2015-07-05","is_financed":"","is_external_bifuel":"no","external_bifuel_type":"","external_bifuel_value":"0","electrical_accessory":"","non_electrical_accessory":"","voluntary_deductible":"","is_antitheft_fit":"","is_aai_member":"","is_llpd":"no","pa_owner_driver_si":"","pa_named_passenger_si":"","pa_unnamed_passenger_si":"","pa_paid_driver_si":"","addon_zero_dep_cover":"","addon_road_assist_cover":"","addon_ncb_protection_cover":"","addon_engine_protector_cover":"","addon_invoice_price_cover":"","addon_key_lock_cover":"","addon_consumable_cover":"","addon_passenger_assistance_cover":"","addon_flag":"","addon_package_name":"ENHANCEMENTCOVER"}
-     * Created_On : 2017-07-05T06:29:28.638Z
-     * Status : pending
-     * Total : 13
-     * Pending : 1
-     * Complete : 12
-     * Success : 10
-     * Fail : 2
-     * Total_Execution_Time : 4.12
-     * vehicle_min_idv : 29512
-     * vehicle_max_idv : 49555
-     * Actual_Time : 21.719999999999995
-     * Common_Addon : {"addon_zero_dep_cover":{"min":234,"max":239}}
+     * PB_CRN : 103419
+     * Request_Core : {"product_id":1,"vehicle_id":681,"rto_id":579,"vehicle_insurance_type":"renew","vehicle_manf_date":"2016-11-01","vehicle_registration_date":"2016-11-15","policy_expiry_date":"2017-11-14","prev_insurer_id":2,"vehicle_registration_type":"individual","vehicle_ncb_current":"0","is_claim_exists":"no","method_type":"Premium","execution_async":"no","electrical_accessory":"0","non_electrical_accessory":"0","registration_no":"MH-01-AA-1234","is_llpd":"no","is_antitheft_fit":"no","voluntary_deductible":0,"is_external_bifuel":"no","is_aai_member":"no","external_bifuel_type":null,"external_bifuel_value":"0","pa_owner_driver_si":100000,"pa_named_passenger_si":"0","pa_unnamed_passenger_si":"0","pa_paid_driver_si":"0","vehicle_expected_idv":0,"first_name":"Ajit","middle_name":"U3IBBVSZDV","last_name":"Kumar","mobile":"7377319978","email":"ajit.kumar@rupeeboss.com","crn":0,"ss_id":0,"secret_key":"SECRET-ODARQ6JP-9V2Q-7BIM-0NNM-DNRTXRWMRTAL","client_key":"CLIENT-GLF2SRA5-CFIF-4X2T-HC1Z-CXV4ZWQTFQ3T","birth_date":"1992-01-01","registration_no_1":"MH","registration_no_2":"01","registration_no_3":"AA","registration_no_4":"1234","posp_posp_id":0,"posp_fba_id":0,"posp_sm_posp_id":0,"posp_sm_posp_name":0,"posp_first_name":0,"posp_middle_name":0,"posp_last_name":0,"posp_email_id":0,"posp_agent_city":0,"posp_mobile_no":0,"posp_pan_no":0,"posp_aadhar":0,"posp_sources":0,"posp_ss_id":0,"posp_erp_id":0,"posp_gender":0,"posp_posp_category":0,"posp_reporting_agent_uid":0,"posp_reporting_agent_name":0,"posp_category":"PolicyBoss","erp_source":"FRESH-MTR"}
+     * Request_Product : {"vehicle_insurance_type":"renew","vehicle_registration_type":"individual","vehicle_registration_date":"2016-11-15","vehicle_id":681,"rto_id":579,"prev_insurer_id":2,"is_claim_exists":"no","vehicle_ncb_current":"0","vehicle_manf_year":"2016","vehicle_ncb_next":"20","vehicle_age_year":1,"vehicle_age_month":12,"vehicle_expected_idv":0,"registration_no":"MH-01-AA-1234","registration_no_1":"MH","registration_no_2":"01","registration_no_3":"AA","registration_no_4":"1234","policy_expiry_date":"2017-11-14","policy_start_date":"2017-11-15","pre_policy_start_date":"2016-11-15","policy_end_date":"2018-11-14","vehicle_manf_date":"2016-11-01","is_financed":"","financial_institute_name":"","financial_institute_code":"","financial_institute_city":"","financial_agreement_type":"","previous_policy_number":"","is_external_bifuel":"no","external_bifuel_type":"","external_bifuel_value":"0","electrical_accessory":"0","non_electrical_accessory":"0","engine_number":"","chassis_number":"","vehicle_color":"","voluntary_deductible":"","is_antitheft_fit":"no","is_aai_member":"no","is_llpd":"no","pa_owner_driver_si":100000,"pa_named_passenger_si":"","pa_unnamed_passenger_si":"","pa_paid_driver_si":"","addon_zero_dep_cover":"","addon_road_assist_cover":"","addon_ncb_protection_cover":"","addon_engine_protector_cover":"","addon_invoice_price_cover":"","addon_key_lock_cover":"","addon_consumable_cover":"","addon_passenger_assistance_cover":"","addon_flag":"","addon_package_name":"Titanium","addon_daily_allowance_cover":"yes","addon_windshield_cover":"yes","addon_tyre_coverage_cover":"yes","addon_personal_belonging_loss_cover":"yes","addon_inconvenience_allowance_cover":"yes","addon_medical_expense_cover":"yes","addon_hospital_cash_cover":"yes","addon_ambulance_charge_cover":"yes","addon_rodent_bite_cover":"yes","addon_losstime_protection_cover":"yes","addon_hydrostatic_lock_cover":"yes"}
+     * Created_On : 2017-11-14T09:17:15.052Z
+     * Status : complete
+     * Total : 23
+     * Pending : 0
+     * Complete : 23
+     * Success : 15
+     * Fail : 8
+     * Total_Execution_Time : 88.37
+     * vehicle_min_idv : 319432
+     * vehicle_max_idv : 550820
+     * Actual_Time : 216.67000000000002
+     * Common_Addon : {"addon_road_assist_cover":{"min":350,"max":500},"addon_zero_dep_cover":{"min":1336,"max":3380},"addon_engine_protector_cover":{"min":569,"max":599},"addon_invoice_price_cover":{"min":898,"max":949},"addon_key_lock_cover":{"min":108,"max":683},"addon_consumable_cover":{"min":435,"max":1597},"addon_medical_expense_cover":{"min":375,"max":375},"addon_hospital_cash_cover":{"min":500,"max":500},"addon_ambulance_charge_cover":{"min":100,"max":100},"addon_ncb_protection_cover":{"min":639,"max":1352},"addon_windshield_cover":{"min":270,"max":270}}
      */
 
     private String _id;
     private int Request_Id;
     private String Request_Unique_Id;
     private int Client_Id;
+    private int PB_CRN;
     private RequestCoreEntity Request_Core;
     private RequestProductEntity Request_Product;
     private String Created_On;
+    @SerializedName("Status")
+    private String StatusX;
     private int Total;
     private int Pending;
     private int Complete;
@@ -38,16 +44,7 @@ public class SummaryEntity {
     private int vehicle_min_idv;
     private int vehicle_max_idv;
     private double Actual_Time;
-    private String Status;
     private CommonAddonEntity Common_Addon;
-
-    public String getStatus() {
-        return Status;
-    }
-
-    public void setStatus(String status) {
-        Status = status;
-    }
 
     public String get_id() {
         return _id;
@@ -81,6 +78,14 @@ public class SummaryEntity {
         this.Client_Id = Client_Id;
     }
 
+    public int getPB_CRN() {
+        return PB_CRN;
+    }
+
+    public void setPB_CRN(int PB_CRN) {
+        this.PB_CRN = PB_CRN;
+    }
+
     public RequestCoreEntity getRequest_Core() {
         return Request_Core;
     }
@@ -105,6 +110,13 @@ public class SummaryEntity {
         this.Created_On = Created_On;
     }
 
+    public String getStatusX() {
+        return StatusX;
+    }
+
+    public void setStatusX(String StatusX) {
+        this.StatusX = StatusX;
+    }
 
     public int getTotal() {
         return Total;

@@ -3,25 +3,21 @@ package com.android.policyboss.core.controller.bike;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.authentication.IAuthentication;
+import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.requestEntity.BikePremiumRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
-import com.android.policyboss.core.requestbuilders.AuthenticationRequestBuilder;
 import com.android.policyboss.core.requestbuilders.BikeQuotesRequestBuilder;
 import com.android.policyboss.core.response.BikePremiumResponse;
 import com.android.policyboss.core.response.BikeUniqueResponse;
-import com.android.policyboss.core.response.LoginResponse;
-import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.utility.Constants;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.Response;
@@ -73,7 +69,11 @@ public class BikeController implements IBike {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
                 } else if (t instanceof UnknownHostException) {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
-                } else {
+                }
+                //else if (t instanceof NumberFormatException) {
+                //     iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
+                // }
+                else {
                     iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
                 }
             }
@@ -98,7 +98,7 @@ public class BikeController implements IBike {
 
         entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
 
-        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
+        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
             Constants.getSharedPreferenceEditor(mContext).putInt(Constants.QUOTE_COUNTER,
                     Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) + 1)
                     .commit();
@@ -109,10 +109,23 @@ public class BikeController implements IBike {
             public void onResponse(Response<BikePremiumResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
 
-                    iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
+                    BikePremiumResponse bikePremiumResponse = new BikePremiumResponse();
+                    if (response.body() != null) {
+                        List<ResponseEntity> list = new ArrayList<ResponseEntity>();
+                        for (int i = 0; i < response.body().getResponse().size(); i++) {
+                            ResponseEntity responseEntity = response.body().getResponse().get(i);
+                            if (responseEntity.getError_Code().equals("")) {
+                                list.add(responseEntity);
+                            }
+                        }
+                        bikePremiumResponse.setResponse(list);
+                        bikePremiumResponse.setSummary(response.body().getSummary());
+                    }
 
-                    if (!response.body().getSummary().getStatus().equals("complete")) {
-                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
+                    iResponseSubcriber.OnSuccess(bikePremiumResponse, response.body().getMessage());
+
+                    if (!response.body().getSummary().getStatusX().equals("complete")) {
+                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
                             //server request for pending quotes
                             handler.postDelayed(runnable, SLEEP_DELAY);
                         } else {
@@ -138,7 +151,11 @@ public class BikeController implements IBike {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
                 } else if (t instanceof UnknownHostException) {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
-                } else {
+                }
+                //else if (t instanceof NumberFormatException) {
+                //    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
+                //}
+                else {
                     iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
                 }
             }

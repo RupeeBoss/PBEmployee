@@ -2,7 +2,6 @@ package com.android.policyboss.bikeinsurance;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
 
     Activity mContext;
     BikePremiumResponse response;
+
     List<ResponseEntity> listQuotes;
 
     public BikeQuoteAdapter(Activity mContext, BikePremiumResponse response) {
@@ -63,11 +63,9 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
         holder.txtInsurerName.setText(responseEntity.getInsurer().getInsurer_Name());
         // holder.txtIDV.setText(responseEntity);
         if (responseEntity.getPremium_Breakup() != null) {
-            if (responseEntity.getPremium_Breakup().getFinal_premium() != null) {
-                holder.txtFinalPremium.setText("\u20B9 " + Math.round(responseEntity.getPremium_Breakup().getFinal_premium()) + "(per year)");
-            } else {
-                holder.txtFinalPremium.setText("");
-            }
+            holder.txtFinalPremium.setText("\u20B9 " + Math.round(responseEntity.getPremium_Breakup().getFinal_premium()) + " (per year)");
+        } else {
+            holder.txtFinalPremium.setText("");
         }
 
         Glide.with(mContext)

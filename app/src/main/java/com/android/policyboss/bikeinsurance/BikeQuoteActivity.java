@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -90,13 +89,13 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     private void openPopUp() {
 
         Dialog dialog;
-      final  ArrayList<QuoteSelected> itemsList = getAddons(bikePremiumResponse.getSummary().getCommon_Addon());
-       // final String[] items = itemsArray.toArray(new String[itemsArray.size()]);
+        final ArrayList<QuoteSelected> itemsList = getAddons(bikePremiumResponse.getSummary().getCommon_Addon());
+        // final String[] items = itemsArray.toArray(new String[itemsArray.size()]);
         final String[] items = new String[itemsList.size()];
-       // final String[] items   = {" Easy "," Medium "," Hard "," Very Hard "};
+        // final String[] items   = {" Easy "," Medium "," Hard "," Very Hard "};
         boolean[] checkedValues = new boolean[itemsList.size()];
 
-        for(int i = 0; i < itemsList.size(); i++) {
+        for (int i = 0; i < itemsList.size(); i++) {
 
             items[i] = itemsList.get(i).getAddOns().toString();
             checkedValues[i] = itemsList.get(i).isSelected;
@@ -126,8 +125,8 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 //                        commonAddonEntity.getAddon_zero_dep_cover().setSelected(isSelected);
 
 
-                        setAddonsCheckLst(bikePremiumResponse.getSummary().getCommon_Addon(),isSelected);
-                    //   bikePremiumResponse.getSummary().getCommon_Addon().getAddon_zero_dep_cover().setSelected(isSelected);
+                        setAddonsCheckLst(bikePremiumResponse.getSummary().getCommon_Addon(), isSelected);
+                        //   bikePremiumResponse.getSummary().getCommon_Addon().getAddon_zero_dep_cover().setSelected(isSelected);
 
 
                     }
@@ -157,7 +156,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                     }
                 });
         dialog = builder.create();
-      //  ((AlertDialog) dialog).getListView().setItemChecked(0, true);
+        //  ((AlertDialog) dialog).getListView().setItemChecked(0, true);
         dialog.setCancelable(false);
         dialog.show();
 
@@ -176,24 +175,23 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                 for (ResponseEntity entity :
                         bikeResponse.getResponse()) {
 
-                    if (entity.getAddon_List().getAddon_zero_dep_cover() != 0) {
-                        Log.d("Zero", "" + entity.getAddon_List().getAddon_zero_dep_cover());
-                        Log.d("Zero final", "" + entity.getPremium_Breakup().getFinal_premium());
-                        int zero = entity.getAddon_List().getAddon_zero_dep_cover();
+                    if (entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover() != 0) {
+
+                        int zero = entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover();
                         double finalPre = entity.getPremium_Breakup().getFinal_premium();
 
                         int ss = (int) (zero + finalPre);
 
 
-                        double prevPremium = (entity.getPremium_Breakup().getFinal_premium() + entity.getAddon_List().getAddon_zero_dep_cover());
+                        double prevPremium = (entity.getPremium_Breakup().getFinal_premium() + entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover());
                         entity.getPremium_Breakup().setFinal_premium(getAddonPrice(prevPremium));
                     }
                     list.add(entity);
                 }
             }
         }
-        bikePremiumResponse.setResponse(list);
-        rebindAdapter(bikePremiumResponse);
+        //bikePremiumResponse.setResponse(list);
+        //rebindAdapter(bikePremiumResponse);
 
     }
 
@@ -247,7 +245,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     private ArrayList<QuoteSelected> getAddons(CommonAddonEntity entity) {
         ArrayList<QuoteSelected> item = new ArrayList<>();
 
-         QuoteSelected quoteSelected= new QuoteSelected();
+        QuoteSelected quoteSelected = new QuoteSelected();
         if (entity.getAddon_ambulance_charge_cover() != null) {
             quoteSelected.setAddOns(databaseController.getAddonName("addon_ambulance_charge_cover"));
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
@@ -299,7 +297,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-          //  item.add(databaseController.getAddonName("addon_inconvenience_allowance_cover"));
+            //  item.add(databaseController.getAddonName("addon_inconvenience_allowance_cover"));
         }
 
 
@@ -308,7 +306,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-           // item.add(databaseController.getAddonName("addon_invoice_price_cover"));
+            // item.add(databaseController.getAddonName("addon_invoice_price_cover"));
         }
 
         if (entity.getAddon_key_lock_cover() != null) {
@@ -325,7 +323,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-           // item.add(databaseController.getAddonName("addon_losstime_protection_cover"));
+            // item.add(databaseController.getAddonName("addon_losstime_protection_cover"));
         }
 
 
@@ -334,7 +332,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-           // item.add(databaseController.getAddonName("addon_medical_expense_cover"));
+            // item.add(databaseController.getAddonName("addon_medical_expense_cover"));
         }
 
         if (entity.getAddon_ncb_protection_cover() != null) {
@@ -343,7 +341,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-          //  item.add(databaseController.getAddonName("addon_ncb_protection_cover"));
+            //  item.add(databaseController.getAddonName("addon_ncb_protection_cover"));
         }
 
         if (entity.getAddon_passenger_assistance_cover() != null) {
@@ -352,7 +350,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-           // item.add(databaseController.getAddonName("addon_passenger_assistance_cover"));
+            // item.add(databaseController.getAddonName("addon_passenger_assistance_cover"));
         }
 
         if (entity.getAddon_personal_belonging_loss_cover() != null) {
@@ -361,7 +359,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-           // item.add(databaseController.getAddonName("addon_personal_belonging_loss_cover"));
+            // item.add(databaseController.getAddonName("addon_personal_belonging_loss_cover"));
         }
 
         if (entity.getAddon_road_assist_cover() != null) {
@@ -378,7 +376,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-           // item.add(databaseController.getAddonName("addon_rodent_bite_cover"));
+            // item.add(databaseController.getAddonName("addon_rodent_bite_cover"));
         }
 
         if (entity.getAddon_tyre_coverage_cover() != null) {
@@ -396,7 +394,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             quoteSelected.setSelected(entity.getAddon_zero_dep_cover().isSelected());
             item.add(quoteSelected);
 
-           // item.add(databaseController.getAddonName("addon_windshield_cover"));
+            // item.add(databaseController.getAddonName("addon_windshield_cover"));
         }
 
         if (entity.getAddon_zero_dep_cover() != null) {
@@ -409,10 +407,10 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         return item;
     }
 
-    private void setAddonsCheckLst(CommonAddonEntity entity ,boolean bln) {
+    private void setAddonsCheckLst(CommonAddonEntity entity, boolean bln) {
         ArrayList<QuoteSelected> item = new ArrayList<>();
 
-        QuoteSelected quoteSelected= new QuoteSelected();
+        QuoteSelected quoteSelected = new QuoteSelected();
         if (entity.getAddon_ambulance_charge_cover() != null) {
             entity.getAddon_ambulance_charge_cover().setSelected(bln);
         }
@@ -501,8 +499,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-    public class QuoteSelected
-    {
+    public class QuoteSelected {
         private String addOns;
         private boolean isSelected;
 
@@ -521,9 +518,6 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         public void setSelected(boolean selected) {
             isSelected = selected;
         }
-
-
-
 
 
     }
