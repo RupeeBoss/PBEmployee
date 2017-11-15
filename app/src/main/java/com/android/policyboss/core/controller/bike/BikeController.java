@@ -47,7 +47,7 @@ public class BikeController implements IBike {
         bikeQuotesNetworkService.getBikeUniqueID(bikeRequestEntity).enqueue(new Callback<BikeUniqueResponse>() {
             @Override
             public void onResponse(Response<BikeUniqueResponse> response, Retrofit retrofit) {
-                if (response.body() != null) {
+                if (response.body() != null ) {
                     String UNIQUE = response.body().getSummary().getRequest_Unique_Id();
 
                     SharedPreferences.Editor edit = Constants.getSharedPreferenceEditor(mContext);
@@ -69,10 +69,9 @@ public class BikeController implements IBike {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
                 } else if (t instanceof UnknownHostException) {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof NumberFormatException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
                 }
-                //else if (t instanceof NumberFormatException) {
-                //     iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
-                // }
                 else {
                     iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
                 }
@@ -151,10 +150,9 @@ public class BikeController implements IBike {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
                 } else if (t instanceof UnknownHostException) {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof NumberFormatException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
                 }
-                //else if (t instanceof NumberFormatException) {
-                //    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
-                //}
                 else {
                     iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
                 }

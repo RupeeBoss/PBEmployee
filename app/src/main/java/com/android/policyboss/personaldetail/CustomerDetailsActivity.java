@@ -103,6 +103,22 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
             } else if (fromWhichClass.equals(BikeInsuranceActivity.BIKE_INSURENCE)) {
                 //bike
+
+                String[] fullName = etCustomerName.getText().toString().split(" ");
+
+                if (fullName.length == 1) {
+                    bikeRequestEntity.setFirst_name(fullName[0]);
+                } else if (fullName.length == 2) {
+                    bikeRequestEntity.setFirst_name(fullName[0]);
+                    bikeRequestEntity.setLast_name(fullName[1]);
+
+                } else if (fullName.length == 3) {
+                    bikeRequestEntity.setFirst_name(fullName[0]);
+                    bikeRequestEntity.setMiddle_name(fullName[1]);
+                    bikeRequestEntity.setLast_name(fullName[2]);
+                }
+
+
                 bikeRequestEntity.setFirst_name(etCustomerName.getText().toString());
                 bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
                 bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
