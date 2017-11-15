@@ -289,7 +289,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void init_widgets() {
-
+        bikeRequestEntity = new BikeRequestEntity();
         spManufactureYear = (Spinner) findViewById(R.id.spManufactureYear);
         etFirstRegDate = (EditText) findViewById(R.id.etFirstRegDate);
         etElecAcc = (EditText) findViewById(R.id.etElecAcc);

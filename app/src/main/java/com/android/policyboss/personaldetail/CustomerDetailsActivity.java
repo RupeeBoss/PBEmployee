@@ -17,6 +17,7 @@ import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
+import com.android.policyboss.core.controller.car.CarController;
 import com.android.policyboss.core.controller.healthquote.HealthQuoteController;
 import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
@@ -93,7 +94,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 carRequestEntity.setEmail(etCustomerEmail.getText().toString());
                 showDialog();
                 //new MotorQuoteController(this).getQuoteDetails(entity, this);
-                new BikeController(this).getBikeQuote(carRequestEntity, this);
+                new CarController(this).getCarQuote(carRequestEntity, this);
 
             } else if (fromWhichClass.equals(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE)) {
                 //health
