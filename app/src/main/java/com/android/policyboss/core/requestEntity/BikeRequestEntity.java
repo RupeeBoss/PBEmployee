@@ -101,11 +101,11 @@ public class BikeRequestEntity implements Parcelable {
         this.vehicle_ncb_current = "";
         this.is_claim_exists = "";
         this.method_type = "";
-        this.electrical_accessory = "";
-        this.non_electrical_accessory = "";
+        this.electrical_accessory = "0";
+        this.non_electrical_accessory = "0";
         this.registration_no = "";
         this.is_llpd = "";
-        this.is_antitheft_fit = "";
+        this.is_antitheft_fit = "no";
         this.voluntary_deductible = 0;
         this.is_external_bifuel = "";
         this.external_bifuel_value = "";

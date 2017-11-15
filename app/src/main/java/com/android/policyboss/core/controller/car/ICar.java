@@ -1,7 +1,7 @@
 package com.android.policyboss.core.controller.car;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.requestEntity.CarRequestEntity;
+import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 
 /**
  * Created by Nilesh Birhade on 14-11-2017.
@@ -9,7 +9,7 @@ import com.android.policyboss.core.requestEntity.CarRequestEntity;
 
 public interface ICar {
 
-    void getCarQuote(CarRequestEntity entity, IResponseSubcriber iResponseSubcriber);
+    void getCarQuote(BikeRequestEntity entity, IResponseSubcriber iResponseSubcriber);
 
     void getCarPremium(IResponseSubcriber iResponseSubcriber);
 }
