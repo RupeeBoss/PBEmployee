@@ -206,6 +206,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     //region create bike request
     private void setRequest() {
 
+        bikeRequestEntity.setProduct_id(10);
         bikeRequestEntity.setVehicle_registration_date(etInvDate.getText().toString());
         bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
         bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
@@ -219,6 +220,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setVehicle_registration_type("individual");
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(acRegPlace.getText().toString()));
 
 
         if (llRenewBike.getVisibility() == View.VISIBLE) {
@@ -227,10 +229,10 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
             bikeRequestEntity.setPrev_insurer_id(String.valueOf(databaseController.getInsurenceID((String) spPrevInsurer.getSelectedItem().toString())));
 
             if (switchNcb.isChecked()) {
-                bikeRequestEntity.setIs_claim_exists("yes");
+                bikeRequestEntity.setIs_claim_exists("no");
                 bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
             } else {
-                bikeRequestEntity.setIs_claim_exists("no");
+                bikeRequestEntity.setIs_claim_exists("yes");
             }
         }
 
@@ -334,5 +336,9 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     @Override
     public void OnFailure(Throwable t) {
 
+    }
+
+    private String getRegistrationNo(String city) {
+        return "" + city.charAt(1) + city.charAt(2) + "-" + city.charAt(3) + city.charAt(4) + "-AA-1234";
     }
 }
