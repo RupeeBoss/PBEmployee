@@ -118,19 +118,19 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onClick(DialogInterface dialog, int selectedItemId,
                                         boolean isSelected) {
-//                        if (isSelected) {
-//                          //  itemsSelected.add(selectedItemId);
-//                           // itemsList.get(selectedItemId).setSelected(isSelected);
-//
-//                            //  commonAddonEntity.getAddon_zero_dep_cover().setSelected();
-//
-//                        } else if (itemsSelected.contains(selectedItemId)) {
-//                          //  itemsSelected.remove(Integer.valueOf(selectedItemId));
-//                            itemsList.get(selectedItemId).setSelected(isSelected);
-//                        }
+                        if (isSelected) {
+                            //  itemsSelected.add(selectedItemId);
+                            // itemsList.get(selectedItemId).setSelected(isSelected);
 
-//                        CommonAddonEntity commonAddonEntity = bikePremiumResponse.getSummary().getCommon_Addon();
-//                        commonAddonEntity.getAddon_zero_dep_cover().setSelected(isSelected);
+                            //  commonAddonEntity.getAddon_zero_dep_cover().setSelected();
+
+                        } else if (itemsSelected.contains(selectedItemId)) {
+                            //  itemsSelected.remove(Integer.valueOf(selectedItemId));
+                            itemsList.get(selectedItemId).setSelected(isSelected);
+                        }
+
+                        CommonAddonEntity commonAddonEntity = bikePremiumResponse.getSummary().getCommon_Addon();
+                        commonAddonEntity.getAddon_zero_dep_cover().setSelected(isSelected);
 
 
                         setAddonsCheckLst(bikePremiumResponse.getSummary().getCommon_Addon(), isSelected);
@@ -161,6 +161,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
                     }
                 });
         dialog = builder.create();
@@ -184,22 +185,16 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                         bikeResponse.getResponse()) {
 
                     if (entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover() != 0) {
-
-                        int zero = entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover();
-                        double finalPre = entity.getPremium_Breakup().getFinal_premium();
-
-                        int ss = (int) (zero + finalPre);
-
-
-                        double prevPremium = (entity.getPremium_Breakup().getFinal_premium() + entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover());
+                        double prevPremium = (entity.getPremium_Breakup().getFinal_premium()
+                                + entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover());
                         entity.getPremium_Breakup().setFinal_premium(getAddonPrice(prevPremium));
                     }
                     list.add(entity);
                 }
             }
         }
-        //bikePremiumResponse.setResponse(list);
-        //rebindAdapter(bikePremiumResponse);
+        bikePremiumResponse.setResponse(list);
+        rebindAdapter(bikePremiumResponse);
 
     }
 
@@ -231,7 +226,6 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         if (response instanceof BikePremiumResponse) {
             bikePremiumResponse = (BikePremiumResponse) response;
             rebindAdapter(bikePremiumResponse);
-            CommonAddonEntity commonAddonEntity = bikePremiumResponse.getSummary().getCommon_Addon();
 
             if (((BikePremiumResponse) response).getResponse().size() != 0)
                 menuAddon.findItem(R.id.add_on).setVisible(true);
@@ -420,9 +414,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void setAddonsCheckLst(CommonAddonEntity entity, boolean bln) {
-        ArrayList<QuoteSelected> item = new ArrayList<>();
 
-        QuoteSelected quoteSelected = new QuoteSelected();
         if (entity.getAddon_ambulance_charge_cover() != null) {
             entity.getAddon_ambulance_charge_cover().setSelected(bln);
         }
@@ -514,6 +506,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     public class QuoteSelected {
         private String addOns;
         private boolean isSelected;
+
 
         public String getAddOns() {
             return addOns;
