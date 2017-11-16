@@ -3,8 +3,6 @@ package com.android.policyboss.splashscreen;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -14,13 +12,8 @@ import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.variant.VarientMasterController;
 import com.android.policyboss.core.response.AllMastersResponse;
 import com.android.policyboss.facade.LoginFacade;
-import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.utility.Constants;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import io.realm.Realm;
 
@@ -52,7 +45,9 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constants.SHARED_PREF_ALL_MASTER, false).commit();
 
-
+        } else {
+            finish();
+            startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
         }
 // else {
 //            new Handler().postDelayed(new Runnable() {

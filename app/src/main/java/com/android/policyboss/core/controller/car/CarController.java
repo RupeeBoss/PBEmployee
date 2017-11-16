@@ -79,7 +79,7 @@ public class CarController implements ICar {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            new BikeController(mContext).getBikePremium(iResponseSubcriber);
+            new CarController(mContext).getCarPremium(iResponseSubcriber);
         }
     };
 
@@ -93,7 +93,7 @@ public class CarController implements ICar {
 
         entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.CARQUOTE_UNIQUEID, ""));
 
-        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
+        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
             Constants.getSharedPreferenceEditor(mContext).putInt(Constants.QUOTE_COUNTER,
                     Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) + 1)
                     .commit();
@@ -119,7 +119,7 @@ public class CarController implements ICar {
                     iResponseSubcriber.OnSuccess(bikePremiumResponse, response.body().getMessage());
 
                     if (!response.body().getSummary().getStatusX().equals("complete")) {
-                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
+                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
                             //server request for pending quotes
                             handler.postDelayed(runnable, SLEEP_DELAY);
                         } else {
