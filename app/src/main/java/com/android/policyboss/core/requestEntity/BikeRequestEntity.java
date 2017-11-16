@@ -86,7 +86,7 @@ public class BikeRequestEntity implements Parcelable {
 
 
     public BikeRequestEntity() {
-        this.product_id = 10;
+        this.product_id = 0;
         this.vehicle_id = 0;
         this.rto_id = 0;
         this.secret_key = Constants.SECRET_KEY;

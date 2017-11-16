@@ -17,6 +17,7 @@ import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
+import com.android.policyboss.core.controller.car.CarController;
 import com.android.policyboss.core.controller.healthquote.HealthQuoteController;
 import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
@@ -33,7 +34,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
 
     EditText etCustomerName, etCustomerEmail, etCustomerMobile;
     Button btnGetQuote;
-    QuoteRequestEntity entity;
+    BikeRequestEntity carRequestEntity;
     String fromWhichClass = "";
     HealthRequestEntity healthRequestEntity;
     BikeRequestEntity bikeRequestEntity;
@@ -47,7 +48,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         init_widgets();
 
         if (getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL) != null) {
-            entity = (QuoteRequestEntity) getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL);
+            carRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL);
             fromWhichClass = CarDetailsActivity.CAR_DETAIL;
         } else if (getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE) != null) {
             healthRequestEntity = (HealthRequestEntity) getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE);
@@ -88,11 +89,12 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
             //server hit and redirect to quote
             if (fromWhichClass.equals(CarDetailsActivity.CAR_DETAIL)) {
                 //motor
-                entity.setContactEmail(etCustomerEmail.getText().toString());
-                entity.setContactMobile(etCustomerMobile.getText().toString());
-                entity.setContactName(etCustomerName.getText().toString());
+                carRequestEntity.setFirst_name(etCustomerName.getText().toString());
+                carRequestEntity.setMobile(etCustomerMobile.getText().toString());
+                carRequestEntity.setEmail(etCustomerEmail.getText().toString());
                 showDialog();
-                new MotorQuoteController(this).getQuoteDetails(entity, this);
+                //new MotorQuoteController(this).getQuoteDetails(entity, this);
+                new CarController(this).getCarQuote(carRequestEntity, this);
 
             } else if (fromWhichClass.equals(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE)) {
                 //health
