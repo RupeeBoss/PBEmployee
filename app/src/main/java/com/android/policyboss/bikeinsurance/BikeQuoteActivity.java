@@ -184,10 +184,10 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
                 for (ResponseEntity entity :
                         bikeResponse.getResponse()) {
 
-                    if (entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover() != 0) {
-                        double prevPremium = (entity.getPremium_Breakup().getFinal_premium()
-                                + entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover());
-                        entity.getPremium_Breakup().setFinal_premium(getAddonPrice(prevPremium));
+                    if (Integer.parseInt(entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover()) != 0) {
+                        double prevPremium = (Integer.parseInt(entity.getPremium_Breakup().getFinal_premium())
+                                + Integer.parseInt(entity.getPremium_Breakup().getAddon().getAddon_zero_dep_cover()));
+                        entity.getPremium_Breakup().setFinal_premium("" + getAddonPrice(prevPremium));
                     }
                     list.add(entity);
                 }
