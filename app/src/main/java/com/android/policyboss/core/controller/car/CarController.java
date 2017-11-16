@@ -1,10 +1,11 @@
-package com.android.policyboss.core.controller.bike;
+package com.android.policyboss.core.controller.car;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.requestEntity.BikePremiumRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
@@ -24,10 +25,10 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 /**
- * Created by Rajeev Ranjan on 24/05/2017.
+ * Created by Nilesh Birhade on 14-11-2017.
  */
 
-public class BikeController implements IBike {
+public class CarController implements ICar {
 
     private static final long SLEEP_DELAY = 5000;//10000; // 10 seconds delay.
     BikeQuotesRequestBuilder.BikeQuotesNetworkService bikeQuotesNetworkService;
@@ -35,23 +36,22 @@ public class BikeController implements IBike {
     Handler handler;
     IResponseSubcriber iResponseSubcriber;
 
-    public BikeController(Context context) {
+    public CarController(Context context) {
         bikeQuotesNetworkService = new BikeQuotesRequestBuilder().getService();
         mContext = context;
         handler = new Handler();
     }
 
     @Override
-    public void getBikeQuote(BikeRequestEntity bikeRequestEntity, final IResponseSubcriber iResponseSubcriber) {
-
-        bikeQuotesNetworkService.getBikeUniqueID(bikeRequestEntity).enqueue(new Callback<BikeUniqueResponse>() {
+    public void getCarQuote(BikeRequestEntity entity, final IResponseSubcriber iResponseSubcriber) {
+        bikeQuotesNetworkService.getBikeUniqueID(entity).enqueue(new Callback<BikeUniqueResponse>() {
             @Override
             public void onResponse(Response<BikeUniqueResponse> response, Retrofit retrofit) {
-                if (response.body() != null ) {
+                if (response.body() != null) {
                     String UNIQUE = response.body().getSummary().getRequest_Unique_Id();
 
                     SharedPreferences.Editor edit = Constants.getSharedPreferenceEditor(mContext);
-                    edit.putString(Constants.BIKEQUOTE_UNIQUEID,
+                    edit.putString(Constants.CARQUOTE_UNIQUEID,
                             UNIQUE);
                     edit.commit();
                     iResponseSubcriber.OnSuccess(response.body(), "");
@@ -69,10 +69,7 @@ public class BikeController implements IBike {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
                 } else if (t instanceof UnknownHostException) {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
-                } else if (t instanceof NumberFormatException) {
-                    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
-                }
-                else {
+                } else {
                     iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
                 }
             }
@@ -87,17 +84,16 @@ public class BikeController implements IBike {
     };
 
     @Override
-    public void getBikePremium(final IResponseSubcriber iResponseSubcriber) {
+    public void getCarPremium(final IResponseSubcriber iResponseSubcriber) {
         this.iResponseSubcriber = iResponseSubcriber;
         BikePremiumRequestEntity entity = new BikePremiumRequestEntity();
         entity.setSecret_key(Constants.SECRET_KEY);
         entity.setClient_key(Constants.CLIENT_KEY);
         entity.setResponse_version(Constants.VERSION_CODE);
-        //entity.setExecution_async("no");
 
-        entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
+        entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.CARQUOTE_UNIQUEID, ""));
 
-        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
+        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
             Constants.getSharedPreferenceEditor(mContext).putInt(Constants.QUOTE_COUNTER,
                     Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) + 1)
                     .commit();
@@ -120,11 +116,10 @@ public class BikeController implements IBike {
                         bikePremiumResponse.setResponse(list);
                         bikePremiumResponse.setSummary(response.body().getSummary());
                     }
-
                     iResponseSubcriber.OnSuccess(bikePremiumResponse, response.body().getMessage());
 
                     if (!response.body().getSummary().getStatusX().equals("complete")) {
-                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
+                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 3) {
                             //server request for pending quotes
                             handler.postDelayed(runnable, SLEEP_DELAY);
                         } else {
@@ -150,10 +145,7 @@ public class BikeController implements IBike {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
                 } else if (t instanceof UnknownHostException) {
                     iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
-                } else if (t instanceof NumberFormatException) {
-                    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
-                }
-                else {
+                } else {
                     iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
                 }
             }

@@ -1,12 +1,10 @@
 package com.android.policyboss.core.requestbuilders;
 
 import com.android.policyboss.core.NodeRetroRequestBuilder;
-import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.requestEntity.BikePremiumRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
 import com.android.policyboss.core.response.BikeUniqueResponse;
-import com.android.policyboss.core.response.MotorQuotesResponse;
 
 import retrofit.Call;
 import retrofit.http.Body;

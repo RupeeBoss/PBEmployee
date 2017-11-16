@@ -58,7 +58,7 @@ public class LoginFacade {
 
     }
 
-    public boolean getDayDifference(long storedDate) {
+    public static boolean getDayDifference(long storedDate) {
         try {
 
             SimpleDateFormat dates = new SimpleDateFormat("MM/dd/yyyy");

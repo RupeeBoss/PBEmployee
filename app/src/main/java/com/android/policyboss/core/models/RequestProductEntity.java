@@ -4,51 +4,70 @@ public class RequestProductEntity {
             /**
              * vehicle_insurance_type : renew
              * vehicle_registration_type : individual
-             * vehicle_registration_date : 2015-07-20
-             * vehicle_id : 50783
-             * rto_id : 100
-             * prev_insurer_id : 
+             * vehicle_registration_date : 2016-11-15
+             * vehicle_id : 681
+             * rto_id : 579
+             * prev_insurer_id : 2
              * is_claim_exists : no
-             * vehicle_ncb_current : 20
-             * vehicle_ncb_next : 25
-             * vehicle_age_year : 2
-             * vehicle_age_month : 24
-             * vehicle_manf_year : 2015
-             * vehicle_expected_idv : 
-             * registration_no : MH-01-PA-1234
+             * vehicle_ncb_current : 0
+             * vehicle_manf_year : 2016
+             * vehicle_ncb_next : 20
+             * vehicle_age_year : 1
+             * vehicle_age_month : 12
+             * vehicle_expected_idv : 0
+             * registration_no : MH-01-AA-1234
              * registration_no_1 : MH
              * registration_no_2 : 01
-             * registration_no_3 : PA
+             * registration_no_3 : AA
              * registration_no_4 : 1234
-             * policy_expiry_date : 2017-07-19
-             * policy_start_date : 2017-07-20
-             * pre_policy_start_date : 2016-07-20
-             * policy_end_date : 2018-07-19
-             * vehicle_manf_date : 2015-07-05
-             * is_financed : 
+             * policy_expiry_date : 2017-11-14
+             * policy_start_date : 2017-11-15
+             * pre_policy_start_date : 2016-11-15
+             * policy_end_date : 2018-11-14
+             * vehicle_manf_date : 2016-11-01
+             * is_financed :
+             * financial_institute_name :
+             * financial_institute_code :
+             * financial_institute_city :
+             * financial_agreement_type :
+             * previous_policy_number :
              * is_external_bifuel : no
-             * external_bifuel_type : 
+             * external_bifuel_type :
              * external_bifuel_value : 0
-             * electrical_accessory : 
-             * non_electrical_accessory : 
-             * voluntary_deductible : 
-             * is_antitheft_fit : 
-             * is_aai_member : 
+             * electrical_accessory : 0
+             * non_electrical_accessory : 0
+             * engine_number :
+             * chassis_number :
+             * vehicle_color :
+             * voluntary_deductible :
+             * is_antitheft_fit : no
+             * is_aai_member : no
              * is_llpd : no
-             * pa_owner_driver_si : 
-             * pa_named_passenger_si : 
-             * pa_unnamed_passenger_si : 
-             * pa_paid_driver_si : 
-             * addon_zero_dep_cover : 
-             * addon_road_assist_cover : 
-             * addon_ncb_protection_cover : 
-             * addon_engine_protector_cover : 
-             * addon_invoice_price_cover : 
-             * addon_key_lock_cover : 
-             * addon_consumable_cover : 
-             * addon_passenger_assistance_cover : 
-             * addon_flag : 
-             * addon_package_name : ENHANCEMENTCOVER
+             * pa_owner_driver_si : 100000
+             * pa_named_passenger_si :
+             * pa_unnamed_passenger_si :
+             * pa_paid_driver_si :
+             * addon_zero_dep_cover :
+             * addon_road_assist_cover :
+             * addon_ncb_protection_cover :
+             * addon_engine_protector_cover :
+             * addon_invoice_price_cover :
+             * addon_key_lock_cover :
+             * addon_consumable_cover :
+             * addon_passenger_assistance_cover :
+             * addon_flag :
+             * addon_package_name : Titanium
+             * addon_daily_allowance_cover : yes
+             * addon_windshield_cover : yes
+             * addon_tyre_coverage_cover : yes
+             * addon_personal_belonging_loss_cover : yes
+             * addon_inconvenience_allowance_cover : yes
+             * addon_medical_expense_cover : yes
+             * addon_hospital_cash_cover : yes
+             * addon_ambulance_charge_cover : yes
+             * addon_rodent_bite_cover : yes
+             * addon_losstime_protection_cover : yes
+             * addon_hydrostatic_lock_cover : yes
              */
 
             private String vehicle_insurance_type;
@@ -56,14 +75,14 @@ public class RequestProductEntity {
             private String vehicle_registration_date;
             private int vehicle_id;
             private int rto_id;
-            private String prev_insurer_id;
+            private int prev_insurer_id;
             private String is_claim_exists;
             private String vehicle_ncb_current;
+            private String vehicle_manf_year;
             private String vehicle_ncb_next;
             private int vehicle_age_year;
             private int vehicle_age_month;
-            private String vehicle_manf_year;
-            private String vehicle_expected_idv;
+            private int vehicle_expected_idv;
             private String registration_no;
             private String registration_no_1;
             private String registration_no_2;
@@ -75,16 +94,24 @@ public class RequestProductEntity {
             private String policy_end_date;
             private String vehicle_manf_date;
             private String is_financed;
+            private String financial_institute_name;
+            private String financial_institute_code;
+            private String financial_institute_city;
+            private String financial_agreement_type;
+            private String previous_policy_number;
             private String is_external_bifuel;
             private String external_bifuel_type;
             private String external_bifuel_value;
             private String electrical_accessory;
             private String non_electrical_accessory;
+            private String engine_number;
+            private String chassis_number;
+            private String vehicle_color;
             private String voluntary_deductible;
             private String is_antitheft_fit;
             private String is_aai_member;
             private String is_llpd;
-            private String pa_owner_driver_si;
+            private int pa_owner_driver_si;
             private String pa_named_passenger_si;
             private String pa_unnamed_passenger_si;
             private String pa_paid_driver_si;
@@ -98,6 +125,17 @@ public class RequestProductEntity {
             private String addon_passenger_assistance_cover;
             private String addon_flag;
             private String addon_package_name;
+            private String addon_daily_allowance_cover;
+            private String addon_windshield_cover;
+            private String addon_tyre_coverage_cover;
+            private String addon_personal_belonging_loss_cover;
+            private String addon_inconvenience_allowance_cover;
+            private String addon_medical_expense_cover;
+            private String addon_hospital_cash_cover;
+            private String addon_ambulance_charge_cover;
+            private String addon_rodent_bite_cover;
+            private String addon_losstime_protection_cover;
+            private String addon_hydrostatic_lock_cover;
 
             public String getVehicle_insurance_type() {
                 return vehicle_insurance_type;
@@ -139,11 +177,11 @@ public class RequestProductEntity {
                 this.rto_id = rto_id;
             }
 
-            public String getPrev_insurer_id() {
+            public int getPrev_insurer_id() {
                 return prev_insurer_id;
             }
 
-            public void setPrev_insurer_id(String prev_insurer_id) {
+            public void setPrev_insurer_id(int prev_insurer_id) {
                 this.prev_insurer_id = prev_insurer_id;
             }
 
@@ -161,6 +199,14 @@ public class RequestProductEntity {
 
             public void setVehicle_ncb_current(String vehicle_ncb_current) {
                 this.vehicle_ncb_current = vehicle_ncb_current;
+            }
+
+            public String getVehicle_manf_year() {
+                return vehicle_manf_year;
+            }
+
+            public void setVehicle_manf_year(String vehicle_manf_year) {
+                this.vehicle_manf_year = vehicle_manf_year;
             }
 
             public String getVehicle_ncb_next() {
@@ -187,19 +233,11 @@ public class RequestProductEntity {
                 this.vehicle_age_month = vehicle_age_month;
             }
 
-            public String getVehicle_manf_year() {
-                return vehicle_manf_year;
-            }
-
-            public void setVehicle_manf_year(String vehicle_manf_year) {
-                this.vehicle_manf_year = vehicle_manf_year;
-            }
-
-            public String getVehicle_expected_idv() {
+            public int getVehicle_expected_idv() {
                 return vehicle_expected_idv;
             }
 
-            public void setVehicle_expected_idv(String vehicle_expected_idv) {
+            public void setVehicle_expected_idv(int vehicle_expected_idv) {
                 this.vehicle_expected_idv = vehicle_expected_idv;
             }
 
@@ -291,6 +329,46 @@ public class RequestProductEntity {
                 this.is_financed = is_financed;
             }
 
+            public String getFinancial_institute_name() {
+                return financial_institute_name;
+            }
+
+            public void setFinancial_institute_name(String financial_institute_name) {
+                this.financial_institute_name = financial_institute_name;
+            }
+
+            public String getFinancial_institute_code() {
+                return financial_institute_code;
+            }
+
+            public void setFinancial_institute_code(String financial_institute_code) {
+                this.financial_institute_code = financial_institute_code;
+            }
+
+            public String getFinancial_institute_city() {
+                return financial_institute_city;
+            }
+
+            public void setFinancial_institute_city(String financial_institute_city) {
+                this.financial_institute_city = financial_institute_city;
+            }
+
+            public String getFinancial_agreement_type() {
+                return financial_agreement_type;
+            }
+
+            public void setFinancial_agreement_type(String financial_agreement_type) {
+                this.financial_agreement_type = financial_agreement_type;
+            }
+
+            public String getPrevious_policy_number() {
+                return previous_policy_number;
+            }
+
+            public void setPrevious_policy_number(String previous_policy_number) {
+                this.previous_policy_number = previous_policy_number;
+            }
+
             public String getIs_external_bifuel() {
                 return is_external_bifuel;
             }
@@ -331,6 +409,30 @@ public class RequestProductEntity {
                 this.non_electrical_accessory = non_electrical_accessory;
             }
 
+            public String getEngine_number() {
+                return engine_number;
+            }
+
+            public void setEngine_number(String engine_number) {
+                this.engine_number = engine_number;
+            }
+
+            public String getChassis_number() {
+                return chassis_number;
+            }
+
+            public void setChassis_number(String chassis_number) {
+                this.chassis_number = chassis_number;
+            }
+
+            public String getVehicle_color() {
+                return vehicle_color;
+            }
+
+            public void setVehicle_color(String vehicle_color) {
+                this.vehicle_color = vehicle_color;
+            }
+
             public String getVoluntary_deductible() {
                 return voluntary_deductible;
             }
@@ -363,11 +465,11 @@ public class RequestProductEntity {
                 this.is_llpd = is_llpd;
             }
 
-            public String getPa_owner_driver_si() {
+            public int getPa_owner_driver_si() {
                 return pa_owner_driver_si;
             }
 
-            public void setPa_owner_driver_si(String pa_owner_driver_si) {
+            public void setPa_owner_driver_si(int pa_owner_driver_si) {
                 this.pa_owner_driver_si = pa_owner_driver_si;
             }
 
@@ -473,5 +575,93 @@ public class RequestProductEntity {
 
             public void setAddon_package_name(String addon_package_name) {
                 this.addon_package_name = addon_package_name;
+            }
+
+            public String getAddon_daily_allowance_cover() {
+                return addon_daily_allowance_cover;
+            }
+
+            public void setAddon_daily_allowance_cover(String addon_daily_allowance_cover) {
+                this.addon_daily_allowance_cover = addon_daily_allowance_cover;
+            }
+
+            public String getAddon_windshield_cover() {
+                return addon_windshield_cover;
+            }
+
+            public void setAddon_windshield_cover(String addon_windshield_cover) {
+                this.addon_windshield_cover = addon_windshield_cover;
+            }
+
+            public String getAddon_tyre_coverage_cover() {
+                return addon_tyre_coverage_cover;
+            }
+
+            public void setAddon_tyre_coverage_cover(String addon_tyre_coverage_cover) {
+                this.addon_tyre_coverage_cover = addon_tyre_coverage_cover;
+            }
+
+            public String getAddon_personal_belonging_loss_cover() {
+                return addon_personal_belonging_loss_cover;
+            }
+
+            public void setAddon_personal_belonging_loss_cover(String addon_personal_belonging_loss_cover) {
+                this.addon_personal_belonging_loss_cover = addon_personal_belonging_loss_cover;
+            }
+
+            public String getAddon_inconvenience_allowance_cover() {
+                return addon_inconvenience_allowance_cover;
+            }
+
+            public void setAddon_inconvenience_allowance_cover(String addon_inconvenience_allowance_cover) {
+                this.addon_inconvenience_allowance_cover = addon_inconvenience_allowance_cover;
+            }
+
+            public String getAddon_medical_expense_cover() {
+                return addon_medical_expense_cover;
+            }
+
+            public void setAddon_medical_expense_cover(String addon_medical_expense_cover) {
+                this.addon_medical_expense_cover = addon_medical_expense_cover;
+            }
+
+            public String getAddon_hospital_cash_cover() {
+                return addon_hospital_cash_cover;
+            }
+
+            public void setAddon_hospital_cash_cover(String addon_hospital_cash_cover) {
+                this.addon_hospital_cash_cover = addon_hospital_cash_cover;
+            }
+
+            public String getAddon_ambulance_charge_cover() {
+                return addon_ambulance_charge_cover;
+            }
+
+            public void setAddon_ambulance_charge_cover(String addon_ambulance_charge_cover) {
+                this.addon_ambulance_charge_cover = addon_ambulance_charge_cover;
+            }
+
+            public String getAddon_rodent_bite_cover() {
+                return addon_rodent_bite_cover;
+            }
+
+            public void setAddon_rodent_bite_cover(String addon_rodent_bite_cover) {
+                this.addon_rodent_bite_cover = addon_rodent_bite_cover;
+            }
+
+            public String getAddon_losstime_protection_cover() {
+                return addon_losstime_protection_cover;
+            }
+
+            public void setAddon_losstime_protection_cover(String addon_losstime_protection_cover) {
+                this.addon_losstime_protection_cover = addon_losstime_protection_cover;
+            }
+
+            public String getAddon_hydrostatic_lock_cover() {
+                return addon_hydrostatic_lock_cover;
+            }
+
+            public void setAddon_hydrostatic_lock_cover(String addon_hydrostatic_lock_cover) {
+                this.addon_hydrostatic_lock_cover = addon_hydrostatic_lock_cover;
             }
         }

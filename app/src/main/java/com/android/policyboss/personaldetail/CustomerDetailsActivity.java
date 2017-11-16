@@ -2,9 +2,6 @@ package com.android.policyboss.personaldetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +17,7 @@ import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
+import com.android.policyboss.core.controller.car.CarController;
 import com.android.policyboss.core.controller.healthquote.HealthQuoteController;
 import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
@@ -36,7 +34,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
 
     EditText etCustomerName, etCustomerEmail, etCustomerMobile;
     Button btnGetQuote;
-    QuoteRequestEntity entity;
+    BikeRequestEntity carRequestEntity;
     String fromWhichClass = "";
     HealthRequestEntity healthRequestEntity;
     BikeRequestEntity bikeRequestEntity;
@@ -50,7 +48,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         init_widgets();
 
         if (getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL) != null) {
-            entity = (QuoteRequestEntity) getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL);
+            carRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL);
             fromWhichClass = CarDetailsActivity.CAR_DETAIL;
         } else if (getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE) != null) {
             healthRequestEntity = (HealthRequestEntity) getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE);
@@ -91,11 +89,12 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
             //server hit and redirect to quote
             if (fromWhichClass.equals(CarDetailsActivity.CAR_DETAIL)) {
                 //motor
-                entity.setContactEmail(etCustomerEmail.getText().toString());
-                entity.setContactMobile(etCustomerMobile.getText().toString());
-                entity.setContactName(etCustomerName.getText().toString());
+                carRequestEntity.setFirst_name(etCustomerName.getText().toString());
+                carRequestEntity.setMobile(etCustomerMobile.getText().toString());
+                carRequestEntity.setEmail(etCustomerEmail.getText().toString());
                 showDialog();
-                new MotorQuoteController(this).getQuoteDetails(entity, this);
+                //new MotorQuoteController(this).getQuoteDetails(entity, this);
+                new CarController(this).getCarQuote(carRequestEntity, this);
 
             } else if (fromWhichClass.equals(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE)) {
                 //health
@@ -106,6 +105,22 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
             } else if (fromWhichClass.equals(BikeInsuranceActivity.BIKE_INSURENCE)) {
                 //bike
+
+                String[] fullName = etCustomerName.getText().toString().split(" ");
+
+                if (fullName.length == 1) {
+                    bikeRequestEntity.setFirst_name(fullName[0]);
+                } else if (fullName.length == 2) {
+                    bikeRequestEntity.setFirst_name(fullName[0]);
+                    bikeRequestEntity.setLast_name(fullName[1]);
+
+                } else if (fullName.length == 3) {
+                    bikeRequestEntity.setFirst_name(fullName[0]);
+                    bikeRequestEntity.setMiddle_name(fullName[1]);
+                    bikeRequestEntity.setLast_name(fullName[2]);
+                }
+
+
                 bikeRequestEntity.setFirst_name(etCustomerName.getText().toString());
                 bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
                 bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());

@@ -143,7 +143,11 @@
             android:name=".bikeinsurance.BikeQuoteActivity"
             android:label="@string/title_activity_bike_quote"
             android:parentActivityName=".navigationview.HomeActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".premiumbreakup.PremiumBreakupActivity"
+            android:label="@string/title_activity_premium_breakup"
+            android:theme="@style/CustomTheme"></activity>
     </application>
 
 </manifest>

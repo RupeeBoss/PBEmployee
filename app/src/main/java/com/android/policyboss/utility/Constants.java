@@ -18,6 +18,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Constants {
     public static final String QUOTE = "quote";
     public static final String BIKEQUOTE_UNIQUEID = "bike_quote_uniqueid";
+    public static final String CARQUOTE_UNIQUEID = "car_quote_uniqueid";
     public static final String SHARED_PREFERENCE_POLICYBOSS = "shared_policyboss";
     public static final String SHARED_PREF_ALL_MASTER = "shared__all_master";
 

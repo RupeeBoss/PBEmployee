@@ -23,7 +23,7 @@
             android:id="@+id/etCustomerName"
             style="@style/EditTextStyle"
             android:drawableLeft="@drawable/person"
-            android:hint="Enter name" />
+            android:hint="Enter full name" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout

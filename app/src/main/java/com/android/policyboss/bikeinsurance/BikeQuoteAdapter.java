@@ -2,7 +2,6 @@ package com.android.policyboss.bikeinsurance;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
 
     Activity mContext;
     BikePremiumResponse response;
+
     List<ResponseEntity> listQuotes;
 
     public BikeQuoteAdapter(Activity mContext, BikePremiumResponse response) {
@@ -41,7 +41,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
 
         public BikeQuoteItem(View itemView) {
             super(itemView);
-            txtInsurerName = (TextView) itemView.findViewById(R.id.txtInsurerName);
+            //txtInsurerName = (TextView) itemView.findViewById(R.id.txtInsurerName);
             txtIDV = (TextView) itemView.findViewById(R.id.txtIDV);
             txtFinalPremium = (TextView) itemView.findViewById(R.id.txtFinalPremium);
             imgInsurerLogo = (ImageView) itemView.findViewById(R.id.imgInsurerLogo);
@@ -51,7 +51,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
     @Override
     public BikeQuoteItem onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_bikequote_item, parent, false);
+                .inflate(R.layout.layout_bikequote_item_new, parent, false);
         return new BikeQuoteAdapter.BikeQuoteItem(itemView);
     }
 
@@ -60,14 +60,15 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
 
         final ResponseEntity responseEntity = listQuotes.get(position);
 
-        holder.txtInsurerName.setText(responseEntity.getInsurer().getInsurer_Name());
+        // holder.txtInsurerName.setText(responseEntity.getInsurer().getInsurer_Name());
         // holder.txtIDV.setText(responseEntity);
-        if (responseEntity.getPremium_Breakup().getFinal_premium() != null) {
-            holder.txtFinalPremium.setText("\u20B9 " + Math.round(responseEntity.getPremium_Breakup().getFinal_premium()) + "(per year)");
+        if (responseEntity.getPremium_Breakup() != null) {
+            holder.txtFinalPremium.setText("\u20B9 " + Math.round(responseEntity.getPremium_Breakup().getFinal_premium()) + " (per year)");
         } else {
             holder.txtFinalPremium.setText("");
         }
 
+        holder.txtIDV.setText("\u20B9 " + String.valueOf(responseEntity.getLM_Custom_Request().getVehicle_expected_idv()));
         Glide.with(mContext)
                 .load(getProfessionalID1(responseEntity.getInsurer().getInsurer_ID()))
                 .into(holder.imgInsurerLogo);

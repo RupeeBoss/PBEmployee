@@ -1,17 +1,11 @@
 package com.android.policyboss.bikeinsurance;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
@@ -25,13 +19,12 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.CarDetailsActivity;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.BikeUniqueResponse;
@@ -40,9 +33,7 @@ import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import io.realm.Realm;
 
@@ -216,6 +207,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     //region create bike request
     private void setRequest() {
 
+        bikeRequestEntity.setProduct_id(10);
         bikeRequestEntity.setVehicle_registration_date(etInvDate.getText().toString());
         bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
         bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
@@ -229,6 +221,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setVehicle_registration_type("individual");
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(acRegPlace.getText().toString()));
 
 
         if (llRenewBike.getVisibility() == View.VISIBLE) {
@@ -237,13 +230,12 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
             bikeRequestEntity.setPrev_insurer_id(String.valueOf(databaseController.getInsurenceID((String) spPrevInsurer.getSelectedItem().toString())));
 
             if (switchNcb.isChecked()) {
+                bikeRequestEntity.setIs_claim_exists("no");
+            } else {
                 bikeRequestEntity.setIs_claim_exists("yes");
                 bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
-            } else {
-                bikeRequestEntity.setIs_claim_exists("no");
             }
         }
-
     }
 
     //endregion
@@ -256,20 +248,35 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
             Constants.hideKeyBoard(view, BikeInsuranceActivity.this);
 
             if (view.getId() == R.id.etInvDate) {
-                DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                        if (view1.isShown()) {
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(year, monthOfYear, dayOfMonth);
-                            String currentDay = simpleDateFormat.format(calendar.getTime());
-                            etInvDate.setText(currentDay);
+                if (llRenewBike.getVisibility() == View.VISIBLE) {
+                    DateTimePicker.firstRegReNewDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                            if (view1.isShown()) {
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(year, monthOfYear, dayOfMonth);
+                                String currentDay = simpleDateFormat.format(calendar.getTime());
+                                etInvDate.setText(currentDay);
+                            }
                         }
-                    }
-                });
+                    });
+                } else {
+                    DateTimePicker.firstRegNewDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                            if (view1.isShown()) {
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(year, monthOfYear, dayOfMonth);
+                                String currentDay = simpleDateFormat.format(calendar.getTime());
+                                etInvDate.setText(currentDay);
+                            }
+                        }
+                    });
+                }
+
 
             } else if (view.getId() == R.id.etPolicyExp) {
-                DateTimePicker.showNextSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                DateTimePicker.policyExpDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
                         if (view1.isShown()) {
@@ -281,7 +288,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                     }
                 });
             } else if (view.getId() == R.id.etManufactYearMonth) {
-                DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                DateTimePicker.manufactDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
                         if (view1.isShown()) {
@@ -305,10 +312,10 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         switch (buttonView.getId()) {
             case R.id.switchNcb:
                 if (isChecked) {
+                    llNcb.setVisibility(View.GONE);
+                } else {
                     llNcb.setVisibility(View.VISIBLE);
                     llNcb.requestFocus();
-                } else {
-                    llNcb.setVisibility(View.GONE);
                 }
                 break;
         }
@@ -328,6 +335,11 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
     @Override
     public void OnFailure(Throwable t) {
+        cancelDialog();
+        Toast.makeText(this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+    }
 
+    private String getRegistrationNo(String city) {
+        return "" + city.charAt(1) + city.charAt(2) + "-" + city.charAt(3) + city.charAt(4) + "-AA-1234";
     }
 }

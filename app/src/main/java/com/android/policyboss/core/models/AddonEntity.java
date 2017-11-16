@@ -3,7 +3,7 @@ package com.android.policyboss.core.models;
 public class AddonEntity {
                 /**
                  * addon_zero_dep_cover : 0
-                 * addon_road_assist_cover : 0
+                 * addon_road_assist_cover : 500
                  * addon_ncb_protection_cover : 0
                  * addon_engine_protector_cover : 0
                  * addon_invoice_price_cover : 0
@@ -21,6 +21,7 @@ public class AddonEntity {
                  * addon_rodent_bite_cover : 0
                  * addon_losstime_protection_cover : 0
                  * addon_hydrostatic_lock_cover : 0
+                 * addon_guaranteed_auto_protection_cover : 0
                  * addon_final_premium : 0
                  */
 
@@ -43,6 +44,7 @@ public class AddonEntity {
                 private int addon_rodent_bite_cover;
                 private int addon_losstime_protection_cover;
                 private int addon_hydrostatic_lock_cover;
+                private int addon_guaranteed_auto_protection_cover;
                 private int addon_final_premium;
 
                 public int getAddon_zero_dep_cover() {
@@ -195,6 +197,14 @@ public class AddonEntity {
 
                 public void setAddon_hydrostatic_lock_cover(int addon_hydrostatic_lock_cover) {
                     this.addon_hydrostatic_lock_cover = addon_hydrostatic_lock_cover;
+                }
+
+                public int getAddon_guaranteed_auto_protection_cover() {
+                    return addon_guaranteed_auto_protection_cover;
+                }
+
+                public void setAddon_guaranteed_auto_protection_cover(int addon_guaranteed_auto_protection_cover) {
+                    this.addon_guaranteed_auto_protection_cover = addon_guaranteed_auto_protection_cover;
                 }
 
                 public int getAddon_final_premium() {

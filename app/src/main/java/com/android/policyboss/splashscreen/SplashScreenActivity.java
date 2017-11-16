@@ -40,25 +40,33 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
         editor = Constants.getSharedPreferenceEditor(this);
 
 
-
-        // boolean isYesterday = LoginFacade.getDayDifference(Long.parseLong("1497332094000"));
+        boolean isYesterday = LoginFacade.getDayDifference(Long.parseLong("1497332094000"));
         //fetch all master tables
         if (Constants.getSharedPreference(this).getBoolean(Constants.SHARED_PREF_ALL_MASTER, true)) {
             new VarientMasterController(this, realm).getAllMasters(this);
             new VarientMasterController(this, realm).getAllCityMasters(this);
-        } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    //checkForUser exist
-                    finish();
-                    if (new LoginFacade(SplashScreenActivity.this).getUser() != null)
-                        startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
-                    else
-                        startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-                }
-            }, SPLASH_DISPLAY_LENGTH);
+
+            //Delete after login working state
+
+            SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_POLICYBOSS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(Constants.SHARED_PREF_ALL_MASTER, false).commit();
+
+
         }
+// else {
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    //checkForUser exist
+//                    finish();
+//                    if (new LoginFacade(SplashScreenActivity.this).getUser() != null)
+//                        startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
+//                    else
+//                        startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+//                }
+//            }, SPLASH_DISPLAY_LENGTH);
+//        }
 
     }
 
@@ -70,7 +78,9 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
             if (response.getStatusNo() == 0) {
 
                 finish();
-                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+                startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
+
+                //  startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
 
             }
         }
