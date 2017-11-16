@@ -32,7 +32,10 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
     public BikeQuoteAdapter(Activity mContext, BikePremiumResponse response) {
         this.mContext = mContext;
         this.response = response;
-        this.listQuotes = response.getResponse();
+        if (response.getResponse() != null)
+            this.listQuotes = response.getResponse();
+        else
+            this.listQuotes = null;
     }
 
     public class BikeQuoteItem extends RecyclerView.ViewHolder {
@@ -63,20 +66,30 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
         // holder.txtInsurerName.setText(responseEntity.getInsurer().getInsurer_Name());
         // holder.txtIDV.setText(responseEntity);
         if (responseEntity.getPremium_Breakup() != null) {
-            holder.txtFinalPremium.setText("\u20B9 " + Math.round(responseEntity.getPremium_Breakup().getFinal_premium()) + " (per year)");
+            holder.txtFinalPremium.setText("\u20B9 " + Math.round(Integer.parseInt(responseEntity.getPremium_Breakup().getFinal_premium())) + " (per year)");
         } else {
             holder.txtFinalPremium.setText("");
         }
 
         holder.txtIDV.setText("\u20B9 " + String.valueOf(responseEntity.getLM_Custom_Request().getVehicle_expected_idv()));
         Glide.with(mContext)
-                .load(getProfessionalID1(responseEntity.getInsurer().getInsurer_ID()))
+                .load(getProfessionalID1(Integer.parseInt(responseEntity.getInsurer().getInsurer_ID())))
                 .into(holder.imgInsurerLogo);
     }
 
 
     @Override
     public int getItemCount() {
-        return listQuotes.size();
+        if (listQuotes != null) {
+            return listQuotes.size();
+        } else {
+            return 0;
+        }
+    }
+
+    public void setQuoteResponse(BikePremiumResponse response) {
+        this.response = response;
+        if (response.getResponse() != null)
+            this.listQuotes = response.getResponse();
     }
 }

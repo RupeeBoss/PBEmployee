@@ -26,23 +26,23 @@ public class SummaryEntity {
      */
 
     private String _id;
-    private int Request_Id;
+    private String Request_Id;
     private String Request_Unique_Id;
-    private int Client_Id;
-    private int PB_CRN;
+    private String Client_Id;
+    private String PB_CRN;
     private RequestCoreEntity Request_Core;
     private RequestProductEntity Request_Product;
     private String Created_On;
     @SerializedName("Status")
     private String StatusX;
-    private int Total;
-    private int Pending;
-    private int Complete;
-    private int Success;
-    private int Fail;
+    private String Total;
+    private String Pending;
+    private String Complete;
+    private String Success;
+    private String Fail;
     private double Total_Execution_Time;
-    private int vehicle_min_idv;
-    private int vehicle_max_idv;
+    private String vehicle_min_idv;
+    private String vehicle_max_idv;
     private double Actual_Time;
     private CommonAddonEntity Common_Addon;
 
@@ -54,11 +54,11 @@ public class SummaryEntity {
         this._id = _id;
     }
 
-    public int getRequest_Id() {
+    public String getRequest_Id() {
         return Request_Id;
     }
 
-    public void setRequest_Id(int Request_Id) {
+    public void setRequest_Id(String Request_Id) {
         this.Request_Id = Request_Id;
     }
 
@@ -70,19 +70,19 @@ public class SummaryEntity {
         this.Request_Unique_Id = Request_Unique_Id;
     }
 
-    public int getClient_Id() {
+    public String getClient_Id() {
         return Client_Id;
     }
 
-    public void setClient_Id(int Client_Id) {
+    public void setClient_Id(String Client_Id) {
         this.Client_Id = Client_Id;
     }
 
-    public int getPB_CRN() {
+    public String getPB_CRN() {
         return PB_CRN;
     }
 
-    public void setPB_CRN(int PB_CRN) {
+    public void setPB_CRN(String PB_CRN) {
         this.PB_CRN = PB_CRN;
     }
 
@@ -118,43 +118,43 @@ public class SummaryEntity {
         this.StatusX = StatusX;
     }
 
-    public int getTotal() {
+    public String getTotal() {
         return Total;
     }
 
-    public void setTotal(int Total) {
+    public void setTotal(String Total) {
         this.Total = Total;
     }
 
-    public int getPending() {
+    public String getPending() {
         return Pending;
     }
 
-    public void setPending(int Pending) {
+    public void setPending(String Pending) {
         this.Pending = Pending;
     }
 
-    public int getComplete() {
+    public String getComplete() {
         return Complete;
     }
 
-    public void setComplete(int Complete) {
+    public void setComplete(String Complete) {
         this.Complete = Complete;
     }
 
-    public int getSuccess() {
+    public String getSuccess() {
         return Success;
     }
 
-    public void setSuccess(int Success) {
+    public void setSuccess(String Success) {
         this.Success = Success;
     }
 
-    public int getFail() {
+    public String getFail() {
         return Fail;
     }
 
-    public void setFail(int Fail) {
+    public void setFail(String Fail) {
         this.Fail = Fail;
     }
 
@@ -166,19 +166,19 @@ public class SummaryEntity {
         this.Total_Execution_Time = Total_Execution_Time;
     }
 
-    public int getVehicle_min_idv() {
+    public String getVehicle_min_idv() {
         return vehicle_min_idv;
     }
 
-    public void setVehicle_min_idv(int vehicle_min_idv) {
+    public void setVehicle_min_idv(String vehicle_min_idv) {
         this.vehicle_min_idv = vehicle_min_idv;
     }
 
-    public int getVehicle_max_idv() {
+    public String getVehicle_max_idv() {
         return vehicle_max_idv;
     }
 
-    public void setVehicle_max_idv(int vehicle_max_idv) {
+    public void setVehicle_max_idv(String vehicle_max_idv) {
         this.vehicle_max_idv = vehicle_max_idv;
     }
 

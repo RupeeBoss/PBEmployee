@@ -13,9 +13,9 @@ public class PremiumBreakupEntity {
     private OwnDamageEntity own_damage;
     private LiabilityEntity liability;
     private AddonEntity addon;
-    private double net_premium;
-    private double service_tax;
-    private double final_premium;
+    private String net_premium;
+    private String service_tax;
+    private String final_premium;
 
     public OwnDamageEntity getOwn_damage() {
         return own_damage;
@@ -41,27 +41,27 @@ public class PremiumBreakupEntity {
         this.addon = addon;
     }
 
-    public double getNet_premium() {
+    public String getNet_premium() {
         return net_premium;
     }
 
-    public void setNet_premium(double net_premium) {
+    public void setNet_premium(String net_premium) {
         this.net_premium = net_premium;
     }
 
-    public double getService_tax() {
+    public String getService_tax() {
         return service_tax;
     }
 
-    public void setService_tax(double service_tax) {
+    public void setService_tax(String service_tax) {
         this.service_tax = service_tax;
     }
 
-    public double getFinal_premium() {
+    public String getFinal_premium() {
         return final_premium;
     }
 
-    public void setFinal_premium(double final_premium) {
+    public void setFinal_premium(String final_premium) {
         this.final_premium = final_premium;
     }
 

@@ -11,43 +11,43 @@ public class LMCustomRequestEntity {
              * vehicle_normal_idv : 388874
              */
 
-            private int dbmaster_insurer_vehicle_exshowroom;
-            private int vehicle_expected_idv;
-            private int vehicle_max_idv;
-            private int vehicle_min_idv;
+            private String dbmaster_insurer_vehicle_exshowroom;
+            private String vehicle_expected_idv;
+            private String vehicle_max_idv;
+            private String vehicle_min_idv;
             private String vehicle_ncb_current;
             private String vehicle_ncb_next;
-            private int vehicle_normal_idv;
+            private String vehicle_normal_idv;
 
-            public int getDbmaster_insurer_vehicle_exshowroom() {
+            public String getDbmaster_insurer_vehicle_exshowroom() {
                 return dbmaster_insurer_vehicle_exshowroom;
             }
 
-            public void setDbmaster_insurer_vehicle_exshowroom(int dbmaster_insurer_vehicle_exshowroom) {
+            public void setDbmaster_insurer_vehicle_exshowroom(String dbmaster_insurer_vehicle_exshowroom) {
                 this.dbmaster_insurer_vehicle_exshowroom = dbmaster_insurer_vehicle_exshowroom;
             }
 
-            public int getVehicle_expected_idv() {
+            public String getVehicle_expected_idv() {
                 return vehicle_expected_idv;
             }
 
-            public void setVehicle_expected_idv(int vehicle_expected_idv) {
+            public void setVehicle_expected_idv(String vehicle_expected_idv) {
                 this.vehicle_expected_idv = vehicle_expected_idv;
             }
 
-            public int getVehicle_max_idv() {
+            public String getVehicle_max_idv() {
                 return vehicle_max_idv;
             }
 
-            public void setVehicle_max_idv(int vehicle_max_idv) {
+            public void setVehicle_max_idv(String vehicle_max_idv) {
                 this.vehicle_max_idv = vehicle_max_idv;
             }
 
-            public int getVehicle_min_idv() {
+            public String getVehicle_min_idv() {
                 return vehicle_min_idv;
             }
 
-            public void setVehicle_min_idv(int vehicle_min_idv) {
+            public void setVehicle_min_idv(String vehicle_min_idv) {
                 this.vehicle_min_idv = vehicle_min_idv;
             }
 
@@ -67,11 +67,11 @@ public class LMCustomRequestEntity {
                 this.vehicle_ncb_next = vehicle_ncb_next;
             }
 
-            public int getVehicle_normal_idv() {
+            public String getVehicle_normal_idv() {
                 return vehicle_normal_idv;
             }
 
-            public void setVehicle_normal_idv(int vehicle_normal_idv) {
+            public void setVehicle_normal_idv(String vehicle_normal_idv) {
                 this.vehicle_normal_idv = vehicle_normal_idv;
             }
         }

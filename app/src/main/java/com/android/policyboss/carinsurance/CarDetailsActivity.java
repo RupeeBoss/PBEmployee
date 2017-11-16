@@ -436,7 +436,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setIs_antitheft_fit("no");
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
-        bikeRequestEntity.setPa_owner_driver_si("");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
         bikeRequestEntity.setPa_named_passenger_si("");
         bikeRequestEntity.setPa_unnamed_passenger_si("");
         bikeRequestEntity.setPa_paid_driver_si("");
@@ -503,7 +503,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setIs_antitheft_fit("no");
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
-        bikeRequestEntity.setPa_owner_driver_si("");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
         bikeRequestEntity.setPa_named_passenger_si("");
         bikeRequestEntity.setPa_unnamed_passenger_si("");
         bikeRequestEntity.setPa_paid_driver_si("");
@@ -568,14 +568,14 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
 
         if (quoteRequestEntity.getRegistrationNumber() != "")
-            bikeRequestEntity.setRegistration_no(bikeRequestEntity.getRegistration_no());
+            bikeRequestEntity.setRegistration_no(quoteRequestEntity.getRegistrationNumber());
         else
             bikeRequestEntity.setRegistration_no(getRegistrationNo(autoCity.getText().toString()));
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_antitheft_fit("no");
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
-        bikeRequestEntity.setPa_owner_driver_si("");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
         bikeRequestEntity.setPa_named_passenger_si("");
         bikeRequestEntity.setPa_unnamed_passenger_si("");
         bikeRequestEntity.setPa_paid_driver_si("");

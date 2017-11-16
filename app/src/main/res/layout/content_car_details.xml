@@ -258,8 +258,7 @@
                     android:layout_marginLeft="@dimen/gap"
                     android:layout_marginRight="@dimen/gap"
                     android:layout_marginTop="@dimen/gap"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical">
 
                     <Spinner
                         android:id="@+id/spNcbPercent"
