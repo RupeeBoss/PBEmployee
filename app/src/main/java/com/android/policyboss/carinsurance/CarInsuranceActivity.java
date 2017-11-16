@@ -46,7 +46,6 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     QuoteRequestEntity quoteRequestEntity;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,6 +158,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
             quoteRequestEntity.setNew(false);
             quoteRequestEntity.setRenew(true);
             quoteRequestEntity.setDontRem(false);
+            quoteRequestEntity.setRegistrationNumber(etRenewRegNo.getText().toString());
             startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity)
                     .putExtra(FASTLANE_DATA, ((FastLaneResponse) response).getFLResponse()));
         }
@@ -168,6 +168,11 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     public void OnFailure(Throwable t) {
         cancelDialog();
         Toast.makeText(this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+        quoteRequestEntity.setNew(false);
+        quoteRequestEntity.setRenew(false);
+        quoteRequestEntity.setDontRem(true);
+        quoteRequestEntity.setRegistrationNumber(etRenewRegNo.getText().toString());
+        startActivity(new Intent(this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
     }
 
 

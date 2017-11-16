@@ -231,12 +231,11 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
             if (switchNcb.isChecked()) {
                 bikeRequestEntity.setIs_claim_exists("no");
-                bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
             } else {
                 bikeRequestEntity.setIs_claim_exists("yes");
+                bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
             }
         }
-
     }
 
     //endregion
@@ -313,10 +312,10 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         switch (buttonView.getId()) {
             case R.id.switchNcb:
                 if (isChecked) {
+                    llNcb.setVisibility(View.GONE);
+                } else {
                     llNcb.setVisibility(View.VISIBLE);
                     llNcb.requestFocus();
-                } else {
-                    llNcb.setVisibility(View.GONE);
                 }
                 break;
         }
