@@ -32,7 +32,10 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
     public BikeQuoteAdapter(Activity mContext, BikePremiumResponse response) {
         this.mContext = mContext;
         this.response = response;
-        this.listQuotes = response.getResponse();
+        if (response.getResponse() != null)
+            this.listQuotes = response.getResponse();
+        else
+            this.listQuotes = null;
     }
 
     public class BikeQuoteItem extends RecyclerView.ViewHolder {
@@ -77,6 +80,16 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
 
     @Override
     public int getItemCount() {
-        return listQuotes.size();
+        if (listQuotes != null) {
+            return listQuotes.size();
+        } else {
+            return 0;
+        }
+    }
+
+    public void setQuoteResponse(BikePremiumResponse response) {
+        this.response = response;
+        if (response.getResponse() != null)
+            this.listQuotes = response.getResponse();
     }
 }

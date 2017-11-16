@@ -57,10 +57,14 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         }
 
         initialize();
+
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
 
 
+        bikePremiumResponse = new BikePremiumResponse();
+        mAdapter = new BikeQuoteAdapter(this, bikePremiumResponse);
+        bikeQuoteRecycler.setAdapter(mAdapter);
     }
 
     private void initialize() {
@@ -235,10 +239,11 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-    public void rebindAdapter(BikePremiumResponse response) {
-        bikeQuoteRecycler.setAdapter(null);
-        mAdapter = new BikeQuoteAdapter(BikeQuoteActivity.this, bikePremiumResponse);
-        bikeQuoteRecycler.setAdapter(mAdapter);
+    public void rebindAdapter(BikePremiumResponse bikePremiumResponse) {
+        mAdapter.setQuoteResponse(bikePremiumResponse);
+        mAdapter.notifyDataSetChanged();
+        //= new BikeQuoteAdapter(BikeQuoteActivity.this, bikePremiumResponse);
+        //bikeQuoteRecycler.setAdapter(mAdapter);
     }
 
     @Override
