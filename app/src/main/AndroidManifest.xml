@@ -167,7 +167,17 @@
             android:name=".premiumbreakup.PremiumBreakupActivity"
             android:label="@string/title_activity_premium_breakup"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"></activity>
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".bikeinsurance.ModifyQuotesActivity"
+            android:label="@string/title_activity_modify_quotes"
+            android:parentActivityName=".bikeinsurance.BikeQuoteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.bikeinsurance.BikeQuoteActivity" />
+        </activity>
     </application>
 
 </manifest>

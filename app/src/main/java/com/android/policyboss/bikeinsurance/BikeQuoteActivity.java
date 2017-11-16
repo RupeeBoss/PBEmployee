@@ -2,7 +2,9 @@ package com.android.policyboss.bikeinsurance;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +27,7 @@ import com.android.policyboss.core.models.CommonAddonEntity;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
+import com.android.policyboss.utility.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,14 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.filter);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class));
+            }
+        });
         if (getIntent().hasExtra("BIKE")) {
             bikeRequestEntity = getIntent().getParcelableExtra("BIKE");
         } else if (getIntent().hasExtra("CAR")) {
@@ -233,11 +244,19 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         if (response instanceof BikePremiumResponse) {
             bikePremiumResponse = (BikePremiumResponse) response;
             rebindAdapter(bikePremiumResponse);
+            //
+            if (bikePremiumResponse.getSummary().getStatusX().equals("complete") || Constants.getSharedPreference(this).getInt(Constants.QUOTE_COUNTER, 0) >= 5) {
+                webViewLoader.setVisibility(View.GONE);
+                if (((BikePremiumResponse) response).getResponse().size() != 0)
+                    menuAddon.findItem(R.id.add_on).setVisible(true);
+                else
+                    menuAddon.findItem(R.id.add_on).setVisible(false);
+            } else {
+                webViewLoader.setVisibility(View.VISIBLE);
 
-            if (((BikePremiumResponse) response).getResponse().size() != 0)
-                menuAddon.findItem(R.id.add_on).setVisible(true);
-            else
-                menuAddon.findItem(R.id.add_on).setVisible(false);
+            }
+
+
         }
 
     }
