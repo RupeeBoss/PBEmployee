@@ -18,6 +18,7 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
+import com.android.policyboss.core.controller.car.CarController;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.CommonAddonEntity;
 import com.android.policyboss.core.models.ResponseEntity;
@@ -35,6 +36,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     RecyclerView bikeQuoteRecycler;
     BikeQuoteAdapter mAdapter;
     BikeRequestEntity bikeRequestEntity;
+    BikeRequestEntity carRequestEntity;
     Menu menuAddon;
     String[] addOns;
     DatabaseController databaseController;
@@ -47,7 +49,13 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        bikeRequestEntity = getIntent().getParcelableExtra("BIKE_REQUEST");
+        if (getIntent().hasExtra("BIKE")) {
+            bikeRequestEntity = getIntent().getParcelableExtra("BIKE");
+        } else if (getIntent().hasExtra("CAR")) {
+            carRequestEntity = getIntent().getParcelableExtra("CAR");
+            getSupportActionBar().setTitle("CAR INSURANCE");
+        }
+
         initialize();
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
@@ -198,7 +206,11 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         showDialog();
-        new BikeController(BikeQuoteActivity.this).getBikePremium(this);
+        if (getIntent().hasExtra("BIKE")) {
+            new BikeController(BikeQuoteActivity.this).getBikePremium(this);
+        } else if (getIntent().hasExtra("CAR")) {
+            new CarController(BikeQuoteActivity.this).getCarPremium(this);
+        }
         super.onResume();
     }
 

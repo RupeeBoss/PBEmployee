@@ -12,15 +12,12 @@ import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
 import com.android.policyboss.bikeinsurance.BikeQuoteActivity;
-import com.android.policyboss.carinsurance.CarDetailsActivity;
 import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.controller.car.CarController;
 import com.android.policyboss.core.controller.healthquote.HealthQuoteController;
-import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
-import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.requestEntity.HealthRequestEntity;
 import com.android.policyboss.core.response.BikeUniqueResponse;
@@ -29,6 +26,8 @@ import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity;
 import com.android.policyboss.healthinsurance.HealthQuoteActivity;
 import com.android.policyboss.utility.Constants;
+
+import static com.android.policyboss.carinsurance.CarDetailsActivity.CAR_DETAIL;
 
 public class CustomerDetailsActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
 
@@ -47,15 +46,18 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         setSupportActionBar(toolbar);
         init_widgets();
 
-        if (getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL) != null) {
-            carRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(CarDetailsActivity.CAR_DETAIL);
-            fromWhichClass = CarDetailsActivity.CAR_DETAIL;
+        if (getIntent().getParcelableExtra(CAR_DETAIL) != null) {
+            carRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(CAR_DETAIL);
+            fromWhichClass = CAR_DETAIL;
+            getSupportActionBar().setTitle("CAR QUOTES");
         } else if (getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE) != null) {
             healthRequestEntity = (HealthRequestEntity) getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE);
             fromWhichClass = HealthInsuranceAgeDetailActivity.HEALTH_QUOTE;
+            getSupportActionBar().setTitle("HEALTH QUOTES");
         } else if (getIntent().getParcelableExtra(BikeInsuranceActivity.BIKE_INSURENCE) != null) {
             bikeRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(BikeInsuranceActivity.BIKE_INSURENCE);
             fromWhichClass = BikeInsuranceActivity.BIKE_INSURENCE;
+            getSupportActionBar().setTitle("BIKE QUOTES");
         }
 
     }
@@ -86,10 +88,24 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 Toast.makeText(this, "Invalid mobile number", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+
             //server hit and redirect to quote
-            if (fromWhichClass.equals(CarDetailsActivity.CAR_DETAIL)) {
+            if (fromWhichClass.equals(CAR_DETAIL)) {
                 //motor
-                carRequestEntity.setFirst_name(etCustomerName.getText().toString());
+                String[] fullName = etCustomerName.getText().toString().split(" ");
+
+                if (fullName.length == 1) {
+                    carRequestEntity.setFirst_name(fullName[0]);
+                } else if (fullName.length == 2) {
+                    carRequestEntity.setFirst_name(fullName[0]);
+                    carRequestEntity.setLast_name(fullName[1]);
+
+                } else if (fullName.length == 3) {
+                    carRequestEntity.setFirst_name(fullName[0]);
+                    carRequestEntity.setMiddle_name(fullName[1]);
+                    carRequestEntity.setLast_name(fullName[2]);
+                }
                 carRequestEntity.setMobile(etCustomerMobile.getText().toString());
                 carRequestEntity.setEmail(etCustomerEmail.getText().toString());
                 showDialog();
@@ -119,8 +135,6 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                     bikeRequestEntity.setMiddle_name(fullName[1]);
                     bikeRequestEntity.setLast_name(fullName[2]);
                 }
-
-
                 bikeRequestEntity.setFirst_name(etCustomerName.getText().toString());
                 bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
                 bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
@@ -148,7 +162,14 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                         .putExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE, (HealthQuoteResponse) response));
             }
         } else if (response instanceof BikeUniqueResponse) {
-            startActivity(new Intent(this, BikeQuoteActivity.class));
+            if (fromWhichClass.equals(CAR_DETAIL)) {
+                startActivity(new Intent(this, BikeQuoteActivity.class)
+                        .putExtra("CAR", carRequestEntity));
+            } else {
+                startActivity(new Intent(this, BikeQuoteActivity.class)
+                        .putExtra("BIKE", bikeRequestEntity));
+            }
+
         }
     }
 
