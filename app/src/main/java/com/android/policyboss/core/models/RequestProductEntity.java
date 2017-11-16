@@ -73,16 +73,16 @@ public class RequestProductEntity {
             private String vehicle_insurance_type;
             private String vehicle_registration_type;
             private String vehicle_registration_date;
-            private int vehicle_id;
-            private int rto_id;
-            private int prev_insurer_id;
+            private String vehicle_id;
+            private String rto_id;
+            private String prev_insurer_id;
             private String is_claim_exists;
             private String vehicle_ncb_current;
             private String vehicle_manf_year;
             private String vehicle_ncb_next;
-            private int vehicle_age_year;
-            private int vehicle_age_month;
-            private int vehicle_expected_idv;
+            private String vehicle_age_year;
+            private String vehicle_age_month;
+            private String vehicle_expected_idv;
             private String registration_no;
             private String registration_no_1;
             private String registration_no_2;
@@ -111,7 +111,7 @@ public class RequestProductEntity {
             private String is_antitheft_fit;
             private String is_aai_member;
             private String is_llpd;
-            private int pa_owner_driver_si;
+            private String pa_owner_driver_si;
             private String pa_named_passenger_si;
             private String pa_unnamed_passenger_si;
             private String pa_paid_driver_si;
@@ -161,27 +161,27 @@ public class RequestProductEntity {
                 this.vehicle_registration_date = vehicle_registration_date;
             }
 
-            public int getVehicle_id() {
+            public String getVehicle_id() {
                 return vehicle_id;
             }
 
-            public void setVehicle_id(int vehicle_id) {
+            public void setVehicle_id(String vehicle_id) {
                 this.vehicle_id = vehicle_id;
             }
 
-            public int getRto_id() {
+            public String getRto_id() {
                 return rto_id;
             }
 
-            public void setRto_id(int rto_id) {
+            public void setRto_id(String rto_id) {
                 this.rto_id = rto_id;
             }
 
-            public int getPrev_insurer_id() {
+            public String getPrev_insurer_id() {
                 return prev_insurer_id;
             }
 
-            public void setPrev_insurer_id(int prev_insurer_id) {
+            public void setPrev_insurer_id(String prev_insurer_id) {
                 this.prev_insurer_id = prev_insurer_id;
             }
 
@@ -217,27 +217,27 @@ public class RequestProductEntity {
                 this.vehicle_ncb_next = vehicle_ncb_next;
             }
 
-            public int getVehicle_age_year() {
+            public String getVehicle_age_year() {
                 return vehicle_age_year;
             }
 
-            public void setVehicle_age_year(int vehicle_age_year) {
+            public void setVehicle_age_year(String vehicle_age_year) {
                 this.vehicle_age_year = vehicle_age_year;
             }
 
-            public int getVehicle_age_month() {
+            public String getVehicle_age_month() {
                 return vehicle_age_month;
             }
 
-            public void setVehicle_age_month(int vehicle_age_month) {
+            public void setVehicle_age_month(String vehicle_age_month) {
                 this.vehicle_age_month = vehicle_age_month;
             }
 
-            public int getVehicle_expected_idv() {
+            public String getVehicle_expected_idv() {
                 return vehicle_expected_idv;
             }
 
-            public void setVehicle_expected_idv(int vehicle_expected_idv) {
+            public void setVehicle_expected_idv(String vehicle_expected_idv) {
                 this.vehicle_expected_idv = vehicle_expected_idv;
             }
 
@@ -465,11 +465,11 @@ public class RequestProductEntity {
                 this.is_llpd = is_llpd;
             }
 
-            public int getPa_owner_driver_si() {
+            public String getPa_owner_driver_si() {
                 return pa_owner_driver_si;
             }
 
-            public void setPa_owner_driver_si(int pa_owner_driver_si) {
+            public void setPa_owner_driver_si(String pa_owner_driver_si) {
                 this.pa_owner_driver_si = pa_owner_driver_si;
             }
 

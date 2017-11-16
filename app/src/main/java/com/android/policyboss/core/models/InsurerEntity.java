@@ -14,9 +14,9 @@ public class InsurerEntity {
      */
 
     private String _id;
-    private int Insurer_ID;
+    private String Insurer_ID;
     private String Insurer_Name;
-    private int IsActive;
+    private String IsActive;
     private String CreatedOn;
     private String Insurer_Logo_Name;
     private String IsInternal;
@@ -31,11 +31,11 @@ public class InsurerEntity {
         this._id = _id;
     }
 
-    public int getInsurer_ID() {
+    public String getInsurer_ID() {
         return Insurer_ID;
     }
 
-    public void setInsurer_ID(int Insurer_ID) {
+    public void setInsurer_ID(String Insurer_ID) {
         this.Insurer_ID = Insurer_ID;
     }
 
@@ -47,11 +47,11 @@ public class InsurerEntity {
         this.Insurer_Name = Insurer_Name;
     }
 
-    public int getIsActive() {
+    public String getIsActive() {
         return IsActive;
     }
 
-    public void setIsActive(int IsActive) {
+    public void setIsActive(String IsActive) {
         this.IsActive = IsActive;
     }
 

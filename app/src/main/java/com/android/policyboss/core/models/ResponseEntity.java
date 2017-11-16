@@ -20,27 +20,27 @@ public class ResponseEntity {
          * Call_Execution_Time : 5.63
          */
 
-        private int Service_Log_Id;
+        private String Service_Log_Id;
         private String Service_Log_Unique_Id;
         private String Insurer_Transaction_Identifier;
         private String Error_Code;
         private String Created_On;
-        private int Product_Id;
-        private int Insurer_Id;
+        private String Product_Id;
+        private String Insurer_Id;
         @SerializedName("Status")
         private String StatusX;
-        private int Plan_Id;
+        private String Plan_Id;
         private String Plan_Name;
         private LMCustomRequestEntity LM_Custom_Request;
         private PremiumBreakupEntity Premium_Breakup;
         private InsurerEntity Insurer;
-        private double Call_Execution_Time;
+        private String Call_Execution_Time;
 
-        public int getService_Log_Id() {
+        public String getService_Log_Id() {
             return Service_Log_Id;
         }
 
-        public void setService_Log_Id(int Service_Log_Id) {
+        public void setService_Log_Id(String Service_Log_Id) {
             this.Service_Log_Id = Service_Log_Id;
         }
 
@@ -76,19 +76,19 @@ public class ResponseEntity {
             this.Created_On = Created_On;
         }
 
-        public int getProduct_Id() {
+        public String getProduct_Id() {
             return Product_Id;
         }
 
-        public void setProduct_Id(int Product_Id) {
+        public void setProduct_Id(String Product_Id) {
             this.Product_Id = Product_Id;
         }
 
-        public int getInsurer_Id() {
+        public String getInsurer_Id() {
             return Insurer_Id;
         }
 
-        public void setInsurer_Id(int Insurer_Id) {
+        public void setInsurer_Id(String Insurer_Id) {
             this.Insurer_Id = Insurer_Id;
         }
 
@@ -100,11 +100,11 @@ public class ResponseEntity {
             this.StatusX = StatusX;
         }
 
-        public int getPlan_Id() {
+        public String getPlan_Id() {
             return Plan_Id;
         }
 
-        public void setPlan_Id(int Plan_Id) {
+        public void setPlan_Id(String Plan_Id) {
             this.Plan_Id = Plan_Id;
         }
 
@@ -140,11 +140,11 @@ public class ResponseEntity {
             this.Insurer = Insurer;
         }
 
-        public double getCall_Execution_Time() {
+        public String getCall_Execution_Time() {
             return Call_Execution_Time;
         }
 
-        public void setCall_Execution_Time(double Call_Execution_Time) {
+        public void setCall_Execution_Time(String Call_Execution_Time) {
             this.Call_Execution_Time = Call_Execution_Time;
         }
 

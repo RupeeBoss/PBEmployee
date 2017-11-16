@@ -67,14 +67,14 @@ public class RequestCoreEntity {
              * erp_source : FRESH-MTR
              */
 
-            private int product_id;
-            private int vehicle_id;
-            private int rto_id;
+            private String product_id;
+            private String vehicle_id;
+            private String rto_id;
             private String vehicle_insurance_type;
             private String vehicle_manf_date;
             private String vehicle_registration_date;
             private String policy_expiry_date;
-            private int prev_insurer_id;
+            private String prev_insurer_id;
             private String vehicle_registration_type;
             private String vehicle_ncb_current;
             private String is_claim_exists;
@@ -85,23 +85,23 @@ public class RequestCoreEntity {
             private String registration_no;
             private String is_llpd;
             private String is_antitheft_fit;
-            private int voluntary_deductible;
+            private String voluntary_deductible;
             private String is_external_bifuel;
             private String is_aai_member;
             private Object external_bifuel_type;
             private String external_bifuel_value;
-            private int pa_owner_driver_si;
+            private String pa_owner_driver_si;
             private String pa_named_passenger_si;
             private String pa_unnamed_passenger_si;
             private String pa_paid_driver_si;
-            private int vehicle_expected_idv;
+            private String vehicle_expected_idv;
             private String first_name;
             private String middle_name;
             private String last_name;
             private String mobile;
             private String email;
-            private int crn;
-            private int ss_id;
+            private String crn;
+            private String ss_id;
             private String secret_key;
             private String client_key;
             private String birth_date;
@@ -109,49 +109,49 @@ public class RequestCoreEntity {
             private String registration_no_2;
             private String registration_no_3;
             private String registration_no_4;
-            private int posp_posp_id;
-            private int posp_fba_id;
-            private int posp_sm_posp_id;
-            private int posp_sm_posp_name;
-            private int posp_first_name;
-            private int posp_middle_name;
-            private int posp_last_name;
-            private int posp_email_id;
-            private int posp_agent_city;
-            private int posp_mobile_no;
-            private int posp_pan_no;
-            private int posp_aadhar;
-            private int posp_sources;
-            private int posp_ss_id;
-            private int posp_erp_id;
-            private int posp_gender;
-            private int posp_posp_category;
-            private int posp_reporting_agent_uid;
-            private int posp_reporting_agent_name;
+            private String posp_posp_id;
+            private String posp_fba_id;
+            private String posp_sm_posp_id;
+            private String posp_sm_posp_name;
+            private String posp_first_name;
+            private String posp_middle_name;
+            private String posp_last_name;
+            private String posp_email_id;
+            private String posp_agent_city;
+            private String posp_mobile_no;
+            private String posp_pan_no;
+            private String posp_aadhar;
+            private String posp_sources;
+            private String posp_ss_id;
+            private String posp_erp_id;
+            private String posp_gender;
+            private String posp_posp_category;
+            private String posp_reporting_agent_uid;
+            private String posp_reporting_agent_name;
             private String posp_category;
             private String erp_source;
 
-            public int getProduct_id() {
+            public String getProduct_id() {
                 return product_id;
             }
 
-            public void setProduct_id(int product_id) {
+            public void setProduct_id(String product_id) {
                 this.product_id = product_id;
             }
 
-            public int getVehicle_id() {
+            public String getVehicle_id() {
                 return vehicle_id;
             }
 
-            public void setVehicle_id(int vehicle_id) {
+            public void setVehicle_id(String vehicle_id) {
                 this.vehicle_id = vehicle_id;
             }
 
-            public int getRto_id() {
+            public String getRto_id() {
                 return rto_id;
             }
 
-            public void setRto_id(int rto_id) {
+            public void setRto_id(String rto_id) {
                 this.rto_id = rto_id;
             }
 
@@ -187,11 +187,11 @@ public class RequestCoreEntity {
                 this.policy_expiry_date = policy_expiry_date;
             }
 
-            public int getPrev_insurer_id() {
+            public String getPrev_insurer_id() {
                 return prev_insurer_id;
             }
 
-            public void setPrev_insurer_id(int prev_insurer_id) {
+            public void setPrev_insurer_id(String prev_insurer_id) {
                 this.prev_insurer_id = prev_insurer_id;
             }
 
@@ -275,11 +275,11 @@ public class RequestCoreEntity {
                 this.is_antitheft_fit = is_antitheft_fit;
             }
 
-            public int getVoluntary_deductible() {
+            public String getVoluntary_deductible() {
                 return voluntary_deductible;
             }
 
-            public void setVoluntary_deductible(int voluntary_deductible) {
+            public void setVoluntary_deductible(String voluntary_deductible) {
                 this.voluntary_deductible = voluntary_deductible;
             }
 
@@ -315,11 +315,11 @@ public class RequestCoreEntity {
                 this.external_bifuel_value = external_bifuel_value;
             }
 
-            public int getPa_owner_driver_si() {
+            public String getPa_owner_driver_si() {
                 return pa_owner_driver_si;
             }
 
-            public void setPa_owner_driver_si(int pa_owner_driver_si) {
+            public void setPa_owner_driver_si(String pa_owner_driver_si) {
                 this.pa_owner_driver_si = pa_owner_driver_si;
             }
 
@@ -347,11 +347,11 @@ public class RequestCoreEntity {
                 this.pa_paid_driver_si = pa_paid_driver_si;
             }
 
-            public int getVehicle_expected_idv() {
+            public String getVehicle_expected_idv() {
                 return vehicle_expected_idv;
             }
 
-            public void setVehicle_expected_idv(int vehicle_expected_idv) {
+            public void setVehicle_expected_idv(String vehicle_expected_idv) {
                 this.vehicle_expected_idv = vehicle_expected_idv;
             }
 
@@ -395,19 +395,19 @@ public class RequestCoreEntity {
                 this.email = email;
             }
 
-            public int getCrn() {
+            public String getCrn() {
                 return crn;
             }
 
-            public void setCrn(int crn) {
+            public void setCrn(String crn) {
                 this.crn = crn;
             }
 
-            public int getSs_id() {
+            public String getSs_id() {
                 return ss_id;
             }
 
-            public void setSs_id(int ss_id) {
+            public void setSs_id(String ss_id) {
                 this.ss_id = ss_id;
             }
 
@@ -467,155 +467,155 @@ public class RequestCoreEntity {
                 this.registration_no_4 = registration_no_4;
             }
 
-            public int getPosp_posp_id() {
+            public String getPosp_posp_id() {
                 return posp_posp_id;
             }
 
-            public void setPosp_posp_id(int posp_posp_id) {
+            public void setPosp_posp_id(String posp_posp_id) {
                 this.posp_posp_id = posp_posp_id;
             }
 
-            public int getPosp_fba_id() {
+            public String getPosp_fba_id() {
                 return posp_fba_id;
             }
 
-            public void setPosp_fba_id(int posp_fba_id) {
+            public void setPosp_fba_id(String posp_fba_id) {
                 this.posp_fba_id = posp_fba_id;
             }
 
-            public int getPosp_sm_posp_id() {
+            public String getPosp_sm_posp_id() {
                 return posp_sm_posp_id;
             }
 
-            public void setPosp_sm_posp_id(int posp_sm_posp_id) {
+            public void setPosp_sm_posp_id(String posp_sm_posp_id) {
                 this.posp_sm_posp_id = posp_sm_posp_id;
             }
 
-            public int getPosp_sm_posp_name() {
+            public String getPosp_sm_posp_name() {
                 return posp_sm_posp_name;
             }
 
-            public void setPosp_sm_posp_name(int posp_sm_posp_name) {
+            public void setPosp_sm_posp_name(String posp_sm_posp_name) {
                 this.posp_sm_posp_name = posp_sm_posp_name;
             }
 
-            public int getPosp_first_name() {
+            public String getPosp_first_name() {
                 return posp_first_name;
             }
 
-            public void setPosp_first_name(int posp_first_name) {
+            public void setPosp_first_name(String posp_first_name) {
                 this.posp_first_name = posp_first_name;
             }
 
-            public int getPosp_middle_name() {
+            public String getPosp_middle_name() {
                 return posp_middle_name;
             }
 
-            public void setPosp_middle_name(int posp_middle_name) {
+            public void setPosp_middle_name(String posp_middle_name) {
                 this.posp_middle_name = posp_middle_name;
             }
 
-            public int getPosp_last_name() {
+            public String getPosp_last_name() {
                 return posp_last_name;
             }
 
-            public void setPosp_last_name(int posp_last_name) {
+            public void setPosp_last_name(String posp_last_name) {
                 this.posp_last_name = posp_last_name;
             }
 
-            public int getPosp_email_id() {
+            public String getPosp_email_id() {
                 return posp_email_id;
             }
 
-            public void setPosp_email_id(int posp_email_id) {
+            public void setPosp_email_id(String posp_email_id) {
                 this.posp_email_id = posp_email_id;
             }
 
-            public int getPosp_agent_city() {
+            public String getPosp_agent_city() {
                 return posp_agent_city;
             }
 
-            public void setPosp_agent_city(int posp_agent_city) {
+            public void setPosp_agent_city(String posp_agent_city) {
                 this.posp_agent_city = posp_agent_city;
             }
 
-            public int getPosp_mobile_no() {
+            public String getPosp_mobile_no() {
                 return posp_mobile_no;
             }
 
-            public void setPosp_mobile_no(int posp_mobile_no) {
+            public void setPosp_mobile_no(String posp_mobile_no) {
                 this.posp_mobile_no = posp_mobile_no;
             }
 
-            public int getPosp_pan_no() {
+            public String getPosp_pan_no() {
                 return posp_pan_no;
             }
 
-            public void setPosp_pan_no(int posp_pan_no) {
+            public void setPosp_pan_no(String posp_pan_no) {
                 this.posp_pan_no = posp_pan_no;
             }
 
-            public int getPosp_aadhar() {
+            public String getPosp_aadhar() {
                 return posp_aadhar;
             }
 
-            public void setPosp_aadhar(int posp_aadhar) {
+            public void setPosp_aadhar(String posp_aadhar) {
                 this.posp_aadhar = posp_aadhar;
             }
 
-            public int getPosp_sources() {
+            public String getPosp_sources() {
                 return posp_sources;
             }
 
-            public void setPosp_sources(int posp_sources) {
+            public void setPosp_sources(String posp_sources) {
                 this.posp_sources = posp_sources;
             }
 
-            public int getPosp_ss_id() {
+            public String getPosp_ss_id() {
                 return posp_ss_id;
             }
 
-            public void setPosp_ss_id(int posp_ss_id) {
+            public void setPosp_ss_id(String posp_ss_id) {
                 this.posp_ss_id = posp_ss_id;
             }
 
-            public int getPosp_erp_id() {
+            public String getPosp_erp_id() {
                 return posp_erp_id;
             }
 
-            public void setPosp_erp_id(int posp_erp_id) {
+            public void setPosp_erp_id(String posp_erp_id) {
                 this.posp_erp_id = posp_erp_id;
             }
 
-            public int getPosp_gender() {
+            public String getPosp_gender() {
                 return posp_gender;
             }
 
-            public void setPosp_gender(int posp_gender) {
+            public void setPosp_gender(String posp_gender) {
                 this.posp_gender = posp_gender;
             }
 
-            public int getPosp_posp_category() {
+            public String getPosp_posp_category() {
                 return posp_posp_category;
             }
 
-            public void setPosp_posp_category(int posp_posp_category) {
+            public void setPosp_posp_category(String posp_posp_category) {
                 this.posp_posp_category = posp_posp_category;
             }
 
-            public int getPosp_reporting_agent_uid() {
+            public String getPosp_reporting_agent_uid() {
                 return posp_reporting_agent_uid;
             }
 
-            public void setPosp_reporting_agent_uid(int posp_reporting_agent_uid) {
+            public void setPosp_reporting_agent_uid(String posp_reporting_agent_uid) {
                 this.posp_reporting_agent_uid = posp_reporting_agent_uid;
             }
 
-            public int getPosp_reporting_agent_name() {
+            public String getPosp_reporting_agent_name() {
                 return posp_reporting_agent_name;
             }
 
-            public void setPosp_reporting_agent_name(int posp_reporting_agent_name) {
+            public void setPosp_reporting_agent_name(String posp_reporting_agent_name) {
                 this.posp_reporting_agent_name = posp_reporting_agent_name;
             }
 
