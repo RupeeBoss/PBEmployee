@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -40,6 +41,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     Menu menuAddon;
     String[] addOns;
     DatabaseController databaseController;
+    WebView webViewLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,8 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     private void initialize() {
         bikeQuoteRecycler = (RecyclerView) findViewById(R.id.bikeQuoteRecycler);
         bikeQuoteRecycler.setHasFixedSize(true);
-
+        webViewLoader = (WebView) findViewById(R.id.webViewLoader);
+        webViewLoader.loadUrl("file:///android_asset/loader.html");
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         bikeQuoteRecycler.setLayoutManager(mLayoutManager);
 
