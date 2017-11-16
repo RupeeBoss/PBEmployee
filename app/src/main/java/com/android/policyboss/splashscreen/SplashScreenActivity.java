@@ -46,6 +46,13 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
             new VarientMasterController(this, realm).getAllMasters(this);
             new VarientMasterController(this, realm).getAllCityMasters(this);
 
+            //Delete after login working state
+
+            SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_POLICYBOSS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(Constants.SHARED_PREF_ALL_MASTER, false).commit();
+
+
         }
 // else {
 //            new Handler().postDelayed(new Runnable() {
