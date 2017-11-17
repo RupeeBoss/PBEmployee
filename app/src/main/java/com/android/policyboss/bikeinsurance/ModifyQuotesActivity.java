@@ -17,7 +17,7 @@ public class ModifyQuotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modify_quotes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
 }
