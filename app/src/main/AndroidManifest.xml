@@ -178,6 +178,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.bikeinsurance.BikeQuoteActivity" />
         </activity>
+        <activity
+            android:name=".webview.CommonWebViewActivity"
+            android:label="@string/title_activity_common_web_view"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -3,8 +3,10 @@ package com.android.policyboss.core.requestbuilders;
 import com.android.policyboss.core.NodeRetroRequestBuilder;
 import com.android.policyboss.core.requestEntity.BikePremiumRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
+import com.android.policyboss.core.requestEntity.SaveAddOnRequestEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
 import com.android.policyboss.core.response.BikeUniqueResponse;
+import com.android.policyboss.core.response.SaveAddOnResponse;
 
 import retrofit.Call;
 import retrofit.http.Body;
@@ -29,5 +31,8 @@ public class BikeQuotesRequestBuilder extends NodeRetroRequestBuilder {
 
         @POST("/quote/premium_list_db")
         Call<BikePremiumResponse> getBikePremiumList(@Body BikePremiumRequestEntity body);
+
+        @POST("/quote/save_user_data")
+        Call<SaveAddOnResponse> saveAddOn(@Body SaveAddOnRequestEntity body);
     }
 }
