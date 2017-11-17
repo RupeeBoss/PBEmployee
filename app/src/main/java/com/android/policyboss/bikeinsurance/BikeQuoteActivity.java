@@ -7,11 +7,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -46,6 +48,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
     DatabaseController databaseController;
     WebView webViewLoader;
     List<MobileAddOn> listMobileAddOn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +107,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 
         switch (item.getItemId()) {
             case R.id.add_on:
+                openPopUp();
                 return true;
 
             default:
@@ -114,6 +118,126 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
 
 
     //endregion
+
+    private void openPopUp() {
+
+//        Dialog dialog;
+//      //  final  ArrayList<QuoteSelected> itemsList = getAddons(bikePremiumResponse.getSummary().getCommon_Addon());
+//
+//        final String[] items = new String[listMobileAddOn.size()];
+//
+//        boolean[] checkedValues = new boolean[listMobileAddOn.size()];
+//
+//        for(int i = 0; i < listMobileAddOn.size(); i++) {
+//
+//            items[i] = listMobileAddOn.get(i).getAddonName().toString();
+//            checkedValues[i] = listMobileAddOn.get(i).isSelected;
+//        }
+//
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        //checkedValues[0] = true;
+//        builder.setTitle("Select Add-on :");
+//        builder.setMultiChoiceItems(items, checkedValues,
+//                new DialogInterface.OnMultiChoiceClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int selectedItemId,
+//                                        boolean isSelected) {
+//
+//                        listMobileAddOn.get(selectedItemId).setSelected(isSelected);
+//
+//                       // bikePremiumResponse.getSummary().getCommon_Addon()
+//
+//                       // setAddonsCheckLst(bikePremiumResponse.getSummary().getCommon_Addon(),isSelected);
+//                        //   bikePremiumResponse.getSummary().getCommon_Addon().getAddon_zero_dep_cover().setSelected(isSelected);
+//
+//
+//                    }
+//                })
+//                .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int id) {
+//
+//                        try {
+////                            ArrayList<String> selectedItems = new ArrayList<String>();
+////
+////                            for (int i = 0; i < itemsList.size(); i++) {
+////                                if (itemsList.get(i).isSelected) {
+////                                    selectedItems.add(databaseController.getAddonKey(items[i]));
+////                                }
+////                            }
+////                            applyAddon(selectedItems, bikePremiumResponse);
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int id) {
+//                    }
+//                });
+//        dialog = builder.create();
+//        //  ((AlertDialog) dialog).getListView().setItemChecked(0, true);
+//        dialog.setCancelable(false);
+//        dialog.show();
+
+        // final Dialog dialog = new Dialog(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select Add-on :");
+        // ...Irrelevant code for customizing the buttons and title
+
+        RecyclerView rvAddOne;
+        TextView txtOk, txtCancel;
+
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.layout_addon_popup, null);
+        builder.setView(dialogView);
+
+        final AlertDialog alertDialog = builder.create();
+
+
+        // set the custom dialog components - text, image and button
+        txtOk = (TextView) dialogView.findViewById(R.id.txtOk);
+        txtCancel = (TextView) dialogView.findViewById(R.id.txtCancel);
+        rvAddOne = (RecyclerView) dialogView.findViewById(R.id.rvAddOne);
+        rvAddOne.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BikeQuoteActivity.this);
+        rvAddOne.setLayoutManager(layoutManager);
+
+        final AddonPopUpAdapter popUpAdapter = new AddonPopUpAdapter(BikeQuoteActivity.this, listMobileAddOn);
+        rvAddOne.setAdapter(popUpAdapter);
+
+
+        txtOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                listMobileAddOn = popUpAdapter.updateAddonList();
+//                popUpAdapter.notifyDataSetChanged();
+
+
+                alertDialog.dismiss();
+            }
+        });
+
+
+        txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                alertDialog.dismiss();
+
+            }
+        });
+
+
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+    }
+
 
     //region apply addon
 
@@ -213,6 +337,7 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
         @Override
         protected Void doInBackground(Void... voids) {
 
+            listMobileAddOn.clear();
             CommonAddonEntity entity = bikePremiumResponse.getSummary().getCommon_Addon();
             if (entity.getAddon_ambulance_charge_cover() != null) {
                 MobileAddOn mobileAddOn = new MobileAddOn();
