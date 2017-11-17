@@ -342,4 +342,10 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     private String getRegistrationNo(String city) {
         return "" + city.charAt(1) + city.charAt(2) + "-" + city.charAt(3) + city.charAt(4) + "-AA-1234";
     }
+
+    private String getManufacturingDate(String manufac) {
+        final Calendar calendar = Calendar.getInstance();
+        return manufac + "-" + calendar.getTime().getMonth() + "-" + calendar.getTime().getDate();
+
+    }
 }
