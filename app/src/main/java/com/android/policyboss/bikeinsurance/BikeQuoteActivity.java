@@ -181,6 +181,8 @@ public class BikeQuoteActivity extends BaseActivity implements View.OnClickListe
             //
             if (bikePremiumResponse.getSummary().getStatusX().equals("complete") || Constants.getSharedPreference(this).getInt(Constants.QUOTE_COUNTER, 0) >= 5) {
                 webViewLoader.setVisibility(View.GONE);
+                new AsyncAddon().execute();
+
                 if (((BikePremiumResponse) response).getResponse().size() != 0)
                     menuAddon.findItem(R.id.add_on).setVisible(true);
                 else
