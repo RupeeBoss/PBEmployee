@@ -421,7 +421,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
         bikeRequestEntity.setExecution_async("yes");
         bikeRequestEntity.setVehicle_insurance_type("new");
-        bikeRequestEntity.setVehicle_manf_date("");
+        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
         bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
         bikeRequestEntity.setPolicy_expiry_date("");
         bikeRequestEntity.setPrev_insurer_id("");
@@ -475,7 +475,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
         bikeRequestEntity.setExecution_async("yes");
         bikeRequestEntity.setVehicle_insurance_type("renew");
-        bikeRequestEntity.setVehicle_manf_date("");
+        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
         bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
         bikeRequestEntity.setPolicy_expiry_date(etPolicyExpDate.getText().toString());
         bikeRequestEntity.setPrev_insurer_id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
@@ -543,7 +543,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
         bikeRequestEntity.setExecution_async("yes");
         bikeRequestEntity.setVehicle_insurance_type("renew");
-        bikeRequestEntity.setVehicle_manf_date("");
+
+        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
         bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
         bikeRequestEntity.setPolicy_expiry_date(etPolicyExpDate.getText().toString());
         bikeRequestEntity.setPrev_insurer_id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
@@ -567,7 +568,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         }
 
 
-        if (quoteRequestEntity.getRegistrationNumber() != "")
+        if (!quoteRequestEntity.getRegistrationNumber().equals(""))
             bikeRequestEntity.setRegistration_no(quoteRequestEntity.getRegistrationNumber());
         else
             bikeRequestEntity.setRegistration_no(getRegistrationNo(autoCity.getText().toString()));
@@ -600,5 +601,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
     private String getRegistrationNo(String city) {
         return "" + city.charAt(1) + city.charAt(2) + "-" + city.charAt(3) + city.charAt(4) + "-AA-1234";
+    }
+
+    private String getManufacturingDate(String manufac) {
+        final Calendar calendar = Calendar.getInstance();
+        return manufac + "-" + calendar.getTime().getMonth() + "-" + calendar.getTime().getDate();
+
     }
 }
