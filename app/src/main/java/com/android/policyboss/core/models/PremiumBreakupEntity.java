@@ -1,5 +1,6 @@
 package com.android.policyboss.core.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PremiumBreakupEntity {
@@ -14,12 +15,12 @@ public class PremiumBreakupEntity {
 
     private OwnDamageEntity own_damage;
     private LiabilityEntity liability;
-    private AddonEntity addon;
+    private AddonEntity Addon_List;
     private String net_premium;
     private String service_tax;
     private String final_premium;
 
-    private List<AppliedAddonsPremiumBreakup> listAppliedAddons;
+    private List<AppliedAddonsPremiumBreakup> listAppliedAddons = new ArrayList<AppliedAddonsPremiumBreakup>();
 
     public List<AppliedAddonsPremiumBreakup> getListAppliedAddons() {
         return listAppliedAddons;
@@ -46,11 +47,11 @@ public class PremiumBreakupEntity {
     }
 
     public AddonEntity getAddon() {
-        return addon;
+        return Addon_List;
     }
 
     public void setAddon(AddonEntity addon) {
-        this.addon = addon;
+        this.Addon_List = addon;
     }
 
     public String getNet_premium() {

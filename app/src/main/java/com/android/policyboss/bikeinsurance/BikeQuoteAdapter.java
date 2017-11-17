@@ -66,15 +66,15 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
         // holder.txtInsurerName.setText(responseEntity.getInsurer().getInsurer_Name());
         // holder.txtIDV.setText(responseEntity);
         if (responseEntity.getPremium_Breakup() != null) {
-            holder.txtFinalPremium.setText("\u20B9 " + Math.round(Integer.parseInt(responseEntity.getPremium_Breakup().getFinal_premium())) + " (per year)");
+            holder.txtFinalPremium.setText("\u20B9 " + Math.round(Double.parseDouble(responseEntity.getPremium_Breakup().getFinal_premium())) + " (per year)");
         } else {
             holder.txtFinalPremium.setText("");
         }
 
         holder.txtIDV.setText("\u20B9 " + String.valueOf(responseEntity.getLM_Custom_Request().getVehicle_expected_idv()));
-        Glide.with(mContext)
-                .load(getProfessionalID1(Integer.parseInt(responseEntity.getInsurer().getInsurer_ID())))
-                .into(holder.imgInsurerLogo);
+//        Glide.with(mContext)
+//                .load(getProfessionalID1(Integer.parseInt(responseEntity.getInsurer().getInsurer_ID())))
+//                .into(holder.imgInsurerLogo);
     }
 
 

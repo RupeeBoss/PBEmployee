@@ -7,7 +7,7 @@ package com.android.policyboss.core.models;
 public class AppliedAddonsPremiumBreakup {
 
     private String addonName;
-    private String priceAddon;
+    private double priceAddon;
 
     public String getAddonName() {
         return addonName;
@@ -17,11 +17,11 @@ public class AppliedAddonsPremiumBreakup {
         this.addonName = addonName;
     }
 
-    public String getPriceAddon() {
+    public double getPriceAddon() {
         return priceAddon;
     }
 
-    public void setPriceAddon(String priceAddon) {
+    public void setPriceAddon(double priceAddon) {
         this.priceAddon = priceAddon;
     }
 }

@@ -35,8 +35,29 @@ public class ResponseEntity {
         private PremiumBreakupEntity Premium_Breakup;
         private InsurerEntity Insurer;
         private String Call_Execution_Time;
+    /**
+     * Service_Log_Id : 105851
+     * Insurer_Id : 5
+     * Insurer : {"_id":"59b7d7ad63237647de1f2a85","Insurer_Code":"HDFC ERGO","Insurer_ID":5,"Insurer_Logo_Name":"hdfc.png","Insurer_Logo_Name_Mobile":"","Insurer_Name":"HDFC ERGO General Insurance Co. Ltd.","IsActive":1,"IsInternal":"","PreviousInsurer_Address":"","PreviousInsurer_Pincode":""}
+     * Premium_Breakup : {"own_damage":{"od_basic":7292,"od_elect_access":0,"od_non_elect_access":0,"od_cng_lpg":0,"od_disc_ncb":0,"od_disc_vol_deduct":0,"od_disc_anti_theft":0,"od_disc_aai":0,"od_loading":0,"od_disc":0,"od_final_premium":7292},"liability":{"tp_basic":2863,"tp_cover_owner_driver_pa":100,"tp_cover_unnamed_passenger_pa":0,"tp_cover_named_passenger_pa":0,"tp_cover_paid_driver_pa":0,"tp_cover_paid_driver_ll":0,"tp_cng_lpg":0,"tp_final_premium":2963},"net_premium":10255,"service_tax":1845.8999999999999,"final_premium":12101}
+     * Premium_Rate : null
+     * Addon_List : {"addon_zero_dep_cover":1333,"addon_road_assist_cover":350,"addon_ncb_protection_cover":237,"addon_engine_protector_cover":355,"addon_consumable_cover":296}
+     * Plan_List : [{"Plan_Id":17,"Plan_Name":"Platinum","Service_Log_Id":105851,"Service_Log_Unique_Id":"ARN-IGXFP4KP-R6FD-BTRC-AL0Q-0HUOXK2LLXXO","Insurer_Transaction_Identifier":"8d8b742a-4c17-447d-ba27-38ea7bd9933d","Plan_Addon_Breakup":{"addon_zero_dep_cover":1333,"addon_road_assist_cover":350,"addon_ncb_protection_cover":237,"addon_engine_protector_cover":355},"Plan_Addon_Premium":2275},{"Plan_Id":16,"Plan_Name":"Gold","Service_Log_Id":105850,"Service_Log_Unique_Id":"ARN-JPTKHIIP-Q8P3-L0LC-XPRV-UWMJS2FA8IYL","Insurer_Transaction_Identifier":"475b79f6-40f1-44e9-9044-09eff1087cf9","Plan_Addon_Breakup":{"addon_road_assist_cover":350},"Plan_Addon_Premium":350},{"Plan_Id":14,"Plan_Name":"Basic","Service_Log_Id":105849,"Service_Log_Unique_Id":"ARN-TB48IVYA-A6L4-TRWC-TDIK-LPFPPVIZ785O","Insurer_Transaction_Identifier":"5bbb1e18-e686-4592-878a-b25a19e1a675","Plan_Addon_Breakup":{},"Plan_Addon_Premium":0},{"Plan_Id":15,"Plan_Name":"Silver","Service_Log_Id":105852,"Service_Log_Unique_Id":"ARN-18EU79RL-EUJQ-LHY3-63DT-FMDCAYK7IXIK","Insurer_Transaction_Identifier":"721bbbe5-1f2a-40f5-ba25-91cae5df4cf4","Plan_Addon_Breakup":{"addon_zero_dep_cover":1333,"addon_road_assist_cover":350},"Plan_Addon_Premium":1683},{"Plan_Id":18,"Plan_Name":"Titanium","Service_Log_Id":105853,"Service_Log_Unique_Id":"ARN-ECZAVNEU-MZMF-ZSQE-M0GG-CNMNE0MHKUDP","Insurer_Transaction_Identifier":"5aec4d34-6915-4c97-8d1e-4631ab1c88b5","Plan_Addon_Breakup":{"addon_zero_dep_cover":1333,"addon_road_assist_cover":350,"addon_ncb_protection_cover":237,"addon_engine_protector_cover":355,"addon_consumable_cover":296},"Plan_Addon_Premium":2571}]
+     * LM_Custom_Request : {"dbmaster_insurer_vehicle_exshowroom":435585,"vehicle_expected_idv":296198,"vehicle_max_idv":400738,"vehicle_min_idv":296198,"vehicle_ncb_current":"0","vehicle_ncb_next":"0","vehicle_normal_idv":348468}
+     * Completion_Summary : {"Total":5,"Completed":5,"Status":"complete"}
+     */
 
-        public String getService_Log_Id() {
+    private AddonEntity Addon_List;
+
+    public AddonEntity getAddon_List() {
+        return Addon_List;
+    }
+
+    public void setAddon_List(AddonEntity addon_List) {
+        Addon_List = addon_List;
+    }
+
+    public String getService_Log_Id() {
             return Service_Log_Id;
         }
 
