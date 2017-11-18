@@ -19,7 +19,7 @@ import java.util.List;
  * Created by IN-RB on 17-11-2017.
  */
 
-public class AddonPopUpAdapter  extends RecyclerView.Adapter<AddonPopUpAdapter.AddonItem> {
+public class AddonPopUpAdapter extends RecyclerView.Adapter<AddonPopUpAdapter.AddonItem> {
 
     Activity context;
 
@@ -30,25 +30,24 @@ public class AddonPopUpAdapter  extends RecyclerView.Adapter<AddonPopUpAdapter.A
         this.listMobileAddOn = listMobileAddOn;
     }
 
-    public class AddonItem extends  RecyclerView.ViewHolder{
+    public class AddonItem extends RecyclerView.ViewHolder {
 
-        public TextView txtAddOneName  ;
+        public TextView txtAddOneName;
         public CheckBox chkAddon;
 
 
         public AddonItem(View itemView) {
             super(itemView);
-            txtAddOneName = (TextView)itemView.findViewById(R.id.txtAddOneName);
-            chkAddon = (CheckBox)itemView.findViewById(R.id.chkAddon);
+            txtAddOneName = (TextView) itemView.findViewById(R.id.txtAddOneName);
+            chkAddon = (CheckBox) itemView.findViewById(R.id.chkAddon);
         }
     }
-
 
 
     @Override
     public AddonItem onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_addon_item,parent,false);
+                .inflate(R.layout.layout_addon_item, parent, false);
         return new AddonPopUpAdapter.AddonItem(itemView);
     }
 
@@ -56,11 +55,11 @@ public class AddonPopUpAdapter  extends RecyclerView.Adapter<AddonPopUpAdapter.A
     public void onBindViewHolder(final AddonItem holder, final int position) {
 
         final MobileAddOn mobileAddOn = listMobileAddOn.get(position);
-        holder.txtAddOneName.setText(""+mobileAddOn.getAddonName());
+        holder.txtAddOneName.setText("" + mobileAddOn.getAddonName());
 
-        if(mobileAddOn.isSelected()) {
+        if (mobileAddOn.isSelected()) {
             holder.chkAddon.setChecked(true);
-        }else{
+        } else {
             holder.chkAddon.setChecked(false);
         }
 
@@ -69,17 +68,17 @@ public class AddonPopUpAdapter  extends RecyclerView.Adapter<AddonPopUpAdapter.A
         holder.chkAddon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
 
                     holder.chkAddon.setChecked(true);
                     mobileAddOn.setSelected(true);
 
-                }else {
+                } else {
                     holder.chkAddon.setChecked(false);
                     mobileAddOn.setSelected(false);
                 }
-              //  listMobileAddOn.set(position,mobileAddOn);
-               // notifyItemChanged(position,mobileAddOn);
+                //  listMobileAddOn.set(position,mobileAddOn);
+                // notifyItemChanged(position,mobileAddOn);
 
 
             }
@@ -88,9 +87,8 @@ public class AddonPopUpAdapter  extends RecyclerView.Adapter<AddonPopUpAdapter.A
     }
 
 
-    public List<MobileAddOn>  updateAddonList()
-    {
-      return  listMobileAddOn;
+    public List<MobileAddOn> getUpdateMobileAddonList() {
+        return listMobileAddOn;
     }
 
     @Override

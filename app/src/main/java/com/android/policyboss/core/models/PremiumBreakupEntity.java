@@ -1,5 +1,8 @@
 package com.android.policyboss.core.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PremiumBreakupEntity {
     /**
      * own_damage : {"od_basic":11490.07,"od_elect_access":0,"od_non_elect_access":0,"od_cng_lpg":0,"od_disc_ncb":2298.01,"od_disc_vol_deduct":0,"od_disc_anti_theft":0,"od_disc_aai":0,"od_loading":0,"od_disc":0,"od_final_premium":9192.06}
@@ -12,10 +15,20 @@ public class PremiumBreakupEntity {
 
     private OwnDamageEntity own_damage;
     private LiabilityEntity liability;
-    private AddonEntity addon;
+    private AddonEntity Addon_List;
     private String net_premium;
     private String service_tax;
     private String final_premium;
+
+    private List<AppliedAddonsPremiumBreakup> listAppliedAddons = new ArrayList<AppliedAddonsPremiumBreakup>();
+
+    public List<AppliedAddonsPremiumBreakup> getListAppliedAddons() {
+        return listAppliedAddons;
+    }
+
+    public void setListAppliedAddons(List<AppliedAddonsPremiumBreakup> listAppliedAddons) {
+        this.listAppliedAddons = listAppliedAddons;
+    }
 
     public OwnDamageEntity getOwn_damage() {
         return own_damage;
@@ -34,11 +47,11 @@ public class PremiumBreakupEntity {
     }
 
     public AddonEntity getAddon() {
-        return addon;
+        return Addon_List;
     }
 
     public void setAddon(AddonEntity addon) {
-        this.addon = addon;
+        this.Addon_List = addon;
     }
 
     public String getNet_premium() {

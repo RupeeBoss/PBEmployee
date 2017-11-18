@@ -8,9 +8,11 @@ import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.requestEntity.BikePremiumRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
+import com.android.policyboss.core.requestEntity.SaveAddOnRequestEntity;
 import com.android.policyboss.core.requestbuilders.BikeQuotesRequestBuilder;
 import com.android.policyboss.core.response.BikePremiumResponse;
 import com.android.policyboss.core.response.BikeUniqueResponse;
+import com.android.policyboss.core.response.SaveAddOnResponse;
 import com.android.policyboss.utility.Constants;
 
 import java.net.ConnectException;
@@ -157,5 +159,37 @@ public class BikeController implements IBike {
             }
         });
 
+    }
+
+    @Override
+    public void saveAddOn(SaveAddOnRequestEntity saveAddOnRequestEntity, final IResponseSubcriber iResponseSubcriber) {
+        saveAddOnRequestEntity.setSecret_key(Constants.SECRET_KEY);
+        saveAddOnRequestEntity.setClient_key(Constants.CLIENT_KEY);
+        bikeQuotesNetworkService.saveAddOn(saveAddOnRequestEntity).enqueue(new Callback<SaveAddOnResponse>() {
+            @Override
+            public void onResponse(Response<SaveAddOnResponse> response, Retrofit retrofit) {
+                if (response.body() != null) {
+                    iResponseSubcriber.OnSuccess(response.body(), response.body().getMessage());
+
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Enable to reach server, Try again later"));
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                if (t instanceof ConnectException) {
+                    iResponseSubcriber.OnFailure(t);
+                } else if (t instanceof SocketTimeoutException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof UnknownHostException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Check your internet connection"));
+                } else if (t instanceof NumberFormatException) {
+                    iResponseSubcriber.OnFailure(new RuntimeException("Unexpected server response"));
+                } else {
+                    iResponseSubcriber.OnFailure(new RuntimeException(t.getMessage()));
+                }
+            }
+        });
     }
 }
