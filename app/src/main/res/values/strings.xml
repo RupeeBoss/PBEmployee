@@ -161,4 +161,5 @@
     <string name="title_activity_bike_quote">Bike Insurance</string>
     <string name="title_activity_premium_breakup">Premium Breakup</string>
     <string name="title_activity_modify_quotes">Modify Your Quotes</string>
+    <string name="title_activity_common_web_view">PolicyBoss</string>
 </resources>

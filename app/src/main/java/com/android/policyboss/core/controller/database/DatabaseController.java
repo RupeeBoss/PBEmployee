@@ -93,27 +93,29 @@ public class DatabaseController implements IDBController {
 
     public void MapInsurence() {
 
-        hashMapInsurence.put("Bajaj Allianz General Insurance Co. Ltd.", 1);
-        hashMapInsurence.put("Bharti Axa General Insurance Co.Ltd.", 2);
-        hashMapInsurence.put("Cholamandalam MS General Insurance Co.Ltd.", 3);
-        hashMapInsurence.put("Future Generali India Insurance Co.Ltd.", 4);
-        hashMapInsurence.put("HDFC ERGO General Insurance Co.Ltd.", 5);
-        hashMapInsurence.put("ICICI Lombard General Insurance Co.Ltd.", 6);
-        hashMapInsurence.put("IFFCO Tokio General Insurance Co.Ltd.", 7);
-        hashMapInsurence.put("L & T General Insurance Co.Ltd.", 15);
-        hashMapInsurence.put("Liberty Videocon General Insurance Co.Ltd.", 33);
-        hashMapInsurence.put("Magma HDI General Insurance Co.Ltd", 35);
-        hashMapInsurence.put("National Insurance Co.Ltd.", 8);
-        hashMapInsurence.put("Raheja QBE General Insurance Co.Ltd.", 16);
-        hashMapInsurence.put("Reliance General Insurance Co.Ltd.", 9);
-        hashMapInsurence.put("Royal Sundaram Alliance Insurance Co.Ltd", 10);
+        hashMapInsurence.put("Bajaj Allianz", 1);
+        hashMapInsurence.put("Bharti Axa", 2);
+        hashMapInsurence.put("Future Generali India", 4);
+        hashMapInsurence.put("HDFC ERGO", 5);
+        hashMapInsurence.put("ICICI Lombard", 6);
+        hashMapInsurence.put("IFFCO Tokio", 7);
+        hashMapInsurence.put("Universal Sompo", 19);
+        hashMapInsurence.put("Liberty Videocon", 33);
+        hashMapInsurence.put("Tata AIG", 11);
+        hashMapInsurence.put("New India Assurance", 12);
+        hashMapInsurence.put("Kotak Mahindra",30);
+        hashMapInsurence.put("Reliance General", 9);
+        hashMapInsurence.put("Royal Sundaram", 10);
         hashMapInsurence.put("SBI General Insurance Co.Ltd.", 17);
         hashMapInsurence.put("Shriram General Insurance Co.Ltd.", 18);
-        hashMapInsurence.put("Tata AIG General Insurance Co.Ltd.", 11);
-        hashMapInsurence.put("The New India Assurance Co.Ltd.", 12);
+        hashMapInsurence.put("National Insurance Co.Ltd.", 8);
+        hashMapInsurence.put("L & T General Insurance Co.Ltd.", 15);
+        hashMapInsurence.put("Cholamandalam MS General Insurance Co.Ltd.", 3);
+        hashMapInsurence.put("Raheja QBE General Insurance Co.Ltd.", 16);
+        hashMapInsurence.put("Magma HDI General Insurance Co.Ltd", 35);
         hashMapInsurence.put("The Oriental Insurance Co.Ltd.", 13);
         hashMapInsurence.put("United India Insurance Co.Ltd.", 14);
-        hashMapInsurence.put("Universal Sompo General Insurance Co.Ltd.", 19);
+
 
     }
 
@@ -1882,6 +1884,7 @@ public class DatabaseController implements IDBController {
         hasMapCarInsuranceImage.put(17, R.drawable.carins17);
         hasMapCarInsuranceImage.put(18, R.drawable.carins18);
         hasMapCarInsuranceImage.put(19, R.drawable.carins19);
+        hasMapCarInsuranceImage.put(30, R.drawable.carins30);
         hasMapCarInsuranceImage.put(33, R.drawable.carins33);
         hasMapCarInsuranceImage.put(35, R.drawable.carins35);
 

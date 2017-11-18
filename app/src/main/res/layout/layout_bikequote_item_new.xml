@@ -27,8 +27,8 @@
 
             <ImageView
                 android:id="@+id/imgInsurerLogo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
                 android:gravity="center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/carins1" />
@@ -37,7 +37,7 @@
                 android:id="@+id/txtIDV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="center_vertical|left"
                 android:text="IDV $234"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
         </LinearLayout>
@@ -47,6 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -55,13 +56,15 @@
                 android:id="@+id/txtFinalPremium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_border_quote"
+                android:background="@drawable/round_button"
                 android:gravity="center"
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:padding="5dp"
                 android:text="$4544"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:drawableRight="@drawable/right_arrow"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/txtPremiumBreakUp"

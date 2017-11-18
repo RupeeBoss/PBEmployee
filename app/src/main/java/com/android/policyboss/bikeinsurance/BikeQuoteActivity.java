@@ -31,6 +31,7 @@ import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
 import com.android.policyboss.utility.Constants;
+import com.android.policyboss.webview.CommonWebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -969,5 +970,27 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         protected void onPostExecute(Boolean aVoid) {
             super.onPostExecute(aVoid);
         }
+    }
+
+    public void redirectToBuy(String Service_Log_Unique_Id) {
+        // String URL = "http://qa.policyboss.com/buynowprivatecar/2/arn-5vsdcdks-ifxf-lbo7-imvr-ycc3axgrfrwe/nonposp/0";
+        String url = "http://qa.policyboss.com/";
+        //String url = "http://policyboss.com/";
+        String title = "";
+        String name = "";
+
+        if (getIntent().hasExtra("BIKE")) {
+            url = url + "buynowTwoWheeler/4/" + Service_Log_Unique_Id + "/nonposp/0";
+            title = "Bike Insurance";
+        } else if (getIntent().hasExtra("CAR")) {
+            url = url + "buynowprivatecar/4/" + Service_Log_Unique_Id + "/nonposp/0";
+            title = "Car Insurance";
+        }
+
+
+        startActivity(new Intent(this, CommonWebViewActivity.class)
+                .putExtra("URL", url)
+                .putExtra("NAME", name)
+                .putExtra("TITLE", title));
     }
 }
