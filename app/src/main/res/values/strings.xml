@@ -162,4 +162,42 @@
     <string name="title_activity_premium_breakup">Premium Breakup</string>
     <string name="title_activity_modify_quotes">Modify Your Quotes</string>
     <string name="title_activity_common_web_view">PolicyBoss</string>
+
+
+    <!--Modify Quote Arrays for Car -->
+
+    <string-array name="car_voluntary_excess_amount">
+        <item>No Thank You</item>
+        <item>2500</item>
+        <item>5000</item>
+        <item>7500</item>
+        <item>15000</item>
+    </string-array>
+
+    <string-array name="car_Un_named_passenger_PA_cover">
+        <item>No Thank You</item>
+        <item>50000</item>
+        <item>100000</item>
+        <item>150000</item>
+        <item>200000</item>
+    </string-array>
+
+    <string-array name="car_named_passenger_PA_cover">
+        <item>No Thank You</item>
+        <item>50000</item>
+        <item>100000</item>
+        <item>150000</item>
+        <item>200000</item>
+    </string-array>
+
+    <!--Modify Quote Arrays for Bike -->
+
+    <string-array name="bike_voluntary_excess_amount">
+        <item>No Thank You</item>
+        <item>500</item>
+        <item>750</item>
+        <item>1500</item>
+        <item>3000</item>
+    </string-array>
+
 </resources>

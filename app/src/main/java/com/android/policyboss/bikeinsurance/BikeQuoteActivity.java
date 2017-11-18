@@ -64,7 +64,16 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class));
+
+                if (getIntent().hasExtra("BIKE")) {
+                    bikeRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
+                    startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
+                            .putExtra("BIKE", bikeRequestEntity));
+                } else if (getIntent().hasExtra("CAR")) {
+                    carRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
+                    startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
+                            .putExtra("CAR", carRequestEntity));
+                }
             }
         });
         if (getIntent().hasExtra("BIKE")) {

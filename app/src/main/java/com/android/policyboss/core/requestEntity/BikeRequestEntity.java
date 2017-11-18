@@ -83,6 +83,20 @@ public class BikeRequestEntity implements Parcelable {
     private String ip_address;
     private String secret_key;
     private String client_key;
+    /**
+     * is_aai_member : no
+     * external_bifuel_type :
+     * external_bifuel_value : 0
+     * ss_id : 0
+     * geo_lat : 19.0790426
+     * geo_long : 72.88183590000001
+     */
+
+    private String is_aai_member;
+    private String external_bifuel_type;
+    private int ss_id;
+    private double geo_lat;
+    private double geo_long;
 
 
     public BikeRequestEntity() {
@@ -900,7 +914,7 @@ public class BikeRequestEntity implements Parcelable {
         this.client_key = in.readString();
     }
 
-    public static final Parcelable.Creator<BikeRequestEntity> CREATOR = new Parcelable.Creator<BikeRequestEntity>() {
+    public static final Creator<BikeRequestEntity> CREATOR = new Creator<BikeRequestEntity>() {
         @Override
         public BikeRequestEntity createFromParcel(Parcel source) {
             return new BikeRequestEntity(source);
@@ -911,4 +925,44 @@ public class BikeRequestEntity implements Parcelable {
             return new BikeRequestEntity[size];
         }
     };
+
+    public String getIs_aai_member() {
+        return is_aai_member;
+    }
+
+    public void setIs_aai_member(String is_aai_member) {
+        this.is_aai_member = is_aai_member;
+    }
+
+    public String getExternal_bifuel_type() {
+        return external_bifuel_type;
+    }
+
+    public void setExternal_bifuel_type(String external_bifuel_type) {
+        this.external_bifuel_type = external_bifuel_type;
+    }
+
+    public int getSs_id() {
+        return ss_id;
+    }
+
+    public void setSs_id(int ss_id) {
+        this.ss_id = ss_id;
+    }
+
+    public double getGeo_lat() {
+        return geo_lat;
+    }
+
+    public void setGeo_lat(double geo_lat) {
+        this.geo_lat = geo_lat;
+    }
+
+    public double getGeo_long() {
+        return geo_long;
+    }
+
+    public void setGeo_long(double geo_long) {
+        this.geo_long = geo_long;
+    }
 }

@@ -36,9 +36,9 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -70,19 +70,22 @@
                         android:textColor="@android:color/black" />
 
                     <RadioGroup
+                        android:id="@+id/rgAntiTheft"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
+                        android:checkedButton="@+id/rbAntiTheftNo"
                         android:gravity="center_vertical|left"
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/rbAntiTheftYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Yes" />
 
                         <RadioButton
-                            android:checked="true"
+                            android:id="@+id/rbAntiTheftNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="no" />
@@ -108,10 +111,11 @@
                         android:textColor="@android:color/black" />
 
                     <Spinner
+                        android:id="@+id/spVoluntaryAccessAmt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
-                        android:background="@drawable/spinner_bg"
+                        android:background="@drawable/spinner_background"
                         android:gravity="center_vertical|left">
 
                     </Spinner>
@@ -123,6 +127,7 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="100">
 
                     <TextView
@@ -148,9 +153,9 @@
                             android:text="Yes" />
 
                         <RadioButton
-                            android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:text="no" />
                     </RadioGroup>
                 </LinearLayout>
@@ -184,6 +189,8 @@
                         android:textColor="@android:color/black" />
 
                     <EditText
+                        android:inputType="number"
+                        android:id="@+id/etIdv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
@@ -210,6 +217,8 @@
                         android:textColor="@android:color/black" />
 
                     <EditText
+                        android:inputType="number"
+                        android:id="@+id/etElec"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
@@ -236,6 +245,8 @@
                         android:textColor="@android:color/black" />
 
                     <EditText
+                        android:inputType="number"
+                        android:id="@+id/etNonElec"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
@@ -244,6 +255,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvSecMore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -254,6 +266,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
+                    android:id="@+id/llUnNamed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -272,16 +285,19 @@
                         android:textColor="@android:color/black" />
 
                     <Spinner
+                        android:id="@+id/spUnNamedPaCover"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
-                        android:background="@drawable/spinner_bg"
+                        android:background="@drawable/spinner_background"
+                        android:entries="@array/car_Un_named_passenger_PA_cover"
                         android:gravity="center_vertical|left">
 
                     </Spinner>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llLrgalLiability"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -300,26 +316,30 @@
                         android:textColor="@android:color/black" />
 
                     <RadioGroup
+                        android:id="@+id/rgllPd"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
+                        android:checkedButton="@+id/llpdNo"
                         android:gravity="center_vertical|left"
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/llpdYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Yes" />
 
                         <RadioButton
-                            android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/llpdNo"
                             android:text="no" />
                     </RadioGroup>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llNamed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -338,16 +358,19 @@
                         android:textColor="@android:color/black" />
 
                     <Spinner
+                        android:id="@+id/spNamedPaCover"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
-                        android:background="@drawable/spinner_bg"
+                        android:background="@drawable/spinner_background"
+                        android:entries="@array/car_named_passenger_PA_cover"
                         android:gravity="center_vertical|left">
 
                     </Spinner>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llUnPaidDriverCover"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -366,25 +389,28 @@
                         android:textColor="@android:color/black" />
 
                     <RadioGroup
+                        android:id="@+id/rgpda"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="35"
+                        android:checkedButton="@+id/pdaNo"
                         android:gravity="center_vertical|left"
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/pdaYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Yes" />
 
                         <RadioButton
-                            android:checked="true"
+                            android:id="@+id/pdaNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:text="no" />
                     </RadioGroup>
                 </LinearLayout>
-
 
 
             </LinearLayout>
@@ -402,13 +428,14 @@
         android:gravity="bottom|center_horizontal">
 
         <Button
+            android:id="@+id/btnReCal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button"
             android:paddingLeft="20dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:paddingRight="20dp"
             android:text="Re-Calculate"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
