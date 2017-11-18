@@ -1,10 +1,30 @@
 package com.android.policyboss.core.requestEntity;
 
+import com.android.policyboss.utility.Constants;
+
 /**
  * Created by Rajeev Ranjan on 17/11/2017.
  */
 
 public class SaveAddOnRequestEntity {
+
+    public SaveAddOnRequestEntity() {
+        this.addon_road_assist_cover = "no";
+        this.addon_engine_protector_cover = "no";
+        this.addon_key_lock_cover = "no";
+        this.addon_consumable_cover = "no";
+        this.addon_zero_dep_cover = "no";
+        this.addon_medical_expense_cover = "no";
+        this.addon_hospital_cash_cover = "no";
+        this.addon_ambulance_charge_cover = "no";
+        this.addon_ncb_protection_cover = "no";
+        this.addon_windshield_cover = "no";
+        this.data_type = "no";
+        this.search_reference_number = "no";
+        this.secret_key = Constants.SECRET_KEY;
+        this.client_key = Constants.CLIENT_KEY;
+    }
+
     /**
      * addon_road_assist_cover : yes
      * addon_engine_protector_cover : yes
@@ -21,6 +41,7 @@ public class SaveAddOnRequestEntity {
      * secret_key : SECRET-HZ07QRWY-JIBT-XRMQ-ZP95-J0RWP3DYRACW
      * client_key : CLIENT-CNTP6NYE-CU9N-DUZW-CSPI-SH1IS4DOVHB9
      */
+
 
     private String addon_road_assist_cover;
     private String addon_engine_protector_cover;

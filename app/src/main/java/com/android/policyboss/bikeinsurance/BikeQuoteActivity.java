@@ -29,7 +29,9 @@ import com.android.policyboss.core.models.CommonAddonEntity;
 import com.android.policyboss.core.models.MobileAddOn;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
+import com.android.policyboss.core.requestEntity.SaveAddOnRequestEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
+import com.android.policyboss.core.response.SaveAddOnResponse;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.webview.CommonWebViewActivity;
 
@@ -152,6 +154,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
             public void onClick(View v) {
                 listMobileAddOn = popUpAdapter.getUpdateMobileAddonList();
                 applyAddons();
+                updateAddonToserver();
                 alertDialog.dismiss();
             }
         });
@@ -169,6 +172,54 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         alertDialog.show();
     }
 
+    private void updateAddonToserver() {
+        SaveAddOnRequestEntity entity = new SaveAddOnRequestEntity();
+        for (int i = 0; i < listMobileAddOn.size(); i++) {
+            MobileAddOn mobileAddOn = listMobileAddOn.get(i);
+
+            if (mobileAddOn.getAddonKey().matches("addon_road_assist_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_road_assist_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_engine_protector_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_engine_protector_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_key_lock_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_key_lock_cover("yes");
+            }
+
+            if (mobileAddOn.getAddonKey().matches("addon_consumable_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_consumable_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_zero_dep_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_zero_dep_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_medical_expense_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_medical_expense_cover("yes");
+            }
+
+            if (mobileAddOn.getAddonKey().matches("addon_hospital_cash_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_hospital_cash_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_ambulance_charge_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_ambulance_charge_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_ncb_protection_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_ncb_protection_cover("yes");
+            }
+
+            if (mobileAddOn.getAddonKey().matches("addon_windshield_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_windshield_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("data_type") && mobileAddOn.isSelected) {
+                entity.setData_type("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("search_reference_number") && mobileAddOn.isSelected) {
+                entity.setSearch_reference_number("yes");
+            }
+        }
+        new BikeController(this).saveAddOn(entity, this);
+    }
+
 
     //region apply addon
 
@@ -177,8 +228,8 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         //1 : Extract applied addon
         //2 :Apply addons to insurer
 
-        Double GST_APPLY =  .18;
-        Double GST_REMOVE=  1.18 ;
+        Double GST_APPLY = .18;
+        Double GST_REMOVE = 1.18;
         List<ResponseEntity> listAppliedAddons = new ArrayList<>();
         boolean isAddonApplied = false;
         for (int i = 0; i < listMobileAddOn.size(); i++) {
@@ -253,7 +304,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 listAppliedAddons.add(entity);
                             } else {
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_road_assist_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -287,7 +338,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                            - entity.getAddon_List().getAddon_zero_dep_cover();
+                                            - entity.getAddon_List().getAddon_ncb_protection_cover();
 
                                     double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -326,7 +377,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                            - entity.getAddon_List().getAddon_zero_dep_cover();
+                                            - entity.getAddon_List().getAddon_engine_protector_cover();
 
                                     double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -360,10 +411,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_invoice_price_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -396,10 +447,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_key_lock_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -432,10 +483,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_consumable_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -468,10 +519,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_daily_allowance_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -504,10 +555,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_windshield_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -540,10 +591,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_passenger_assistance_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -576,10 +627,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_tyre_coverage_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -612,10 +663,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_personal_belonging_loss_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -648,10 +699,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_inconvenience_allowance_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -684,10 +735,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_medical_expense_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -720,10 +771,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_hospital_cash_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -756,10 +807,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                 isAddonApplied = true;
 
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_ambulance_charge_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -791,11 +842,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
-                            }
-                            else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_rodent_bite_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -827,10 +877,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_losstime_protection_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -862,10 +912,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_hydrostatic_lock_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -897,10 +947,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_guaranteed_auto_protection_cover();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -932,10 +982,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
-                            }else {
+                            } else {
 
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
-                                        - entity.getAddon_List().getAddon_zero_dep_cover();
+                                        - entity.getAddon_List().getAddon_final_premium();
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
@@ -989,12 +1039,6 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         if (response instanceof BikePremiumResponse) {
             bikePremiumResponse = (BikePremiumResponse) response;
             rebindAdapter(bikePremiumResponse);
-
-            if (((BikePremiumResponse) response).getResponse().size() != 0)
-                menuAddon.findItem(R.id.add_on).setVisible(true);
-            else
-                menuAddon.findItem(R.id.add_on).setVisible(false);
-
             //TODO : Create Add-on here
 
             //
@@ -1011,7 +1055,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 webViewLoader.setVisibility(View.VISIBLE);
 
             }
-
+        } else if (response instanceof SaveAddOnResponse) {
 
         }
 
