@@ -5,10 +5,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.WebSettings;
@@ -58,6 +58,7 @@ public class CommonWebViewActivity extends AppCompatActivity {
         DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
         dm.enqueue(r);
     }
+
     private void settingWebview() {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -83,6 +84,23 @@ public class CommonWebViewActivity extends AppCompatActivity {
         Log.d("URL", url);
         //webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + url);
         webView.loadUrl(url);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

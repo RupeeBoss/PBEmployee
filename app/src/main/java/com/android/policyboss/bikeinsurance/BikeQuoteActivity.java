@@ -222,10 +222,16 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
             if (mobileAddOn.getAddonKey().matches("data_type") && mobileAddOn.isSelected) {
                 entity.setData_type("yes");
             }
-            if (mobileAddOn.getAddonKey().matches("search_reference_number") && mobileAddOn.isSelected) {
+            /*if (mobileAddOn.getAddonKey().matches("search_reference_number") && mobileAddOn.isSelected) {
                 entity.setSearch_reference_number("yes");
-            }
+            }*/
         }
+        if (getIntent().hasExtra("BIKE")) {
+            entity.setSearch_reference_number(Constants.getSharedPreference(this).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
+        } else if (getIntent().hasExtra("CAR")) {
+            entity.setSearch_reference_number(Constants.getSharedPreference(this).getString(Constants.CARQUOTE_UNIQUEID, ""));
+        }
+
         new BikeController(this).saveAddOn(entity, this);
     }
 

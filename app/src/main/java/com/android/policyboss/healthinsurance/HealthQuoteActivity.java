@@ -2,18 +2,15 @@ package com.android.policyboss.healthinsurance;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.models.HealthQuotesEntity;
 import com.android.policyboss.core.response.HealthQuoteResponse;
+import com.android.policyboss.webview.CommonWebViewActivity;
 import com.android.policyboss.webview.WebViewBuyInsurenceActivity;
 
 import java.util.ArrayList;
@@ -36,6 +33,7 @@ public class HealthQuoteActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Health Insurance");
         initialise_widget();
 
         listHealthQuoteEntity = new ArrayList<>();
@@ -48,9 +46,14 @@ public class HealthQuoteActivity extends AppCompatActivity {
     }
 
     public void BuyHealth(HealthQuotesEntity entity) {
-        Intent intent = new Intent(this, WebViewBuyInsurenceActivity.class);
+     /*   Intent intent = new Intent(this, WebViewBuyInsurenceActivity.class);
         intent.putExtra(HEALTH_BUYNOW, entity.getProposerPageUrl());
         startActivity(intent);
+*/
+        startActivity(new Intent(this, CommonWebViewActivity.class)
+                .putExtra("URL", entity.getProposerPageUrl())
+                .putExtra("NAME", "Health")
+                .putExtra("TITLE", "Health Insurance"));
     }
 
     private void initialise_widget() {

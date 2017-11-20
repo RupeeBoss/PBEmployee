@@ -135,11 +135,11 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
                     if (spVoluntaryAccessAmt.getSelectedItemPosition() != 0)
                         carRequestEntity.setVoluntary_deductible(Integer.parseInt(spVoluntaryAccessAmt.getSelectedItem().toString()));
                     if (spUnNamedPaCover.getSelectedItemPosition() != 0)
-                        carRequestEntity.setVoluntary_deductible(Integer.parseInt(spUnNamedPaCover.getSelectedItem().toString()));
-                    carRequestEntity.setIs_antitheft_fit(rbllpd.getText().toString().toLowerCase());
+                        carRequestEntity.setPa_unnamed_passenger_si(spUnNamedPaCover.getSelectedItem().toString());
+                    carRequestEntity.setIs_llpd(rbllpd.getText().toString().toLowerCase());
                     if (spNamedPaCover.getSelectedItemPosition() != 0)
-                        carRequestEntity.setVoluntary_deductible(Integer.parseInt(spNamedPaCover.getSelectedItem().toString()));
-                    carRequestEntity.setIs_antitheft_fit(rbpda.getText().toString().toLowerCase());
+                        carRequestEntity.setPa_named_passenger_si(spNamedPaCover.getSelectedItem().toString());
+                    carRequestEntity.setPa_paid_driver_si(rbpda.getText().toString().toLowerCase());
                     if (!etElec.getText().toString().equals(""))
                         carRequestEntity.setElectrical_accessory("" + etElec.getText().toString());
 
@@ -160,11 +160,13 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
         cancelDialog();
         if (response instanceof BikeUniqueResponse) {
             if (getIntent().hasExtra("BIKE")) {
-                startActivity(new Intent(this, BikeQuoteActivity.class)
-                        .putExtra("BIKE", bikeRequestEntity));
+                finish();
+                /*startActivity(new Intent(this, BikeQuoteActivity.class)
+                        .putExtra("BIKE", bikeRequestEntity));*/
             } else if (getIntent().hasExtra("CAR")) {
-                startActivity(new Intent(this, BikeQuoteActivity.class)
-                        .putExtra("BIKE", carRequestEntity));
+                finish();
+                /*startActivity(new Intent(this, BikeQuoteActivity.class)
+                        .putExtra("BIKE", carRequestEntity));*/
             }
 
         }

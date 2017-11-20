@@ -753,7 +753,7 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
                         }
 
                 healthRequestEntity.setMemberList(listHealthMember);
-                healthRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
+                //healthRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
 
                 startActivity(new Intent(this, CustomerDetailsActivity.class)
                         .putExtra(HEALTH_QUOTE, healthRequestEntity));

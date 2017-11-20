@@ -20,7 +20,6 @@ public class SaveAddOnRequestEntity {
         this.addon_ncb_protection_cover = "no";
         this.addon_windshield_cover = "no";
         this.data_type = "no";
-        this.search_reference_number = "no";
         this.secret_key = Constants.SECRET_KEY;
         this.client_key = Constants.CLIENT_KEY;
     }
