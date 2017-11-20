@@ -1,4 +1,4 @@
-package com.android.policyboss.carinsurance;
+package com.android.policyboss.bikeinsurance;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

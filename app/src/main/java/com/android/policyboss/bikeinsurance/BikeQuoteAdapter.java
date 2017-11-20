@@ -39,7 +39,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
     }
 
     public class BikeQuoteItem extends RecyclerView.ViewHolder {
-        public TextView txtInsurerName, txtIDV, txtFinalPremium;
+        public TextView txtInsurerName, txtIDV, txtFinalPremium, txtPremiumBreakUp;
         ImageView imgInsurerLogo;
 
         public BikeQuoteItem(View itemView) {
@@ -48,6 +48,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
             txtIDV = (TextView) itemView.findViewById(R.id.txtIDV);
             txtFinalPremium = (TextView) itemView.findViewById(R.id.txtFinalPremium);
             imgInsurerLogo = (ImageView) itemView.findViewById(R.id.imgInsurerLogo);
+            txtPremiumBreakUp = (TextView) itemView.findViewById(R.id.txtPremiumBreakUp);
         }
     }
 
@@ -71,7 +72,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
             holder.txtFinalPremium.setText("");
         }
 
-        holder.txtIDV.setText("IDV - "+"\u20B9 " + String.valueOf(responseEntity.getLM_Custom_Request().getVehicle_expected_idv()));
+        holder.txtIDV.setText("IDV - " + "\u20B9 " + String.valueOf(responseEntity.getLM_Custom_Request().getVehicle_expected_idv()));
         Glide.with(mContext)
                 .load(getProfessionalID1(Integer.parseInt(responseEntity.getInsurer().getInsurer_ID())))
                 .into(holder.imgInsurerLogo);
@@ -79,7 +80,13 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
         holder.txtFinalPremium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((BikeQuoteActivity)mContext).redirectToBuy(responseEntity.getService_Log_Unique_Id());
+                ((BikeQuoteActivity) mContext).redirectToBuy(responseEntity.getService_Log_Unique_Id());
+            }
+        });
+        holder.txtPremiumBreakUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

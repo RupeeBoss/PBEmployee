@@ -98,7 +98,7 @@
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
         <activity
-            android:name=".carinsurance.PremiumPopUpActivity"
+            android:name=".bikeinsurance.PremiumPopUpActivity"
             android:label="@string/title_activity_premium_pop_up"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Dialog" />
