@@ -3,7 +3,6 @@ package com.android.policyboss.core.requestEntity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +10,16 @@ import java.util.List;
  */
 
 public class HealthRequestEntity implements Parcelable {
+    /**
+     * memberlist : [{"MemberDOB":"01-01-1975","MemberGender":"M","MemberNumber":1,"MemberRelation":null,"MemberType":"Adult","MemberTypeID":1},{"MemberDOB":"01-01-1977","MemberGender":"F","MemberNumber":2,"MemberRelation":null,"MemberType":"Adult","MemberTypeID":2},{"MemberDOB":"01-01-2013","MemberGender":"M","MemberNumber":5,"MemberRelation":null,"MemberType":"Child","MemberTypeID":3}]
+     * PlanID : 236
+     * SessionID : 1234556677
+     * SumInsured : 500000
+     */
+
+
     public HealthRequestEntity() {
+        PlanID = 0;
         CityID = 0;
         ContactEmail = "pramod.parit@rupeeboss.com";
         ContactMobile = "9930089092";
@@ -49,7 +57,7 @@ public class HealthRequestEntity implements Parcelable {
      * SupportsAgentID : 2
      */
 
-
+    private int PlanID;
     private int CityID;
     private String ContactEmail;
     private String ContactMobile;
@@ -203,6 +211,7 @@ public class HealthRequestEntity implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.PlanID);
         dest.writeInt(this.CityID);
         dest.writeString(this.ContactEmail);
         dest.writeString(this.ContactMobile);
@@ -218,12 +227,11 @@ public class HealthRequestEntity implements Parcelable {
         dest.writeString(this.SourceType);
         dest.writeString(this.SumInsured);
         dest.writeInt(this.SupportsAgentID);
-        dest.writeList(this.MemberList);
+        dest.writeTypedList(this.MemberList);
     }
 
-
-
     protected HealthRequestEntity(Parcel in) {
+        this.PlanID = in.readInt();
         this.CityID = in.readInt();
         this.ContactEmail = in.readString();
         this.ContactMobile = in.readString();
@@ -239,8 +247,7 @@ public class HealthRequestEntity implements Parcelable {
         this.SourceType = in.readString();
         this.SumInsured = in.readString();
         this.SupportsAgentID = in.readInt();
-        this.MemberList = new ArrayList<MemberListEntity>();
-        in.readList(this.MemberList, MemberListEntity.class.getClassLoader());
+        this.MemberList = in.createTypedArrayList(MemberListEntity.CREATOR);
     }
 
     public static final Parcelable.Creator<HealthRequestEntity> CREATOR = new Parcelable.Creator<HealthRequestEntity>() {

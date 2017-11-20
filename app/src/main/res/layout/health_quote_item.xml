@@ -3,73 +3,191 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/gap"
-    app:cardCornerRadius="2dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="2dp">
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/txtInsuranceCompName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Bharti Axa"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lightGrey" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="100">
 
             <ImageView
                 android:id="@+id/imgInsuranceCompLogo"
                 android:layout_width="0dp"
-                android:layout_height="72dp"
+                android:layout_height="70dp"
                 android:layout_weight="30"
-                android:scaleType="centerInside"
+                android:gravity="center"
                 android:src="@drawable/carins1" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="70"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txtInsuranceCompName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bharati Axa" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtSumAssured"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="SumAssured :300000" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="50"
+                        android:gravity="bottom|left"
+                        android:text="Sum Assured"
+                        android:textColor="@color/text_edit_color"></TextView>
 
-                <TextView
-                    android:id="@+id/txtPolicyTerm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Policy term : 1yr" />
+                    <TextView
+                        android:id="@+id/txtSumAssured"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_above="@+id/textView"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="50"
+                        android:gravity="top|left"
+                        android:textColor="@color/filter_bar_title_selected"
+                        android:textStyle="bold"></TextView>
 
-                <TextView
-                    android:id="@+id/txtTotalPremium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Premium year : 4021" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="50"
+                        android:gravity="center|bottom"
+                        android:text="Policy term"
+                        android:textColor="@color/text_edit_color"></TextView>
+
+                    <TextView
+                        android:id="@+id/txtPolicyTerm"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="50"
+                        android:gravity="center|top"
+                        android:textColor="@color/filter_bar_title_selected"
+                        android:textStyle="bold"></TextView>
+
+                </LinearLayout>
+
             </LinearLayout>
+
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnBuyNow"
-            style="@style/ButtonStyle"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="70"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bharati Axa" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="SumAssured :300000" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Policy term : 1yr" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/colorPrimary"
-            android:text="BUY NOW" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/btnBuyNow"
+                android:layout_alignBottom="@+id/btnBuyNow"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="7dp"
+                android:layout_marginStart="7dp"
+                android:text="Premium /year : "
+                android:textColor="@color/text_edit_color" />
+
+            <TextView
+                android:id="@+id/txtTotalPremium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView"
+                android:layout_alignBottom="@+id/textView"
+                android:layout_toEndOf="@+id/textView"
+                android:layout_toRightOf="@+id/textView"
+                android:text="4021"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/filter_bar_title_selected"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnBuyNow"
+                style="@style/ButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="11dp"
+                android:background="@color/colorPrimary"
+                android:minHeight="30dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="BUY NOW" />
+        </RelativeLayout>
+
 
     </LinearLayout>
 

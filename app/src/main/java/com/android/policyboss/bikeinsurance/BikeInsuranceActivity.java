@@ -77,6 +77,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     }
 
     private void init() {
+
         bikeRequestEntity = new BikeRequestEntity();
         etManufactYearMonth = (EditText) findViewById(R.id.etManufactYearMonth);
         btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
@@ -96,7 +97,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         llRenewBike = (LinearLayout) findViewById(R.id.llRenewBike);
         acBikeVarient = (AutoCompleteTextView) findViewById(R.id.acBikeVarient);
         acRegPlace = (AutoCompleteTextView) findViewById(R.id.acRegPlace);
-
+        cvRenew.setVisibility(View.GONE);
         //List<String> bikevariant = databaseController.getBikeVarientList();
         // List<String> city = databaseController.getCity();
 
@@ -191,7 +192,12 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                         return;
                     }
                 }
-                setRequest();
+                if (llRenewBike.getVisibility() == View.VISIBLE) {
+                    setInputParametersReNew();
+                } else if (llRenewBike.getVisibility() == View.GONE) {
+                    setInputParametersNew();
+                }
+                // setRequest();
 
                 // showDialog("Initiate quotes..");
                 // new BikeController(this).getBikeQuote(bikeRequestEntity, this);
@@ -236,6 +242,92 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                 bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
             }
         }
+    }
+
+    private void setInputParametersNew() {
+        bikeRequestEntity.setBirth_date("1992-01-01");
+        bikeRequestEntity.setProduct_id(10);
+        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
+        bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
+        bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
+        bikeRequestEntity.setExecution_async("yes");
+        bikeRequestEntity.setVehicle_insurance_type("new");
+        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(etManufactYearMonth.getText().toString()));
+        bikeRequestEntity.setVehicle_registration_date(etInvDate.getText().toString());
+        bikeRequestEntity.setPolicy_expiry_date("");
+        bikeRequestEntity.setPrev_insurer_id("");
+        bikeRequestEntity.setVehicle_registration_type("individual");
+        bikeRequestEntity.setVehicle_ncb_current("");
+        bikeRequestEntity.setIs_claim_exists("yes");
+        bikeRequestEntity.setMethod_type("Premium");
+        bikeRequestEntity.setElectrical_accessory("0");
+        bikeRequestEntity.setNon_electrical_accessory("0");
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(acRegPlace.getText().toString()));
+        bikeRequestEntity.setIs_llpd("no");
+        bikeRequestEntity.setIs_antitheft_fit("no");
+        bikeRequestEntity.setVoluntary_deductible(0);
+        bikeRequestEntity.setIs_external_bifuel("no");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
+        bikeRequestEntity.setPa_named_passenger_si("");
+        bikeRequestEntity.setPa_unnamed_passenger_si("");
+        bikeRequestEntity.setPa_paid_driver_si("");
+        bikeRequestEntity.setVehicle_expected_idv(0);
+        bikeRequestEntity.setFirst_name("");
+        bikeRequestEntity.setMiddle_name("");
+        bikeRequestEntity.setLast_name("");
+        bikeRequestEntity.setMobile("");
+        bikeRequestEntity.setEmail("");
+        bikeRequestEntity.setCrn(0);
+        bikeRequestEntity.setIp_address("");
+
+
+    }
+
+    private void setInputParametersReNew() {
+        bikeRequestEntity.setBirth_date("1992-01-01");
+        bikeRequestEntity.setProduct_id(10);
+        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
+        bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
+        bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
+        bikeRequestEntity.setExecution_async("yes");
+        bikeRequestEntity.setVehicle_insurance_type("renew");
+        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(etManufactYearMonth.getText().toString()));
+        bikeRequestEntity.setVehicle_registration_date(etInvDate.getText().toString());
+        bikeRequestEntity.setPolicy_expiry_date(etPolicyExp.getText().toString());
+        bikeRequestEntity.setPrev_insurer_id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+        bikeRequestEntity.setVehicle_registration_type("individual");
+        bikeRequestEntity.setMethod_type("Premium");
+
+        if (switchNcb.isChecked()) {
+            bikeRequestEntity.setIs_claim_exists("no");
+            bikeRequestEntity.setVehicle_ncb_current("");
+        } else {
+            bikeRequestEntity.setIs_claim_exists("yes");
+            bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
+        }
+
+
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(acRegPlace.getText().toString()));
+        bikeRequestEntity.setIs_llpd("no");
+        bikeRequestEntity.setIs_antitheft_fit("no");
+        bikeRequestEntity.setVoluntary_deductible(0);
+        bikeRequestEntity.setIs_external_bifuel("no");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
+        bikeRequestEntity.setPa_named_passenger_si("");
+        bikeRequestEntity.setPa_unnamed_passenger_si("");
+        bikeRequestEntity.setPa_paid_driver_si("");
+        bikeRequestEntity.setVehicle_expected_idv(0);
+        bikeRequestEntity.setFirst_name("");
+        bikeRequestEntity.setMiddle_name("");
+        bikeRequestEntity.setLast_name("");
+        bikeRequestEntity.setMobile("");
+        bikeRequestEntity.setEmail("");
+        bikeRequestEntity.setCrn(0);
+        bikeRequestEntity.setIp_address("");
+
+
     }
 
     //endregion
@@ -344,8 +436,9 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     }
 
     private String getManufacturingDate(String manufac) {
-        final Calendar calendar = Calendar.getInstance();
-        return manufac + "-" + calendar.getTime().getMonth() + "-" + calendar.getTime().getDate();
+        //final Calendar calendar = Calendar.getInstance();
+        return "" + manufac.charAt(0) + manufac.charAt(1) + manufac.charAt(2) + manufac.charAt(3) + manufac.charAt(4) + manufac.charAt(5) + manufac.charAt(6) + manufac.charAt(7) + "01";
+        //return manufac + "-" + calendar.getTime().getMonth() + "-" + calendar.getTime().getDate();
 
     }
 }

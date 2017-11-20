@@ -400,20 +400,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void setInputParametersNew() {
-
-       /* varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
-        quoteRequestEntity.setVariant_ID(varientId);
-        quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
-        quoteRequestEntity.setManufacturingYear(Integer.parseInt(spManufactureYear.getSelectedItem().toString()));
-
-        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
-        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
-        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
-        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
-        quoteRequestEntity.setSupportsAgentID(945);*/
-//        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
-
-
+        bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(1);
         bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
         bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
@@ -453,21 +440,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void setInputParametersReNew() {
-       /* quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
-        quoteRequestEntity.setDateofPurchaseofCar("" + changeDateFormat(fastLaneResponseEntity.getPurchase_Date()));
-        quoteRequestEntity.setVariant_ID(fastLaneResponseEntity.getVariant_Id());
-        quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
-        quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
-        quoteRequestEntity.setManufacturingYear(Integer.parseInt(fastLaneResponseEntity.getManufacture_Year()));
-
-        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
-        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
-        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
-        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
-
-        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());
-*/
-
+        bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(1);
         bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
         bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
@@ -535,7 +508,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
 
         quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());*/
-
+        bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(1);
         bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
         bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
@@ -605,7 +578,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
     private String getManufacturingDate(String manufac) {
         final Calendar calendar = Calendar.getInstance();
-        return manufac + "-" + calendar.getTime().getMonth() + "-" + calendar.getTime().getDate();
+        return manufac + "-" + calendar.getTime().getMonth() + "-01";
 
     }
 }

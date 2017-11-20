@@ -65,10 +65,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             }*/
 
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-            //showDialog();
-           // new AuthenticationController(this).login(etEmployeeCode.getText().toString(),
-            //        etPassword.getText().toString(), this);
-            // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            showDialog();
+            new AuthenticationController(this).login(etEmployeeCode.getText().toString(),
+                    etPassword.getText().toString(), this);
+             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
     }
 

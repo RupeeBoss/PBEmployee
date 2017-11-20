@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.policyboss.BaseFragment;
@@ -15,12 +16,20 @@ import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
 import com.android.policyboss.carinsurance.CarInsuranceActivity;
 import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ss.com.bannerslider.banners.Banner;
+import ss.com.bannerslider.banners.DrawableBanner;
+import ss.com.bannerslider.banners.RemoteBanner;
+import ss.com.bannerslider.views.BannerSlider;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DashboardFragment extends BaseFragment implements View.OnClickListener {
 
-    TextView txtCarInsurance, txtHealthInsurance, txtBikeInsurance;
+    LinearLayout txtCarInsurance, txtHealthInsurance, txtBikeInsurance;
 
 
     public DashboardFragment() {
@@ -34,8 +43,21 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         initview(view);
+        initBanner(view);
         setListener();
         return view;
+    }
+
+    private void initBanner(View view) {
+        BannerSlider bannerSlider = (BannerSlider) view.findViewById(R.id.banner_slider1);
+        List<Banner> banners = new ArrayList<>();
+        //add banner using image url
+        //banners.add(new RemoteBanner("Put banner image url here ..."));
+        //add banner using resource drawable
+        banners.add(new DrawableBanner(R.drawable.policy_banner_1));
+        banners.add(new DrawableBanner(R.drawable.policy_banner_1));
+        banners.add(new DrawableBanner(R.drawable.policy_banner_1));
+        bannerSlider.setBanners(banners);
     }
 
     private void setListener() {
@@ -45,9 +67,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void initview(View view) {
-        txtCarInsurance = (TextView) view.findViewById(R.id.txtCarInsurance);
-        txtHealthInsurance = (TextView) view.findViewById(R.id.txtHealthInsurance);
-        txtBikeInsurance = (TextView) view.findViewById(R.id.txtBikeInsurance);
+        txtCarInsurance = (LinearLayout) view.findViewById(R.id.txtCarInsurance);
+        txtHealthInsurance = (LinearLayout) view.findViewById(R.id.txtHealthInsurance);
+        txtBikeInsurance = (LinearLayout) view.findViewById(R.id.txtBikeInsurance);
     }
 
     @Override

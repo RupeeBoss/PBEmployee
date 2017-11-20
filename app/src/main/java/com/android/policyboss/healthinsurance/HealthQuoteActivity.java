@@ -32,7 +32,7 @@ public class HealthQuoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_health_quote);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle("Health Insurance");
         initialise_widget();
 
