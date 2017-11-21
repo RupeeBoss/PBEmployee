@@ -3,13 +3,14 @@ package com.android.policyboss.webview;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.carinsurance.CarQuoteGenerate;
-import com.android.policyboss.healthinsurance.HealthQuoteActivity;
+import com.android.policyboss.healthinsurance.HealthInsuranceQuotes;
 import com.android.policyboss.utility.MyWebViewClient;
 
 public class WebViewBuyInsurenceActivity extends BaseActivity {
@@ -29,7 +30,7 @@ public class WebViewBuyInsurenceActivity extends BaseActivity {
         if (getIntent().getStringExtra(CarQuoteGenerate.CAR_BUYNOW) != null) {
             url = getIntent().getStringExtra(CarQuoteGenerate.CAR_BUYNOW);
         } else if (getIntent().getStringExtra(CarQuoteGenerate.CAR_BUYNOW) != null) {
-            url = getIntent().getStringExtra(HealthQuoteActivity.HEALTH_BUYNOW);
+            url = getIntent().getStringExtra(HealthInsuranceQuotes.HEALTH_BUYNOW);
         }
 
         WebSettings settings = webView.getSettings();
@@ -51,6 +52,17 @@ public class WebViewBuyInsurenceActivity extends BaseActivity {
 
         Log.d("PROPOSAL_URL", url);
         webView.loadUrl(url);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
 }

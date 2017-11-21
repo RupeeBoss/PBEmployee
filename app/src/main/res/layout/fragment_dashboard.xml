@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="com.android.policyboss.dashboard.DashboardFragment">
 
@@ -10,8 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="35"
-        android:background="@color/colorPrimaryDark">
+        android:layout_weight="50">
 
         <ss.com.bannerslider.views.BannerSlider
             android:id="@+id/banner_slider1"
@@ -28,26 +28,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="65"
-        android:background="@color/background"
+        android:layout_margin="15dp"
+        android:layout_weight="50"
         android:orientation="vertical">
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/txtCarInsurance"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="#8a9ba9"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:minHeight="120dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -68,11 +67,10 @@
             <LinearLayout
                 android:id="@+id/txtHealthInsurance"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#4f546b"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:minHeight="120dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -93,17 +91,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/txtBikeInsurance"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="#2D3E50"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:minHeight="120dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -122,14 +121,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llTravelIns"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#8BC34A"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:minHeight="120dp"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="100dp"
@@ -139,44 +137,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Health Insurance"
+                    android:text="Travel Insurance"
                     android:textAllCaps="true"
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2D3E50"
-            android:gravity="center"
-            android:minHeight="120dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:src="@drawable/health_ins" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bike Insurance"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/policy_banner_1"
-        android:visibility="gone" />
-
 </LinearLayout>

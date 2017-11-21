@@ -1,5 +1,6 @@
 package com.android.policyboss.navigationview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -12,14 +13,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
+import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.garaj.RegisterGarageFragment;
+import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.salessupport.SalesSupportFragment;
+import com.android.policyboss.utility.Constants;
 
 import io.realm.Realm;
 
@@ -67,7 +72,16 @@ public class HomeActivity extends BaseActivity {
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment(TAG_HOME);
         }
+        bindNavigationView();
 
+    }
+
+    private void bindNavigationView() {
+        View profileView = navigationView.getHeaderView(0);
+        TextView txtUserName = (TextView) profileView.findViewById(R.id.txtUserName);
+        TextView txtEmpCode = (TextView) profileView.findViewById(R.id.txtEmpCode);
+        txtUserName.setText(new LoginFacade(HomeActivity.this).getUser().getEmp_Name());
+        txtEmpCode.setText(new LoginFacade(HomeActivity.this).getUser().getEmp_Code());
     }
 
     //Show Garage menu only
@@ -117,6 +131,12 @@ public class HomeActivity extends BaseActivity {
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_REGISTER_GARAJ;
                         break;
+                    case R.id.nav_logout:
+                        Constants.getSharedPreferenceEditor(HomeActivity.this).clear().commit();
+                        finish();
+                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                        break;
+
 /*
                     case R.id.nav_offer:
                         navItemIndex = 3;

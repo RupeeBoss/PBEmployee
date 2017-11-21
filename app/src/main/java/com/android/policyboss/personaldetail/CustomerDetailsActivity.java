@@ -3,6 +3,7 @@ package com.android.policyboss.personaldetail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import com.android.policyboss.core.response.BikeUniqueResponse;
 import com.android.policyboss.core.response.HealthQuoteResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity;
-import com.android.policyboss.healthinsurance.HealthQuoteActivity;
+import com.android.policyboss.healthinsurance.HealthInsuranceQuotes;
 import com.android.policyboss.utility.Constants;
 
 import static com.android.policyboss.carinsurance.CarDetailsActivity.CAR_DETAIL;
@@ -44,6 +45,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         setContentView(R.layout.activity_customer_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init_widgets();
 
         if (getIntent().getParcelableExtra(CAR_DETAIL) != null) {
@@ -157,7 +159,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         } else if (response instanceof HealthQuoteResponse) {
 
             if (((HealthQuoteResponse) response).getHealthQuotes() != null) {
-                startActivity(new Intent(this, HealthQuoteActivity.class)
+                startActivity(new Intent(this, HealthInsuranceQuotes.class)
                         .putExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE, (HealthQuoteResponse) response));
             }
         } else if (response instanceof BikeUniqueResponse) {
@@ -179,5 +181,15 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
     }
 
     //endregion
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
+    }
 }

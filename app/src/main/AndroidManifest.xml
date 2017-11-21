@@ -123,16 +123,6 @@
                 android:value="com.android.policyboss.healthinsurance.HealthInsuranceActivity" />
         </activity>
         <activity
-            android:name=".healthinsurance.HealthQuoteActivity"
-            android:label="@string/title_activity_health_quote"
-            android:parentActivityName=".healthinsurance.HealthInsuranceAgeDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity" />
-        </activity>
-        <activity
             android:name=".webview.WebViewBuyInsurenceActivity"
             android:label="Buy insurence"
             android:screenOrientation="portrait"
@@ -181,7 +171,25 @@
         <activity
             android:name=".webview.CommonWebViewActivity"
             android:label="@string/title_activity_common_web_view"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".healthinsurance.HealthQuotes"
+            android:label="@string/title_activity_health_quotes"
+            android:parentActivityName=".personaldetail.CustomerDetailsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.personaldetail.CustomerDetailsActivity" />
+        </activity>
+        <activity
+            android:name=".healthinsurance.HealthInsuranceQuotes"
+            android:label="@string/title_activity_health_insurance_quotes"
+            android:parentActivityName=".personaldetail.CustomerDetailsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.personaldetail.CustomerDetailsActivity" />
+        </activity>
     </application>
 
 </manifest>

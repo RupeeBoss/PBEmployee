@@ -778,7 +778,7 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
         if (response instanceof HealthQuoteResponse) {
 
             if (((HealthQuoteResponse) response).getHealthQuotes() != null) {
-                startActivity(new Intent(this, HealthQuoteActivity.class)
+                startActivity(new Intent(this, HealthQuotes.class)
                         .putExtra(HEALTH_QUOTE, (HealthQuoteResponse) response));
             }
         }

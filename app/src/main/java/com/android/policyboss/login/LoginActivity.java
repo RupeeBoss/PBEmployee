@@ -43,7 +43,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void onClick(View v) {
 
         if (v.getId() == R.id.btnLogin) {
-           /* if (etEmployeeCode.getText().toString().equals("")) {
+            if (etEmployeeCode.getText().toString().equals("")) {
                 etEmployeeCode.setError("Invalid input");
                 etEmployeeCode.setFocusable(true);
                 return;
@@ -62,13 +62,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 etPassword.setFocusable(true);
                 return;
                 //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
-            }*/
+            }
 
-            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+           // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             showDialog();
             new AuthenticationController(this).login(etEmployeeCode.getText().toString(),
                     etPassword.getText().toString(), this);
-             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+             //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
     }
 

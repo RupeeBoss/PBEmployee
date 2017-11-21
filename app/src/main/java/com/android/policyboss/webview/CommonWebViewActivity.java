@@ -5,20 +5,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.utility.MyWebViewClient;
 
-public class CommonWebViewActivity extends AppCompatActivity {
+public class CommonWebViewActivity extends BaseActivity {
     WebView webView;
     String url;
     String name;
@@ -34,7 +35,7 @@ public class CommonWebViewActivity extends AppCompatActivity {
         title = getIntent().getStringExtra("TITLE");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(title);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -101,6 +102,18 @@ public class CommonWebViewActivity extends AppCompatActivity {
 
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
 }

@@ -2,21 +2,20 @@ package com.android.policyboss.healthinsurance;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.HealthQuotesEntity;
 import com.android.policyboss.core.response.HealthQuoteResponse;
 import com.android.policyboss.webview.CommonWebViewActivity;
-import com.android.policyboss.webview.WebViewBuyInsurenceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HealthQuoteActivity extends AppCompatActivity {
+public class HealthInsuranceQuotes extends BaseActivity {
 
     public static final String HEALTH_BUYNOW = "health_buy_now";
 
@@ -29,11 +28,10 @@ public class HealthQuoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_quote);
+        setContentView(R.layout.activity_health_insurance_quotes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("Health Insurance");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initialise_widget();
 
         listHealthQuoteEntity = new ArrayList<>();

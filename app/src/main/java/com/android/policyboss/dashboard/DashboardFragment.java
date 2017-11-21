@@ -7,8 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.policyboss.BaseFragment;
 import com.android.policyboss.R;
@@ -21,7 +22,6 @@ import java.util.List;
 
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.DrawableBanner;
-import ss.com.bannerslider.banners.RemoteBanner;
 import ss.com.bannerslider.views.BannerSlider;
 
 /**
@@ -29,7 +29,7 @@ import ss.com.bannerslider.views.BannerSlider;
  */
 public class DashboardFragment extends BaseFragment implements View.OnClickListener {
 
-    LinearLayout txtCarInsurance, txtHealthInsurance, txtBikeInsurance;
+    LinearLayout txtCarInsurance, txtHealthInsurance, txtBikeInsurance, llTravelIns;
 
 
     public DashboardFragment() {
@@ -64,9 +64,11 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         txtCarInsurance.setOnClickListener(this);
         txtHealthInsurance.setOnClickListener(this);
         txtBikeInsurance.setOnClickListener(this);
+        llTravelIns.setOnClickListener(this);
     }
 
     private void initview(View view) {
+        llTravelIns = (LinearLayout) view.findViewById(R.id.llTravelIns);
         txtCarInsurance = (LinearLayout) view.findViewById(R.id.txtCarInsurance);
         txtHealthInsurance = (LinearLayout) view.findViewById(R.id.txtHealthInsurance);
         txtBikeInsurance = (LinearLayout) view.findViewById(R.id.txtBikeInsurance);
@@ -76,13 +78,19 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txtCarInsurance:
+                txtCarInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
                 startActivity(new Intent(getActivity(), CarInsuranceActivity.class));
                 break;
             case R.id.txtHealthInsurance:
+                txtHealthInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
                 startActivity(new Intent(getActivity(), HealthInsuranceActivity.class));
                 break;
             case R.id.txtBikeInsurance:
+                txtBikeInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
                 startActivity(new Intent(getActivity(), BikeInsuranceActivity.class));
+                break;
+            case R.id.llTravelIns:
+                Toast.makeText(getActivity(), "Coming Soon...", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

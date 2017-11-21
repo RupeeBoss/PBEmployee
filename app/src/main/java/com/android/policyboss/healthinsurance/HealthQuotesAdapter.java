@@ -75,7 +75,7 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
             holder.btnBuyNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((HealthQuoteActivity) mContext).BuyHealth(entity);
+                    ((HealthInsuranceQuotes) mContext).BuyHealth(entity);
                 }
             });
             /*Glide.with(mContext)
