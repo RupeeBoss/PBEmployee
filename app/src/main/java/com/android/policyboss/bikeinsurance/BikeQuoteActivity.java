@@ -76,6 +76,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                     startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
                             .putExtra("BIKE", bikeRequestEntity));
                 } else if (getIntent().hasExtra("CAR")) {
+                    if(bikePremiumResponse.getSummary().getPB_CRN()!=null && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
                     carRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
                     startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
                             .putExtra("CAR", carRequestEntity));
