@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D:\Rajeev\AndroidProjects\Policyboss\PBEmployee.iml" filepath="D:\Rajeev\AndroidProjects\Policyboss\PBEmployee.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Policyboss.iml" filepath="$PROJECT_DIR$/Policyboss.iml" />
-      <module fileurl="file://D:\PolicyBossProj\PBEmployee\Policyboss.iml" filepath="D:\PolicyBossProj\PBEmployee\Policyboss.iml" />
-      <module fileurl="file://D:\android_git_project\PBEmployee\Policyboss.iml" filepath="D:\android_git_project\PBEmployee\Policyboss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PBEmployee.iml" filepath="$PROJECT_DIR$/PBEmployee.iml" />
+      <module fileurl="file://E:\AndroidStudioProjects\PBEmployee\Policyboss.iml" filepath="E:\AndroidStudioProjects\PBEmployee\Policyboss.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
