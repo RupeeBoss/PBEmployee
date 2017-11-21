@@ -1,9 +1,12 @@
 package com.android.policyboss.core.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PremiumBreakupEntity {
+public class PremiumBreakupEntity implements Parcelable {
     /**
      * own_damage : {"od_basic":11490.07,"od_elect_access":0,"od_non_elect_access":0,"od_cng_lpg":0,"od_disc_ncb":2298.01,"od_disc_vol_deduct":0,"od_disc_anti_theft":0,"od_disc_aai":0,"od_loading":0,"od_disc":0,"od_final_premium":9192.06}
      * liability : {"tp_basic":2863,"tp_cover_owner_driver_pa":100,"tp_cover_unnamed_passenger_pa":0,"tp_cover_named_passenger_pa":0,"tp_cover_paid_driver_pa":0,"tp_cover_paid_driver_ll":0,"tp_cng_lpg":0,"tp_final_premium":2963}
@@ -21,6 +24,27 @@ public class PremiumBreakupEntity {
     private String final_premium;
 
     private List<AppliedAddonsPremiumBreakup> listAppliedAddons = new ArrayList<AppliedAddonsPremiumBreakup>();
+
+    protected PremiumBreakupEntity(Parcel in) {
+
+        own_damage = (OwnDamageEntity) in.readParcelable(OwnDamageEntity.class.getClassLoader());
+        liability = (LiabilityEntity) in.readParcelable(LiabilityEntity.class.getClassLoader());
+        net_premium = in.readString();
+        service_tax = in.readString();
+        final_premium = in.readString();
+    }
+
+    public static final Creator<PremiumBreakupEntity> CREATOR = new Creator<PremiumBreakupEntity>() {
+        @Override
+        public PremiumBreakupEntity createFromParcel(Parcel in) {
+            return new PremiumBreakupEntity(in);
+        }
+
+        @Override
+        public PremiumBreakupEntity[] newArray(int size) {
+            return new PremiumBreakupEntity[size];
+        }
+    };
 
     public List<AppliedAddonsPremiumBreakup> getListAppliedAddons() {
         return listAppliedAddons;
@@ -78,4 +102,17 @@ public class PremiumBreakupEntity {
         this.final_premium = final_premium;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(own_damage, flags);
+        dest.writeParcelable( liability, flags);
+        dest.writeString(net_premium);
+        dest.writeString(service_tax);
+        dest.writeString(final_premium);
+    }
 }

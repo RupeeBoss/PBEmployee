@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.bikeinsurance.PremiumPopUpActivity;
 import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.android.policyboss.core.response.MotorQuotesResponse;
 import com.android.policyboss.utility.Constants;

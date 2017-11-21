@@ -14,11 +14,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
+import com.android.policyboss.carinsurance.PremiumPopUpActivity;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
@@ -27,7 +29,9 @@ import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.AppliedAddonsPremiumBreakup;
 import com.android.policyboss.core.models.CommonAddonEntity;
 import com.android.policyboss.core.models.MobileAddOn;
+import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.android.policyboss.core.models.ResponseEntity;
+import com.android.policyboss.core.models.SummaryEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.requestEntity.SaveAddOnRequestEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
@@ -138,7 +142,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         builder.setTitle("Select Add-on :");
 
         RecyclerView rvAddOne;
-        TextView txtOk, txtCancel;
+        Button btnOk, btnCancel;
 
         LayoutInflater inflater = this.getLayoutInflater();
 
@@ -147,8 +151,8 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
         final AlertDialog alertDialog = builder.create();
         // set the custom dialog components - text, image and button
-        txtOk = (TextView) dialogView.findViewById(R.id.txtOk);
-        txtCancel = (TextView) dialogView.findViewById(R.id.txtCancel);
+        btnOk = (Button) dialogView.findViewById(R.id.btnOk);
+        btnCancel = (Button) dialogView.findViewById(R.id.btnCancel);
         rvAddOne = (RecyclerView) dialogView.findViewById(R.id.rvAddOne);
         rvAddOne.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BikeQuoteActivity.this);
@@ -158,7 +162,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         rvAddOne.setAdapter(popUpAdapter);
 
 
-        txtOk.setOnClickListener(new View.OnClickListener() {
+        btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listMobileAddOn = popUpAdapter.getUpdateMobileAddonList();
@@ -169,7 +173,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         });
 
 
-        txtCancel.setOnClickListener(new View.OnClickListener() {
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
@@ -1318,5 +1322,14 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 .putExtra("URL", url)
                 .putExtra("NAME", name)
                 .putExtra("TITLE", title));
+    }
+
+    public void redirectToPopUpPremium(ResponseEntity  entity, SummaryEntity summaryEntity) {
+        startActivity(new Intent(this, PremiumBikePopUpActivity.class)
+                .putExtra(Constants.Bike_QUOTE_PRIMIUM, entity.getPremium_Breakup())
+                .putExtra(Constants.Bike_QUOTE_INSURER, entity.getInsurer())
+                 .putExtra(Constants.Bike_Summary_ENTITY, summaryEntity));
+
+
     }
 }

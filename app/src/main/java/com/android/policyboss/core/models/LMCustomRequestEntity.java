@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class LMCustomRequestEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class LMCustomRequestEntity implements Parcelable {
             /**
              * dbmaster_insurer_vehicle_exshowroom : 409341
              * vehicle_expected_idv : 349987
@@ -19,7 +22,29 @@ public class LMCustomRequestEntity {
             private String vehicle_ncb_next;
             private String vehicle_normal_idv;
 
-            public String getDbmaster_insurer_vehicle_exshowroom() {
+    protected LMCustomRequestEntity(Parcel in) {
+        dbmaster_insurer_vehicle_exshowroom = in.readString();
+        vehicle_expected_idv = in.readString();
+        vehicle_max_idv = in.readString();
+        vehicle_min_idv = in.readString();
+        vehicle_ncb_current = in.readString();
+        vehicle_ncb_next = in.readString();
+        vehicle_normal_idv = in.readString();
+    }
+
+    public static final Creator<LMCustomRequestEntity> CREATOR = new Creator<LMCustomRequestEntity>() {
+        @Override
+        public LMCustomRequestEntity createFromParcel(Parcel in) {
+            return new LMCustomRequestEntity(in);
+        }
+
+        @Override
+        public LMCustomRequestEntity[] newArray(int size) {
+            return new LMCustomRequestEntity[size];
+        }
+    };
+
+    public String getDbmaster_insurer_vehicle_exshowroom() {
                 return dbmaster_insurer_vehicle_exshowroom;
             }
 
@@ -74,4 +99,20 @@ public class LMCustomRequestEntity {
             public void setVehicle_normal_idv(String vehicle_normal_idv) {
                 this.vehicle_normal_idv = vehicle_normal_idv;
             }
-        }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(dbmaster_insurer_vehicle_exshowroom);
+        dest.writeString(vehicle_expected_idv);
+        dest.writeString(vehicle_max_idv);
+        dest.writeString(vehicle_min_idv);
+        dest.writeString(vehicle_ncb_current);
+        dest.writeString(vehicle_ncb_next);
+        dest.writeString(vehicle_normal_idv);
+    }
+}

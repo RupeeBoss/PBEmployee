@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class RequestCoreEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class RequestCoreEntity implements Parcelable {
             /**
              * product_id : 1
              * vehicle_id : 681
@@ -131,7 +134,84 @@ public class RequestCoreEntity {
             private String posp_category;
             private String erp_source;
 
-            public String getProduct_id() {
+    protected RequestCoreEntity(Parcel in) {
+        product_id = in.readString();
+        vehicle_id = in.readString();
+        rto_id = in.readString();
+        vehicle_insurance_type = in.readString();
+        vehicle_manf_date = in.readString();
+        vehicle_registration_date = in.readString();
+        policy_expiry_date = in.readString();
+        prev_insurer_id = in.readString();
+        vehicle_registration_type = in.readString();
+        vehicle_ncb_current = in.readString();
+        is_claim_exists = in.readString();
+        method_type = in.readString();
+        execution_async = in.readString();
+        electrical_accessory = in.readString();
+        non_electrical_accessory = in.readString();
+        registration_no = in.readString();
+        is_llpd = in.readString();
+        is_antitheft_fit = in.readString();
+        voluntary_deductible = in.readString();
+        is_external_bifuel = in.readString();
+        is_aai_member = in.readString();
+        external_bifuel_value = in.readString();
+        pa_owner_driver_si = in.readString();
+        pa_named_passenger_si = in.readString();
+        pa_unnamed_passenger_si = in.readString();
+        pa_paid_driver_si = in.readString();
+        vehicle_expected_idv = in.readString();
+        first_name = in.readString();
+        middle_name = in.readString();
+        last_name = in.readString();
+        mobile = in.readString();
+        email = in.readString();
+        crn = in.readString();
+        ss_id = in.readString();
+        secret_key = in.readString();
+        client_key = in.readString();
+        birth_date = in.readString();
+        registration_no_1 = in.readString();
+        registration_no_2 = in.readString();
+        registration_no_3 = in.readString();
+        registration_no_4 = in.readString();
+        posp_posp_id = in.readString();
+        posp_fba_id = in.readString();
+        posp_sm_posp_id = in.readString();
+        posp_sm_posp_name = in.readString();
+        posp_first_name = in.readString();
+        posp_middle_name = in.readString();
+        posp_last_name = in.readString();
+        posp_email_id = in.readString();
+        posp_agent_city = in.readString();
+        posp_mobile_no = in.readString();
+        posp_pan_no = in.readString();
+        posp_aadhar = in.readString();
+        posp_sources = in.readString();
+        posp_ss_id = in.readString();
+        posp_erp_id = in.readString();
+        posp_gender = in.readString();
+        posp_posp_category = in.readString();
+        posp_reporting_agent_uid = in.readString();
+        posp_reporting_agent_name = in.readString();
+        posp_category = in.readString();
+        erp_source = in.readString();
+    }
+
+    public static final Creator<RequestCoreEntity> CREATOR = new Creator<RequestCoreEntity>() {
+        @Override
+        public RequestCoreEntity createFromParcel(Parcel in) {
+            return new RequestCoreEntity(in);
+        }
+
+        @Override
+        public RequestCoreEntity[] newArray(int size) {
+            return new RequestCoreEntity[size];
+        }
+    };
+
+    public String getProduct_id() {
                 return product_id;
             }
 
@@ -634,4 +714,75 @@ public class RequestCoreEntity {
             public void setErp_source(String erp_source) {
                 this.erp_source = erp_source;
             }
-        }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(product_id);
+        dest.writeString(vehicle_id);
+        dest.writeString(rto_id);
+        dest.writeString(vehicle_insurance_type);
+        dest.writeString(vehicle_manf_date);
+        dest.writeString(vehicle_registration_date);
+        dest.writeString(policy_expiry_date);
+        dest.writeString(prev_insurer_id);
+        dest.writeString(vehicle_registration_type);
+        dest.writeString(vehicle_ncb_current);
+        dest.writeString(is_claim_exists);
+        dest.writeString(method_type);
+        dest.writeString(execution_async);
+        dest.writeString(electrical_accessory);
+        dest.writeString(non_electrical_accessory);
+        dest.writeString(registration_no);
+        dest.writeString(is_llpd);
+        dest.writeString(is_antitheft_fit);
+        dest.writeString(voluntary_deductible);
+        dest.writeString(is_external_bifuel);
+        dest.writeString(is_aai_member);
+        dest.writeString(external_bifuel_value);
+        dest.writeString(pa_owner_driver_si);
+        dest.writeString(pa_named_passenger_si);
+        dest.writeString(pa_unnamed_passenger_si);
+        dest.writeString(pa_paid_driver_si);
+        dest.writeString(vehicle_expected_idv);
+        dest.writeString(first_name);
+        dest.writeString(middle_name);
+        dest.writeString(last_name);
+        dest.writeString(mobile);
+        dest.writeString(email);
+        dest.writeString(crn);
+        dest.writeString(ss_id);
+        dest.writeString(secret_key);
+        dest.writeString(client_key);
+        dest.writeString(birth_date);
+        dest.writeString(registration_no_1);
+        dest.writeString(registration_no_2);
+        dest.writeString(registration_no_3);
+        dest.writeString(registration_no_4);
+        dest.writeString(posp_posp_id);
+        dest.writeString(posp_fba_id);
+        dest.writeString(posp_sm_posp_id);
+        dest.writeString(posp_sm_posp_name);
+        dest.writeString(posp_first_name);
+        dest.writeString(posp_middle_name);
+        dest.writeString(posp_last_name);
+        dest.writeString(posp_email_id);
+        dest.writeString(posp_agent_city);
+        dest.writeString(posp_mobile_no);
+        dest.writeString(posp_pan_no);
+        dest.writeString(posp_aadhar);
+        dest.writeString(posp_sources);
+        dest.writeString(posp_ss_id);
+        dest.writeString(posp_erp_id);
+        dest.writeString(posp_gender);
+        dest.writeString(posp_posp_category);
+        dest.writeString(posp_reporting_agent_uid);
+        dest.writeString(posp_reporting_agent_name);
+        dest.writeString(posp_category);
+        dest.writeString(erp_source);
+    }
+}

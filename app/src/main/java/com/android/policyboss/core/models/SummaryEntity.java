@@ -1,8 +1,11 @@
 package com.android.policyboss.core.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class SummaryEntity {
+public class SummaryEntity implements Parcelable {
     /**
      * _id : 5a0ab49b1f4d2b19e098bf79
      * Request_Id : 8946
@@ -45,6 +48,38 @@ public class SummaryEntity {
     private String vehicle_max_idv;
     private double Actual_Time;
     private CommonAddonEntity Common_Addon;
+
+    protected SummaryEntity(Parcel in) {
+        Request_Core = (RequestCoreEntity) in.readParcelable(RequestCoreEntity.class.getClassLoader());
+        _id = in.readString();
+        Request_Id = in.readString();
+        Request_Unique_Id = in.readString();
+        Client_Id = in.readString();
+        PB_CRN = in.readString();
+        Created_On = in.readString();
+        StatusX = in.readString();
+        Total = in.readString();
+        Pending = in.readString();
+        Complete = in.readString();
+        Success = in.readString();
+        Fail = in.readString();
+        Total_Execution_Time = in.readDouble();
+        vehicle_min_idv = in.readString();
+        vehicle_max_idv = in.readString();
+        Actual_Time = in.readDouble();
+    }
+
+    public static final Creator<SummaryEntity> CREATOR = new Creator<SummaryEntity>() {
+        @Override
+        public SummaryEntity createFromParcel(Parcel in) {
+            return new SummaryEntity(in);
+        }
+
+        @Override
+        public SummaryEntity[] newArray(int size) {
+            return new SummaryEntity[size];
+        }
+    };
 
     public String get_id() {
         return _id;
@@ -199,4 +234,29 @@ public class SummaryEntity {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(Request_Core  ,flags);
+        dest.writeString(_id);
+        dest.writeString(Request_Id);
+        dest.writeString(Request_Unique_Id);
+        dest.writeString(Client_Id);
+        dest.writeString(PB_CRN);
+        dest.writeString(Created_On);
+        dest.writeString(StatusX);
+        dest.writeString(Total);
+        dest.writeString(Pending);
+        dest.writeString(Complete);
+        dest.writeString(Success);
+        dest.writeString(Fail);
+        dest.writeDouble(Total_Execution_Time);
+        dest.writeString(vehicle_min_idv);
+        dest.writeString(vehicle_max_idv);
+        dest.writeDouble(Actual_Time);
+    }
 }

@@ -1,8 +1,11 @@
 package com.android.policyboss.core.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseEntity {
+public class ResponseEntity  {
         /**
          * Service_Log_Id : 100404
          * Service_Log_Unique_Id : ARN-TB5DBPM1-2SO8-OC26-HCCN-PPWBFPCARHLC
@@ -48,6 +51,24 @@ public class ResponseEntity {
      */
 
     private AddonEntity Addon_List;
+
+    protected ResponseEntity(Parcel in) {
+        Premium_Breakup = (PremiumBreakupEntity) in.readParcelable(PremiumBreakupEntity.class.getClassLoader());
+        Insurer = (InsurerEntity) in.readParcelable(InsurerEntity.class.getClassLoader());
+        Service_Log_Id = in.readString();
+        Service_Log_Unique_Id = in.readString();
+        Insurer_Transaction_Identifier = in.readString();
+        Error_Code = in.readString();
+        Created_On = in.readString();
+        Product_Id = in.readString();
+        Insurer_Id = in.readString();
+        StatusX = in.readString();
+        Plan_Id = in.readString();
+        Plan_Name = in.readString();
+        Call_Execution_Time = in.readString();
+    }
+
+
 
     public AddonEntity getAddon_List() {
         return Addon_List;
@@ -169,4 +190,5 @@ public class ResponseEntity {
             this.Call_Execution_Time = Call_Execution_Time;
         }
 
-    }
+
+}

@@ -1,6 +1,7 @@
 package com.android.policyboss.bikeinsurance;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.policyboss.R;
+import com.android.policyboss.carinsurance.CarQuoteGenerate;
+import com.android.policyboss.carinsurance.PremiumPopUpActivity;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.response.BikePremiumResponse;
+import com.android.policyboss.utility.Constants;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -86,7 +90,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
         holder.txtPremiumBreakUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((BikeQuoteActivity) mContext).redirectToPopUpPremium(responseEntity,response.getSummary());
             }
         });
     }

@@ -32,4 +32,16 @@
     <color name="blue">#3977b5</color>
     <color name="edittext_icon_bg">#80D8FF</color>
     <color name="edittext_border">#cfcfcf</color>
+
+    <color name="red_descent">#de6d75</color>
+    <color name="red">#f44336</color>
+    <color name="tab_layout">#374152</color>
+    <color name="navy_descent">#131d43</color>
+    <color name="navy_lightdescent">#1c2855</color>
+
+    <color name="green_descent">#42ceb2</color>
+    <color name="green1_descent">#45c6ba</color>
+    <color name="pink_descent">#e186b0</color>
+    <color name="blue_descent">#4b76c2</color>
+    <color name="orange_decent">#e6a65a</color>
 </resources>
