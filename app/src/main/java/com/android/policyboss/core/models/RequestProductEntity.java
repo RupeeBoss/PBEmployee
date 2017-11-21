@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class RequestProductEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class RequestProductEntity implements Parcelable {
             /**
              * vehicle_insurance_type : renew
              * vehicle_registration_type : individual
@@ -137,7 +140,88 @@ public class RequestProductEntity {
             private String addon_losstime_protection_cover;
             private String addon_hydrostatic_lock_cover;
 
-            public String getVehicle_insurance_type() {
+    protected RequestProductEntity(Parcel in) {
+        vehicle_insurance_type = in.readString();
+        vehicle_registration_type = in.readString();
+        vehicle_registration_date = in.readString();
+        vehicle_id = in.readString();
+        rto_id = in.readString();
+        prev_insurer_id = in.readString();
+        is_claim_exists = in.readString();
+        vehicle_ncb_current = in.readString();
+        vehicle_manf_year = in.readString();
+        vehicle_ncb_next = in.readString();
+        vehicle_age_year = in.readString();
+        vehicle_age_month = in.readString();
+        vehicle_expected_idv = in.readString();
+        registration_no = in.readString();
+        registration_no_1 = in.readString();
+        registration_no_2 = in.readString();
+        registration_no_3 = in.readString();
+        registration_no_4 = in.readString();
+        policy_expiry_date = in.readString();
+        policy_start_date = in.readString();
+        pre_policy_start_date = in.readString();
+        policy_end_date = in.readString();
+        vehicle_manf_date = in.readString();
+        is_financed = in.readString();
+        financial_institute_name = in.readString();
+        financial_institute_code = in.readString();
+        financial_institute_city = in.readString();
+        financial_agreement_type = in.readString();
+        previous_policy_number = in.readString();
+        is_external_bifuel = in.readString();
+        external_bifuel_type = in.readString();
+        external_bifuel_value = in.readString();
+        electrical_accessory = in.readString();
+        non_electrical_accessory = in.readString();
+        engine_number = in.readString();
+        chassis_number = in.readString();
+        vehicle_color = in.readString();
+        voluntary_deductible = in.readString();
+        is_antitheft_fit = in.readString();
+        is_aai_member = in.readString();
+        is_llpd = in.readString();
+        pa_owner_driver_si = in.readString();
+        pa_named_passenger_si = in.readString();
+        pa_unnamed_passenger_si = in.readString();
+        pa_paid_driver_si = in.readString();
+        addon_zero_dep_cover = in.readString();
+        addon_road_assist_cover = in.readString();
+        addon_ncb_protection_cover = in.readString();
+        addon_engine_protector_cover = in.readString();
+        addon_invoice_price_cover = in.readString();
+        addon_key_lock_cover = in.readString();
+        addon_consumable_cover = in.readString();
+        addon_passenger_assistance_cover = in.readString();
+        addon_flag = in.readString();
+        addon_package_name = in.readString();
+        addon_daily_allowance_cover = in.readString();
+        addon_windshield_cover = in.readString();
+        addon_tyre_coverage_cover = in.readString();
+        addon_personal_belonging_loss_cover = in.readString();
+        addon_inconvenience_allowance_cover = in.readString();
+        addon_medical_expense_cover = in.readString();
+        addon_hospital_cash_cover = in.readString();
+        addon_ambulance_charge_cover = in.readString();
+        addon_rodent_bite_cover = in.readString();
+        addon_losstime_protection_cover = in.readString();
+        addon_hydrostatic_lock_cover = in.readString();
+    }
+
+    public static final Creator<RequestProductEntity> CREATOR = new Creator<RequestProductEntity>() {
+        @Override
+        public RequestProductEntity createFromParcel(Parcel in) {
+            return new RequestProductEntity(in);
+        }
+
+        @Override
+        public RequestProductEntity[] newArray(int size) {
+            return new RequestProductEntity[size];
+        }
+    };
+
+    public String getVehicle_insurance_type() {
                 return vehicle_insurance_type;
             }
 
@@ -664,4 +748,79 @@ public class RequestProductEntity {
             public void setAddon_hydrostatic_lock_cover(String addon_hydrostatic_lock_cover) {
                 this.addon_hydrostatic_lock_cover = addon_hydrostatic_lock_cover;
             }
-        }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(vehicle_insurance_type);
+        dest.writeString(vehicle_registration_type);
+        dest.writeString(vehicle_registration_date);
+        dest.writeString(vehicle_id);
+        dest.writeString(rto_id);
+        dest.writeString(prev_insurer_id);
+        dest.writeString(is_claim_exists);
+        dest.writeString(vehicle_ncb_current);
+        dest.writeString(vehicle_manf_year);
+        dest.writeString(vehicle_ncb_next);
+        dest.writeString(vehicle_age_year);
+        dest.writeString(vehicle_age_month);
+        dest.writeString(vehicle_expected_idv);
+        dest.writeString(registration_no);
+        dest.writeString(registration_no_1);
+        dest.writeString(registration_no_2);
+        dest.writeString(registration_no_3);
+        dest.writeString(registration_no_4);
+        dest.writeString(policy_expiry_date);
+        dest.writeString(policy_start_date);
+        dest.writeString(pre_policy_start_date);
+        dest.writeString(policy_end_date);
+        dest.writeString(vehicle_manf_date);
+        dest.writeString(is_financed);
+        dest.writeString(financial_institute_name);
+        dest.writeString(financial_institute_code);
+        dest.writeString(financial_institute_city);
+        dest.writeString(financial_agreement_type);
+        dest.writeString(previous_policy_number);
+        dest.writeString(is_external_bifuel);
+        dest.writeString(external_bifuel_type);
+        dest.writeString(external_bifuel_value);
+        dest.writeString(electrical_accessory);
+        dest.writeString(non_electrical_accessory);
+        dest.writeString(engine_number);
+        dest.writeString(chassis_number);
+        dest.writeString(vehicle_color);
+        dest.writeString(voluntary_deductible);
+        dest.writeString(is_antitheft_fit);
+        dest.writeString(is_aai_member);
+        dest.writeString(is_llpd);
+        dest.writeString(pa_owner_driver_si);
+        dest.writeString(pa_named_passenger_si);
+        dest.writeString(pa_unnamed_passenger_si);
+        dest.writeString(pa_paid_driver_si);
+        dest.writeString(addon_zero_dep_cover);
+        dest.writeString(addon_road_assist_cover);
+        dest.writeString(addon_ncb_protection_cover);
+        dest.writeString(addon_engine_protector_cover);
+        dest.writeString(addon_invoice_price_cover);
+        dest.writeString(addon_key_lock_cover);
+        dest.writeString(addon_consumable_cover);
+        dest.writeString(addon_passenger_assistance_cover);
+        dest.writeString(addon_flag);
+        dest.writeString(addon_package_name);
+        dest.writeString(addon_daily_allowance_cover);
+        dest.writeString(addon_windshield_cover);
+        dest.writeString(addon_tyre_coverage_cover);
+        dest.writeString(addon_personal_belonging_loss_cover);
+        dest.writeString(addon_inconvenience_allowance_cover);
+        dest.writeString(addon_medical_expense_cover);
+        dest.writeString(addon_hospital_cash_cover);
+        dest.writeString(addon_ambulance_charge_cover);
+        dest.writeString(addon_rodent_bite_cover);
+        dest.writeString(addon_losstime_protection_cover);
+        dest.writeString(addon_hydrostatic_lock_cover);
+    }
+}

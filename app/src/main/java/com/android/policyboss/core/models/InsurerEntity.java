@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class InsurerEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class InsurerEntity implements Parcelable{
     /**
      * _id : 58be94835f761783caf9408d
      * Insurer_ID : 12
@@ -22,6 +25,30 @@ public class InsurerEntity {
     private String IsInternal;
     private String Insurer_Code;
     private String Insurer_Logo_Name_Mobile;
+
+    protected InsurerEntity(Parcel in) {
+        _id = in.readString();
+        Insurer_ID = in.readString();
+        Insurer_Name = in.readString();
+        IsActive = in.readString();
+        CreatedOn = in.readString();
+        Insurer_Logo_Name = in.readString();
+        IsInternal = in.readString();
+        Insurer_Code = in.readString();
+        Insurer_Logo_Name_Mobile = in.readString();
+    }
+
+    public static final Creator<InsurerEntity> CREATOR = new Creator<InsurerEntity>() {
+        @Override
+        public InsurerEntity createFromParcel(Parcel in) {
+            return new InsurerEntity(in);
+        }
+
+        @Override
+        public InsurerEntity[] newArray(int size) {
+            return new InsurerEntity[size];
+        }
+    };
 
     public String get_id() {
         return _id;
@@ -93,5 +120,23 @@ public class InsurerEntity {
 
     public void setInsurer_Logo_Name_Mobile(String Insurer_Logo_Name_Mobile) {
         this.Insurer_Logo_Name_Mobile = Insurer_Logo_Name_Mobile;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(_id);
+        dest.writeString(Insurer_ID);
+        dest.writeString(Insurer_Name);
+        dest.writeString(IsActive);
+        dest.writeString(CreatedOn);
+        dest.writeString(Insurer_Logo_Name);
+        dest.writeString(IsInternal);
+        dest.writeString(Insurer_Code);
+        dest.writeString(Insurer_Logo_Name_Mobile);
     }
 }

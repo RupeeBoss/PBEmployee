@@ -98,7 +98,7 @@
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
         <activity
-            android:name=".bikeinsurance.PremiumPopUpActivity"
+            android:name=".carinsurance.PremiumPopUpActivity"
             android:label="@string/title_activity_premium_pop_up"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Dialog" />
@@ -172,15 +172,7 @@
             android:name=".webview.CommonWebViewActivity"
             android:label="@string/title_activity_common_web_view"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".healthinsurance.HealthQuotes"
-            android:label="@string/title_activity_health_quotes"
-            android:parentActivityName=".personaldetail.CustomerDetailsActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.policyboss.personaldetail.CustomerDetailsActivity" />
-        </activity>
+
         <activity
             android:name=".healthinsurance.HealthInsuranceQuotes"
             android:label="@string/title_activity_health_insurance_quotes"
@@ -190,6 +182,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.personaldetail.CustomerDetailsActivity" />
         </activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".bikeinsurance.PremiumBikePopUpActivity"
+            android:label="@string/title_activity_premium_bike_pop_up"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"></activity>
     </application>
 
 </manifest>

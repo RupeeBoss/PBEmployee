@@ -11,10 +11,8 @@
     <color name="application_secondary_text_color">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
-
     <color name="text_edit_color">#868686</color>
     <color name="lightGrey">#E0E0E0</color>
-
     <color name="back_button_color">#5a5a5a</color>
     <color name="offer_info_white">#DDFFFFFF</color>
     <color name="white">#ffffff</color>
@@ -27,7 +25,6 @@
     <color name="bg_popUp">#ededed</color>
     <color name="bg_popUpTotal">#dff0d8</color>
     <color name="text_popUpTotal">#5c8e5c</color>
-
     <color name="bg_popUpHdr">#f1dddd</color>
     <color name="text_popUpHdr">#c07675</color>
     <color name="nav_blue">#287FAA</color>
@@ -37,7 +34,14 @@
     <color name="blue">#3977b5</color>
     <color name="edittext_icon_bg">#80D8FF</color>
     <color name="edittext_border">#cfcfcf</color>
-
     <color name="navy_descent">#131d43</color>
     <color name="navy_lightdescent">#1c2855</color>
+    <color name="red_descent">#de6d75</color>
+    <color name="red">#f44336</color>
+    <color name="tab_layout">#374152</color>
+    <color name="green_descent">#42ceb2</color>
+    <color name="green1_descent">#45c6ba</color>
+    <color name="pink_descent">#e186b0</color>
+    <color name="blue_descent">#4b76c2</color>
+    <color name="orange_decent">#e6a65a</color>
 </resources>

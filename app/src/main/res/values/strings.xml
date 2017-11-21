@@ -42,7 +42,9 @@
     <string name="popPremium2_title1">Third Party Premium</string>
     <string name="popPremium2_basic">Basic 3rd Party Premium</string>
     <string name="popPremium2_Unnamed">Unnamed PA Cover for Passenger</string>
+    <string name="popPremium2_named"> Named PA Cover for Passenger </string>
     <string name="popPremium2_PA">PA Cover for Owner Driver</string>
+    <string name="popPremium2_PA_paidDriver">PA Cover for Paid Driver</string>
     <string name="popPremium2_Legal"> Legal Liability to Paid Driver</string>
     <string name="popPremium2_Bi">Bi Fuel Kit Liability</string>
     <string name="popPremium1_totalLiab">Total Liability Premium</string>
@@ -75,7 +77,7 @@
     <string name="title_activitycard_quote">Car Quote</string>
     <string name="title_activity_premium_pop_up">Premium Break up Details</string>
     <string name="title_activity_health_insurance">Health Insurance</string>
-
+    <string name="title_activity_premium_bike_pop_up">Premium Break up Details</string>
 
     <!--Health-->
 
@@ -201,5 +203,6 @@
     </string-array>
     <string name="title_activity_health_quotes">Health Quotes</string>
     <string name="title_activity_health_insurance_quotes">Health Quotes</string>
+
 
 </resources>

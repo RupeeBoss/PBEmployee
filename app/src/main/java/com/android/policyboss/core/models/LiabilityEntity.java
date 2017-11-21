@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class LiabilityEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class LiabilityEntity implements Parcelable {
                 /**
                  * tp_basic : 2863
                  * tp_cover_owner_driver_pa : 100
@@ -21,7 +24,30 @@ public class LiabilityEntity {
                 private String tp_cng_lpg;
                 private String tp_final_premium;
 
-                public String getTp_basic() {
+    protected LiabilityEntity(Parcel in) {
+        tp_basic = in.readString();
+        tp_cover_owner_driver_pa = in.readString();
+        tp_cover_unnamed_passenger_pa = in.readString();
+        tp_cover_named_passenger_pa = in.readString();
+        tp_cover_paid_driver_pa = in.readString();
+        tp_cover_paid_driver_ll = in.readString();
+        tp_cng_lpg = in.readString();
+        tp_final_premium = in.readString();
+    }
+
+    public static final Creator<LiabilityEntity> CREATOR = new Creator<LiabilityEntity>() {
+        @Override
+        public LiabilityEntity createFromParcel(Parcel in) {
+            return new LiabilityEntity(in);
+        }
+
+        @Override
+        public LiabilityEntity[] newArray(int size) {
+            return new LiabilityEntity[size];
+        }
+    };
+
+    public String getTp_basic() {
                     return tp_basic;
                 }
 
@@ -84,4 +110,21 @@ public class LiabilityEntity {
                 public void setTp_final_premium(String tp_final_premium) {
                     this.tp_final_premium = tp_final_premium;
                 }
-            }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(tp_basic);
+        dest.writeString(tp_cover_owner_driver_pa);
+        dest.writeString(tp_cover_unnamed_passenger_pa);
+        dest.writeString(tp_cover_named_passenger_pa);
+        dest.writeString(tp_cover_paid_driver_pa);
+        dest.writeString(tp_cover_paid_driver_ll);
+        dest.writeString(tp_cng_lpg);
+        dest.writeString(tp_final_premium);
+    }
+}

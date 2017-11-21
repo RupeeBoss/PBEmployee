@@ -1,6 +1,9 @@
 package com.android.policyboss.core.models;
 
-public class OwnDamageEntity {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class OwnDamageEntity implements Parcelable {
                 /**
                  * od_basic : 11490.07
                  * od_elect_access : 0
@@ -27,7 +30,33 @@ public class OwnDamageEntity {
                 private String od_disc;
                 private String od_final_premium;
 
-                public String getOd_basic() {
+    protected OwnDamageEntity(Parcel in) {
+        od_basic = in.readString();
+        od_elect_access = in.readString();
+        od_non_elect_access = in.readString();
+        od_cng_lpg = in.readString();
+        od_disc_ncb = in.readString();
+        od_disc_vol_deduct = in.readString();
+        od_disc_anti_theft = in.readString();
+        od_disc_aai = in.readString();
+        od_loading = in.readString();
+        od_disc = in.readString();
+        od_final_premium = in.readString();
+    }
+
+    public static final Creator<OwnDamageEntity> CREATOR = new Creator<OwnDamageEntity>() {
+        @Override
+        public OwnDamageEntity createFromParcel(Parcel in) {
+            return new OwnDamageEntity(in);
+        }
+
+        @Override
+        public OwnDamageEntity[] newArray(int size) {
+            return new OwnDamageEntity[size];
+        }
+    };
+
+    public String getOd_basic() {
                     return od_basic;
                 }
 
@@ -114,4 +143,24 @@ public class OwnDamageEntity {
                 public void setOd_final_premium(String od_final_premium) {
                     this.od_final_premium = od_final_premium;
                 }
-            }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(od_basic);
+        dest.writeString(od_elect_access);
+        dest.writeString(od_non_elect_access);
+        dest.writeString(od_cng_lpg);
+        dest.writeString(od_disc_ncb);
+        dest.writeString(od_disc_vol_deduct);
+        dest.writeString(od_disc_anti_theft);
+        dest.writeString(od_disc_aai);
+        dest.writeString(od_loading);
+        dest.writeString(od_disc);
+        dest.writeString(od_final_premium);
+    }
+}
