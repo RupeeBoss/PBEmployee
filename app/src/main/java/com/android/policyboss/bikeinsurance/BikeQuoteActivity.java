@@ -123,6 +123,9 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
             case R.id.add_on:
                 openPopUp();
                 return true;

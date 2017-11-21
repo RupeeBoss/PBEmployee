@@ -20,7 +20,7 @@
             app:animateIndicators="true"
             app:defaultBanner="1"
             app:defaultIndicators="circle"
-            app:interval="2000" />
+            app:interval="5000" />
 
 
     </LinearLayout>
@@ -58,8 +58,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Car Insurance"
+                    android:textSize="10sp"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@color/dashboard_text" />
 
 
             </LinearLayout>
@@ -83,7 +84,8 @@
                     android:layout_height="wrap_content"
                     android:text="Health Insurance"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/white" />
+                    android:textSize="10sp"
+                    android:textColor="@color/dashboard_text" />
             </LinearLayout>
 
 
@@ -107,15 +109,16 @@
 
                 <ImageView
                     android:layout_width="100dp"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/bike_ins" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BIKE Insurance"
+                    android:textSize="10sp"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@color/dashboard_text" />
 
 
             </LinearLayout>
@@ -131,15 +134,16 @@
 
                 <ImageView
                     android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/health_ins" />
+                    android:layout_height="50dp"
+                    android:src="@drawable/travel" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Travel Insurance"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/white" />
+                    android:textSize="10sp"
+                    android:textColor="@color/dashboard_text" />
             </LinearLayout>
 
 

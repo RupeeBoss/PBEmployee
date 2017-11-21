@@ -48,6 +48,7 @@
     <string name="popPremium2_Legal"> Legal Liability to Paid Driver</string>
     <string name="popPremium2_Bi">Bi Fuel Kit Liability</string>
     <string name="popPremium1_totalLiab">Total Liability Premium</string>
+    <string name="dont_rem"><u><i>Don\'t Remember?</i></u></string>
 
 
     <string-array name="policy_expiry">

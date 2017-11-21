@@ -64,8 +64,8 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
         if (holder instanceof QuotesItem) {
             final HealthQuotesEntity entity = listHealthQuotes.get(position);
             holder.txtInsuranceCompName.setText(entity.getInsurerName());
-            holder.txtTotalPremium.setText("" + entity.getNetPremium());
-            holder.txtSumAssured.setText("" + entity.getSumInsured());
+            holder.txtTotalPremium.setText("" + getRupeesRound(entity.getNetPremium()));
+            holder.txtSumAssured.setText("" + getRupeesRound(entity.getSumInsured()));
             holder.txtPolicyTerm.setText("" + entity.getPolicyTermYear());
 
             Glide.with(mContext)
@@ -88,5 +88,17 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
     @Override
     public int getItemCount() {
         return listHealthQuotes.size();
+    }
+
+    private long getRound(String strText)
+    {
+        return  Math.round(Double.parseDouble(strText));
+    }
+
+
+    private String getRupeesRound(double strText)
+
+    {
+        return "\u20B9 " + Math.round(strText);
     }
 }

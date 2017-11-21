@@ -310,6 +310,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         spWhenPolicyExp = (Spinner) findViewById(R.id.spWhenPolicyExp);
         spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
         spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
+        llWhenPolicyExpiring.setVisibility(View.GONE);
     }
 
     //region  datepickerdialog
@@ -381,8 +382,51 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnGetQuote) {
-            //fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
-            //setInputParametrs();
+
+            if (autoCarMake.getText().toString().equals("")) {
+                autoCarMake.setError("Invalid input");
+                autoCarMake.setFocusable(true);
+                return;
+                //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+            }
+
+            if (autoCity.getText().toString().equals("")) {
+                autoCity.setError("Select City");
+                autoCity.setFocusable(true);
+                return;
+                //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+            }
+            if (quoteRequestEntity.isRenew()) {
+                if (etPolicyExpDate.getText().toString().equals("")) {
+                    etPolicyExpDate.setError("Enter Poicy Exp Date");
+                    etPolicyExpDate.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (quoteRequestEntity.isRenew()) {
+                if (etFirstRegDate.getText().toString().equals("")) {
+                    etFirstRegDate.setError("Enter Date Of Reg");
+                    etFirstRegDate.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (switchAdditional.isChecked()) {
+                if (etElecAcc.getText().toString().equals("")) {
+                    etElecAcc.setError("Enter Electrical Accessories");
+                    etElecAcc.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+                if (etNonElecAcc.getText().toString().equals("")) {
+                    etNonElecAcc.setError("Enter Non Electrical Accessories");
+                    etNonElecAcc.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+            }
+
             if (quoteRequestEntity.isNew())
                 setInputParametersNew();
             else if (quoteRequestEntity.isRenew())
@@ -398,6 +442,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
         }
     }
+
 
     private void setInputParametersNew() {
         bikeRequestEntity.setBirth_date("1992-01-01");
@@ -493,21 +538,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void setInputParametersDontRemember() {
-
-    /*    quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
-        quoteRequestEntity.setPolicyExpiryDate(etPolicyExpDate.getText().toString());
-        quoteRequestEntity.setDateofPurchaseofCar(etFirstRegDate.getText().toString());
-        varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
-        quoteRequestEntity.setVariant_ID(varientId);
-        quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
-        quoteRequestEntity.setManufacturingYear(Integer.parseInt(spManufactureYear.getSelectedItem().toString()));
-
-        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
-        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
-        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
-        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
-
-        quoteRequestEntity.setSupportsAgentID(new LoginFacade(this).getUser().getEmp_Id());*/
         bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(1);
         bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));

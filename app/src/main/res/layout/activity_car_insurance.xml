@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="16dp"
                         android:gravity="center_horizontal|center_vertical|right"
-                        android:text="Don't Remember?"
+                        android:text="@string/dont_rem"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="italic" />
@@ -231,90 +231,20 @@
 
                     </android.support.design.widget.TextInputLayout>
 
-
-                    <!--<LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Don't Remember"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                                android:textColor="@color/colorPrimaryDark" />
-
-                        android:orientation="vertical">
-
-
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/emailWrapper"
-                            android:layout_width="match_parent"
-                            android:layout_height="54dp"
-                            android:layout_margin="8dp"
-                            android:layout_marginTop="0dp"
-                            android:clipToPadding="false"
-                            android:gravity="bottom"
-                            android:paddingTop="4dp"
-                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                            <EditText
-                                android:id="@+id/txtEmail"
-                                style="@style/EditTextStyle"
-                                android:drawableLeft="@drawable/ic_people_white"
-                                android:hint="Email address" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-
-                        &lt;!&ndash;         <android.support.design.widget.TextInputLayout
-                                     android:layout_width="match_parent"
-                                     android:layout_height="54dp"
-                                     android:layout_margin="8dp"
-                                     android:layout_marginTop="0dp"
-                                     android:clipToPadding="false"
-                                     android:gravity="bottom"
-                                     android:paddingTop="4dp"
-                                     app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                        <include layout="@layout/layout_when_policy_expiring" />
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/gap">
-                                     <EditText
-                                         style="@style/EditTextStyle"
-                                         android:drawableStart="@drawable/ic_people_white"
-                                         android:hint="Email address"
-                                         android:inputType="textEmailAddress" />
-
-                                 </android.support.design.widget.TextInputLayout>&ndash;&gt;
-
-                        <Spinner
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/spinner_bg"
-                            android:entries="@array/array_insurance_company"
-
-                        <include layout="@layout/layout_which_car_you_drive" />
-                    </android.support.v7.widget.CardView>
-                            android:spinnerMode="dropdown"></Spinner>
-
-                    </LinearLayout>-->
-
-
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <Button
+                android:id="@+id/btnCont"
                 style="@style/CurvedButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Continue" />
+                android:layout_gravity="bottom"
+                android:text="Continue"
+                android:visibility="gone" />
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
+
 
 </android.support.design.widget.CoordinatorLayout>
