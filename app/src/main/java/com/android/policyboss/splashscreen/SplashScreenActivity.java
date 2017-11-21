@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -16,6 +17,7 @@ import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.utility.Constants;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import io.realm.Realm;
 
@@ -33,7 +35,7 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
         realm = Realm.getDefaultInstance();
 
         editor = Constants.getSharedPreferenceEditor(this);
-
+        subscribeToPushService();
 
         boolean isYesterday = LoginFacade.getDayDifference(Long.parseLong("1497332094000"));
         //fetch all master tables
@@ -89,5 +91,18 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
         super.onDestroy();
         if (!realm.isClosed())
             realm.close();
+    }
+
+    private void subscribeToPushService() {
+
+        try {
+            if(FirebaseMessaging.getInstance() !=null ) {
+                FirebaseMessaging.getInstance().subscribeToTopic("policyBoss");
+            }
+        }catch (Exception ex)
+        {
+            Log.d("FCM ERROR", ex.getMessage().toString());
+        }
+
     }
 }
