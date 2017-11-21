@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -56,7 +57,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
     DatabaseController databaseController;
     WebView webViewLoader;
     List<MobileAddOn> listMobileAddOn;
-
+    SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,9 +101,26 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         bikePremiumResponse = new BikePremiumResponse();
         mAdapter = new BikeQuoteAdapter(this, bikePremiumResponse);
         bikeQuoteRecycler.setAdapter(mAdapter);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                update();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void update() {
+        if (getIntent().hasExtra("BIKE")) {
+            new BikeController(BikeQuoteActivity.this).getBikePremium(this);
+        } else if (getIntent().hasExtra("CAR")) {
+            new CarController(BikeQuoteActivity.this).getCarPremium(this);
+        }
     }
 
     private void initialize() {
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         bikeQuoteRecycler = (RecyclerView) findViewById(R.id.bikeQuoteRecycler);
         bikeQuoteRecycler.setHasFixedSize(true);
         webViewLoader = (WebView) findViewById(R.id.webViewLoader);
