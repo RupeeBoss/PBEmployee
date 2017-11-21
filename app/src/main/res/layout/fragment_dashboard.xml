@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,11 +13,15 @@
         android:layout_weight="35"
         android:background="@color/colorPrimaryDark">
 
-        <ImageView
+        <ss.com.bannerslider.views.BannerSlider
+            android:id="@+id/banner_slider1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/policy_banner_1" />
+            app:animateIndicators="true"
+            app:defaultBanner="1"
+            app:defaultIndicators="circle"
+            app:interval="2000" />
+
 
     </LinearLayout>
 
@@ -28,27 +33,29 @@
         android:background="@color/background"
         android:orientation="vertical">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/txtCarInsurance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#388E3C"
+                android:background="#8a9ba9"
                 android:gravity="center"
                 android:minHeight="120dp"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/car_ins"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/car_ins" />
 
                 <TextView
-                    android:id="@+id/txtCarInsurance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Car Insurance"
@@ -59,18 +66,23 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/txtHealthInsurance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="#4f546b"
+                android:gravity="center"
+                android:minHeight="120dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/health_ins" />
 
                 <TextView
-                    android:id="@+id/txtHealthInsurance"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#8BC34A"
-                    android:gravity="center"
-                    android:minHeight="120dp"
                     android:text="Health Insurance"
                     android:textAllCaps="true"
                     android:textColor="@android:color/white" />
@@ -84,31 +96,87 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/txtBikeInsurance"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#2D3E50"
                 android:gravity="center"
                 android:minHeight="120dp"
-                android:text="Bike Insurance"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white" />
+                android:orientation="vertical">
 
-            <!--<TextView
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/bike_ins" />
 
-                android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BIKE Insurance"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#8BC34A"
                 android:gravity="center"
                 android:minHeight="120dp"
-                android:text="Health Insurance"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/health_ins" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health Insurance"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2D3E50"
+            android:gravity="center"
+            android:minHeight="120dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:src="@drawable/health_ins" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bike Insurance"
                 android:textAllCaps="true"
-                android:textColor="@android:color/white" />-->
+                android:textColor="@android:color/white" />
+
         </LinearLayout>
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/policy_banner_1"
+        android:visibility="gone" />
 
 </LinearLayout>

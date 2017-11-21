@@ -54,11 +54,11 @@ public class DateTimePicker {
 
     public static void firstRegReNewDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
-        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        calendar.add(Calendar.YEAR, -10);
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR)-1, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        calendar.add(Calendar.YEAR, -15);
         dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
         calendar.add(Calendar.MONTH, -6);
-        calendar.add(Calendar.YEAR, 10);
+        calendar.add(Calendar.YEAR, 15);
         dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
 
         dialog.show();

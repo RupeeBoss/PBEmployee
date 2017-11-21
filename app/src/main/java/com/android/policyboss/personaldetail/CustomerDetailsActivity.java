@@ -135,7 +135,6 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                     bikeRequestEntity.setMiddle_name(fullName[1]);
                     bikeRequestEntity.setLast_name(fullName[2]);
                 }
-                bikeRequestEntity.setFirst_name(etCustomerName.getText().toString());
                 bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
                 bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
                 showDialog();

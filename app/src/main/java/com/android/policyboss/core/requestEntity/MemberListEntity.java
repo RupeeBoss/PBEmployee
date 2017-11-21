@@ -3,60 +3,77 @@ package com.android.policyboss.core.requestEntity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public  class MemberListEntity implements Parcelable {
-        /**
-         * MemberDOB : 01-01-1989
-         * MemberGender : M
-         * MemberNumber : 1
-         * MemberType : Adult
-         * MemberTypeID : 1
-         */
+public class MemberListEntity implements Parcelable {
+    /**
+     * MemberDOB : 01-01-1989
+     * MemberGender : M
+     * MemberNumber : 1
+     * MemberType : Adult
+     * MemberTypeID : 1
+     */
 
-        private String MemberDOB;
-        private String MemberGender;
-        private String MemberNumber;
-        private String MemberType;
-        private String MemberTypeID;
+    private String MemberDOB;
+    private String MemberGender;
+    private String MemberNumber;
+    private String MemberType;
+    private String MemberTypeID;
+    private String MemberRelation;
 
-        public String getMemberDOB() {
-            return MemberDOB;
-        }
+    /**
+     * MemberNumber : 1
+     * MemberRelation :
+     * MemberTypeID : 1
+     */
 
-        public void setMemberDOB(String MemberDOB) {
-            this.MemberDOB = MemberDOB;
-        }
 
-        public String getMemberGender() {
-            return MemberGender;
-        }
+    public String getMemberDOB() {
+        return MemberDOB;
+    }
 
-        public void setMemberGender(String MemberGender) {
-            this.MemberGender = MemberGender;
-        }
+    public void setMemberDOB(String MemberDOB) {
+        this.MemberDOB = MemberDOB;
+    }
 
-        public String getMemberNumber() {
-            return MemberNumber;
-        }
+    public String getMemberGender() {
+        return MemberGender;
+    }
 
-        public void setMemberNumber(String MemberNumber) {
-            this.MemberNumber = MemberNumber;
-        }
+    public void setMemberGender(String MemberGender) {
+        this.MemberGender = MemberGender;
+    }
 
-        public String getMemberType() {
-            return MemberType;
-        }
+    public String getMemberNumber() {
+        return MemberNumber;
+    }
 
-        public void setMemberType(String MemberType) {
-            this.MemberType = MemberType;
-        }
+    public void setMemberNumber(String MemberNumber) {
+        this.MemberNumber = MemberNumber;
+    }
 
-        public String getMemberTypeID() {
-            return MemberTypeID;
-        }
+    public String getMemberType() {
+        return MemberType;
+    }
 
-        public void setMemberTypeID(String MemberTypeID) {
-            this.MemberTypeID = MemberTypeID;
-        }
+    public void setMemberType(String MemberType) {
+        this.MemberType = MemberType;
+    }
+
+    public String getMemberTypeID() {
+        return MemberTypeID;
+    }
+
+    public void setMemberTypeID(String MemberTypeID) {
+        this.MemberTypeID = MemberTypeID;
+    }
+
+
+    public String getMemberRelation() {
+        return MemberRelation;
+    }
+
+    public void setMemberRelation(String MemberRelation) {
+        this.MemberRelation = MemberRelation;
+    }
 
     @Override
     public int describeContents() {
@@ -70,6 +87,7 @@ public  class MemberListEntity implements Parcelable {
         dest.writeString(this.MemberNumber);
         dest.writeString(this.MemberType);
         dest.writeString(this.MemberTypeID);
+        dest.writeString(this.MemberRelation);
     }
 
     public MemberListEntity() {
@@ -81,6 +99,7 @@ public  class MemberListEntity implements Parcelable {
         this.MemberNumber = in.readString();
         this.MemberType = in.readString();
         this.MemberTypeID = in.readString();
+        this.MemberRelation = in.readString();
     }
 
     public static final Parcelable.Creator<MemberListEntity> CREATOR = new Parcelable.Creator<MemberListEntity>() {

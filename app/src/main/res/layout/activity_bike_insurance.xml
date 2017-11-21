@@ -127,7 +127,7 @@
                 android:id="@+id/cvRenew"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -148,6 +148,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#f6f6f6" />
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_margin="8dp"
+                        android:layout_marginTop="0dp"
+                        android:clipToPadding="false"
+                        android:gravity="bottom"
+                        android:paddingTop="4dp"
+                        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/acBikeVarient"
+                            style="@style/EditTextStyle"
+                            android:drawableLeft="@drawable/car_black"
+                            android:hint="Which Bike You Want to Insure?" />
+
+                    </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -179,27 +198,9 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <AutoCompleteTextView
-                            android:id="@+id/acBikeVarient"
-                            style="@style/EditTextStyle"
-                            android:drawableLeft="@drawable/date_range"
-                            android:hint="Which Bike do you ride ?" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="54dp"
-                        android:layout_margin="8dp"
-                        android:layout_marginTop="0dp"
-                        android:clipToPadding="false"
-                        android:gravity="bottom"
-                        android:paddingTop="4dp"
-                        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                        <AutoCompleteTextView
                             android:id="@+id/acRegPlace"
                             style="@style/EditTextStyle"
-                            android:drawableLeft="@drawable/date_range"
+                            android:drawableLeft="@drawable/place_black"
                             android:hint="Place of registration" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -260,6 +261,7 @@
                             android:paddingLeft="30dp" />
 
                         <Switch
+                            android:checked="true"
                             android:id="@+id/switchNcb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

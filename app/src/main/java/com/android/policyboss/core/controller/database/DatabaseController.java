@@ -103,18 +103,21 @@ public class DatabaseController implements IDBController {
         hashMapInsurence.put("Liberty Videocon", 33);
         hashMapInsurence.put("Tata AIG", 11);
         hashMapInsurence.put("New India Assurance", 12);
-        hashMapInsurence.put("Kotak Mahindra",30);
+        hashMapInsurence.put("Kotak Mahindra", 30);
         hashMapInsurence.put("Reliance General", 9);
         hashMapInsurence.put("Royal Sundaram", 10);
-        hashMapInsurence.put("SBI General Insurance Co.Ltd.", 17);
-        hashMapInsurence.put("Shriram General Insurance Co.Ltd.", 18);
-        hashMapInsurence.put("National Insurance Co.Ltd.", 8);
-        hashMapInsurence.put("L & T General Insurance Co.Ltd.", 15);
-        hashMapInsurence.put("Cholamandalam MS General Insurance Co.Ltd.", 3);
-        hashMapInsurence.put("Raheja QBE General Insurance Co.Ltd.", 16);
-        hashMapInsurence.put("Magma HDI General Insurance Co.Ltd", 35);
-        hashMapInsurence.put("The Oriental Insurance Co.Ltd.", 13);
-        hashMapInsurence.put("United India Insurance Co.Ltd.", 14);
+        hashMapInsurence.put("SBI General ", 17);
+        hashMapInsurence.put("Shriram General ", 18);
+        hashMapInsurence.put("National Insurance ", 8);
+        hashMapInsurence.put("L & T General ", 15);
+        hashMapInsurence.put("Cholamandalam MS General ", 3);
+        hashMapInsurence.put("Raheja QBE General ", 16);
+        hashMapInsurence.put("Liberty Videocon General ", 33);
+        hashMapInsurence.put("Star Health Insurance", 26);
+        hashMapInsurence.put("Magma HDI General ", 35);
+        hashMapInsurence.put("The Oriental Insurance", 13);
+        hashMapInsurence.put("United India Insurance ", 14);
+        hashMapInsurence.put("Religare Health Insurance", 34);
 
 
     }
@@ -1869,7 +1872,6 @@ public class DatabaseController implements IDBController {
         hasMapCarInsuranceImage.put(2, R.drawable.carins2);
         hasMapCarInsuranceImage.put(3, R.drawable.carins3);
         hasMapCarInsuranceImage.put(4, R.drawable.carins4);
-
         hasMapCarInsuranceImage.put(5, R.drawable.carins5);
         hasMapCarInsuranceImage.put(6, R.drawable.carins6);
         hasMapCarInsuranceImage.put(7, R.drawable.carins7);
@@ -1884,8 +1886,10 @@ public class DatabaseController implements IDBController {
         hasMapCarInsuranceImage.put(17, R.drawable.carins17);
         hasMapCarInsuranceImage.put(18, R.drawable.carins18);
         hasMapCarInsuranceImage.put(19, R.drawable.carins19);
+        hasMapCarInsuranceImage.put(26, R.drawable.carins26);
         hasMapCarInsuranceImage.put(30, R.drawable.carins30);
         hasMapCarInsuranceImage.put(33, R.drawable.carins33);
+        hasMapCarInsuranceImage.put(34, R.drawable.carins34);
         hasMapCarInsuranceImage.put(35, R.drawable.carins35);
 
     }
