@@ -76,7 +76,7 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
             holder.txtFinalPremium.setText("");
         }
 
-        holder.txtIDV.setText("IDV - " + "\u20B9 " + String.valueOf(responseEntity.getLM_Custom_Request().getVehicle_expected_idv()));
+        holder.txtIDV.setText("\u20B9 " + String.valueOf(responseEntity.getLM_Custom_Request().getVehicle_expected_idv()));
         Glide.with(mContext)
                 .load(getProfessionalID1(Integer.parseInt(responseEntity.getInsurer().getInsurer_ID())))
                 .into(holder.imgInsurerLogo);
