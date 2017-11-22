@@ -17,9 +17,6 @@ import com.android.policyboss.core.models.LiabilityEntity;
 import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.android.policyboss.core.models.OwnDamageEntity;
 import com.android.policyboss.core.models.PremiumBreakupEntity;
-import com.android.policyboss.core.models.RequestCoreEntity;
-import com.android.policyboss.core.models.ResponseEntity;
-import com.android.policyboss.core.models.SummaryEntity;
 import com.android.policyboss.utility.Constants;
 
 import java.util.List;
@@ -31,11 +28,10 @@ public class PremiumBikePopUpActivity extends AppCompatActivity implements View.
     InsurerEntity insurerEntity;
 
     LiabilityEntity liabilityEntity;
-    SummaryEntity summaryEntity;
-    RequestCoreEntity requestCoreEntity;
+
     TextView txtPlanName, txtBasicOD, txtODdiscount, txtNEA, txtEA, txtBiFuel, txtAntiTheftDisc, txtVolDisc, txtAAIDisc, txtNCB, txtUnderWriter, txtTotalODPremium;
     TextView txtCarModel, txtIDV, txtBasic3rdparty, txtUnNamedPA, txPACover, txtLegalLiability, txtBiFuelKit, txtTotalLiabPrem, txtNetPremium, txtServtax, txttotalPremium, txtNamedPA, txtPAcoverPaidDriver;
-    //txtAgeDisc, txtProfDisc,
+
    Button btnClose;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +49,6 @@ public class PremiumBikePopUpActivity extends AppCompatActivity implements View.
             getData();
         }
 
-        summaryEntity = getIntent().getParcelableExtra(Constants.Bike_Summary_ENTITY);
-        if (summaryEntity != null) {
-            getReuestCore();
-
-        }
 
         if (getIntent().getParcelableExtra(Constants.Bike_QUOTE_INSURER) != null) {
             insurerEntity = getIntent().getParcelableExtra(Constants.Bike_QUOTE_INSURER);
@@ -66,8 +57,10 @@ public class PremiumBikePopUpActivity extends AppCompatActivity implements View.
                 txtPlanName.setText("" + insurerEntity.getInsurer_Name());
             }
         }
-
-
+        if(getIntent().getStringExtra(Constants.IDV_DATA) != null)
+        {
+            txtIDV.setText("\u20B9 " + getIntent().getStringExtra(Constants.IDV_DATA).toString());
+        }
     }
 
     private void initialize() {
@@ -156,15 +149,7 @@ public class PremiumBikePopUpActivity extends AppCompatActivity implements View.
 
     }
 
-    private void getReuestCore() {
-        if (summaryEntity.getRequest_Core() != null) {
-            requestCoreEntity = summaryEntity.getRequest_Core();
 
-            txtIDV.setText("" + getRupeesRound(requestCoreEntity.getVehicle_expected_idv()));
-
-
-        }
-    }
 
     @Override
     public void onClick(View v) {

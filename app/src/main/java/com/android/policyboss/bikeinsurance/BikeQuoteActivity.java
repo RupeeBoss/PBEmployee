@@ -1344,12 +1344,13 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 .putExtra("TITLE", title));
     }
 
-    public void redirectToPopUpPremium(ResponseEntity  entity, SummaryEntity summaryEntity) {
+    public void redirectToPopUpPremium(ResponseEntity  entity, SummaryEntity summaryEntity, String IDV) {
         startActivity(new Intent(this, PremiumBikePopUpActivity.class)
                 .putExtra(Constants.Bike_QUOTE_PRIMIUM, entity.getPremium_Breakup())
                 .putExtra(Constants.Bike_QUOTE_INSURER, entity.getInsurer())
-                 .putExtra(Constants.Bike_Summary_ENTITY, summaryEntity));
+                .putExtra(Constants.IDV_DATA, IDV) );
 
 
     }
+    // .putExtra(Constants.Bike_Summary_ENTITY, summaryEntity)
 }
