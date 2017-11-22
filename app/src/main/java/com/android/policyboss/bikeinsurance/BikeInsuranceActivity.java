@@ -301,10 +301,10 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setMethod_type("Premium");
 
         if (switchNcb.isChecked()) {
-            bikeRequestEntity.setIs_claim_exists("no");
+            bikeRequestEntity.setIs_claim_exists("yes");
             bikeRequestEntity.setVehicle_ncb_current("");
         } else {
-            bikeRequestEntity.setIs_claim_exists("yes");
+            bikeRequestEntity.setIs_claim_exists("no");
             bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
         }
 

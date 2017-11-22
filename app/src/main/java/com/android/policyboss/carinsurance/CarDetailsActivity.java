@@ -498,7 +498,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             bikeRequestEntity.setVehicle_id(fastLaneResponseEntity.getVariant_Id());
             bikeRequestEntity.setRto_id(fastLaneResponseEntity.getVehicleCity_Id());
             bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(fastLaneResponseEntity.getManufacture_Year()));
-            bikeRequestEntity.setRegistration_no(fastLaneResponseEntity.getRegistration_Number());
+            bikeRequestEntity.setRegistration_no(formatRegistrationNo(fastLaneResponseEntity.getRegistration_Number()));
         } else {
             bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
             bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
@@ -522,10 +522,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setMethod_type("Premium");
 
         if (switchNcb.isChecked()) {
-            bikeRequestEntity.setIs_claim_exists("no");
+            bikeRequestEntity.setIs_claim_exists("yes");
             bikeRequestEntity.setVehicle_ncb_current("");
         } else {
-            bikeRequestEntity.setIs_claim_exists("yes");
+            bikeRequestEntity.setIs_claim_exists("no");
             bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
         }
 
@@ -576,10 +576,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setMethod_type("Premium");
 
         if (switchNcb.isChecked()) {
-            bikeRequestEntity.setIs_claim_exists("no");
+            bikeRequestEntity.setIs_claim_exists("yes");
             bikeRequestEntity.setVehicle_ncb_current("");
         } else {
-            bikeRequestEntity.setIs_claim_exists("yes");
+            bikeRequestEntity.setIs_claim_exists("no");
             bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
         }
 
@@ -625,6 +625,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
     private String getRegistrationNo(String city) {
         return "" + city.charAt(1) + city.charAt(2) + "-" + city.charAt(3) + city.charAt(4) + "-AA-1234";
+    }
+
+    private String formatRegistrationNo(String regNo) {
+        return "" + regNo.charAt(0) + regNo.charAt(1) + "-" + regNo.charAt(2) + regNo.charAt(3) + "-" + regNo.charAt(4) + regNo.charAt(5) + "-" + regNo.charAt(6) + regNo.charAt(7) + regNo.charAt(8) + regNo.charAt(9);
     }
 
     private String getManufacturingDate(String manufac) {

@@ -57,7 +57,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
     DatabaseController databaseController;
     WebView webViewLoader;
     List<MobileAddOn> listMobileAddOn;
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    //SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +120,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
     }
 
     private void initialize() {
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
+        //mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         bikeQuoteRecycler = (RecyclerView) findViewById(R.id.bikeQuoteRecycler);
         bikeQuoteRecycler.setHasFixedSize(true);
         webViewLoader = (WebView) findViewById(R.id.webViewLoader);
