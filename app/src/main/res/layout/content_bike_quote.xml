@@ -9,24 +9,24 @@
     tools:context="com.android.policyboss.bikeinsurance.BikeQuoteActivity"
     tools:showIn="@layout/activity_bike_quote">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeToRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/bikeQuoteRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
-
-        </android.support.v7.widget.RecyclerView>
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-
     <WebView
         android:id="@+id/webViewLoader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></WebView>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bikeQuoteRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

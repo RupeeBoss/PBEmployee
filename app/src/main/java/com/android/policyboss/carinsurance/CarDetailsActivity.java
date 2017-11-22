@@ -101,6 +101,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
         quoteRequestEntity = new QuoteRequestEntity();
         fastLaneResponseEntity = new FastLaneResponse.FLResponseBean();
+
+
         fetchMasterFromDatabase();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -108,6 +110,12 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
         fastLaneResponseEntity = getIntent().getParcelableExtra(CarInsuranceActivity.FASTLANE_DATA);
+        if (fastLaneResponseEntity != null) {
+            final Calendar calendar = Calendar.getInstance();
+            etFirstRegDate.setText(changeDateFormat(fastLaneResponseEntity.getRegistration_Date()));
+            String currentDay = simpleDateFormat.format(calendar.getTime());
+            etPolicyExpDate.setText(currentDay);
+        }
         bindingAdapters();
     }
 
@@ -382,7 +390,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnGetQuote) {
-
+/*
             if (autoCarMake.getText().toString().equals("")) {
                 autoCarMake.setError("Invalid input");
                 autoCarMake.setFocusable(true);
@@ -425,11 +433,12 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                     return;
                     //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
                 }
-            }
+            }*/
 
-            if (quoteRequestEntity.isNew())
+            if (quoteRequestEntity.isNew()) {
                 setInputParametersNew();
-            else if (quoteRequestEntity.isRenew())
+                llNcb.setVisibility(View.GONE);
+            } else if (quoteRequestEntity.isRenew())
                 setInputParametersReNew();
             else if (quoteRequestEntity.isDontRem())
                 setInputParametersDontRemember();
@@ -470,7 +479,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
         bikeRequestEntity.setPa_named_passenger_si("");
-        bikeRequestEntity.setPa_unnamed_passenger_si("");
+        bikeRequestEntity.setPa_unnamed_passenger_si("0");
         bikeRequestEntity.setPa_paid_driver_si("");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
@@ -485,18 +494,30 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void setInputParametersReNew() {
+        if (fastLaneResponseEntity != null) {
+            bikeRequestEntity.setVehicle_id(fastLaneResponseEntity.getVariant_Id());
+            bikeRequestEntity.setRto_id(fastLaneResponseEntity.getVehicleCity_Id());
+            bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(fastLaneResponseEntity.getManufacture_Year()));
+            bikeRequestEntity.setRegistration_no(fastLaneResponseEntity.getRegistration_Number());
+        } else {
+            bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
+            bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
+            bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
+            bikeRequestEntity.setRegistration_no(quoteRequestEntity.getRegistrationNumber());
+        }
+
+        bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
+        bikeRequestEntity.setPolicy_expiry_date(etPolicyExpDate.getText().toString());
+        bikeRequestEntity.setPrev_insurer_id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+
         bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(1);
-        bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
-        bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
         bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
         bikeRequestEntity.setExecution_async("yes");
         bikeRequestEntity.setVehicle_insurance_type("renew");
-        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
-        bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
-        bikeRequestEntity.setPolicy_expiry_date(etPolicyExpDate.getText().toString());
-        bikeRequestEntity.setPrev_insurer_id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+
+
         bikeRequestEntity.setVehicle_registration_type("individual");
         bikeRequestEntity.setMethod_type("Premium");
 
@@ -516,14 +537,14 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
             bikeRequestEntity.setNon_electrical_accessory("0");
         }
 
-        bikeRequestEntity.setRegistration_no(quoteRequestEntity.getRegistrationNumber());
+
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_antitheft_fit("no");
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
         bikeRequestEntity.setPa_named_passenger_si("");
-        bikeRequestEntity.setPa_unnamed_passenger_si("");
+        bikeRequestEntity.setPa_unnamed_passenger_si("0");
         bikeRequestEntity.setPa_paid_driver_si("");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
@@ -581,7 +602,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
         bikeRequestEntity.setPa_named_passenger_si("");
-        bikeRequestEntity.setPa_unnamed_passenger_si("");
+        bikeRequestEntity.setPa_unnamed_passenger_si("0");
         bikeRequestEntity.setPa_paid_driver_si("");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
@@ -609,6 +630,5 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     private String getManufacturingDate(String manufac) {
         final Calendar calendar = Calendar.getInstance();
         return manufac + "-" + calendar.getTime().getMonth() + "-01";
-
     }
 }

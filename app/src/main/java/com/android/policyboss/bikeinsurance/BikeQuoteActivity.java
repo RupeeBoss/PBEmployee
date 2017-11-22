@@ -102,13 +102,13 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         mAdapter = new BikeQuoteAdapter(this, bikePremiumResponse);
         bikeQuoteRecycler.setAdapter(mAdapter);
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        /*mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 update();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        });
+        });*/
     }
 
     private void update() {

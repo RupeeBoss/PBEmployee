@@ -283,6 +283,7 @@
                         android:padding="5dp">
 
                         <Switch
+                            android:checked="true"
                             android:id="@+id/switchNcb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -292,6 +293,7 @@
                             android:text="Has any claim been made in the existing policy? (%)" />
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/llNcb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
