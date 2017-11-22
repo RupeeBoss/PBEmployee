@@ -301,9 +301,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
-                                entity.getPremium_Breakup().getListAppliedAddons().add(appliedAddonsPremiumBreakup);
-
+                                isAddonApplied = true;
                                 listAppliedAddons.add(entity);
 
                             } else {
