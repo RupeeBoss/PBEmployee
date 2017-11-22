@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,12 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.PremiumPopUpActivity;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
@@ -30,7 +27,6 @@ import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.AppliedAddonsPremiumBreakup;
 import com.android.policyboss.core.models.CommonAddonEntity;
 import com.android.policyboss.core.models.MobileAddOn;
-import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.models.SummaryEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
@@ -57,6 +53,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
     DatabaseController databaseController;
     WebView webViewLoader;
     List<MobileAddOn> listMobileAddOn;
+
     //SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +74,8 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                     startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
                             .putExtra("BIKE", bikeRequestEntity));
                 } else if (getIntent().hasExtra("CAR")) {
-                    if(bikePremiumResponse.getSummary().getPB_CRN()!=null && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
-                    carRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
+                    if (bikePremiumResponse.getSummary().getPB_CRN() != null && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
+                        carRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
                     startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
                             .putExtra("CAR", carRequestEntity));
                 }
@@ -1088,8 +1085,11 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                 if (((BikePremiumResponse) response).getResponse().size() != 0)
                     menuAddon.findItem(R.id.add_on).setVisible(true);
-                else
+                else {
                     menuAddon.findItem(R.id.add_on).setVisible(false);
+                    onResume();
+                }
+
             } else {
                 webViewLoader.setVisibility(View.VISIBLE);
 
@@ -1344,11 +1344,11 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 .putExtra("TITLE", title));
     }
 
-    public void redirectToPopUpPremium(ResponseEntity  entity, SummaryEntity summaryEntity) {
+    public void redirectToPopUpPremium(ResponseEntity entity, SummaryEntity summaryEntity) {
         startActivity(new Intent(this, PremiumBikePopUpActivity.class)
                 .putExtra(Constants.Bike_QUOTE_PRIMIUM, entity.getPremium_Breakup())
                 .putExtra(Constants.Bike_QUOTE_INSURER, entity.getInsurer())
-                 .putExtra(Constants.Bike_Summary_ENTITY, summaryEntity));
+                .putExtra(Constants.Bike_Summary_ENTITY, summaryEntity));
 
 
     }

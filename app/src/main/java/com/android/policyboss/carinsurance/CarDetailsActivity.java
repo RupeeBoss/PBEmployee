@@ -478,9 +478,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
-        bikeRequestEntity.setPa_named_passenger_si("");
+        bikeRequestEntity.setPa_named_passenger_si("0");
         bikeRequestEntity.setPa_unnamed_passenger_si("0");
-        bikeRequestEntity.setPa_paid_driver_si("");
+        bikeRequestEntity.setPa_paid_driver_si("0");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
         bikeRequestEntity.setMiddle_name("");
@@ -543,9 +543,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
-        bikeRequestEntity.setPa_named_passenger_si("");
+        bikeRequestEntity.setPa_named_passenger_si("0");
         bikeRequestEntity.setPa_unnamed_passenger_si("0");
-        bikeRequestEntity.setPa_paid_driver_si("");
+        bikeRequestEntity.setPa_paid_driver_si("0");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
         bikeRequestEntity.setMiddle_name("");
@@ -601,9 +601,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
-        bikeRequestEntity.setPa_named_passenger_si("");
+        bikeRequestEntity.setPa_named_passenger_si("0");
         bikeRequestEntity.setPa_unnamed_passenger_si("0");
-        bikeRequestEntity.setPa_paid_driver_si("");
+        bikeRequestEntity.setPa_paid_driver_si("0");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
         bikeRequestEntity.setMiddle_name("");
