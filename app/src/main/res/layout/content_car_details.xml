@@ -202,10 +202,10 @@
                     app:cardCornerRadius="5dp">
 
                     <LinearLayout
-                        android:padding="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="5dp">
 
                         <Switch
                             android:id="@+id/switchAdditional"
@@ -283,24 +283,24 @@
                         android:padding="5dp">
 
                         <Switch
-                            android:checked="true"
                             android:id="@+id/switchNcb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/gap"
                             android:layout_marginRight="@dimen/gap"
                             android:layout_marginTop="@dimen/gap"
+                            android:checked="true"
                             android:text="Has any claim been made in the existing policy? (%)" />
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/llNcb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/gap"
                             android:layout_marginRight="@dimen/gap"
                             android:layout_marginTop="@dimen/gap"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
                             <Spinner
                                 android:id="@+id/spNcbPercent"
@@ -324,7 +324,7 @@
                 android:layout_marginLeft="@dimen/gap"
                 android:layout_marginRight="@dimen/gap"
                 android:layout_marginTop="@dimen/gap"
-                android:text="GET QUOTE" />
+                android:text="CONTINUE" />
 
         </LinearLayout>
 

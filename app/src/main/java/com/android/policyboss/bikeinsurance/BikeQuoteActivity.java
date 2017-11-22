@@ -16,12 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.PremiumPopUpActivity;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
@@ -30,7 +28,6 @@ import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.AppliedAddonsPremiumBreakup;
 import com.android.policyboss.core.models.CommonAddonEntity;
 import com.android.policyboss.core.models.MobileAddOn;
-import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.models.SummaryEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
@@ -77,8 +74,8 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                     startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
                             .putExtra("BIKE", bikeRequestEntity));
                 } else if (getIntent().hasExtra("CAR")) {
-                    if(bikePremiumResponse.getSummary().getPB_CRN()!=null && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
-                    carRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
+                    if (bikePremiumResponse.getSummary().getPB_CRN() != null && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
+                        carRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
                     startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
                             .putExtra("CAR", carRequestEntity));
                 }
@@ -1352,5 +1349,4 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
 
     }
-    // .putExtra(Constants.Bike_Summary_ENTITY, summaryEntity)
 }
