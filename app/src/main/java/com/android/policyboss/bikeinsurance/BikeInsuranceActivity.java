@@ -2,12 +2,18 @@ package com.android.policyboss.bikeinsurance;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -32,8 +38,10 @@ import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import io.realm.Realm;
 
@@ -58,6 +66,8 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     ArrayAdapter<String> cityAdapter, varientAdapter, ncbPerctAdapter, prevInsAdapter;
     BikeRequestEntity bikeRequestEntity;
 
+    String bikeVarient, regplace, prevIns;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +84,106 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         //collapsingToolbar.setExpandedTitleTextColor(ColorStateList.valueOf(getResources().getColor(R.color.application_secondary_text_color)));
         init();
         setClickListeners();
+        setDropDownSelectListeners();
+    }
+
+    private void setDropDownSelectListeners() {
+
+        //region auto complete bike varient
+
+        varientAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, databaseController.getBikeVarientList());
+        acBikeVarient.setAdapter(varientAdapter);
+        acBikeVarient.setThreshold(2);
+        acBikeVarient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                bikeVarient = varientAdapter.getItem(position).toString();
+            }
+        });
+        /**
+         * Unset the var whenever the user types. Validation will
+         * then fail. This is how we enforce selecting from the list.
+         */
+        acBikeVarient.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                bikeVarient = null;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        //endregion
+
+        // region city adapter
+        cityAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, databaseController.getCity());
+        acRegPlace.setAdapter(cityAdapter);
+        acRegPlace.setThreshold(2);
+
+        acRegPlace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                regplace = cityAdapter.getItem(position).toString();
+            }
+        });
+        /**
+         * Unset the var whenever the user types. Validation will
+         * then fail. This is how we enforce selecting from the list.
+         */
+        acRegPlace.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                regplace = null;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        //endregion
+
+        //region prev Insurer Adapter
+        prevInsAdapter = new
+                ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, databaseController.getInsurerList()) {
+                    @Override
+                    public boolean isEnabled(int position) {
+                        if (position == 0) {
+                            // Disable the first item from Spinner
+                            // First item will be use for hint
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    @Override
+                    public View getDropDownView(int position, View convertView,
+                                                ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        if (position == 0) {
+                            // Set the hint text color gray
+                            tv.setTextColor(Color.GRAY);
+                        } else {
+                            tv.setTextColor(Color.BLACK);
+                        }
+                        return view;
+                    }
+                };
+        spPrevInsurer.setAdapter(prevInsAdapter);
+        //endregion
     }
 
     private void init() {
@@ -102,26 +212,13 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         // List<String> city = databaseController.getCity();
 
 
-        // region  bike varient adapter
-        varientAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, databaseController.getBikeVarientList());
-        acBikeVarient.setAdapter(varientAdapter);
-        acBikeVarient.setThreshold(2);
-
-        //endregion
-
-        // region city adapter
-        cityAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, databaseController.getCity());
-        acRegPlace.setAdapter(cityAdapter);
-        acRegPlace.setThreshold(2);
-        //endregion
-
         ncbPerctAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.ncb_percent));
         spNcbPercent.setAdapter(ncbPerctAdapter);
 
-        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, databaseController.getInsurerList());
-        spPrevInsurer.setAdapter(prevInsAdapter);
+
+        Calendar calendar = Calendar.getInstance();
+        String currentDay = simpleDateFormat.format(calendar.getTime());
+        etPolicyExp.setText(currentDay);
 
 
     }
@@ -164,17 +261,19 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                 break;
             case R.id.btnGetQuote:
 
+                // region validating new bike
+                if (bikeVarient == null || bikeVarient.equals("")) {
+                    acBikeVarient.requestFocus();
+                    acBikeVarient.setError("Select Bike Varient");
+                    return;
+                }
                 if (etInvDate.getText().toString().equals("")) {
                     etInvDate.requestFocus();
                     etInvDate.setError("Enter Invoice Date");
                     return;
                 }
-                if (acBikeVarient.getText().toString().equals("") && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
-                    acBikeVarient.requestFocus();
-                    acBikeVarient.setError("Select Bike Varient");
-                    return;
-                }
-                if (acRegPlace.getText().toString().equals("") && databaseController.getBikeVarientID(acBikeVarient.getText().toString().trim()) != "") {
+
+                if (regplace == null || regplace.equals("")) {
                     acRegPlace.requestFocus();
                     acRegPlace.setError("Enter Registration Place");
                     return;
@@ -184,15 +283,26 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                     etManufactYearMonth.setError("Enter Manufacturing Date");
                     return;
                 }
+                //endregion
 
                 if (llRenewBike.getVisibility() == View.VISIBLE) {
+
+                    // region validating renew bike
                     if (etPolicyExp.getText().toString().equals("")) {
                         etPolicyExp.requestFocus();
                         etPolicyExp.setError("Enter Policy Expiry Date");
                         return;
                     }
-                }
-                if (llRenewBike.getVisibility() == View.VISIBLE) {
+                    if (spPrevInsurer.getSelectedItem().toString().contains("Select")) {
+                        spPrevInsurer.requestFocus();
+                        TextView errorText = (TextView) spPrevInsurer.getSelectedView();
+                        errorText.setError("Select Prev Ins");
+                        errorText.setTextColor(Color.RED);//just to highlight that this is an error
+                        errorText.setText("Select Prev Insurer");
+                        return;
+                    }
+                    //endregion
+
                     setInputParametersReNew();
                 } else if (llRenewBike.getVisibility() == View.GONE) {
                     setInputParametersNew();
@@ -215,8 +325,8 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
         bikeRequestEntity.setProduct_id(10);
         bikeRequestEntity.setVehicle_registration_date(etInvDate.getText().toString());
-        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
-        bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
+        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(bikeVarient)));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(regplace));
         bikeRequestEntity.setVehicle_manf_date(etManufactYearMonth.getText().toString());
         bikeRequestEntity.setVehicle_insurance_type("new");
         bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
@@ -227,7 +337,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setVehicle_registration_type("individual");
-        bikeRequestEntity.setRegistration_no(getRegistrationNo(acRegPlace.getText().toString()));
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(regplace));
 
 
         if (llRenewBike.getVisibility() == View.VISIBLE) {
@@ -247,8 +357,8 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     private void setInputParametersNew() {
         bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(10);
-        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
-        bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
+        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(bikeVarient)));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(regplace));
         bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
         bikeRequestEntity.setExecution_async("yes");
@@ -263,7 +373,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setMethod_type("Premium");
         bikeRequestEntity.setElectrical_accessory("0");
         bikeRequestEntity.setNon_electrical_accessory("0");
-        bikeRequestEntity.setRegistration_no(getRegistrationNo(acRegPlace.getText().toString()));
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(regplace));
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_antitheft_fit("no");
         bikeRequestEntity.setVoluntary_deductible(0);
@@ -287,8 +397,8 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     private void setInputParametersReNew() {
         bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(10);
-        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(acBikeVarient.getText().toString())));
-        bikeRequestEntity.setRto_id(databaseController.getCityID(acRegPlace.getText().toString()));
+        bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(bikeVarient)));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(regplace));
         bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
         bikeRequestEntity.setExecution_async("yes");
@@ -309,7 +419,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         }
 
 
-        bikeRequestEntity.setRegistration_no(getRegistrationNo(acRegPlace.getText().toString()));
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(regplace));
         bikeRequestEntity.setIs_llpd("no");
         bikeRequestEntity.setIs_antitheft_fit("no");
         bikeRequestEntity.setVoluntary_deductible(0);
@@ -349,6 +459,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                                 calendar.set(year, monthOfYear, dayOfMonth);
                                 String currentDay = simpleDateFormat.format(calendar.getTime());
                                 etInvDate.setText(currentDay);
+                                etManufactYearMonth.setText(currentDay);
                             }
                         }
                     });
@@ -361,6 +472,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                                 calendar.set(year, monthOfYear, dayOfMonth);
                                 String currentDay = simpleDateFormat.format(calendar.getTime());
                                 etInvDate.setText(currentDay);
+                                etManufactYearMonth.setText(currentDay);
                             }
                         }
                     });
@@ -380,18 +492,19 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                     }
                 });
             } else if (view.getId() == R.id.etManufactYearMonth) {
-                DateTimePicker.manufactDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                        if (view1.isShown()) {
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(year, monthOfYear, dayOfMonth);
-                            String currentDay = simpleDateFormat.format(calendar.getTime());
-                            etManufactYearMonth.setText(currentDay);
-                        }
+                DateTimePicker.manufactDatePicker(view.getContext(), getYear(etInvDate.getText().toString()), getMonth(etInvDate.getText().toString()), getDate(etInvDate.getText().toString()),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                                if (view1.isShown()) {
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.set(year, monthOfYear, dayOfMonth);
+                                    String currentDay = simpleDateFormat.format(calendar.getTime());
+                                    etManufactYearMonth.setText(currentDay);
+                                }
 
-                    }
-                });
+                            }
+                        });
             }
 
         }
@@ -441,4 +554,57 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         //return manufac + "-" + calendar.getTime().getMonth() + "-" + calendar.getTime().getDate();
 
     }
+
+    private int getMonth(String date) {
+        String mon = "" + date.charAt(5) + date.charAt(6);
+        return Integer.parseInt(mon);
+    }
+
+    private int getYear(String date) {
+        String year = "" + date.charAt(0) + date.charAt(1) + date.charAt(2) + date.charAt(3);
+        return Integer.parseInt(year);
+    }
+
+    private int getDate(String date) {
+        String dat = "" + date.charAt(8) + date.charAt(9);
+        return Integer.parseInt(dat);
+    }
+
+    private void calculateDateDiff(String startDate, String endDate) {
+        Date startDt = null, enfDt = null;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            startDt = simpleDateFormat.parse(startDate);
+            enfDt = simpleDateFormat.parse(endDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //milliseconds
+        long different = enfDt.getTime() - startDt.getTime();
+
+        System.out.println("startDate : " + startDate);
+        System.out.println("endDate : " + endDate);
+        System.out.println("different : " + different);
+
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
+
+        long elapsedDays = different / daysInMilli;
+        different = different % daysInMilli;
+
+        long elapsedHours = different / hoursInMilli;
+        different = different % hoursInMilli;
+
+        long elapsedMinutes = different / minutesInMilli;
+        different = different % minutesInMilli;
+
+        long elapsedSeconds = different / secondsInMilli;
+
+        Log.d("DIFF", "elapsedDays : " + elapsedDays);
+
+    }
+
 }

@@ -54,7 +54,7 @@ public class DateTimePicker {
 
     public static void firstRegReNewDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
-        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR)-1, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR) - 1, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         calendar.add(Calendar.YEAR, -15);
         dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
         calendar.add(Calendar.MONTH, -6);
@@ -75,10 +75,10 @@ public class DateTimePicker {
         dialog.show();
     }
 
-    public static void manufactDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
+    public static void manufactDatePicker(Context mContex, int year, int month, int date, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
 
-        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, year, month - 1, date);
 
         dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
         calendar.add(Calendar.YEAR, -15);
@@ -108,7 +108,7 @@ public class DateTimePicker {
 
     public static void showFirstRegDatePicker(Context mContex, DatePickerDialog.OnDateSetListener callBack) {
         final Calendar calendar = Calendar.getInstance();
-        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR)-1, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        DatePickerDialog dialog = new DatePickerDialog(mContex, callBack, calendar.get(Calendar.YEAR) - 1, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         calendar.add(Calendar.MONTH, -9);
         dialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
         calendar.add(Calendar.MONTH, 9);

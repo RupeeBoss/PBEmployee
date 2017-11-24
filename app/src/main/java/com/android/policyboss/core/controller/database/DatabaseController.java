@@ -981,7 +981,9 @@ public class DatabaseController implements IDBController {
     public List<String> getInsurerList() {
         hashMapInsurence = new HashMap<String, Integer>();
         MapInsurence();
-        return new ArrayList<String>(hashMapInsurence.keySet());
+        ArrayList<String> insurenceList = new ArrayList<String>(hashMapInsurence.keySet());
+        insurenceList.add(0, "Select Prev Insurer");
+        return insurenceList;
 
     }
 
