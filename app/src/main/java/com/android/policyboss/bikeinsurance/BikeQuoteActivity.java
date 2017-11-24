@@ -1087,7 +1087,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                     menuAddon.findItem(R.id.add_on).setVisible(true);
                 else {
                     menuAddon.findItem(R.id.add_on).setVisible(false);
-                    onResume();
+                    Toast.makeText(this, "No Quotes Found for now", Toast.LENGTH_SHORT).show();
                 }
 
             } else {

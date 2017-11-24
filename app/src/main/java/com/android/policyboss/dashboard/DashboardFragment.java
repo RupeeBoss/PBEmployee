@@ -54,9 +54,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         //add banner using image url
         //banners.add(new RemoteBanner("Put banner image url here ..."));
         //add banner using resource drawable
-        banners.add(new DrawableBanner(R.drawable.policyboss_banner_3));
-        banners.add(new DrawableBanner(R.drawable.policyboss_banner_4));
-        banners.add(new DrawableBanner(R.drawable.policyboss_banner_5));
+        banners.add(new DrawableBanner(R.drawable.policyboss_banner_1));
+        banners.add(new DrawableBanner(R.drawable.policyboss_banner_2));
+        banners.add(new DrawableBanner(R.drawable.policyboss_banner_1));
         bannerSlider.setBanners(banners);
     }
 
