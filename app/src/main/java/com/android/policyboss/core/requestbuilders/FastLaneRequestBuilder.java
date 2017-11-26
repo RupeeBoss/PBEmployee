@@ -2,13 +2,11 @@ package com.android.policyboss.core.requestbuilders;
 
 import com.android.policyboss.core.RetroRequestBuilder;
 import com.android.policyboss.core.response.FastLaneResponse;
-import com.android.policyboss.core.response.VarientMasterResponse;
 
 import java.util.HashMap;
 
 import retrofit.Call;
 import retrofit.http.Body;
-import retrofit.http.Headers;
 import retrofit.http.POST;
 
 /**

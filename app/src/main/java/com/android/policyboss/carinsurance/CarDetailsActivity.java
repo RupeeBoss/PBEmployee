@@ -2,9 +2,11 @@ package com.android.policyboss.carinsurance;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -15,17 +17,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.core.APIResponse;
-import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
-import com.android.policyboss.core.controller.motorquote.MotorQuoteController;
 import com.android.policyboss.core.models.QuoteRequestEntity;
+import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.response.FastLaneResponse;
-import com.android.policyboss.core.response.MotorQuotesResponse;
+import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.utility.DateTimePicker;
 
@@ -36,10 +36,11 @@ import java.util.List;
 
 import io.realm.Realm;
 
-public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, IResponseSubcriber {
+public class CarDetailsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+
+    public static final String CAR_DETAIL = "CarDetailsActivity.class";
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
     LinearLayout llWhenPolicyExpiring, llVarientDetails, llAdditionalDetails, llAdditionAcc, llNcb;
     QuoteRequestEntity quoteRequestEntity;
     FastLaneResponse.FLResponseBean fastLaneResponseEntity;
@@ -50,9 +51,12 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     List<String> modelList;
     List<String> fuelList;
     List<String> variantList;
+    List<String> yearList;
+    List<String> insurerList;
 
     int makeId, modelID, fuelId, varientId;
 
+    ArrayAdapter<String> yearAdapter;
     ArrayAdapter<String> makeAdapter;
     ArrayAdapter<String> cityAdapter;
     ArrayAdapter<String> modelAdapter;
@@ -65,9 +69,12 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     Spinner spCarModel, spCarFuelType, spCarVarient, spWhenPolicyExp, spPrevInsurer, spNcbPercent;
     AutoCompleteTextView autoCarMake, autoCity;
     Switch switchAdditional, switchNcb;
-    EditText etManufactYear, etElecAcc, etNonElecAcc, etPolicyExpDate, etFirstRegDate;
+    EditText etElecAcc, etNonElecAcc, etPolicyExpDate, etFirstRegDate;
 
+    Spinner spManufactureYear;
     Button btnGetQuote;
+
+    BikeRequestEntity bikeRequestEntity;
 
     @Override
     protected void onDestroy() {
@@ -80,6 +87,9 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_details);
+        init_widgets();
+        setListeners();
+
         QuoteRequestEntity entity = new QuoteRequestEntity();
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
@@ -91,6 +101,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
         quoteRequestEntity = new QuoteRequestEntity();
         fastLaneResponseEntity = new FastLaneResponse.FLResponseBean();
+
+
         fetchMasterFromDatabase();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -98,15 +110,45 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         quoteRequestEntity = getIntent().getParcelableExtra(Constants.QUOTE);
         fastLaneResponseEntity = getIntent().getParcelableExtra(CarInsuranceActivity.FASTLANE_DATA);
-        init_widgets();
-        setListeners();
-
+        if (fastLaneResponseEntity != null) {
+            final Calendar calendar = Calendar.getInstance();
+            etFirstRegDate.setText(changeDateFormat(fastLaneResponseEntity.getRegistration_Date()));
+            String currentDay = simpleDateFormat.format(calendar.getTime());
+            etPolicyExpDate.setText(currentDay);
+        }
         bindingAdapters();
-
-
     }
 
     private void bindingAdapters() {
+
+        yearAdapter = new
+                ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, yearList) {
+                    @Override
+                    public boolean isEnabled(int position) {
+                        if (position == 0) {
+                            // Disable the first item from Spinner
+                            // First item will be use for hint
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    @Override
+                    public View getDropDownView(int position, View convertView,
+                                                ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+                        if (position == 0) {
+                            // Set the hint text color gray
+                            tv.setTextColor(Color.GRAY);
+                        } else {
+                            tv.setTextColor(Color.BLACK);
+                        }
+                        return view;
+                    }
+                };
+        spManufactureYear.setAdapter(yearAdapter);
 
         makeAdapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, makeList);
@@ -121,7 +163,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         autoCity.setAdapter(cityAdapter);
         autoCity.setThreshold(1);
 
-        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.array_insurance_company));
+        prevInsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, insurerList);
         spPrevInsurer.setAdapter(prevInsAdapter);
 
 
@@ -141,6 +183,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     private void fetchMasterFromDatabase() {
         cityList = databaseController.getCity();
         makeList = databaseController.getMakeList();
+        yearList = Constants.getPastFifteenYear();
+        insurerList = databaseController.getInsurerList();
         //modelList = databaseController.getModelList(0);
 
     }
@@ -150,6 +194,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         makeList = new ArrayList<>();
         modelList = new ArrayList<>();
         variantList = new ArrayList<>();
+        yearList = new ArrayList<>();
     }
 
     private void showOrHideLayout() {
@@ -167,11 +212,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     private void setListeners() {
 
         btnGetQuote.setOnClickListener(this);
-        etManufactYear.setOnClickListener(yearPickerDialog);
         etFirstRegDate.setOnClickListener(firstDatePickerDialog);
         switchNcb.setOnCheckedChangeListener(this);
         switchAdditional.setOnCheckedChangeListener(this);
-        etPolicyExpDate.setOnClickListener(policyDatePickerDialog);
+        etPolicyExpDate.setOnClickListener(policyExpDatePickerDialog);
 
         // region  Auto Complete car make
         autoCarMake.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -252,7 +296,8 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     }
 
     private void init_widgets() {
-        etManufactYear = (EditText) findViewById(R.id.etManufactYear);
+        bikeRequestEntity = new BikeRequestEntity();
+        spManufactureYear = (Spinner) findViewById(R.id.spManufactureYear);
         etFirstRegDate = (EditText) findViewById(R.id.etFirstRegDate);
         etElecAcc = (EditText) findViewById(R.id.etElecAcc);
         etNonElecAcc = (EditText) findViewById(R.id.etNonElecAcc);
@@ -270,10 +315,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         autoCity = (AutoCompleteTextView) findViewById(R.id.autoCity);
         switchAdditional = (Switch) findViewById(R.id.switchAdditional);
         switchNcb = (Switch) findViewById(R.id.switchNcb);
-        etManufactYear = (EditText) findViewById(R.id.etManufactYear);
         spWhenPolicyExp = (Spinner) findViewById(R.id.spWhenPolicyExp);
         spPrevInsurer = (Spinner) findViewById(R.id.spPrevInsurer);
         spNcbPercent = (Spinner) findViewById(R.id.spNcbPercent);
+        llWhenPolicyExpiring.setVisibility(View.GONE);
     }
 
     //region  datepickerdialog
@@ -281,7 +326,7 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
         @Override
         public void onClick(View view) {
             Constants.hideKeyBoard(view, CarDetailsActivity.this);
-            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+            DateTimePicker.showFirstRegDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     if (view.isShown()) {
@@ -300,11 +345,11 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
 
 
     //region  datepickerdialog
-    protected View.OnClickListener policyDatePickerDialog = new View.OnClickListener() {
+    protected View.OnClickListener policyExpDatePickerDialog = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Constants.hideKeyBoard(view, CarDetailsActivity.this);
-            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+            DateTimePicker.showNextSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     if (view.isShown()) {
@@ -321,30 +366,6 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     };
     //endregion
 
-
-    //region   Year pickerdialog
-    protected View.OnClickListener yearPickerDialog = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Constants.hideKeyBoard(view, CarDetailsActivity.this);
-            DateTimePicker.showYearPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    if (view.isShown()) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(year, monthOfYear, dayOfMonth);
-                        String currentDay = yearDateFormat.format(calendar.getTime());
-                        etManufactYear.setText(currentDay);
-                        //startActivity(new Intent(CarDetailsActivity.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
-                        //etDate.setTag(R.id.et_date, calendar.getTime());
-                    }
-                }
-            });
-        }
-    };
-    //endregion
-
-
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -358,10 +379,10 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
                 break;
             case R.id.switchNcb:
                 if (isChecked) {
+                    llNcb.setVisibility(View.GONE);
+                } else {
                     llNcb.setVisibility(View.VISIBLE);
                     llNcb.requestFocus();
-                } else {
-                    llNcb.setVisibility(View.GONE);
                 }
         }
     }
@@ -369,126 +390,249 @@ public class CarDetailsActivity extends BaseActivity implements CompoundButton.O
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnGetQuote) {
-
-            varientId = databaseController.getVariantID(spCarVarient.getSelectedItem().toString());
-            fuelId = databaseController.getFuelID(spCarFuelType.getSelectedItem().toString(), modelID);
-
-            setInputParametrs();
-            showDialog();
-            new MotorQuoteController(this).getQuoteDetails(createQuoteRequest(quoteRequestEntity,fastLaneResponseEntity), CarDetailsActivity.this);
-
-        }
-    }
-
-    private void setInputParametrs() {
-
-        quoteRequestEntity.setSourceType("APP");
-        quoteRequestEntity.setProductID(1);
-        quoteRequestEntity.setProfession_Id(6);
-        quoteRequestEntity.setValueOfElectricalAccessories("" + etElecAcc.getText().toString());
-        quoteRequestEntity.setValueOfNonElectricalAccessories("" + etNonElecAcc.getText().toString());
-        quoteRequestEntity.setIsClaimInExpiringPolicy(!switchNcb.isChecked());
-        quoteRequestEntity.setManufacturingYear(Integer.parseInt(etManufactYear.getText().toString()));
-
-        if (quoteRequestEntity.isRenew()) {
-            quoteRequestEntity.setPreveious_Insurer_Id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
-            quoteRequestEntity.setDateofPurchaseofCar("" + fastLaneResponseEntity.getRegistration_Date());
-            quoteRequestEntity.setVariant_ID(fastLaneResponseEntity.getVariant_Id());
-            quoteRequestEntity.setPolicyExpiryDate(simpleDateFormat.format(etPolicyExpDate.getText().toString()));
-            quoteRequestEntity.setVehicleCity_Id(fastLaneResponseEntity.getVehicleCity_Id());
-
-        } else {
-            quoteRequestEntity.setVariant_ID(varientId);
-            quoteRequestEntity.setVehicleCity_Id(databaseController.getCityID(autoCity.getText().toString()));
-            quoteRequestEntity.setPolicyExpiryDate("");
-        }
-
-
-        quoteRequestEntity.setVehicleRegisteredName(1);
-        quoteRequestEntity.setSupportsAgentID(2);
-        quoteRequestEntity.setCurrentNCB("" + spNcbPercent.getSelectedItem().toString());
-
-    }
-
-    //region create Quote
-
-    public QuoteRequestEntity createQuoteRequest(QuoteRequestEntity quoteRequestEntity,FastLaneResponse.FLResponseBean fastlane) {
-        QuoteRequestEntity entity = new QuoteRequestEntity();
-        return entity;
-    }
-
-    //endregion
-
-
-    //region Quote response
-
-    @Override
-    public void OnSuccess(APIResponse response, String message) {
-        cancelDialog();
-        if (response instanceof MotorQuotesResponse) {
-            if (response.getStatusNo() == 0) {
-                startActivity(new Intent(this, CarQuoteGenerate.class)
-                        .putExtra(Constants.MOTOR_QUOTE_DATA, (MotorQuotesResponse) response));
+/*
+            if (autoCarMake.getText().toString().equals("")) {
+                autoCarMake.setError("Invalid input");
+                autoCarMake.setFocusable(true);
+                return;
+                //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
             }
+
+            if (autoCity.getText().toString().equals("")) {
+                autoCity.setError("Select City");
+                autoCity.setFocusable(true);
+                return;
+                //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+            }
+            if (quoteRequestEntity.isRenew()) {
+                if (etPolicyExpDate.getText().toString().equals("")) {
+                    etPolicyExpDate.setError("Enter Poicy Exp Date");
+                    etPolicyExpDate.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (quoteRequestEntity.isRenew()) {
+                if (etFirstRegDate.getText().toString().equals("")) {
+                    etFirstRegDate.setError("Enter Date Of Reg");
+                    etFirstRegDate.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (switchAdditional.isChecked()) {
+                if (etElecAcc.getText().toString().equals("")) {
+                    etElecAcc.setError("Enter Electrical Accessories");
+                    etElecAcc.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+                if (etNonElecAcc.getText().toString().equals("")) {
+                    etNonElecAcc.setError("Enter Non Electrical Accessories");
+                    etNonElecAcc.setFocusable(true);
+                    return;
+                    //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                }
+            }*/
+
+            if (quoteRequestEntity.isNew()) {
+                setInputParametersNew();
+                llNcb.setVisibility(View.GONE);
+            } else if (quoteRequestEntity.isRenew())
+                setInputParametersReNew();
+            else if (quoteRequestEntity.isDontRem())
+                setInputParametersDontRemember();
+
+
+            //TODO : redirect to customer detail
+            startActivity(new Intent(CarDetailsActivity.this, CustomerDetailsActivity.class)
+                    .putExtra(CAR_DETAIL, bikeRequestEntity));
+
+
         }
     }
 
-    @Override
-    public void OnFailure(Throwable t) {
-        cancelDialog();
-        Toast.makeText(this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+    private void setInputParametersNew() {
+        bikeRequestEntity.setBirth_date("1992-01-01");
+        bikeRequestEntity.setProduct_id(1);
+        bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
+        bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
+        bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
+        bikeRequestEntity.setExecution_async("yes");
+        bikeRequestEntity.setVehicle_insurance_type("new");
+        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
+        bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
+        bikeRequestEntity.setPolicy_expiry_date("");
+        bikeRequestEntity.setPrev_insurer_id("");
+        bikeRequestEntity.setVehicle_registration_type("individual");
+        bikeRequestEntity.setVehicle_ncb_current("");
+        bikeRequestEntity.setIs_claim_exists("yes");
+        bikeRequestEntity.setMethod_type("Premium");
+        bikeRequestEntity.setElectrical_accessory("0");
+        bikeRequestEntity.setNon_electrical_accessory("0");
+        bikeRequestEntity.setRegistration_no(getRegistrationNo(autoCity.getText().toString()));
+        bikeRequestEntity.setIs_llpd("no");
+        bikeRequestEntity.setIs_antitheft_fit("no");
+        bikeRequestEntity.setVoluntary_deductible(0);
+        bikeRequestEntity.setIs_external_bifuel("no");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
+        bikeRequestEntity.setPa_named_passenger_si("0");
+        bikeRequestEntity.setPa_unnamed_passenger_si("0");
+        bikeRequestEntity.setPa_paid_driver_si("0");
+        bikeRequestEntity.setVehicle_expected_idv(0);
+        bikeRequestEntity.setFirst_name("");
+        bikeRequestEntity.setMiddle_name("");
+        bikeRequestEntity.setLast_name("");
+        bikeRequestEntity.setMobile("");
+        bikeRequestEntity.setEmail("");
+        bikeRequestEntity.setCrn(0);
+        bikeRequestEntity.setIp_address("");
+
+
     }
 
-    //endregion
+    private void setInputParametersReNew() {
+        if (fastLaneResponseEntity != null) {
+            bikeRequestEntity.setVehicle_id(fastLaneResponseEntity.getVariant_Id());
+            bikeRequestEntity.setRto_id(fastLaneResponseEntity.getVehicleCity_Id());
+            bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(fastLaneResponseEntity.getManufacture_Year()));
+            bikeRequestEntity.setRegistration_no(formatRegistrationNo(fastLaneResponseEntity.getRegistration_Number()));
+        } else {
+            bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
+            bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
+            bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
+            bikeRequestEntity.setRegistration_no(quoteRequestEntity.getRegistrationNumber());
+        }
 
-    //region rahul commented
-    /*  quotesReqEntity.setVehicleNo("");
-        quotesReqEntity.setCustomerReferenceID("");
-        quotesReqEntity.setProductID(1);
-        quotesReqEntity.setExpectedIDV(0);
-        quotesReqEntity.setIDVinExpiryPolicy(0);
-        quotesReqEntity.setDateofPurchaseofCar("2017-05-30");
-        quotesReqEntity.setVD_Amount(0);
-        quotesReqEntity.setPACoverValue(0);
-        quotesReqEntity.setVehicleCity_Id(580);
-        quotesReqEntity.setProfession_Id(6);
+        bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
+        bikeRequestEntity.setPolicy_expiry_date(etPolicyExpDate.getText().toString());
+        bikeRequestEntity.setPrev_insurer_id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
 
-        quotesReqEntity.setValueOfElectricalAccessories(0);
-        quotesReqEntity.setValueOfNonElectricalAccessories(0);
-        quotesReqEntity.setValueOfBiFuelKit(0);
-        quotesReqEntity.setCurrentNCB(0);
-        quotesReqEntity.setIsClaimInExpiringPolicy(false);
-        quotesReqEntity.setApplyAntiTheftDiscount(false);
-        quotesReqEntity.setApplyAutomobileAssociationDiscount(false);
-        quotesReqEntity.setAutomobileAssociationName("");
-        quotesReqEntity.setAutomobileMembershipExpiryDate("");
-        quotesReqEntity.setAutomobileAssociationMembershipNumber("");
+        bikeRequestEntity.setBirth_date("1992-01-01");
+        bikeRequestEntity.setProduct_id(1);
+        bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
+        bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
+        bikeRequestEntity.setExecution_async("yes");
+        bikeRequestEntity.setVehicle_insurance_type("renew");
 
-        quotesReqEntity.setPaidDriverCover(false);
-        quotesReqEntity.setOwnerDOB("");
-        quotesReqEntity.setPreveious_Insurer_Id(0);
-        quotesReqEntity.setManufacturingYear(2017);
-        quotesReqEntity.setPolicyExpiryDate("2017-06-24");
-        quotesReqEntity.setVehicleRegisteredName(1);
-        quotesReqEntity.setVariant_ID(690);
-        quotesReqEntity.setRegistrationNumber("");
-        quotesReqEntity.setPlaceofRegistration("");
-        quotesReqEntity.setVehicleType("1");
 
-        quotesReqEntity.setExisting_CustomerReferenceID("");
-        quotesReqEntity.setContactName("Umesh");
-        quotesReqEntity.setContactEmail("");
-        quotesReqEntity.setContactMobile("");
-        quotesReqEntity.setLandmarkEmployeeCode("");
-        quotesReqEntity.setSupportsAgentID(123);
-        quotesReqEntity.setSessionID("59e979ed-dfc7-4d79-9f28-d427a554917e");
-        quotesReqEntity.setSourceType("APP");
-        quotesReqEntity.setInsurerIDArray("");
+        bikeRequestEntity.setVehicle_registration_type("individual");
+        bikeRequestEntity.setMethod_type("Premium");
 
-        Gson gson = new Gson();
-      String strJson = gson.toJson(quotesReqEntity);
-        showDialog();
-        new MotorQuoteController(this).getQuoteDetails(quotesReqEntity ,CarDetailsActivity.this);
-*/
-    //endregion
+        if (switchNcb.isChecked()) {
+            bikeRequestEntity.setIs_claim_exists("yes");
+            bikeRequestEntity.setVehicle_ncb_current("");
+        } else {
+            bikeRequestEntity.setIs_claim_exists("no");
+            bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
+        }
+
+        if (switchAdditional.isChecked()) {
+            bikeRequestEntity.setElectrical_accessory(etElecAcc.getText().toString());
+            bikeRequestEntity.setNon_electrical_accessory(etNonElecAcc.getText().toString());
+        } else {
+            bikeRequestEntity.setElectrical_accessory("0");
+            bikeRequestEntity.setNon_electrical_accessory("0");
+        }
+
+
+        bikeRequestEntity.setIs_llpd("no");
+        bikeRequestEntity.setIs_antitheft_fit("no");
+        bikeRequestEntity.setVoluntary_deductible(0);
+        bikeRequestEntity.setIs_external_bifuel("no");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
+        bikeRequestEntity.setPa_named_passenger_si("0");
+        bikeRequestEntity.setPa_unnamed_passenger_si("0");
+        bikeRequestEntity.setPa_paid_driver_si("0");
+        bikeRequestEntity.setVehicle_expected_idv(0);
+        bikeRequestEntity.setFirst_name("");
+        bikeRequestEntity.setMiddle_name("");
+        bikeRequestEntity.setLast_name("");
+        bikeRequestEntity.setMobile("");
+        bikeRequestEntity.setEmail("");
+        bikeRequestEntity.setCrn(0);
+        bikeRequestEntity.setIp_address("");
+
+
+    }
+
+    private void setInputParametersDontRemember() {
+        bikeRequestEntity.setBirth_date("1992-01-01");
+        bikeRequestEntity.setProduct_id(1);
+        bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString()));
+        bikeRequestEntity.setRto_id(databaseController.getCityID(autoCity.getText().toString()));
+        bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
+        bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
+        bikeRequestEntity.setExecution_async("yes");
+        bikeRequestEntity.setVehicle_insurance_type("renew");
+
+        bikeRequestEntity.setVehicle_manf_date(getManufacturingDate(spManufactureYear.getSelectedItem().toString()));
+        bikeRequestEntity.setVehicle_registration_date(etFirstRegDate.getText().toString());
+        bikeRequestEntity.setPolicy_expiry_date(etPolicyExpDate.getText().toString());
+        bikeRequestEntity.setPrev_insurer_id("" + databaseController.getInsurenceID(spPrevInsurer.getSelectedItem().toString()));
+        bikeRequestEntity.setVehicle_registration_type("individual");
+        bikeRequestEntity.setMethod_type("Premium");
+
+        if (switchNcb.isChecked()) {
+            bikeRequestEntity.setIs_claim_exists("yes");
+            bikeRequestEntity.setVehicle_ncb_current("");
+        } else {
+            bikeRequestEntity.setIs_claim_exists("no");
+            bikeRequestEntity.setVehicle_ncb_current(spNcbPercent.getSelectedItem().toString());
+        }
+
+        if (switchAdditional.isChecked()) {
+            bikeRequestEntity.setElectrical_accessory(etElecAcc.getText().toString());
+            bikeRequestEntity.setNon_electrical_accessory(etNonElecAcc.getText().toString());
+        } else {
+            bikeRequestEntity.setElectrical_accessory("0");
+            bikeRequestEntity.setNon_electrical_accessory("0");
+        }
+
+
+        if (!quoteRequestEntity.getRegistrationNumber().equals(""))
+            bikeRequestEntity.setRegistration_no(quoteRequestEntity.getRegistrationNumber());
+        else
+            bikeRequestEntity.setRegistration_no(getRegistrationNo(autoCity.getText().toString()));
+        bikeRequestEntity.setIs_llpd("no");
+        bikeRequestEntity.setIs_antitheft_fit("no");
+        bikeRequestEntity.setVoluntary_deductible(0);
+        bikeRequestEntity.setIs_external_bifuel("no");
+        bikeRequestEntity.setPa_owner_driver_si("100000");
+        bikeRequestEntity.setPa_named_passenger_si("0");
+        bikeRequestEntity.setPa_unnamed_passenger_si("0");
+        bikeRequestEntity.setPa_paid_driver_si("0");
+        bikeRequestEntity.setVehicle_expected_idv(0);
+        bikeRequestEntity.setFirst_name("");
+        bikeRequestEntity.setMiddle_name("");
+        bikeRequestEntity.setLast_name("");
+        bikeRequestEntity.setMobile("");
+        bikeRequestEntity.setEmail("");
+        bikeRequestEntity.setCrn(0);
+        bikeRequestEntity.setIp_address("");
+
+
+    }
+
+
+    public String changeDateFormat(String date) {
+        String[] parts = date.split("/");
+        String newDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+        return newDate;
+    }
+
+    private String getRegistrationNo(String city) {
+        return "" + city.charAt(1) + city.charAt(2) + "-" + city.charAt(3) + city.charAt(4) + "-AA-1234";
+    }
+
+    private String formatRegistrationNo(String regNo) {
+        return "" + regNo.charAt(0) + regNo.charAt(1) + "-" + regNo.charAt(2) + regNo.charAt(3) + "-" + regNo.charAt(4) + regNo.charAt(5) + "-" + regNo.charAt(6) + regNo.charAt(7) + regNo.charAt(8) + regNo.charAt(9);
+    }
+
+    private String getManufacturingDate(String manufac) {
+        final Calendar calendar = Calendar.getInstance();
+        return manufac + "-" + calendar.getTime().getMonth() + "-01";
+    }
 }

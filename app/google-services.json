@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "253623943782",
+    "firebase_url": "https://policybossapp.firebaseio.com",
+    "project_id": "policybossapp",
+    "storage_bucket": "policybossapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253623943782:android:de446f61ae8a6bbe",
+        "android_client_info": {
+          "package_name": "com.android.policyboss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253623943782-t2bj7j0bv6iagri8j9qthcar9o4o85i9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsPEpmaEr3aLS8ZMKVlwTHU5yhINsiIYw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

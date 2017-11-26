@@ -1,29 +1,34 @@
 package com.android.policyboss.navigationview;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.core.controller.database.RealmDatabaseController;
-import com.android.policyboss.core.models.MakeMasterEntity;
+import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
-
-import java.util.List;
+import com.android.policyboss.facade.LoginFacade;
+import com.android.policyboss.garaj.RegisterGarageFragment;
+import com.android.policyboss.login.LoginActivity;
+import com.android.policyboss.salessupport.SalesSupportFragment;
+import com.android.policyboss.utility.Constants;
 
 import io.realm.Realm;
 
@@ -43,32 +48,70 @@ public class HomeActivity extends BaseActivity {
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "Dashboard";
-
+    private static final String TAG_CREATE_LEAD = "Create Lead";
+    private static final String TAG_SALES_SUPPORT = "Sales support";
+    private static final String TAG_REGISTER_GARAJ = "Register Garage";
 
     private Toolbar toolbar;
 
     //set current selected fragment TAG
     public static String CURRENT_TAG = TAG_HOME;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setSupportActionBar(toolbar);
+
         initialise_widgets();
+        toolbar.setTitleTextColor(getResources().getColor(R.color.dashboard_text));
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(ContextCompat.getColor(this,R.color.application_primary_text_color));
+        }
         realm = Realm.getDefaultInstance();
 
 
         mHandler = new Handler();
+
         // initializing navigation menu
         setUpNavigationView();
-
-
         if (savedInstanceState == null) {
             navItemIndex = 0;
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment(TAG_HOME);
         }
+        bindNavigationView();
+
+    }
+
+    private void bindNavigationView() {
+        View profileView = navigationView.getHeaderView(0);
+        TextView txtUserName = (TextView) profileView.findViewById(R.id.txtUserName);
+        TextView txtEmpCode = (TextView) profileView.findViewById(R.id.txtEmpCode);
+        txtUserName.setText(new LoginFacade(HomeActivity.this).getUser().getEmp_Name());
+        txtEmpCode.setText(new LoginFacade(HomeActivity.this).getUser().getEmp_Code());
+    }
+
+    //Show Garage menu only
+
+    private void ShowGarageMenu() {
+
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_home).setVisible(false);
+        nav_Menu.findItem(R.id.nav_autoLead).setVisible(false);
+        nav_Menu.findItem(R.id.nav_salesupport).setVisible(false);
+
     }
 
     private void initialise_widgets() {
@@ -93,15 +136,26 @@ public class HomeActivity extends BaseActivity {
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    /*case R.id.nav_oyemoney:
+                    case R.id.nav_autoLead:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_OYEMONEY;
-                        break;
-                    case R.id.nav_pickupHistory:
-                        navItemIndex = 2;
-                        CURRENT_TAG = TAG_PICKUP_SUMMARY;
+                        CURRENT_TAG = TAG_CREATE_LEAD;
                         break;
 
+                    case R.id.nav_salesupport:
+                        navItemIndex = 2;
+                        CURRENT_TAG = TAG_SALES_SUPPORT;
+                        break;
+                    case R.id.nav_register_garaj:
+                        navItemIndex = 3;
+                        CURRENT_TAG = TAG_REGISTER_GARAJ;
+                        break;
+                    case R.id.nav_logout:
+                        Constants.getSharedPreferenceEditor(HomeActivity.this).clear().commit();
+                        finish();
+                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                        break;
+
+/*
                     case R.id.nav_offer:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_OFFERS;
@@ -174,6 +228,7 @@ public class HomeActivity extends BaseActivity {
         // This code loads home fragment when back key is pressed
         // when user is in other fragment than home
         if (shouldLoadHomeFragOnBackPress) {
+
             // checking if user is on other navigation menu
             // rather than home
             if (navItemIndex != 0) {
@@ -199,6 +254,8 @@ public class HomeActivity extends BaseActivity {
                     }
                 }, 2000);
             }
+
+
         }
 
         // super.onBackPressed();
@@ -221,15 +278,19 @@ public class HomeActivity extends BaseActivity {
                 // home
                 fragment = new DashboardFragment();
                 return fragment;
-            /*case 1:
-                // photos
-                fragment = new OyeMoneyFragmentNew();
+            case 1:
+                // home
+                fragment = new CreateLeadFragment();
                 return fragment;
             case 2:
-                // movies fragment
-                fragment = new PickUpFragment();
+                // photos
+                fragment = new SalesSupportFragment();
                 return fragment;
             case 3:
+                // movies fragment
+                fragment = new RegisterGarageFragment();
+                return fragment;
+            /*case 3:
                 // notifications fragment
                 fragment = new OffersFragment();
                 return fragment;
@@ -290,4 +351,6 @@ public class HomeActivity extends BaseActivity {
         // refresh toolbar menu
         invalidateOptionsMenu();
     }
+
+
 }

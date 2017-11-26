@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -12,21 +17,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".splashscreen.SplashScreenActivity">
+        <activity
+            android:name=".splashscreen.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".utility.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".utility.FirebaseIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".navigationview.HomeActivity"
             android:label="@string/title_activity_navigation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".carinsurance.CarInsuranceActivity"
             android:label="@string/title_activity_car_insurance"
             android:parentActivityName=".navigationview.HomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -36,6 +56,7 @@
             android:name=".carinsurance.RenewalCarActivity"
             android:label="@string/title_activity_renewal_car"
             android:parentActivityName=".carinsurance.CarInsuranceActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -44,15 +65,18 @@
         <activity
             android:name=".carinsurance.CarVarientDetailsActivity"
             android:label="@string/title_activity_car_varient_details"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".carinsurance.CarAdditionalDetailsActivity"
             android:label="@string/title_activity_car_additional_details"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".carinsurance.CarDetailsActivity"
             android:label="@string/title_activity_car_details"
             android:parentActivityName=".carinsurance.CarInsuranceActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -62,6 +86,7 @@
             android:name=".carinsurance.FastLaneCarDetails"
             android:label="@string/title_activity_fast_lane_car_details"
             android:parentActivityName=".carinsurance.CarInsuranceActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -70,8 +95,9 @@
         <activity
             android:name=".carinsurance.PopUpCardQuoteActivity"
             android:label="@string/title_activity_pop_up_card_quote"
-            android:theme="@style/Theme.AppCompat.Dialog" android:noHistory="true"></activity>
-
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity
             android:name=".carinsurance.CarQuoteGenerate"
             android:label="@string/title_activitycard_quote"
@@ -82,6 +108,97 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
         </activity>
+        <activity
+            android:name=".carinsurance.PremiumPopUpActivity"
+            android:label="@string/title_activity_premium_pop_up"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".healthinsurance.HealthInsuranceActivity"
+            android:label="@string/title_activity_health_insurance"
+            android:parentActivityName=".navigationview.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.navigationview.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".healthinsurance.HealthInsuranceAgeDetailActivity"
+            android:label="@string/title_activity_health_insurance_age_detail"
+            android:parentActivityName=".healthinsurance.HealthInsuranceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.healthinsurance.HealthInsuranceActivity" />
+        </activity>
+        <activity
+            android:name=".webview.WebViewBuyInsurenceActivity"
+            android:label="Buy insurence"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".personaldetail.CustomerDetailsActivity"
+            android:label="@string/title_activity_customer_details"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".bikeinsurance.BikeInsuranceActivity"
+            android:label="@string/title_activity_bike_insurance"
+            android:parentActivityName=".navigationview.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.navigationview.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".bikeinsurance.BikeQuoteActivity"
+            android:label="@string/title_activity_bike_quote"
+            android:parentActivityName=".navigationview.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".premiumbreakup.PremiumBreakupActivity"
+            android:label="@string/title_activity_premium_breakup"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".bikeinsurance.ModifyQuotesActivity"
+            android:label="@string/title_activity_modify_quotes"
+            android:parentActivityName=".bikeinsurance.BikeQuoteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.bikeinsurance.BikeQuoteActivity" />
+        </activity>
+        <activity
+            android:name=".webview.CommonWebViewActivity"
+            android:label="@string/title_activity_common_web_view"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".healthinsurance.HealthInsuranceQuotes"
+            android:label="@string/title_activity_health_insurance_quotes"
+            android:parentActivityName=".personaldetail.CustomerDetailsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.personaldetail.CustomerDetailsActivity" />
+        </activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".bikeinsurance.PremiumBikePopUpActivity"
+            android:label="@string/title_activity_premium_bike_pop_up"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme"></activity>
     </application>
 
 </manifest>

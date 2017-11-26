@@ -36,7 +36,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     public static final String FASTLANE_DATA = "fastlane_response";
     public static final String MOTOR_QUOTE_DATA = "motorquote_response";
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     ImageView ivNewCar, ivRenewCar;
     CardView llBuyorRenew;
     CardView cvBuyorRenew, cvRegNo, cvInvDate;
@@ -44,6 +44,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
 
     EditText etRenewRegNo, etInvDate;
     QuoteRequestEntity quoteRequestEntity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +158,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
             quoteRequestEntity.setNew(false);
             quoteRequestEntity.setRenew(true);
             quoteRequestEntity.setDontRem(false);
+            quoteRequestEntity.setRegistrationNumber(etRenewRegNo.getText().toString());
             startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity)
                     .putExtra(FASTLANE_DATA, ((FastLaneResponse) response).getFLResponse()));
         }
@@ -166,6 +168,11 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
     public void OnFailure(Throwable t) {
         cancelDialog();
         Toast.makeText(this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+        quoteRequestEntity.setNew(false);
+        quoteRequestEntity.setRenew(false);
+        quoteRequestEntity.setDontRem(true);
+        quoteRequestEntity.setRegistrationNumber(etRenewRegNo.getText().toString());
+        startActivity(new Intent(this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));
     }
 
 
@@ -173,7 +180,7 @@ public class CarInsuranceActivity extends BaseActivity implements View.OnClickLi
         @Override
         public void onClick(View view) {
             Constants.hideKeyBoard(view, CarInsuranceActivity.this);
-            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+            DateTimePicker.showPrevSixMonthDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                     if (view.isShown()) {

@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f44336</color>
-    <color name="colorPrimaryDark">#d32f2f</color>
+    <color name="colorPrimary">#1c2855</color>
+    <color name="colorPrimaryDark">#131d43</color>
+
+    <!--<color name="colorPrimary">#f44336</color>
+    <color name="colorPrimaryDark">#d32f2f</color>-->
     <color name="colorAccent">#3977b5</color>
-    <color name="background">#EEEEEE</color>
+    <color name="background">#e6e6e6</color>
     <color name="application_primary_text_color">#212121</color>
     <color name="application_secondary_text_color">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
-
-    <color name="text_label_color">#565656</color>
     <color name="text_edit_color">#868686</color>
-    <color name="back_edit_color">#eeebea</color>
-    <color name="darkGrey">#757575</color>
     <color name="lightGrey">#E0E0E0</color>
-    <color name="button_background">#FA774D</color>
-
     <color name="back_button_color">#5a5a5a</color>
-    <color name="back_button_selected_color">#333333</color>
-    <color name="section_header_color">#737373</color>
-    <color name="alphabet_index_color">#CDCDCD</color>
-    <color name="transparent_white">@android:color/transparent</color>
     <color name="offer_info_white">#DDFFFFFF</color>
-
-    <color name="search_gray">#bcbcbc</color>
-    <color name="filter_bar_title">#8d8b8b</color>
+    <color name="white">#ffffff</color>
     <color name="filter_bar_title_selected">#5a5a5a</color>
-    <color name="account_black">#212121</color>
-    <color name="buttonBackground">#EE5E35</color>
+    <color name="buttonBackground">#1E88E5</color>
     <color name="textblue">#4da0ce</color>
     <color name="textgrey">#a09d9d</color>
     <color name="textyellow">#ff9f1c</color>
-
-
+    <color name="lbltext">#808080</color>
+    <color name="bg_popUp">#ededed</color>
+    <color name="bg_popUpTotal">#dff0d8</color>
+    <color name="text_popUpTotal">#5c8e5c</color>
+    <color name="bg_popUpHdr">#f1dddd</color>
+    <color name="text_popUpHdr">#c07675</color>
+    <color name="nav_blue">#287FAA</color>
+    <color name="grey_form_header">#828282</color>
+    <color name="red_nav">#D3332B</color>
     <color name="textview">#eeeeee</color>
     <color name="blue">#3977b5</color>
-
+    <color name="edittext_icon_bg">#80D8FF</color>
     <color name="edittext_border">#cfcfcf</color>
+    <color name="navy_descent">#131d43</color>
+    <color name="navy_lightdescent">#1c2855</color>
+    <color name="red_descent">#de6d75</color>
+    <color name="red">#f44336</color>
+    <color name="tab_layout">#374152</color>
+    <color name="green_descent">#42ceb2</color>
+    <color name="green1_descent">#45c6ba</color>
+    <color name="pink_descent">#e186b0</color>
+    <color name="blue_descent">#4b76c2</color>
+    <color name="orange_decent">#e6a65a</color>
+    <color name="dashboard_text">#dfdfdf</color>
 </resources>

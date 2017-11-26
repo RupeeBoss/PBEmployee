@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.android.policyboss.login.LoginActivity"
+    tools:showIn="@layout/activity_login_employee">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo"
+        android:visibility="visible" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:layout_marginTop="@dimen/gap"
+        android:clipToPadding="false"
+        android:gravity="bottom"
+        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+        <EditText
+            android:id="@+id/etEmployeeCode"
+            style="@style/EditTextStyle"
+            android:drawableLeft="@drawable/person"
+            android:dropDownHeight="wrap_content"
+            android:dropDownWidth="wrap_content"
+            android:hint="Enter employee code"
+            android:text="131" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:layout_marginTop="@dimen/gap"
+        android:clipToPadding="false"
+        android:gravity="bottom"
+        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/EditTextStyle"
+            android:drawableLeft="@drawable/password"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:text="131" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:layout_marginTop="@dimen/gap"
+        android:text="LOGIN" />
+</LinearLayout>

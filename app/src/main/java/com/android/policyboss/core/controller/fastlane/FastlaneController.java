@@ -3,19 +3,14 @@ package com.android.policyboss.core.controller.fastlane;
 import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.database.RealmDatabaseController;
-import com.android.policyboss.core.controller.variant.IVarientMaster;
 import com.android.policyboss.core.requestbuilders.FastLaneRequestBuilder;
-import com.android.policyboss.core.requestbuilders.VarientMasterRequestBuilder;
 import com.android.policyboss.core.response.FastLaneResponse;
-import com.android.policyboss.core.response.VarientMasterResponse;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
-import io.realm.Realm;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;

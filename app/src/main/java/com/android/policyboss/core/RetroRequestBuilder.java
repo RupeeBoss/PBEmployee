@@ -1,15 +1,11 @@
 package com.android.policyboss.core;
 
-import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
-import io.realm.internal.IOException;
 import retrofit.GsonConverterFactory;
-import retrofit.Response;
 import retrofit.Retrofit;
 
 public abstract class RetroRequestBuilder {
@@ -25,8 +21,8 @@ public abstract class RetroRequestBuilder {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient httpClient = new OkHttpClient();
-            httpClient.setReadTimeout(90, TimeUnit.SECONDS);
-            httpClient.setConnectTimeout(90, TimeUnit.SECONDS);
+            httpClient.setReadTimeout(600, TimeUnit.SECONDS);
+            httpClient.setConnectTimeout(600, TimeUnit.SECONDS);
             httpClient.interceptors().add(logging);
             restAdapter = new Retrofit.Builder()
                     .baseUrl(URL)

@@ -31,12 +31,7 @@ public class BaseFragment extends Fragment {
 //        String rx = "/[A-Z]{5}[0-9]{4}[A-Z]{1}$/";
         Pattern pattern = Pattern.compile("[A-Z]{5}[0-9]{4}[A-Z]{1}");
         Matcher matcher = pattern.matcher(Pan);
-        if (matcher.matches()) {
-            return true;
-
-        } else {
-            return false;
-        }
+        return matcher.matches();
     }
 
     @Override

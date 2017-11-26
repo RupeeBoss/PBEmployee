@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.android.policyboss.personaldetail.CustomerDetailsActivity"
+    tools:showIn="@layout/activity_customer_details">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:layout_marginTop="@dimen/gap"
+        android:clipToPadding="false"
+        android:gravity="bottom"
+        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+        <EditText
+            android:id="@+id/etCustomerName"
+            style="@style/EditTextStyle"
+            android:drawableLeft="@drawable/person"
+            android:hint="Enter full name" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:layout_marginTop="@dimen/gap"
+        android:clipToPadding="false"
+        android:gravity="bottom"
+        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+        <EditText
+            android:id="@+id/etCustomerEmail"
+            style="@style/EditTextStyle"
+            android:drawableLeft="@drawable/email"
+            android:hint="Enter email"
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:layout_marginTop="@dimen/gap"
+        android:clipToPadding="false"
+        android:gravity="bottom"
+        app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+        <EditText
+            android:id="@+id/etCustomerMobile"
+            style="@style/EditTextStyle"
+            android:drawableLeft="@drawable/mobile"
+            android:hint="Enter mobile no."
+            android:inputType="number"
+            android:maxLength="10" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I Agree, Terms &amp; Conditions and Privacy Policy."
+            android:textColor="@color/blue"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnGetQuote"
+        style="@style/CurvedButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/gap"
+        android:layout_marginRight="@dimen/gap"
+        android:layout_marginTop="@dimen/gap"
+        android:text="GET QUOTE" />
+</LinearLayout>

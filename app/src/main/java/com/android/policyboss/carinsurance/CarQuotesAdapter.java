@@ -1,19 +1,18 @@
 package com.android.policyboss.carinsurance;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.policyboss.R;
-import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.bumptech.glide.Glide;
-import java.math.BigDecimal;
+
 import java.util.List;
 
 import static com.android.policyboss.core.controller.database.DatabaseController.getProfessionalID1;
@@ -33,6 +32,7 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
     public class QuotesItem extends RecyclerView.ViewHolder{
         TextView tvcomprehensiveName, tvidvAmt, tvpremium, tvpolicyterm,  btnBuyNoew;
+        LinearLayout lyPremiumBreakup ,lymoredetail;
         ImageView ivBankLogo;
 
         public QuotesItem(View itemView) {
@@ -44,6 +44,9 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
             btnBuyNoew = (TextView) itemView.findViewById(R.id.btnBuyNoew);
             ivBankLogo = (ImageView) itemView.findViewById(R.id.ivBankLogo);
+
+            lyPremiumBreakup = (LinearLayout)itemView.findViewById(R.id.lyPremiumBreakup);
+            lymoredetail = (LinearLayout)itemView.findViewById(R.id.lymoredetail);
            // ivInfo = (ImageView) itemView.findViewById(R.id.ivInfo);
 
         }
@@ -75,7 +78,7 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
         }
         holder.tvcomprehensiveName.setText(comprehen);
         holder.tvidvAmt.setText("" + quoteEntity.getIDV());
-        holder.tvpremium.setText("" + quoteEntity.getTotalPremium());
+        holder.tvpremium.setText("" + quoteEntity.getNetPayablePayablePremium());
         holder.tvpolicyterm.setText("1 Year");
 //        holder.tvLoanTenure.setText("" + quoteEntity.getLoanTenure());
 //        holder.tvProcessingFee.setText("" + quoteEntity.getProcessingfee());
@@ -94,12 +97,23 @@ public class CarQuotesAdapter  extends RecyclerView.Adapter<CarQuotesAdapter.Quo
 
             }
         });
-//        holder.ivInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mContext.startActivity(new Intent(mContext, QuoteInfoActivity.class).putExtra("QUOTEINFO", quoteEntity));
-//            }
-//        });
+
+        holder.lyPremiumBreakup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ((CarQuoteGenerate) mContext).redirectToPopUpPremium(quoteEntity);
+
+            }
+        });
+
+        holder.lymoredetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CarQuoteGenerate) mContext).redirectToPopUpCard(quoteEntity);
+            }
+        });
+
 
     }
 

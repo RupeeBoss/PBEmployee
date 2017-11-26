@@ -117,6 +117,49 @@ public class QuoteRequestEntity implements Parcelable {
         isInfoCorrect = infoCorrect;
     }
 
+    public QuoteRequestEntity() {
+        VehicleNo = "";
+        CustomerReferenceID = "";
+        ProductID = 1;
+        ExShowRoomPrice = "";
+        ExpectedIDV = "";
+        this.IDVinExpiryPolicy = IDVinExpiryPolicy;
+        DateofPurchaseofCar = "";
+        this.VD_Amount = VD_Amount;
+        this.PACoverValue = PACoverValue;
+
+        Profession_Id = 6;
+        ValueOfElectricalAccessories = "0";
+        ValueOfNonElectricalAccessories = "0";
+        ValueOfBiFuelKit = "0";
+        CurrentNCB = "0";
+        IsClaimInExpiringPolicy = false;
+        ApplyAntiTheftDiscount = false;
+        ApplyAutomobileAssociationDiscount = false;
+        AutomobileAssociationName = "";
+        AutomobileMembershipExpiryDate = "";
+        AutomobileAssociationMembershipNumber = "";
+        PaidDriverCover = false;
+        OwnerDOB = null;
+        Preveious_Insurer_Id = "0";
+        //ManufacturingYear = "";
+        PolicyExpiryDate = "";
+        VehicleRegisteredName = 1;
+        //Variant_ID = variant_ID;
+        RegistrationNumber = "";
+        PlaceofRegistration = "";
+        VehicleType = "";
+        Existing_CustomerReferenceID = "";
+        ContactName = "Rajeev Ranjan";
+        ContactEmail = "pramod.parit@policyboss.com";
+        ContactMobile = "8093793198";
+        LandmarkEmployeeCode = "";
+        SupportsAgentID = 2;
+        SessionID = "";
+        SourceType = "APP";
+        InsurerIDArray = "";
+    }
+
     /**
      * ProductID : 1
      * ExShowRoomPrice :
@@ -547,8 +590,6 @@ public class QuoteRequestEntity implements Parcelable {
         dest.writeByte(this.dontRem ? (byte) 1 : (byte) 0);
     }
 
-    public QuoteRequestEntity() {
-    }
 
     protected QuoteRequestEntity(Parcel in) {
         this.VehicleNo = in.readString();

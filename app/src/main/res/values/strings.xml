@@ -4,41 +4,53 @@
 
     <string name="openDrawer">Open navigation drawer</string>
     <string name="closeDrawer">Close navigation drawer</string>
-
+    <string name="copyright_content">Powered by PolicyBoss.com</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_car_insurance">Car Details</string>
     <string name="title_activity_renewal_car">Car details</string>
     <string name="title_activity_car_varient_details">Car Insurance</string>
     <string name="title_activity_car_additional_details">Car Insurance</string>
 
     <string name="popUpCard_title1">What is covered?</string>
-    <string name="popUpCard_body1">Own damage, third party liability,</string>
+    <string name="popUpCard_body1">Own damage, third party liability,\nPersonal accident for owner driver.</string>
+    <string name="popUpCard_body2">Coverages against riots, fire, theft,\nexplosion. </string>
+    <string name="popUpCard_body3">strikes, terrorist activities, malicious\ndeed and natural calamities. </string>
 
-    <string-array name="array_insurance_company">
-        <item>Bajaj Allianz General Insurance Co. Ltd.</item>
-        <item>Bharti Axa General Insurance Co. Ltd.</item>
-        <item>Cholamandalam MS General Insurance Co. Ltd.</item>
-        <item> Future Generali India Insurance Co. Ltd.</item>
-        <item> HDFC ERGO General Insurance Co. Ltd.</item>
-        <item> ICICI Lombard General Insurance Co. Ltd.</item>
-        <item>IFFCO Tokio General Insurance Co. Ltd.</item>
-        <item>L&amp;T General Insurance Co. Ltd. </item>
-        <item>Liberty Videocon General Insurance Co. Ltd.</item>
-        <item>Magma HDI General Insurance Co. Ltd</item>
-        <item> National Insurance Co.Ltd.</item>
-        <item> Raheja QBE General Insurance Co. Ltd. </item>
-        <item> Reliance General Insurance Co. Ltd.</item>
-        <item>Royal Sundaram Alliance Insurance Co. Ltd</item>
-        <item>SBI General Insurance Co. Ltd. </item>
-        <item>Shriram General Insurance Co. Ltd. </item>
-        <item>Tata AIG General Insurance Co. Ltd.</item>
-        <item>The New India Assurance Co. Ltd.</item>
-        <item>The Oriental Insurance Co. Ltd.</item>
-        <item>United India Insurance Co. Ltd.</item>
-        <item>Universal Sompo General Insurance Co. Ltd. </item>
+    <string name="popUpCard2_title2">What is not covered?</string>
+    <string name="popUpCard2_body1">Normal wear &amp; tear Depreciation of\ncar Electrical &amp; mechanical failure.</string>
+    <string name="popUpCard2_body2">If person driving under the influence\nof alcohol or drugs, Person doesn’t\nhold valid driving licence, Nuclear risks.</string>
+    <string name="popUpCard2_body3">If car is used outside Indian &amp; for\n other purposes. </string>
 
-    </string-array>
+    <string name="popPremium1_hdr1">Plan Name: </string>
+    <string name="popPremium1_title1">Own damage premium</string>
+    <string name="popPremium1_basic">Basic OD</string>
+    <string name="popPremium1_OD">OD Discount</string>
+    <string name="popPremium1_NEA">NEA Premium</string>
+    <string name="popPremium1_EA">EA Premium</string>
+    <string name="popPremium1_Bi">Bi Fuel Kit Premium</string>
+    <string name="popPremium1_Anti">Anti Theft Discount</string>
+    <string name="popPremium1_Vol">Voluntary Discount</string>
+
+    <string name="popPremium1_AAI">AAI Discount</string>
+    <string name="popPremium1_NCB">NCB</string>
+    <string name="popPremium1_Age">Age Discount</string>
+    <string name="popPremium1_Prof">Profession Discount</string>
+    <string name="popPremium1_Undrewritting">Underwriter Loading</string>
+    <string name="popPremium1_totalOD">Total OD Premium (A)</string>
+
+    <string name="popPremium2_hdr1">Car Model: </string>
+    <string name="popPremium2_title1">Third Party Premium</string>
+    <string name="popPremium2_basic">Basic 3rd Party Premium</string>
+    <string name="popPremium2_Unnamed">Unnamed PA Cover for Passenger</string>
+    <string name="popPremium2_named"> Named PA Cover for Passenger </string>
+    <string name="popPremium2_PA">PA Cover for Owner Driver</string>
+    <string name="popPremium2_PA_paidDriver">PA Cover for Paid Driver</string>
+    <string name="popPremium2_Legal"> Legal Liability to Paid Driver</string>
+    <string name="popPremium2_Bi">Bi Fuel Kit Liability</string>
+    <string name="popPremium1_totalLiab">Total Liability Premium</string>
+    <string name="dont_rem"><u><i>Don\'t Remember?</i></u></string>
+
+
     <string-array name="policy_expiry">
         <item>Today</item>
         <item>Next 45 Days</item>
@@ -52,10 +64,146 @@
         <item>50</item>
         <item>65</item>
     </string-array>
-    <string name="title_activity_new_car_insurance">NewCarInsuranceActivity</string>
+
+    <string-array name="garage_segment">
+        <item>MAS</item>
+        <item>TAS</item>
+        <item>3M</item>
+        <item>Multi</item>
+    </string-array>
+
     <string name="title_activity_car_details">Car Details</string>
     <string name="title_activity_fast_lane_car_details">Car Details</string>
-    <string name="title_activity_quote_generate">Quote Details</string>
-    <string name="title_activity_pop_up_card_quote">PopUpCardQuoteActivity</string>
+    <string name="title_activity_pop_up_card_quote">More details</string>
     <string name="title_activitycard_quote">Car Quote</string>
+    <string name="title_activity_premium_pop_up">Premium Break up Details</string>
+    <string name="title_activity_health_insurance">Health Insurance</string>
+    <string name="title_activity_premium_bike_pop_up">Premium Break up Details</string>
+
+    <!--Health-->
+
+    <string-array name="health_sum_assured">
+        <item>Select sum assured in lakhs</item>
+        <item>100000</item>
+        <item>200000</item>
+        <item>300000</item>
+        <item>400000</item>
+        <item>500000</item>
+        <item>600000</item>
+        <item>700000</item>
+        <item>750000</item>
+        <item>800000</item>
+        <item>900000</item>
+        <item>700000</item>
+        <item>1000000</item>
+        <item>1200000</item>
+        <item>1500000</item>
+        <item>1800000</item>
+        <item>2000000</item>
+        <item>2500000</item>
+        <item>3000000</item>
+        <item>5000000</item>
+        <item>10000000</item>
+
+    </string-array>
+
+    <string-array name="health_cover">
+        <item>Who do you wish to cover</item>
+        <item>Self</item>
+        <item>Family</item>
+        <item>Parents</item>
+    </string-array>
+
+    <string-array name="health_family_type">
+        <item>Self</item>
+        <item>Spouse</item>
+        <item>Both</item>
+    </string-array>
+
+    <string-array name="health_parent_type">
+        <item>Father</item>
+        <item>Mother</item>
+        <item>Both</item>
+    </string-array>
+
+    <string-array name="health_family_kids">
+        <item>Select kids</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+
+    <string-array name="health_self_type">
+        <item>Married</item>
+        <item>UnMarried</item>
+    </string-array>
+    <string name="title_activity_health_insurance_age_detail">Age details</string>
+    <string name="title_activity_health_quote">Health Quotes</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_customer_details">Customer Details</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bike_insurance">Bike Insurance </string>
+    <string name="title_activity_bike_quote">Bike Insurance</string>
+    <string name="title_activity_premium_breakup">Premium Breakup</string>
+    <string name="title_activity_modify_quotes">Modify Your Quotes</string>
+    <string name="title_activity_common_web_view">PolicyBoss</string>
+
+
+    <!--Modify Quote Arrays for Car -->
+
+    <string-array name="car_voluntary_excess_amount">
+        <item>No Thank You</item>
+        <item>2500</item>
+        <item>5000</item>
+        <item>7500</item>
+        <item>15000</item>
+    </string-array>
+
+    <string-array name="car_Un_named_passenger_PA_cover">
+        <item>No Thank You</item>
+        <item>50000</item>
+        <item>100000</item>
+        <item>150000</item>
+        <item>200000</item>
+    </string-array>
+
+    <string-array name="car_named_passenger_PA_cover">
+        <item>No Thank You</item>
+        <item>50000</item>
+        <item>100000</item>
+        <item>150000</item>
+        <item>200000</item>
+    </string-array>
+
+    <!--Modify Quote Arrays for Bike -->
+
+    <string-array name="bike_voluntary_excess_amount">
+        <item>No Thank You</item>
+        <item>500</item>
+        <item>750</item>
+        <item>1500</item>
+        <item>3000</item>
+    </string-array>
+    <string name="title_activity_health_quotes">Health Quotes</string>
+    <string name="title_activity_health_insurance_quotes">Health Quotes</string>
+
+
 </resources>

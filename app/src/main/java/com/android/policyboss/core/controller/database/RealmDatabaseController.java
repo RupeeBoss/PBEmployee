@@ -56,7 +56,7 @@ public class RealmDatabaseController {
     }
 
     public List<MakeMasterEntity> getMasterMake() {
-        if ((List<MakeMasterEntity>) weakReference.get(MAKE_TABLE) != null) {
+        if (weakReference.get(MAKE_TABLE) != null) {
             return (List<MakeMasterEntity>) weakReference.get(MAKE_TABLE);
         }
 
@@ -70,7 +70,7 @@ public class RealmDatabaseController {
     }
 
     public List<ModelMasterEntity> getMasterModel() {
-        if ((List<ModelMasterEntity>) weakReference.get(MODEL_TABLE) != null) {
+        if (weakReference.get(MODEL_TABLE) != null) {
             return (List<ModelMasterEntity>) weakReference.get(MODEL_TABLE);
         }
 
@@ -84,7 +84,7 @@ public class RealmDatabaseController {
     }
 
     public List<VariantMasterEntity> getMasterVariant() {
-        if ((List<VariantMasterEntity>) weakReference.get(VARIANT_TABLE) != null) {
+        if (weakReference.get(VARIANT_TABLE) != null) {
             return (List<VariantMasterEntity>) weakReference.get(VARIANT_TABLE);
         }
 
@@ -98,7 +98,7 @@ public class RealmDatabaseController {
     }
 
     public List<VehicleMasterEntity> getMasterVehicle() {
-        if ((List<VehicleMasterEntity>) weakReference.get(VEHICLE_TABLE) != null) {
+        if (weakReference.get(VEHICLE_TABLE) != null) {
             return (List<VehicleMasterEntity>) weakReference.get(VEHICLE_TABLE);
         }
 
