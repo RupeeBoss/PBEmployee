@@ -204,6 +204,7 @@
     </string-array>
     <string name="title_activity_health_quotes">Health Quotes</string>
     <string name="title_activity_health_insurance_quotes">Health Quotes</string>
+    <string name="title_activity_notification">NotificationActivity</string>
 
 
 </resources>
