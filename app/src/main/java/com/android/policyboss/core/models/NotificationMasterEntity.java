@@ -42,6 +42,7 @@ public class NotificationMasterEntity extends RealmObject {
         this.title = title;
     }
 
+
     public long getNotifyid() {
         return notifyid;
     }

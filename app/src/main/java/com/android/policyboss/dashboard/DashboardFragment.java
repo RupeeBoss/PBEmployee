@@ -3,8 +3,12 @@ package com.android.policyboss.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -16,6 +20,8 @@ import com.android.policyboss.R;
 import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
 import com.android.policyboss.carinsurance.CarInsuranceActivity;
 import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
+import com.android.policyboss.navigationview.HomeActivity;
+import com.android.policyboss.notification.NotificationActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +52,19 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         initBanner(view);
         setListener();
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
     }
 
     private void initBanner(View view) {
@@ -94,4 +113,43 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 break;
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.notification_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_notification)
+        {
+            Intent intent = new Intent(getActivity(), NotificationActivity.class);
+                startActivity(intent);
+               return true ;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.notification_menu, menu);
+//       // super.onCreateOptionsMenu(menu, inflater);
+//    }
+//
+//
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        Intent intent;
+//        switch (item.getItemId()) {
+//            case R.id.action_notification:
+//                intent = new Intent(getActivity(), NotificationActivity.class);
+//                startActivity(intent);
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }

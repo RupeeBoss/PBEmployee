@@ -45,4 +45,5 @@
     <color name="blue_descent">#4b76c2</color>
     <color name="orange_decent">#e6a65a</color>
     <color name="dashboard_text">#dfdfdf</color>
+    <color name="dashboard_background">#E0E0E0</color>
 </resources>

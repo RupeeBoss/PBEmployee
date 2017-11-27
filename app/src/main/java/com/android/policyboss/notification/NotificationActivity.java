@@ -7,16 +7,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.NotificationMasterEntity;
+import com.google.gson.Gson;
 
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class NotificationActivity extends AppCompatActivity {
 
@@ -43,7 +46,11 @@ public class NotificationActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(NotificationActivity.this);
         rvNotification.setLayoutManager(layoutManager);
-        NotificationLst = realm.where(NotificationMasterEntity.class).findAll();
+        NotificationLst = realm.where(NotificationMasterEntity.class).findAllSorted("notifyid", Sort.DESCENDING);
+
+
+        Log.d("NOTIFYLST",NotificationLst.toString());
+
         if(NotificationLst.size() >0)
         {
             mAdapter = new NotificationAdapter(NotificationActivity.this, NotificationLst);

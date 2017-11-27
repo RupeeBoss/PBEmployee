@@ -97,7 +97,7 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
 
         try {
             if(FirebaseMessaging.getInstance() !=null ) {
-                FirebaseMessaging.getInstance().subscribeToTopic("policyBoss1");
+                FirebaseMessaging.getInstance().subscribeToTopic("policyBoss2");
             }
         }catch (Exception ex)
         {

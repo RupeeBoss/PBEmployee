@@ -27,6 +27,7 @@ import com.android.policyboss.dashboard.DashboardFragment;
 import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.garaj.RegisterGarageFragment;
 import com.android.policyboss.login.LoginActivity;
+import com.android.policyboss.notification.NotificationActivity;
 import com.android.policyboss.salessupport.SalesSupportFragment;
 import com.android.policyboss.utility.Constants;
 
@@ -351,6 +352,7 @@ public class HomeActivity extends BaseActivity {
         // refresh toolbar menu
         invalidateOptionsMenu();
     }
+
 
 
 }
