@@ -31,7 +31,8 @@ import retrofit.Retrofit;
 
 public class BikeController implements IBike {
 
-    private static final long SLEEP_DELAY = 5000; // 10 seconds delay.
+    private static final long SLEEP_DELAY = 5000; // 5 seconds delay.
+    private static final long NO_OF_SERVER_HITS = 10;
     BikeQuotesRequestBuilder.BikeQuotesNetworkService bikeQuotesNetworkService;
     Context mContext;
     Handler handler;
@@ -98,7 +99,7 @@ public class BikeController implements IBike {
 
         entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.BIKEQUOTE_UNIQUEID, ""));
 
-        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
+        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < NO_OF_SERVER_HITS) {
             Constants.getSharedPreferenceEditor(mContext).putInt(Constants.QUOTE_COUNTER,
                     Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) + 1)
                     .commit();
@@ -125,7 +126,7 @@ public class BikeController implements IBike {
                     iResponseSubcriber.OnSuccess(bikePremiumResponse, response.body().getMessage());
 
                     if (!response.body().getSummary().getStatusX().equals("complete")) {
-                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
+                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < NO_OF_SERVER_HITS) {
                             //server request for pending quotes
                             handler.postDelayed(runnable, SLEEP_DELAY);
                         } else {
