@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -77,7 +78,7 @@ public class HomeActivity extends BaseActivity {
 
         // finally change the color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this,R.color.application_primary_text_color));
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.application_primary_text_color));
         }
         realm = Realm.getDefaultInstance();
 
@@ -156,26 +157,6 @@ public class HomeActivity extends BaseActivity {
                         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                         break;
 
-/*
-                    case R.id.nav_offer:
-                        navItemIndex = 3;
-                        CURRENT_TAG = TAG_OFFERS;
-                        break;
-                    case R.id.nav_referfriend:
-                        navItemIndex = 4;
-                        CURRENT_TAG = TAG_REFER;
-                        break;
-                    case R.id.nav_pickup_friend:
-                        navItemIndex = 5;
-                        CURRENT_TAG = TAG_REFER;
-                        break;
-                    case R.id.nav_logout:
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        new UserFacade(MainActivity.this).clearUserCache();
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        finish();
-                        break;*/
                     default:
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
@@ -255,8 +236,6 @@ public class HomeActivity extends BaseActivity {
                     }
                 }, 2000);
             }
-
-
         }
 
         // super.onBackPressed();

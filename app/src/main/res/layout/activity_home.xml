@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    <!--android:theme="@style/Menu"-->
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,19 +14,16 @@
 
 
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:elevation="0dp">
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:layout_scrollFlags="enterAlways|snap"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -39,17 +35,18 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
+
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white"
-        app:itemBackground="@drawable/nav_selector"
         app:headerLayout="@layout/drawer_header"
+        app:itemBackground="@drawable/nav_selector"
         app:itemIconTint="@color/colorPrimaryDark"
-        app:itemTextColor="@android:color/black"
         app:itemTextAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        app:itemTextColor="@android:color/black"
         app:menu="@menu/drawer_menu" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -51,7 +51,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     ImageView ivNewBike, ivRenewBike;
-    CardView llBuyorRenew;
+    CardView llBuyorRenew, cvNcb;
     CardView cvBuyorRenew, cvInvDate;
     TextView tvBuyTiltle;
     DatabaseController databaseController;
@@ -187,7 +187,8 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
     }
 
     private void init() {
-
+        cvNcb = (CardView) findViewById(R.id.cvNcb);
+        cvNcb.setVisibility(View.GONE);
         bikeRequestEntity = new BikeRequestEntity();
         etManufactYearMonth = (EditText) findViewById(R.id.etManufactYearMonth);
         btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
@@ -249,6 +250,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
             case R.id.ivNewBike:
                 cvRenew.setVisibility(View.VISIBLE);
                 cvBuyorRenew.callOnClick();
+                cvNcb.setVisibility(View.GONE);
                 ivNewBike.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click));
                 llRenewBike.setVisibility(View.GONE);
                 break;
@@ -257,7 +259,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                 cvBuyorRenew.callOnClick();
                 ivRenewBike.startAnimation(AnimationUtils.loadAnimation(this, R.anim.image_click));
                 llRenewBike.setVisibility(View.VISIBLE);
-
+                cvNcb.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnGetQuote:
 
@@ -304,6 +306,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                     //endregion
 
                     setInputParametersReNew();
+
                 } else if (llRenewBike.getVisibility() == View.GONE) {
                     setInputParametersNew();
                 }
@@ -358,6 +361,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(10);
         bikeRequestEntity.setVehicle_id(Integer.parseInt(databaseController.getBikeVarientID(bikeVarient)));
+        //bikeRequestEntity.setVehicle_id(50372);
         bikeRequestEntity.setRto_id(databaseController.getCityID(regplace));
         bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
@@ -368,8 +372,8 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setPolicy_expiry_date("");
         bikeRequestEntity.setPrev_insurer_id("");
         bikeRequestEntity.setVehicle_registration_type("individual");
-        bikeRequestEntity.setVehicle_ncb_current("");
-        bikeRequestEntity.setIs_claim_exists("yes");
+        bikeRequestEntity.setVehicle_ncb_current("0");
+        bikeRequestEntity.setIs_claim_exists("no");
         bikeRequestEntity.setMethod_type("Premium");
         bikeRequestEntity.setElectrical_accessory("0");
         bikeRequestEntity.setNon_electrical_accessory("0");
@@ -492,19 +496,36 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
                     }
                 });
             } else if (view.getId() == R.id.etManufactYearMonth) {
-                DateTimePicker.manufactDatePicker(view.getContext(), getYear(etInvDate.getText().toString()), getMonth(etInvDate.getText().toString()), getDate(etInvDate.getText().toString()),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                                if (view1.isShown()) {
-                                    Calendar calendar = Calendar.getInstance();
-                                    calendar.set(year, monthOfYear, dayOfMonth);
-                                    String currentDay = simpleDateFormat.format(calendar.getTime());
-                                    etManufactYearMonth.setText(currentDay);
-                                }
+                if (etInvDate.getText().toString().equals("") || etInvDate.getText().toString() == null) {
+                    DateTimePicker.firstRegNewDatePicker(view.getContext(),
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                                    if (view1.isShown()) {
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.set(year, monthOfYear, dayOfMonth);
+                                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                                        etManufactYearMonth.setText(currentDay);
+                                    }
 
-                            }
-                        });
+                                }
+                            });
+                } else {
+                    DateTimePicker.manufactDatePicker(view.getContext(), getYear(etInvDate.getText().toString()), getMonth(etInvDate.getText().toString()), getDate(etInvDate.getText().toString()),
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                                    if (view1.isShown()) {
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.set(year, monthOfYear, dayOfMonth);
+                                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                                        etManufactYearMonth.setText(currentDay);
+                                    }
+
+                                }
+                            });
+                }
+
             }
 
         }

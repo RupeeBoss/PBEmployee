@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.policyboss.R;
 import com.android.policyboss.carinsurance.CarQuoteGenerate;
@@ -90,9 +91,15 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
         holder.txtPremiumBreakUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((BikeQuoteActivity) mContext).redirectToPopUpPremium(responseEntity,response.getSummary() ,responseEntity.getLM_Custom_Request().getVehicle_expected_idv());
+                ((BikeQuoteActivity) mContext).redirectToPopUpPremium(responseEntity, response.getSummary(), responseEntity.getLM_Custom_Request().getVehicle_expected_idv());
             }
         });
+
+        if (responseEntity.getPremium_Breakup().getListAppliedAddons() != null) {
+            if (responseEntity.getPremium_Breakup().getListAppliedAddons().size() != 0) {
+                Toast.makeText(mContext, "Applied " + position, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 

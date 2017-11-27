@@ -30,7 +30,8 @@ import retrofit.Retrofit;
 
 public class CarController implements ICar {
 
-    private static final long SLEEP_DELAY = 5000;//10000; // 10 seconds delay.
+    private static final long SLEEP_DELAY = 6000;// 5 seconds delay.
+    public static final long NO_OF_SERVER_HITS = 10;
     BikeQuotesRequestBuilder.BikeQuotesNetworkService bikeQuotesNetworkService;
     Context mContext;
     Handler handler;
@@ -93,7 +94,7 @@ public class CarController implements ICar {
 
         entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.CARQUOTE_UNIQUEID, ""));
 
-        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
+        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < NO_OF_SERVER_HITS) {
             Constants.getSharedPreferenceEditor(mContext).putInt(Constants.QUOTE_COUNTER,
                     Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) + 1)
                     .commit();
@@ -119,7 +120,7 @@ public class CarController implements ICar {
                     iResponseSubcriber.OnSuccess(bikePremiumResponse, response.body().getMessage());
 
                     if (!response.body().getSummary().getStatusX().equals("complete")) {
-                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < 5) {
+                        if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < NO_OF_SERVER_HITS) {
                             //server request for pending quotes
                             handler.postDelayed(runnable, SLEEP_DELAY);
                         } else {
