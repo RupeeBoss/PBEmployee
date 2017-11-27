@@ -42,7 +42,7 @@
             android:name=".navigationview.HomeActivity"
             android:label="@string/title_activity_navigation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".carinsurance.CarInsuranceActivity"
             android:label="@string/title_activity_car_insurance"

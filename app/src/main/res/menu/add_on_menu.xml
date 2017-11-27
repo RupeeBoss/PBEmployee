@@ -4,7 +4,8 @@
 
     <item
         android:id="@+id/add_on"
-        android:title="ADD ON"
+        android:icon="@drawable/add_button_white"
+        android:title=""
         app:showAsAction="always" />
 
 </menu>
