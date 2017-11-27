@@ -1,6 +1,7 @@
 package com.android.policyboss.core.models;
 
 public class CommonAddonEntity {
+
     /**
      * addon_ambulance_charge_cover : {"min":100,"max":100}
      * addon_consumable_cover : {"min":100,"max":100}
@@ -195,6 +196,5 @@ public class CommonAddonEntity {
     public void setAddon_zero_dep_cover(AddonZeroDepCoverEntity addon_zero_dep_cover) {
         this.addon_zero_dep_cover = addon_zero_dep_cover;
     }
-
 
 }

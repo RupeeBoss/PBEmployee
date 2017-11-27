@@ -37,11 +37,12 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".navigationview.HomeActivity"
             android:label="@string/title_activity_navigation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".carinsurance.CarInsuranceActivity"
             android:label="@string/title_activity_car_insurance"
@@ -183,7 +184,6 @@
             android:name=".webview.CommonWebViewActivity"
             android:label="@string/title_activity_common_web_view"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".healthinsurance.HealthInsuranceQuotes"
             android:label="@string/title_activity_health_insurance_quotes"
@@ -193,12 +193,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.personaldetail.CustomerDetailsActivity" />
         </activity>
-            android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme" />
         <activity
             android:name=".bikeinsurance.PremiumBikePopUpActivity"
             android:label="@string/title_activity_premium_bike_pop_up"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme"></activity>
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".notification.NotificationActivity"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

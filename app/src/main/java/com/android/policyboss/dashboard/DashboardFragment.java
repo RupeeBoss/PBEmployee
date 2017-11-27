@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -36,17 +38,26 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         initview(view);
         initBanner(view);
         setListener();
+        setHasOptionsMenu(true);
         return view;
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.add_on_menu, menu);
+        Toast.makeText(getActivity(), "Applied Menu", Toast.LENGTH_SHORT).show();
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
 
     private void initBanner(View view) {
         BannerSlider bannerSlider = (BannerSlider) view.findViewById(R.id.banner_slider1);
