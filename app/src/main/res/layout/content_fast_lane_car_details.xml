@@ -28,7 +28,7 @@
             <EditText
                 android:id="@+id/etVehicleDetails"
                 style="@style/EditTextStyle"
-                android:drawableLeft="@drawable/car_details"
+                android:drawableLeft="@drawable/car_black"
                 android:hint="Vehicle Details" />
 
         </android.support.design.widget.TextInputLayout>

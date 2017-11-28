@@ -128,42 +128,6 @@
                     android:paddingLeft="30dp"
                     android:visibility="gone" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/gap"
-                    android:layout_marginRight="@dimen/gap"
-                    android:layout_marginTop="@dimen/gap"
-                    android:text="Select Prev Insurer : " />
-
-                <Spinner
-                    android:id="@+id/spPrevInsurer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/gap"
-                    android:layout_marginRight="@dimen/gap"
-                    android:layout_marginTop="@dimen/gap"
-                    android:background="@drawable/spinner_insurance_bg"
-                    android:paddingLeft="30dp" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_marginLeft="@dimen/gap"
-                    android:layout_marginRight="@dimen/gap"
-                    android:layout_marginTop="@dimen/gap"
-                    android:clipToPadding="false"
-                    android:gravity="bottom"
-                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
-
-                    <EditText
-                        android:id="@+id/etPolicyExpDate"
-                        style="@style/EditTextStyle"
-                        android:drawableLeft="@drawable/date_range"
-                        android:focusable="false"
-                        android:hint="Your Policy Expiry Date" />
-
-                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -184,6 +148,43 @@
 
 
                 </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
+                    android:clipToPadding="false"
+                    android:gravity="bottom"
+                    app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                    <EditText
+                        android:id="@+id/etPolicyExpDate"
+                        style="@style/EditTextStyle"
+                        android:drawableLeft="@drawable/date_range"
+                        android:focusable="false"
+                        android:hint="Your Policy Expiry Date" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
+                    android:text="Select Prev Insurer : " />
+
+                <Spinner
+                    android:id="@+id/spPrevInsurer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/gap"
+                    android:layout_marginRight="@dimen/gap"
+                    android:layout_marginTop="@dimen/gap"
+                    android:background="@drawable/spinner_insurance_bg"
+                    android:paddingLeft="30dp" />
             </LinearLayout>
 
             <LinearLayout
