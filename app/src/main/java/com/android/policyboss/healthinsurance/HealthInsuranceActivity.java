@@ -10,6 +10,7 @@ import android.support.v7.widget.ScrollingTabContainerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.models.CoverModelInfo;
 import com.android.policyboss.core.requestEntity.HealthRequestEntity;
+import com.android.policyboss.notification.NotificationActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +74,23 @@ public class HealthInsuranceActivity extends BaseActivity implements View.OnClic
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.add_on_menu, menu);
+        inflater.inflate(R.menu.notification_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent;
+        switch (item.getItemId()) {
+
+            case R.id.action_notification:
+                intent = new Intent(HealthInsuranceActivity.this, NotificationActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+            return super.onOptionsItemSelected(item);
     }
 
     private void setListeners() {
