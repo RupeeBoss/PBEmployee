@@ -27,6 +27,7 @@ import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
 import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.garaj.RegisterGarageFragment;
+import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.notification.NotificationActivity;
 import com.android.policyboss.salessupport.SalesSupportFragment;
@@ -150,6 +151,11 @@ public class HomeActivity extends BaseActivity {
                     case R.id.nav_register_garaj:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_REGISTER_GARAJ;
+                        break;
+
+                    case R.id.nav_notification:
+
+                        startActivity( new Intent(HomeActivity.this, NotificationActivity.class));
                         break;
                     case R.id.nav_logout:
                         Constants.getSharedPreferenceEditor(HomeActivity.this).clear().commit();

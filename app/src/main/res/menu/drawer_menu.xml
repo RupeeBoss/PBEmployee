@@ -20,6 +20,11 @@
             android:id="@+id/nav_register_garaj"
             android:icon="@drawable/health_ins"
             android:title="Register Garage" />
+
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/ic_notifications"
+            android:title="Notification" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"
