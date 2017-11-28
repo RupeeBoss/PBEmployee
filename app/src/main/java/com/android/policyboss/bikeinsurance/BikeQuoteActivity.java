@@ -265,9 +265,6 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
     //region apply addon
 
     private void applyAddons() {
-        //TODO :
-        //1 : Extract applied addon
-        //2 :Apply addons to insurer
 
         Double GST_APPLY = .18;
         Double GST_REMOVE = 1.18;
@@ -301,7 +298,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
 
@@ -312,6 +309,15 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
+
+//                                for (int j = entity.getListAppliedAddons().size() - 1; j >= 0; j--) {
+//                                    AppliedAddonsPremiumBreakup a = entity.getListAppliedAddons().get(j);
+//                                    if (a.getAddonName().equals(databaseController.getAddonName("addon_zero_dep_cover"))) {
+//                                        listAppliedAddons.add(entity);
+//                                        entity.getListAppliedAddons().remove(j);
+//                                    }
+//                                }
+//                                entity.setListAppliedAddons(listAppliedAddonPremium);
                             }
                         }
 
@@ -337,7 +343,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -374,7 +380,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -412,7 +418,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -452,7 +458,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -490,7 +496,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -528,7 +534,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -566,7 +572,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -604,7 +610,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -642,7 +648,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -680,7 +686,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
@@ -720,7 +726,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
 
@@ -758,7 +764,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
 
@@ -796,7 +802,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
 
@@ -834,7 +840,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
 
@@ -872,7 +878,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
 
@@ -910,7 +916,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
@@ -947,7 +953,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
@@ -984,7 +990,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
@@ -1021,7 +1027,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
@@ -1058,7 +1064,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
 
-                                entity.getPremium_Breakup().setListAppliedAddons(listAppliedAddonPremium);
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 isAddonApplied = true;
                                 listAppliedAddons.add(entity);
