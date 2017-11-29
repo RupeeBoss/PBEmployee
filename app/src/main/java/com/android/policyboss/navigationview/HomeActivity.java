@@ -1,6 +1,7 @@
 package com.android.policyboss.navigationview;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -28,7 +28,6 @@ import com.android.policyboss.dashboard.DashboardFragment;
 import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.garaj.RegisterGarageFragment;
 import com.android.policyboss.login.LoginActivity;
-import com.android.policyboss.notification.NotificationActivity;
 import com.android.policyboss.salessupport.SalesSupportFragment;
 import com.android.policyboss.utility.Constants;
 
@@ -152,7 +151,11 @@ public class HomeActivity extends BaseActivity {
                         CURRENT_TAG = TAG_REGISTER_GARAJ;
                         break;
                     case R.id.nav_logout:
-                        Constants.getSharedPreferenceEditor(HomeActivity.this).clear().commit();
+                        SharedPreferences.Editor editor = Constants.getSharedPreferenceEditor(HomeActivity.this);
+                        editor.remove(Constants.USER_CREDENTIAL);
+                        editor.remove(Constants.USER_AUTO_LOGOFF);
+                        editor.remove(Constants.SHARED_PREF_ALL_MASTER);
+                        editor.commit();
                         finish();
                         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                         break;
@@ -331,7 +334,6 @@ public class HomeActivity extends BaseActivity {
         // refresh toolbar menu
         invalidateOptionsMenu();
     }
-
 
 
 }
