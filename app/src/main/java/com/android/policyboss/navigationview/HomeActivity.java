@@ -27,6 +27,7 @@ import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
 import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.garaj.RegisterGarageFragment;
+import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.salessupport.SalesSupportFragment;
 import com.android.policyboss.utility.Constants;
@@ -63,9 +64,11 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        setSupportActionBar(toolbar);
         initialise_widgets();
+
         toolbar.setTitleTextColor(getResources().getColor(R.color.dashboard_text));
         Window window = this.getWindow();
 
@@ -79,6 +82,8 @@ public class HomeActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.application_primary_text_color));
         }
+
+
         realm = Realm.getDefaultInstance();
 
 
@@ -116,7 +121,6 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initialise_widgets() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
@@ -150,6 +154,7 @@ public class HomeActivity extends BaseActivity {
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_REGISTER_GARAJ;
                         break;
+
                     case R.id.nav_logout:
                         SharedPreferences.Editor editor = Constants.getSharedPreferenceEditor(HomeActivity.this);
                         editor.remove(Constants.USER_CREDENTIAL);
