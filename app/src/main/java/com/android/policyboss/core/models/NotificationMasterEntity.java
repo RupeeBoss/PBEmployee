@@ -18,11 +18,9 @@ public class NotificationMasterEntity extends RealmObject {
     private String date;
     private  boolean isread;
 
-
     public String getImgUrl() {
         return imgUrl;
     }
-
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
