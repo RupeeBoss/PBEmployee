@@ -65,9 +65,11 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        setSupportActionBar(toolbar);
         initialise_widgets();
+
         toolbar.setTitleTextColor(getResources().getColor(R.color.dashboard_text));
         Window window = this.getWindow();
 
@@ -81,6 +83,8 @@ public class HomeActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.application_primary_text_color));
         }
+
+
         realm = Realm.getDefaultInstance();
 
 
@@ -118,7 +122,6 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initialise_widgets() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
@@ -153,10 +156,6 @@ public class HomeActivity extends BaseActivity {
                         CURRENT_TAG = TAG_REGISTER_GARAJ;
                         break;
 
-                    case R.id.nav_notification:
-
-                        startActivity( new Intent(HomeActivity.this, NotificationActivity.class));
-                        break;
                     case R.id.nav_logout:
                         Constants.getSharedPreferenceEditor(HomeActivity.this).clear().commit();
                         finish();

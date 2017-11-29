@@ -16,6 +16,7 @@ public class NotificationMasterEntity extends RealmObject {
     private String title;
     private String imgUrl;
     private String date;
+    private  boolean isread;
 
 
     public String getImgUrl() {
@@ -57,6 +58,14 @@ public class NotificationMasterEntity extends RealmObject {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean getIsread() {
+        return isread;
+    }
+
+    public void setIsread(boolean isread) {
+        this.isread = isread;
     }
 
 }

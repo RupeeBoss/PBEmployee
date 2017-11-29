@@ -64,6 +64,9 @@ public class NotificationActivity extends AppCompatActivity {
 
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 }
