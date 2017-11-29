@@ -6,8 +6,8 @@ public class AddonAmbulanceChargeCoverEntity {
      * max : 100
      */
 
-    private int min;
-    private int max;
+    private double min;
+    private double max;
     private boolean isSelected;
 
     public boolean isSelected() {
@@ -18,19 +18,19 @@ public class AddonAmbulanceChargeCoverEntity {
         isSelected = selected;
     }
 
-    public int getMin() {
+    public double getMin() {
         return min;
     }
 
-    public void setMin(int min) {
+    public void setMin(double min) {
         this.min = min;
     }
 
-    public int getMax() {
+    public double getMax() {
         return max;
     }
 
-    public void setMax(int max) {
+    public void setMax(double max) {
         this.max = max;
     }
 }

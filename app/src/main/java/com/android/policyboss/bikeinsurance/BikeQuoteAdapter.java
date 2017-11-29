@@ -109,6 +109,8 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
                 holder.rvAddOn.setLayoutManager(mLayoutManager);
                 GridAddonAdapter adapter = new GridAddonAdapter(mContext, responseEntity.getListAppliedAddons());
                 holder.rvAddOn.setAdapter(adapter);
+            } else {
+                holder.llAddon.setVisibility(View.GONE);
             }
         } else {
             holder.llAddon.setVisibility(View.GONE);

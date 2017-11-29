@@ -7,8 +7,8 @@ package com.android.policyboss.core.models;
 public class MobileAddOn {
 
     public String AddonName;
-    public int min;
-    public int max;
+    public double min;
+    public double max;
     public String AddonKey;
     public boolean isSelected;
 
@@ -20,19 +20,19 @@ public class MobileAddOn {
         AddonName = addonName;
     }
 
-    public int getMin() {
+    public double getMin() {
         return min;
     }
 
-    public void setMin(int min) {
+    public void setMin(double min) {
         this.min = min;
     }
 
-    public int getMax() {
+    public double getMax() {
         return max;
     }
 
-    public void setMax(int max) {
+    public void setMax(double max) {
         this.max = max;
     }
 
