@@ -24,6 +24,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
+
                 android:id="@+id/backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -57,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:visibility="visible"
                 app:cardCornerRadius="5dp">
 
                 <LinearLayout
@@ -88,6 +90,7 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
+                        android:visibility="gone"
                         android:id="@+id/btnGEtDetails"
                         style="@style/ButtonStyle"
                         android:layout_width="match_parent"
@@ -193,7 +196,8 @@
                             android:layout_marginRight="@dimen/gap"
                             android:layout_marginTop="@dimen/gap"
                             android:background="@drawable/spinner_bg"
-                            android:paddingLeft="30dp"></Spinner>
+                            android:paddingLeft="30dp"
+                            android:visibility="gone"></Spinner>
 
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/tilExternal"
@@ -218,6 +222,7 @@
                         </android.support.design.widget.TextInputLayout>
 
                         <Spinner
+
                             android:id="@+id/spCarVarient"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -226,9 +231,73 @@
                             android:layout_marginTop="@dimen/gap"
                             android:background="@drawable/spinner_bg"
                             android:paddingLeft="30dp"
-                            android:visibility="visible"></Spinner>
+                            android:visibility="gone"></Spinner>
+
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/llPolicyDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etFirstRegDate"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Date Of First Registration" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_marginRight="@dimen/gap"
+                            android:layout_marginTop="@dimen/gap"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/acRegPlace"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/place_black"
+                                android:hint="Place of registration" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:layout_margin="8dp"
+                            android:layout_marginTop="0dp"
+                            android:clipToPadding="false"
+                            android:gravity="bottom"
+                            android:paddingTop="4dp"
+                            app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
+
+                            <EditText
+                                android:id="@+id/etManufactYearMonth"
+                                style="@style/EditTextStyle"
+                                android:drawableLeft="@drawable/date_range"
+                                android:focusable="false"
+                                android:hint="Year-Month of manufacturing?" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/btnCont"
