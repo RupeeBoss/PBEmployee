@@ -1,6 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools" >
+xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 <item
@@ -8,7 +7,8 @@ xmlns:tools="http://schemas.android.com/tools" >
     android:icon="@drawable/ic_notifications"
     android:orderInCategory="10"
     android:title="Notificaton"
-    app:showAsAction="ifRoom" />
+    app:actionLayout="@layout/notification_action_item_layout"
+    app:showAsAction="always" />
 
 
 </menu>

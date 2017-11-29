@@ -147,6 +147,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         notificationMaster.setTitle(myNotifyData.get("title"));
                         notificationMaster.setMessage(myNotifyData.get("body"));
                         notificationMaster.setImgUrl(myNotifyData.get("icon"));
+                        notificationMaster.setIsread(false);
                         realm.copyToRealmOrUpdate(notificationMaster);
                     }
                 });

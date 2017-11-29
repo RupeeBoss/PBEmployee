@@ -58,6 +58,8 @@ public class Constants {
         return arrayListYear;
     }
 
+
+
     public static void hideKeyBoard(View view, Context context) {
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
