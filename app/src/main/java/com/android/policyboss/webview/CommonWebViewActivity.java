@@ -1,7 +1,6 @@
 package com.android.policyboss.webview;
 
 import android.app.DownloadManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,10 +11,8 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -79,8 +76,9 @@ public class CommonWebViewActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
 
 
-        //MyWebViewClient webViewClient = new MyWebViewClient();
-        webView.setWebViewClient(new WebViewClient() {
+        MyWebViewClient webViewClient = new MyWebViewClient();
+        webView.setWebViewClient(webViewClient);
+       /* webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 // TODO show you progress image
@@ -99,7 +97,7 @@ public class CommonWebViewActivity extends BaseActivity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return false;
             }
-        });
+        });*/
         webView.getSettings().setBuiltInZoomControls(true);
         Log.d("URL", url);
         //webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + url);

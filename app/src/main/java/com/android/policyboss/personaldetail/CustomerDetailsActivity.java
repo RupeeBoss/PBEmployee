@@ -24,6 +24,7 @@ import com.android.policyboss.core.requestEntity.HealthRequestEntity;
 import com.android.policyboss.core.response.BikeUniqueResponse;
 import com.android.policyboss.core.response.HealthQuoteResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
+import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity;
 import com.android.policyboss.healthinsurance.HealthInsuranceQuotes;
 import com.android.policyboss.utility.Constants;
@@ -61,7 +62,9 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
             fromWhichClass = BikeInsuranceActivity.BIKE_INSURENCE;
             getSupportActionBar().setTitle("BIKE QUOTES");
         }
-
+        etCustomerName.setText(new LoginFacade(CustomerDetailsActivity.this).getUser().getEmp_Name());
+        etCustomerEmail.setText("rajeev.ranjan@rupeeboss.com");
+        etCustomerMobile.setText("9912341234");
     }
 
     private void init_widgets() {
@@ -78,16 +81,19 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         if (v.getId() == R.id.btnGetQuote) {
             //validation
             if (etCustomerName.getText().toString().equals("")) {
-                Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+                etCustomerName.requestFocus();
+                etCustomerName.setError("Invalid NAme");
                 return;
             }
             if (!isValideEmailID(etCustomerEmail)) {
-                Toast.makeText(this, "Invalid Email ID", Toast.LENGTH_SHORT).show();
+                etCustomerName.requestFocus();
+                etCustomerName.setError("Invalid EmailId");
                 return;
             }
 
             if (!isValidePhoneNumber(etCustomerMobile)) {
-                Toast.makeText(this, "Invalid mobile number", Toast.LENGTH_SHORT).show();
+                etCustomerName.requestFocus();
+                etCustomerName.setError("Invalid Mobile Number");
                 return;
             }
 
