@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 /**
  * Created by Nilesh Birhade on 30-05-2017.
@@ -81,6 +80,22 @@ public class DatabaseController implements IDBController {
 
     }
 
+    public List<String> getFuelTypeByModelId(int modelID) {
+        List<String> fuelType = new ArrayList<>();
+
+        List<MasterDataEntity> list = realm.where(MasterDataEntity.class)
+                .equalTo("Model_ID", modelID)
+                .distinct("Fuel_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterDataEntity entity = list.get(i);
+            String variant = entity.getVariant_Name();
+            fuelType.add(variant);
+        }
+
+        return fuelType;
+    }
+
     public int getVariantID(String variantName, String modelName, String makeName) {
         MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName)
                 .equalTo("Variant_Name", variantName)
@@ -126,6 +141,24 @@ public class DatabaseController implements IDBController {
         }
 
         return listCarVariant;
+
+    }
+
+    public List<String> getBikeFuelTypebyModelID(int modelID) {
+
+        List<String> fuelType = new ArrayList<>();
+
+        List<MasterBikeDataEntity> list = realm.where(MasterBikeDataEntity.class)
+                .equalTo("Model_ID", modelID)
+                .distinct("Fuel_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterBikeDataEntity entity = list.get(i);
+            String variant = entity.getVariant_Name();
+            fuelType.add(variant);
+        }
+
+        return fuelType;
 
     }
 
