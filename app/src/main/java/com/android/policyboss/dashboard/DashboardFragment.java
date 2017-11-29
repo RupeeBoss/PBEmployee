@@ -122,14 +122,15 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         final MenuItem menuItem = menu.findItem(R.id.action_notification);
 
-        final List<NotificationMasterEntity>   NotificationLst = realm.where(NotificationMasterEntity.class).findAll();
+ //       final List<NotificationMasterEntity>   NotificationLst = realm.where(NotificationMasterEntity.class).findAll();
 
-            List<NotificationMasterEntity> NotifyLstCount = realm.where(NotificationMasterEntity.class).equalTo("isread", false).findAll();
-            mNotifyItemCount = NotifyLstCount.size();
+//            List<NotificationMasterEntity> NotifyLstCount = realm.where(NotificationMasterEntity.class).equalTo("isread", false).findAll();
+//            mNotifyItemCount = NotifyLstCount.size();
 
             View actionView = MenuItemCompat.getActionView(menuItem);
-            textNotifyItemCount = (TextView) actionView.findViewById(R.id.notify_badge);
-            textNotifyItemCount.setText( ""+ mNotifyItemCount);
+
+//            textNotifyItemCount = (TextView) actionView.findViewById(R.id.notify_badge);
+//            textNotifyItemCount.setText( ""+ mNotifyItemCount);
 
             actionView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,21 +139,21 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     onOptionsItemSelected(menuItem);
 
 
-                    realm.executeTransaction(new Realm.Transaction() {
-                        @Override
-                        public void execute(Realm realm) {
-                            for (NotificationMasterEntity notificationMaster : NotificationLst) {
-                                notificationMaster.setIsread(true);
-                                realm.copyToRealmOrUpdate(notificationMaster);
-                            }
-                        }
-                    });
+//                    realm.executeTransaction(new Realm.Transaction() {
+//                        @Override
+//                        public void execute(Realm realm) {
+//                            for (NotificationMasterEntity notificationMaster : NotificationLst) {
+//                                notificationMaster.setIsread(true);
+//                                realm.copyToRealmOrUpdate(notificationMaster);
+//                            }
+//                        }
+//                    });
 
                 }
             });
 
 
-        setupBadge();
+       // setupBadge();
         return;
     }
 
