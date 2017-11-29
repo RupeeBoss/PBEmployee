@@ -1,7 +1,7 @@
 package com.android.policyboss.bikeinsurance;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -30,6 +30,7 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
     LinearLayout llUnNamed, llLrgalLiability, llNamed, llUnPaidDriverCover;
     Spinner spVoluntaryAccessAmt, spUnNamedPaCover, spNamedPaCover;
     RadioGroup rgAntiTheft, rgllPd, rgpda;
+    CardView cvSecureMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
         llLrgalLiability.setVisibility(View.GONE);
         llNamed.setVisibility(View.GONE);
         llUnPaidDriverCover.setVisibility(View.GONE);
+        cvSecureMore.setVisibility(View.GONE);
     }
 
     private void setCarSpinnerAdapter() {
@@ -83,6 +85,7 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
     }
 
     private void init() {
+        cvSecureMore = (CardView) findViewById(R.id.cvSecureMore);
         btnReCal = (Button) findViewById(R.id.btnReCal);
         rgAntiTheft = (RadioGroup) findViewById(R.id.rgAntiTheft);
         rgllPd = (RadioGroup) findViewById(R.id.rgllPd);

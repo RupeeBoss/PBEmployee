@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.android.policyboss.bikeinsurance.PremiumBikePopUpActivity"
     tools:showIn="@layout/activity_premium_bike_pop_up">
 
 
-
-        <TextView
-            android:id="@+id/lyCustName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/navy_descent"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="4"
-            android:padding="15dp"
-
-            android:text="Premium Break up Details"
-            android:textColor="@color/offer_info_white"
-
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txtPlanName"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:background="@color/blue"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:padding="@dimen/gap"
+        android:text="The New India Assurance Co.Ltd."
+        android:textColor="@color/offer_info_white"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnClose"
-        android:layout_below="@+id/lyCustName"
+        android:layout_height="0dp"
+        android:layout_weight="84"
         android:background="@color/bg_popUp"
         android:scrollbars="none">
 
@@ -38,1173 +35,1032 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="vertical">
 
-
-            <LinearLayout
-                android:id="@+id/llParent1"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_margin="5dp"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
+                    android:id="@+id/llParent1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/bg_popUp"
-                    android:orientation="horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/gap">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="@string/popPremium1_hdr1"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/lbltext"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtPlanName"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        android:text="The New India Assurance Co.Ltd."
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/lbltext"
-                        android:textStyle="bold" />
+                        android:background="@color/bg_popUp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/popPremium1_hdr1"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/lbltext"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/bg_popUpHdr"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                        <TextView
+                            android:id="@+id/lyCustName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:text="The New India Assurance Co.Ltd."
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/lbltext"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/HdrPop1"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="60"
+                        android:background="@color/bg_popUpHdr"
                         android:ellipsize="end"
                         android:gravity="left"
-                        android:maxLines="2"
-                        android:paddingLeft="10dp"
+                        android:maxLines="1"
+                        android:padding="5dp"
                         android:text="@string/popPremium1_title1"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:textColor="@color/text_popUpHdr"
                         android:textStyle="bold" />
 
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_basic"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtBasicOD"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_OD"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtODdiscount"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_NEA"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtNEA"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_EA"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtEA"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_Bi"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtBiFuel"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_Anti"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtAntiTheftDisc"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_Vol"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtVolDisc"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_AAI"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtAAIDisc"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_NCB"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtNCB"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-
-                <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:weightSum="100">-->
-
-
-                <!--<TextView-->
-
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="60"-->
-                <!--android:ellipsize="end"-->
-                <!--android:gravity="left"-->
-                <!--android:maxLines="2"-->
-                <!--android:text="@string/popPremium1_Age"-->
-                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
-                <!--android:textColor="@color/text_edit_color" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/txtAgeDisc"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="40"-->
-                <!--android:ellipsize="end"-->
-                <!--android:gravity="right"-->
-                <!--android:maxLines="2"-->
-                <!--android:paddingRight="5dp"-->
-                <!--android:text="0"-->
-                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
-                <!--android:textColor="@color/text_edit_color" />-->
-
-
-                <!--</LinearLayout>-->
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="5dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:weightSum="100">-->
-
-
-                <!--<TextView-->
-
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="60"-->
-                <!--android:ellipsize="end"-->
-                <!--android:gravity="left"-->
-                <!--android:maxLines="2"-->
-                <!--android:text="@string/popPremium1_Prof"-->
-                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
-                <!--android:textColor="@color/text_edit_color" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/txtProfDisc"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="40"-->
-                <!--android:ellipsize="end"-->
-                <!--android:gravity="right"-->
-                <!--android:maxLines="2"-->
-                <!--android:paddingRight="5dp"-->
-                <!--android:text="0"-->
-                <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
-                <!--android:textColor="@color/text_edit_color" />-->
-
-
-                <!--</LinearLayout>-->
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_Undrewritting"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtUnderWriter"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/bg_popUpTotal"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-
-                    <TextView
-
-                        android:id="@+id/textView3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="60"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="@string/popPremium1_totalOD"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_popUpTotal"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtTotalODPremium"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_popUpTotal"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="@color/background" />-->
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/llParent2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/popPremium2_hdr1"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/lbltext" />
-
-
-                    <TextView
-                        android:id="@+id/txtCarModel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/lbltext"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="IDV:"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/lbltext" />
-
-
-                    <TextView
-                        android:id="@+id/txtIDV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text=""
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/lbltext"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout2body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGrey" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/bg_popUpHdr"
+                        android:layout_marginLeft="10dp"
                         android:orientation="horizontal"
+                        android:padding="5dp"
                         android:weightSum="100">
 
 
                         <TextView
-                            android:id="@+id/txt"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="60"
+                            android:layout_weight="70"
                             android:ellipsize="end"
                             android:gravity="left"
                             android:maxLines="2"
-                            android:paddingLeft="10dp"
+                            android:text="@string/popPremium1_basic"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtBasicOD"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:maxLines="2"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_OD"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtODdiscount"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_NEA"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtNEA"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_EA"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtEA"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_Bi"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtBiFuel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_Anti"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtAntiTheftDisc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_Vol"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtVolDisc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_AAI"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtAAIDisc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_NCB"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtNCB"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_Undrewritting"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+                        <TextView
+                            android:id="@+id/txtUnderWriter"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:maxLines="2"
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_edit_color" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGrey" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bg_popUpTotal"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="100">
+
+
+                        <TextView
+
+                            android:id="@+id/textView3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="@string/popPremium1_totalOD"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_popUpTotal"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtTotalODPremium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:maxLines="2"
+
+                            android:paddingRight="5dp"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_popUpTotal"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:id="@+id/llParent2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/gap">
+
+
+                    <LinearLayout
+                        android:id="@+id/layout2body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/bg_popUpHdr"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="1"
+                            android:padding="5dp"
                             android:text="@string/popPremium2_title1"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                             android:textColor="@color/text_popUpHdr"
                             android:textStyle="bold" />
 
 
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="100">
-
-
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium2_basic"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-                        <TextView
-                            android:id="@+id/txtBasic3rdparty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="100">
-
-
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium2_PA"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-                        <TextView
-                            android:id="@+id/txPACover"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="100">
-
-
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium2_Unnamed"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-                        <TextView
-                            android:id="@+id/txtUnNamedPA"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="100">
-
-
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium2_named"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-                        <TextView
-                            android:id="@+id/txtNamedPA"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="100">
-
-
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium2_PA_paidDriver"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-                        <TextView
-                            android:id="@+id/txtPAcoverPaidDriver"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="100">
-                        <TextView
-
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium2_Legal"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="100">
 
 
-                        <TextView
-                            android:id="@+id/txtLegalLiability"
-                            android:layout_width="0dp"
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium2_basic"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+                            <TextView
+                                android:id="@+id/txtBasic3rdparty"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="100">
 
 
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium2_PA"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+                            <TextView
+                                android:id="@+id/txPACover"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="100">
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium2_Unnamed"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+                            <TextView
+                                android:id="@+id/txtUnNamedPA"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="100">
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium2_named"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+                            <TextView
+                                android:id="@+id/txtNamedPA"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="100">
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium2_PA_paidDriver"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+                            <TextView
+                                android:id="@+id/txtPAcoverPaidDriver"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="100">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium2_Legal"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                            <TextView
+                                android:id="@+id/txtLegalLiability"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+                            android:weightSum="100">
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium2_Bi"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+                            <TextView
+                                android:id="@+id/txtBiFuelKit"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_edit_color" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:background="@color/bg_popUpTotal"
+                            android:orientation="horizontal"
+                            android:padding="5dp"
+
+                            android:weightSum="100">
+
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:ellipsize="end"
+                                android:gravity="left"
+                                android:maxLines="2"
+                                android:text="@string/popPremium1_totalLiab"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_popUpTotal"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txtTotalLiabPrem"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/gap"
+                                android:layout_weight="30"
+                                android:ellipsize="end"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="2"
+                                android:text="0"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/text_popUpTotal"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
                     </LinearLayout>
 
 
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="100">
-
-
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium2_Bi"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-                        <TextView
-                            android:id="@+id/txtBiFuelKit"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_edit_color" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/bg_popUpTotal"
-                        android:orientation="horizontal"
-
-                        android:weightSum="100">
-
-
-                        <TextView
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="60"
-                            android:ellipsize="end"
-                            android:gravity="left"
-                            android:maxLines="2"
-                            android:text="@string/popPremium1_totalLiab"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_popUpTotal"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/txtTotalLiabPrem"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="40"
-                            android:ellipsize="end"
-                            android:gravity="right"
-                            android:maxLines="2"
-                            android:paddingRight="5dp"
-                            android:text="0"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:textColor="@color/text_popUpTotal"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
                 </LinearLayout>
 
+            </android.support.v7.widget.CardView>
 
-            </LinearLayout>
-
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="5dp"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/gap">
 
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="Net Premium:"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
-                    <TextView
-                        android:id="@+id/txtNetPremium"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/popPremium2_hdr1"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/lbltext" />
+
+
+                        <TextView
+                            android:id="@+id/txtCarModel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/lbltext"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color"
-                        android:textStyle="bold" />
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:text="IDV:"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/lbltext" />
 
 
+                        <TextView
+                            android:id="@+id/txtIDV"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="30"
+                            android:gravity="left|center_vertical"
+                            android:text=""
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/lbltext"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/bg_popUpTotal"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="Net Premium"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_popUpTotal"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtNetPremium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:maxLines="2"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_popUpTotal"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bg_popUpTotal"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="70"
+                            android:ellipsize="end"
+                            android:gravity="left"
+                            android:maxLines="2"
+                            android:text="Service Tax / GST (D)"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_popUpTotal"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtServtax"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/gap"
+                            android:layout_weight="30"
+                            android:ellipsize="end"
+                            android:gravity="left|center_vertical"
+                            android:maxLines="2"
+                            android:text="0"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:textColor="@color/text_popUpTotal"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="Service Tax(C):"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color" />
-
-                    <TextView
-                        android:id="@+id/txtServtax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/text_edit_color"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="left"
-                        android:maxLines="2"
-                        android:text="Total Premium(A+B+C):"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                        android:textColor="@color/blue"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txttotalPremium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:ellipsize="end"
-                        android:gravity="right"
-                        android:maxLines="2"
-                        android:paddingRight="5dp"
-                        android:text="0"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/textblue"
-                        android:textStyle="bold" />
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/bg_popUp" />
-
-
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:maxLines="2"
+                android:text="Total Premium(A+B+C+D):"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txttotalPremium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/gap"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:maxLines="2"
+                android:text="0"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/textblue"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 
     <Button
         android:id="@+id/btnClose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_gravity="bottom"
         android:background="@color/red"
         android:text="CLOSE"
-        android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-        android:textColor="@color/offer_info_white" />
+        android:textColor="@color/offer_info_white"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 
-</RelativeLayout>
+</LinearLayout>

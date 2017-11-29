@@ -33,6 +33,7 @@ import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
+import com.android.policyboss.core.response.BikePremiumResponse;
 import com.android.policyboss.core.response.BikeUniqueResponse;
 import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.Constants;
@@ -132,6 +133,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 regplace = cityAdapter.getItem(position).toString();
+                hideKeyBoard(acRegPlace, BikeInsuranceActivity.this);
             }
         });
         /**
@@ -383,9 +385,9 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
-        bikeRequestEntity.setPa_named_passenger_si("0");
-        bikeRequestEntity.setPa_unnamed_passenger_si("0");
-        bikeRequestEntity.setPa_paid_driver_si("0");
+        bikeRequestEntity.setPa_named_passenger_si("");
+        bikeRequestEntity.setPa_unnamed_passenger_si("");
+        bikeRequestEntity.setPa_paid_driver_si("");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
         bikeRequestEntity.setMiddle_name("");
@@ -429,9 +431,9 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
         bikeRequestEntity.setVoluntary_deductible(0);
         bikeRequestEntity.setIs_external_bifuel("no");
         bikeRequestEntity.setPa_owner_driver_si("100000");
-        bikeRequestEntity.setPa_named_passenger_si("0");
-        bikeRequestEntity.setPa_unnamed_passenger_si("0");
-        bikeRequestEntity.setPa_paid_driver_si("0");
+        bikeRequestEntity.setPa_named_passenger_si("");
+        bikeRequestEntity.setPa_unnamed_passenger_si("");
+        bikeRequestEntity.setPa_paid_driver_si("");
         bikeRequestEntity.setVehicle_expected_idv(0);
         bikeRequestEntity.setFirst_name("");
         bikeRequestEntity.setMiddle_name("");

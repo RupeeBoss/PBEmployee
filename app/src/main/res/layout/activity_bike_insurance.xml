@@ -164,7 +164,8 @@
                             android:id="@+id/acBikeVarient"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/car_black"
-                            android:hint="Which Bike You Want to Insure?" />
+                            android:hint="Which Bike You Want to Insure?"
+                            android:lines="1" />
 
                     </android.support.design.widget.TextInputLayout>
 
