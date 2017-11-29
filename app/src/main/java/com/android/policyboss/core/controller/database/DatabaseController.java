@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.MakeMasterEntity;
+import com.android.policyboss.core.models.MasterBikeDataEntity;
+import com.android.policyboss.core.models.MasterDataEntity;
 import com.android.policyboss.core.models.ModelMasterEntity;
 import com.android.policyboss.core.models.VariantMasterEntity;
 import com.android.policyboss.core.models.VehicleMasterEntity;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by Nilesh Birhade on 30-05-2017.
@@ -40,6 +43,101 @@ public class DatabaseController implements IDBController {
 
     }
 
+    //region master car
+    public List<String> getCarMakeModel() {
+        List<String> listCarModel = new ArrayList<>();
+        // List<ModelMasterEntity> listModelMaster = dbController.getMasterModel();
+        List<MasterDataEntity> list = realm.where(MasterDataEntity.class).distinct("Model_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterDataEntity entity = list.get(i);
+            String carModel = entity.getMake_Name() + " , " + entity.getModel_Name();
+            listCarModel.add(carModel);
+        }
+
+        return listCarModel;
+    }
+
+    public int getModelID(String modelName) {
+        MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName).findFirst();
+        return entity.getModel_ID();
+    }
+
+    public List<String> getVariantbyModelID(int modelID) {
+
+        List<String> listCarVariant = new ArrayList<>();
+
+        List<MasterDataEntity> list = realm.where(MasterDataEntity.class)
+                .equalTo("Model_ID", modelID)
+                .distinct("Variant_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterDataEntity entity = list.get(i);
+            String variant = entity.getVariant_Name();
+            listCarVariant.add(variant);
+        }
+
+        return listCarVariant;
+
+    }
+
+    public int getVariantID(String variantName, String modelName, String makeName) {
+        MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName)
+                .equalTo("Variant_Name", variantName)
+                .equalTo("Make_Name", makeName).findFirst();
+
+        return entity.getVariant_ID();
+    }
+
+    //endregion
+
+    //region master Bike
+    public List<String> getBikeMakeModel() {
+        List<String> listCarModel = new ArrayList<>();
+        // List<ModelMasterEntity> listModelMaster = dbController.getMasterModel();
+        List<MasterBikeDataEntity> list = realm.where(MasterBikeDataEntity.class).distinct("Model_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterBikeDataEntity entity = list.get(i);
+            String carModel = entity.getMake_Name() + " , " + entity.getModel_Name();
+            listCarModel.add(carModel);
+        }
+
+        return listCarModel;
+    }
+
+    public int getBikeModelID(String modelName) {
+        MasterBikeDataEntity entity = realm.where(MasterBikeDataEntity.class).equalTo("Model_Name", modelName).findFirst();
+        return entity.getModel_ID();
+    }
+
+    public List<String> getBikeVariantbyModelID(int modelID) {
+
+        List<String> listCarVariant = new ArrayList<>();
+
+        List<MasterBikeDataEntity> list = realm.where(MasterBikeDataEntity.class)
+                .equalTo("Model_ID", modelID)
+                .distinct("Variant_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterBikeDataEntity entity = list.get(i);
+            String variant = entity.getVariant_Name();
+            listCarVariant.add(variant);
+        }
+
+        return listCarVariant;
+
+    }
+
+    public int getBikeVariantID(String variantName, String modelName, String makeName) {
+        MasterBikeDataEntity entity = realm.where(MasterBikeDataEntity.class).equalTo("Model_Name", modelName)
+                .equalTo("Variant_Name", variantName)
+                .equalTo("Make_Name", makeName).findFirst();
+
+        return entity.getVariant_ID();
+    }
+
+    //endregion
 
     //region Addons
 

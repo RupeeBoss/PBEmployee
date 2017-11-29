@@ -11,13 +11,18 @@ import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
+import com.android.policyboss.core.controller.fetchmaster.MasterController;
 import com.android.policyboss.core.controller.variant.VarientMasterController;
+import com.android.policyboss.core.models.MasterDataEntity;
 import com.android.policyboss.core.response.AllMastersResponse;
+import com.android.policyboss.core.response.CarMasterResponse;
 import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.utility.Constants;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.List;
 
 import io.realm.Realm;
 
@@ -38,13 +43,20 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
         subscribeToPushService();
 
         boolean isYesterday = LoginFacade.getDayDifference(Long.parseLong("1497332094000"));
+
+
         //fetch all master tables
         if (Constants.getSharedPreference(this).getBoolean(Constants.SHARED_PREF_ALL_MASTER, true)) {
-            new VarientMasterController(this, realm).getAllMasters(this);
+
+            // new implemented masters
+            new MasterController(this).getCarMaster(this);
+            new MasterController(this).getBikeMaster(this);
             new VarientMasterController(this, realm).getAllCityMasters(this);
+            //delete after dependency removed
+            //new VarientMasterController(this, realm).getAllMasters(this);
 
-            //Delete after login working state
 
+            //Delete after login working
             SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_POLICYBOSS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(Constants.SHARED_PREF_ALL_MASTER, false).commit();
@@ -63,6 +75,8 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }
+
+
     }
 
 
@@ -77,6 +91,13 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
 
                 //  startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
 
+            }
+        }
+
+        if (response instanceof CarMasterResponse) {
+
+            if (((CarMasterResponse) response).getMasterData() != null) {
+                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
             }
         }
     }
@@ -96,11 +117,10 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
     private void subscribeToPushService() {
 
         try {
-            if(FirebaseMessaging.getInstance() !=null ) {
+            if (FirebaseMessaging.getInstance() != null) {
                 FirebaseMessaging.getInstance().subscribeToTopic("policyBoss2");
             }
-        }catch (Exception ex)
-        {
+        } catch (Exception ex) {
             Log.d("FCM ERROR", ex.getMessage().toString());
         }
 

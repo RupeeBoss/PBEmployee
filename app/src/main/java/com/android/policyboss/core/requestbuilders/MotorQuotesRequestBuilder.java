@@ -2,7 +2,11 @@ package com.android.policyboss.core.requestbuilders;
 
 import com.android.policyboss.core.RetroRequestBuilder;
 import com.android.policyboss.core.models.QuoteRequestEntity;
+import com.android.policyboss.core.response.BikeMasterResponse;
+import com.android.policyboss.core.response.CarMasterResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
+
+import java.util.HashMap;
 
 import retrofit.Call;
 import retrofit.http.Body;
@@ -27,6 +31,10 @@ public class MotorQuotesRequestBuilder extends RetroRequestBuilder {
         @POST(SUB_URL + "/GETMotorQuotes")
         Call<MotorQuotesResponse> getQuoteDetails(@Body QuoteRequestEntity body);
 
+        @POST(SUB_URL + "/GetVehicleMasterDetails")
+        Call<CarMasterResponse> getCarMaster(@Body HashMap<String, String> body);
 
+        @POST(SUB_URL + "/GetVehicleMasterDetails")
+        Call<BikeMasterResponse> getBikeMaster(@Body HashMap<String, String> body);
     }
 }

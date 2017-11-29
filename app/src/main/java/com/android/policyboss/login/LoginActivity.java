@@ -13,8 +13,14 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.authentication.AuthenticationController;
+import com.android.policyboss.core.controller.database.DatabaseController;
+import com.android.policyboss.core.models.MasterDataEntity;
 import com.android.policyboss.core.response.LoginResponse;
 import com.android.policyboss.navigationview.HomeActivity;
+
+import java.util.List;
+
+import io.realm.Realm;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
 
@@ -29,7 +35,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initwidgets();
-
+        realm = Realm.getDefaultInstance();
     }
 
     private void initwidgets() {
@@ -64,11 +70,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 //Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
             }
 
-           // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             showDialog();
             new AuthenticationController(this).login(etEmployeeCode.getText().toString(),
                     etPassword.getText().toString(), this);
-             //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
     }
 
@@ -80,6 +86,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             if (response.getStatusNo() == 0) {
                 finish();
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
             } else {
                 Toast.makeText(this, response.getMessage(), Toast.LENGTH_SHORT).show();
             }
