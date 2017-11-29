@@ -1,9 +1,12 @@
 package com.android.policyboss;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import io.realm.Realm;
@@ -55,6 +58,13 @@ public class BaseActivity extends AppCompatActivity {
 
     public void showDialog(String message) {
         dialog = ProgressDialog.show(this, "", message, true);
+    }
+
+    public void hideKeyBoard(View view, Context context) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     public static boolean isValidVehicle(EditText editText) {

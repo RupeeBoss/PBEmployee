@@ -1,7 +1,10 @@
 package com.android.policyboss;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +29,12 @@ public class BaseFragment extends Fragment {
 
     }
 
+    public void hideKeyBoard(View view, Context context) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
     public boolean isValidPan(String Pan) {
 //        String rx = "/[A-Z]{5}[0-9]{4}[A-Z]{1}$/";

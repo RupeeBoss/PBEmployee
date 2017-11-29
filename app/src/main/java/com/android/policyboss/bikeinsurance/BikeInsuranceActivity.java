@@ -33,6 +33,7 @@ import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
+import com.android.policyboss.core.response.BikePremiumResponse;
 import com.android.policyboss.core.response.BikeUniqueResponse;
 import com.android.policyboss.personaldetail.CustomerDetailsActivity;
 import com.android.policyboss.utility.Constants;
@@ -132,6 +133,7 @@ public class BikeInsuranceActivity extends BaseActivity implements IResponseSubc
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 regplace = cityAdapter.getItem(position).toString();
+                hideKeyBoard(acRegPlace, BikeInsuranceActivity.this);
             }
         });
         /**
