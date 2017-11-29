@@ -16,6 +16,9 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Constants {
+
+    public static final String BIKE = "bikeinsurance";
+    public static final String CAR = "carinsurance";
     public static final String QUOTE = "quote";
     public static final String BIKEQUOTE_UNIQUEID = "bike_quote_uniqueid";
     public static final String CARQUOTE_UNIQUEID = "car_quote_uniqueid";
@@ -27,7 +30,7 @@ public class Constants {
     public static final String Bike_QUOTE_PRIMIUM = "Bike_quote_primium";
     public static final String Bike_QUOTE_INSURER = "Bike_quote_insurer";
     public static final String Bike_Summary_ENTITY = "Bike_Summary_entity";
-    public static final String IDV_DATA=         "idv_dta";
+    public static final String IDV_DATA = "idv_dta";
 
     public static final String USER_CREDENTIAL = "login_user";
     public static final String USER_AUTO_LOGOFF = "auto_logoff";
