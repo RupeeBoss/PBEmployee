@@ -2,11 +2,13 @@ package com.android.policyboss.bikeinsurance;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,9 +48,13 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
     public class BikeQuoteItem extends RecyclerView.ViewHolder {
         public TextView txtInsurerName, txtIDV, txtFinalPremium, txtPremiumBreakUp;
         ImageView imgInsurerLogo;
+        LinearLayout llAddon;
+        RecyclerView rvAddOn;
 
         public BikeQuoteItem(View itemView) {
             super(itemView);
+            llAddon = (LinearLayout) itemView.findViewById(R.id.llAddon);
+            rvAddOn = (RecyclerView) itemView.findViewById(R.id.rvAddOn);
             txtInsurerName = (TextView) itemView.findViewById(R.id.txtInsuranceCompName);
             txtIDV = (TextView) itemView.findViewById(R.id.txtIDV);
             txtFinalPremium = (TextView) itemView.findViewById(R.id.txtFinalPremium);
@@ -95,10 +101,19 @@ public class BikeQuoteAdapter extends RecyclerView.Adapter<BikeQuoteAdapter.Bike
             }
         });
 
-        if (responseEntity.getPremium_Breakup().getListAppliedAddons() != null) {
-            if (responseEntity.getPremium_Breakup().getListAppliedAddons().size() != 0) {
-                Toast.makeText(mContext, "Applied " + position, Toast.LENGTH_SHORT).show();
+        if (responseEntity.getListAppliedAddons() != null) {
+            if (responseEntity.getListAppliedAddons().size() != 0) {
+                holder.llAddon.setVisibility(View.VISIBLE);
+                holder.rvAddOn.setHasFixedSize(true);
+                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 2);
+                holder.rvAddOn.setLayoutManager(mLayoutManager);
+                GridAddonAdapter adapter = new GridAddonAdapter(mContext, responseEntity.getListAppliedAddons());
+                holder.rvAddOn.setAdapter(adapter);
+            } else {
+                holder.llAddon.setVisibility(View.GONE);
             }
+        } else {
+            holder.llAddon.setVisibility(View.GONE);
         }
     }
 

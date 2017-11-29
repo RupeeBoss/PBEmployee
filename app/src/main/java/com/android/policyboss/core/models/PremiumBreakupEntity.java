@@ -23,7 +23,7 @@ public class PremiumBreakupEntity implements Parcelable {
     private String service_tax;
     private String final_premium;
 
-    private List<AppliedAddonsPremiumBreakup> listAppliedAddons = new ArrayList<AppliedAddonsPremiumBreakup>();
+
 
     protected PremiumBreakupEntity(Parcel in) {
 
@@ -46,13 +46,7 @@ public class PremiumBreakupEntity implements Parcelable {
         }
     };
 
-    public List<AppliedAddonsPremiumBreakup> getListAppliedAddons() {
-        return listAppliedAddons;
-    }
 
-    public void setListAppliedAddons(List<AppliedAddonsPremiumBreakup> listAppliedAddons) {
-        this.listAppliedAddons = listAppliedAddons;
-    }
 
     public OwnDamageEntity getOwn_damage() {
         return own_damage;
