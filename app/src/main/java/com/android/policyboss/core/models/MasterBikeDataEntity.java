@@ -28,8 +28,15 @@ public class MasterBikeDataEntity extends RealmObject{
         private String Seating_Capacity;
         private int Variant_ID;
         private String Variant_Name;
+    /**
+     * Fuel_Name : Petrol
+     * Product_Id : 1
+     */
 
-        public String getCubic_Capacity() {
+    private String Fuel_Name;
+    private int Product_Id;
+
+    public String getCubic_Capacity() {
             return Cubic_Capacity;
         }
 
@@ -116,4 +123,20 @@ public class MasterBikeDataEntity extends RealmObject{
         public void setVariant_Name(String Variant_Name) {
             this.Variant_Name = Variant_Name;
         }
+
+    public String getFuel_Name() {
+        return Fuel_Name;
     }
+
+    public void setFuel_Name(String Fuel_Name) {
+        this.Fuel_Name = Fuel_Name;
+    }
+
+    public int getProduct_Id() {
+        return Product_Id;
+    }
+
+    public void setProduct_Id(int Product_Id) {
+        this.Product_Id = Product_Id;
+    }
+}

@@ -72,7 +72,7 @@ public class DatabaseController implements IDBController {
 
         for (int i = 0; i < list.size(); i++) {
             MasterDataEntity entity = list.get(i);
-            String variant = entity.getVariant_Name();
+            String variant = entity.getVariant_Name() + " , ( " + entity.getCubic_Capacity() + "CC )";
             listCarVariant.add(variant);
         }
 
@@ -89,7 +89,7 @@ public class DatabaseController implements IDBController {
 
         for (int i = 0; i < list.size(); i++) {
             MasterDataEntity entity = list.get(i);
-            String variant = ""+entity.getFuel_ID();
+            String variant = "" + entity.getFuel_Name();
             fuelType.add(variant);
         }
 
@@ -136,7 +136,7 @@ public class DatabaseController implements IDBController {
 
         for (int i = 0; i < list.size(); i++) {
             MasterBikeDataEntity entity = list.get(i);
-            String variant = entity.getVariant_Name();
+            String variant = entity.getVariant_Name() + " , ( " + entity.getCubic_Capacity() + "CC )";
             listCarVariant.add(variant);
         }
 
@@ -154,7 +154,7 @@ public class DatabaseController implements IDBController {
 
         for (int i = 0; i < list.size(); i++) {
             MasterBikeDataEntity entity = list.get(i);
-            String variant = "" + entity.getFuel_ID();
+            String variant = "" + entity.getFuel_Name();
             fuelType.add(variant);
         }
 
@@ -1994,6 +1994,17 @@ public class DatabaseController implements IDBController {
             }
         }
         return 0;
+    }
+
+
+    public String getCityName(int VehicleCity_Id) {
+        List<VehicleMasterEntity> listVehicleMaster = dbController.getMasterVehicle();
+        for (int i = 0; i < listVehicleMaster.size(); i++) {
+            if (listVehicleMaster.get(i).getVehicleCity_Id() == VehicleCity_Id) {
+                return listVehicleMaster.get(i).getRTO_CodeDiscription();
+            }
+        }
+        return "";
     }
 
     //endregion

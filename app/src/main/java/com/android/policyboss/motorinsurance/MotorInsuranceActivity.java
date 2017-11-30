@@ -2,6 +2,7 @@ package com.android.policyboss.motorinsurance;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.CardView;
@@ -24,7 +25,7 @@ import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
+import com.android.policyboss.carinsurance.FastLaneCarDetails;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
@@ -40,8 +41,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import io.realm.Realm;
-
-import static com.android.policyboss.bikeinsurance.BikeInsuranceActivity.BIKE_INSURENCE;
 
 public class MotorInsuranceActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
     public static final String BIKE_INSURENCE = "BikeInsuranceActivity";
@@ -60,9 +59,9 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     ArrayAdapter<String> makeModelAdapter, varientAdapter, fuelAdapter, cityAdapter;
     DatabaseController databaseController;
     LinearLayout llVarient, llPolicyDetails;
-    int modelId;
+    int modelId = 0, varientId;
     BikeRequestEntity bikeRequestEntity, carRequestEntity;
-    String regplace, bikeVarient;
+    String regplace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +71,16 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         insuranceType = getInsuranceType();
-
+        if (insuranceType.equals("BIKE")) {
+            getSupportActionBar().setTitle("Bike Insurance");
+        } else {
+            getSupportActionBar().setTitle("Car Insurance");
+        }
         initView();
 
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
+
         changeTextLabels();
 
         initializeList();
@@ -128,7 +132,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
                     ArrayAdapter(MotorInsuranceActivity.this, android.R.layout.simple_list_item_1, makeModelList);
             autoCarMakeModel.setAdapter(makeModelAdapter);
 
-            // region  Auto Complete car make
+            // region  Auto Complete bike make
             autoCarMakeModel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -152,6 +156,21 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
 
                 }
             });
+            autoCarMakeModel.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    modelId = 0;
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+
             //endregion
 
         }
@@ -195,8 +214,13 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     private void changeTextLabels() {
         if (insuranceType.equals("CAR")) {
             backdrop.setImageDrawable(getResources().getDrawable(R.drawable.car_images));
+            autoCarMakeModel.setHint("Which car do you drive ?");
         } else {
             backdrop.setImageDrawable(getResources().getDrawable(R.drawable.bike_homepage_banner));
+            tvNew.setText(getResources().getString(R.string.new_bike));
+            tvNew.setPaintFlags(tvNew.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            tvCvHeader.setText(getResources().getString(R.string.which_bike_header));
+            autoCarMakeModel.setHint("Which bike do you drive ?");
         }
     }
 
@@ -325,12 +349,14 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvDontRem:
+                tvNew.setTextColor(getResources().getColor(R.color.cardview_dark_background));
                 tvDontRem.setTextColor(getResources().getColor(R.color.nav_blue));
                 cvMotorDetails.setVisibility(View.VISIBLE);
                 llPolicyDetails.setVisibility(View.GONE);
                 break;
             case R.id.tvNew:
                 tvNew.setTextColor(getResources().getColor(R.color.nav_blue));
+                tvDontRem.setTextColor(getResources().getColor(R.color.cardview_dark_background));
                 cvMotorDetails.setVisibility(View.VISIBLE);
                 llPolicyDetails.setVisibility(View.VISIBLE);
                 break;
@@ -346,24 +372,37 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
 
                 break;
             case R.id.btnCont:
+
+                if (autoCarMakeModel.getVisibility() == View.VISIBLE) {
+                    if (modelId <= 0) {
+                        autoCarMakeModel.requestFocus();
+                        ShowError("Select Model",autoCarMakeModel);
+                        return;
+
+                    }
+                }
+
                 if (insuranceType.equals("BIKE")) {
+                    varientId = databaseController.getBikeVariantID(getVarient(spCarVarient.getSelectedItem().toString()), getModel(autoCarMakeModel.getText().toString()), getMake(autoCarMakeModel.getText().toString()));
                     if (llPolicyDetails.getVisibility() == View.VISIBLE) {// New Bike
                         setInputParametersNewBike();
                         startActivity(new Intent(MotorInsuranceActivity.this, CustomerDetailsActivity.class)
                                 .putExtra(BIKE_INSURENCE, bikeRequestEntity));
                     } else {    //Dont Rem Bike Number
-
+                        bikeRequestEntity.setVehicle_id(varientId);
+                        startActivity(new Intent(this, MotorPolicyDetailsActivity.class).putExtra(Constants.BIKE, bikeRequestEntity));
                     }
                 } else if (insuranceType.equals("CAR")) {
+                    varientId = databaseController.getVariantID(getVarient(spCarVarient.getSelectedItem().toString()), getModel(autoCarMakeModel.getText().toString()), getMake(autoCarMakeModel.getText().toString()));
                     if (llPolicyDetails.getVisibility() == View.VISIBLE) { // New CAR
                         setInputParametersNewCAR();
                         startActivity(new Intent(MotorInsuranceActivity.this, CustomerDetailsActivity.class)
                                 .putExtra(CAR_DETAIL, bikeRequestEntity));
                     } else {   //Dont Rem CAr Number
-
+                        carRequestEntity.setVehicle_id(varientId);
+                        startActivity(new Intent(this, MotorPolicyDetailsActivity.class).putExtra(Constants.CAR, carRequestEntity));
                     }
                 }
-
 
                 break;
 
@@ -396,12 +435,12 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     public void OnSuccess(APIResponse response, String message) {
         if (response instanceof FastLaneResponse) {
             cancelDialog();
-           /* quoteRequestEntity.setNew(false);
-            quoteRequestEntity.setRenew(true);
-            quoteRequestEntity.setDontRem(false);
-            quoteRequestEntity.setRegistrationNumber(etRenewRegNo.getText().toString());
-            startActivity(new Intent(this, FastLaneCarDetails.class).putExtra(Constants.QUOTE, quoteRequestEntity)
-                    .putExtra(FASTLANE_DATA, ((FastLaneResponse) response).getFLResponse()));*/
+            // quoteRequestEntity.setNew(false);
+            // quoteRequestEntity.setRenew(true);
+            //quoteRequestEntity.setDontRem(false);
+            //quoteRequestEntity.setRegistrationNumber(etRenewRegNo.getText().toString());
+            startActivity(new Intent(this, FastLaneCarDetails.class)
+                    .putExtra(Constants.FASTLANE_DATA, ((FastLaneResponse) response).getFLResponse()));
         }
     }
 
@@ -414,6 +453,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
         quoteRequestEntity.setDontRem(true);
         quoteRequestEntity.setRegistrationNumber(etRenewRegNo.getText().toString());
         startActivity(new Intent(this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity));*/
+        tvDontRem.performClick();
     }
 
     public String getModel(String makeModel) {
@@ -427,7 +467,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     }
 
     public String getVarient(String varientWithCC) {
-        String[] parts = varientWithCC.split("-");
+        String[] parts = varientWithCC.split(",");
         return parts[0];
     }
 
@@ -445,7 +485,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     private void setInputParametersNewBike() {
         bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(10);
-        bikeRequestEntity.setVehicle_id(databaseController.getBikeVariantID(spCarVarient.getSelectedItem().toString(), getModel(autoCarMakeModel.getText().toString()), getMake(autoCarMakeModel.getText().toString())));
+        bikeRequestEntity.setVehicle_id(varientId);
         //bikeRequestEntity.setVehicle_id(50372);
         bikeRequestEntity.setRto_id(databaseController.getCityID(regplace));
         bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
@@ -486,7 +526,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     private void setInputParametersNewCAR() {
         bikeRequestEntity.setBirth_date("1992-01-01");
         bikeRequestEntity.setProduct_id(1);
-        bikeRequestEntity.setVehicle_id(databaseController.getVariantID(spCarVarient.getSelectedItem().toString(), getModel(autoCarMakeModel.getText().toString()), getMake(autoCarMakeModel.getText().toString())));
+        bikeRequestEntity.setVehicle_id(varientId);
         bikeRequestEntity.setRto_id(databaseController.getCityID(regplace));
         bikeRequestEntity.setSecret_key(Constants.SECRET_KEY);
         bikeRequestEntity.setClient_key(Constants.CLIENT_KEY);
