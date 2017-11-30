@@ -22,7 +22,11 @@ import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.utility.Constants;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.realm.Realm;
 
@@ -44,6 +48,18 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
 
         boolean isYesterday = LoginFacade.getDayDifference(Long.parseLong("1497332094000"));
 
+//        Date datefirst = null;
+//        Date datelast = null;
+//        String string = "January 2, 2010";
+//        String stringl = "March 4, 2017";
+//        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+//        try {
+//            datefirst = format.parse(string);
+//            datelast = format.parse(stringl);
+//        } catch (Exception e) {
+//
+//        }
+//        int di = getDiffYears(datefirst, datelast);
 
         //fetch all master tables
         if (Constants.getSharedPreference(this).getBoolean(Constants.SHARED_PREF_ALL_MASTER, true)) {

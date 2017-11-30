@@ -1888,7 +1888,8 @@ public class DatabaseController implements IDBController {
         List<String> listFuelType = new ArrayList<>();
         // List<VariantMasterEntity> listVariantMaster = dbController.getMasterVariant();
 
-        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class).equalTo("Model_ID", modelID).distinct("Fuel_Name");
+        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class)
+                .equalTo("Model_ID", modelID).distinct("Fuel_Name");
 
         for (int i = 0; i < list.size(); i++) {
             listFuelType.add(list.get(i).getFuel_Name());
