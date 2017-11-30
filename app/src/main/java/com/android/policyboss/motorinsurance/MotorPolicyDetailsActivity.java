@@ -34,6 +34,7 @@ import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import io.realm.Realm;
 
@@ -231,6 +232,15 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
 
     }
 
+    private int getYearDiffForNCB(String firstDay, String lastDay) {
+        try {
+            return getDiffYears(simpleDateFormat.parse(firstDay), simpleDateFormat.parse(lastDay));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
     // region Date picker
 
@@ -249,8 +259,12 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
                             String currentDay = simpleDateFormat.format(calendar.getTime());
                             etFirstRegDate.setText(currentDay);
                             etManufactYearMonth.setText(currentDay);
+
+
                         }
                     }
+
+
                 });
 
             } else if (view.getId() == R.id.etPolicyExpDate) {
@@ -262,6 +276,8 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
                             calendar.set(year, monthOfYear, dayOfMonth);
                             String currentDay = simpleDateFormat.format(calendar.getTime());
                             etPolicyExpDate.setText(currentDay);
+
+
                         }
                     }
                 });
