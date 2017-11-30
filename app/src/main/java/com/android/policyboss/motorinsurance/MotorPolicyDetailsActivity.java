@@ -23,7 +23,6 @@ import android.widget.TextView;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.CarInsuranceActivity;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
@@ -62,13 +61,17 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        bikeRequestEntity = new BikeRequestEntity();
+        carRequestEntity = new BikeRequestEntity();
         if (getIntent().hasExtra(Constants.BIKE)) {
             fromWhichClass = "BIKE";
+            bikeRequestEntity = getIntent().getParcelableExtra(Constants.BIKE);
         } else if (getIntent().hasExtra(Constants.CAR)) {
             fromWhichClass = "CAR";
+            carRequestEntity = getIntent().getParcelableExtra(Constants.CAR);
         } else if (getIntent().hasExtra(Constants.FASTLANE_DATA)) {
             fromWhichClass = "FASTLANE";
-            fastLaneResponseEntity = getIntent().getParcelableExtra(CarInsuranceActivity.FASTLANE_DATA);
+            fastLaneResponseEntity = getIntent().getParcelableExtra(Constants.FASTLANE_DATA);
         }
         realm = Realm.getDefaultInstance();
         databaseController = new DatabaseController(this, realm);
@@ -77,6 +80,10 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
         bindingAdapters();
         if (fastLaneResponseEntity != null) {
             bindFastLaneData();
+        } else {
+            final Calendar calendar = Calendar.getInstance();
+            String currentDay = simpleDateFormat.format(calendar.getTime());
+            etPolicyExpDate.setText(currentDay);
         }
     }
 
@@ -165,8 +172,6 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
     }
 
     private void initWidgets() {
-        bikeRequestEntity = new BikeRequestEntity();
-        carRequestEntity = new BikeRequestEntity();
         etFirstRegDate = (EditText) findViewById(R.id.etFirstRegDate);
         btnCont = (Button) findViewById(R.id.btnCont);
         etPolicyExpDate = (EditText) findViewById(R.id.etPolicyExpDate);
@@ -194,7 +199,7 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
                     setInputParametersReNewBike();
                     startActivity(new Intent(MotorPolicyDetailsActivity.this, CustomerDetailsActivity.class)
                             .putExtra(BIKE_INSURENCE, bikeRequestEntity));
-                } else if (fromWhichClass.equals("CAR")||fromWhichClass.equals("FASTLANE")) {
+                } else if (fromWhichClass.equals("CAR") || fromWhichClass.equals("FASTLANE")) {
                     setInputParametersReNewCar();
                     startActivity(new Intent(MotorPolicyDetailsActivity.this, CustomerDetailsActivity.class)
                             .putExtra(CAR_DETAIL, carRequestEntity));
