@@ -9,17 +9,19 @@
         <item
             android:id="@+id/nav_autoLead"
             android:icon="@drawable/add_button_white"
-            android:title="Create Lead" />
+            android:title="Create Lead"
+            android:visible="false" />
         <item
-            android:visible="false"
-            android:icon="@drawable/logout"
             android:id="@+id/nav_salesupport"
-            android:title="Sales support" />
+            android:icon="@drawable/logout"
+            android:title="Sales support"
+            android:visible="false" />
 
         <item
             android:id="@+id/nav_register_garaj"
             android:icon="@drawable/health_ins"
-            android:title="Register Garage" />
+            android:title="Register Garage"
+            android:visible="false" />
 
         <item
             android:id="@+id/nav_logout"

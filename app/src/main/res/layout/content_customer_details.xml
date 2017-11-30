@@ -22,6 +22,7 @@
         <EditText
             android:id="@+id/etCustomerName"
             style="@style/EditTextStyle"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:drawableLeft="@drawable/person"
             android:hint="Enter full name" />
     </android.support.design.widget.TextInputLayout>
