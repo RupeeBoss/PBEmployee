@@ -11,6 +11,7 @@ import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.QuoteRequestEntity;
 import com.android.policyboss.core.response.FastLaneResponse;
+import com.android.policyboss.motorinsurance.MotorPolicyDetailsActivity;
 import com.android.policyboss.utility.Constants;
 
 public class FastLaneCarDetails extends BaseActivity implements View.OnClickListener {
@@ -63,10 +64,10 @@ public class FastLaneCarDetails extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCont:
-                quoteRequestEntity.setNew(false);
+               /* quoteRequestEntity.setNew(false);
                 quoteRequestEntity.setRenew(true);
-                quoteRequestEntity.setDontRem(false);
-                startActivity(new Intent(FastLaneCarDetails.this, CarDetailsActivity.class).putExtra(Constants.QUOTE, quoteRequestEntity).putExtra(CarInsuranceActivity.FASTLANE_DATA, fastLaneResponseEntity));
+                quoteRequestEntity.setDontRem(false);*/
+                startActivity(new Intent(FastLaneCarDetails.this, MotorPolicyDetailsActivity.class).putExtra(Constants.FASTLANE_DATA, fastLaneResponseEntity));
                 break;
         }
     }

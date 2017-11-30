@@ -90,7 +90,6 @@
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
-                        android:visibility="gone"
                         android:id="@+id/btnGEtDetails"
                         style="@style/ButtonStyle"
                         android:layout_width="match_parent"
@@ -98,7 +97,8 @@
                         android:layout_margin="@dimen/gap"
                         android:drawableRight="@drawable/ic_stat_arrow_forward"
                         android:paddingRight="@dimen/gap"
-                        android:text="GET CAR DETAILS" />
+                        android:text="GET CAR DETAILS"
+                        android:visibility="gone" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -177,8 +177,7 @@
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/car_black"
                             android:dropDownHeight="wrap_content"
-                            android:dropDownWidth="wrap_content"
-                            android:hint="Which car do you drive ?" />
+                            android:dropDownWidth="wrap_content" />
                     </android.support.design.widget.TextInputLayout>
 
                     <LinearLayout

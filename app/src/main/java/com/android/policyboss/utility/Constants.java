@@ -16,7 +16,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Constants {
-
+    public static final String FASTLANE_DATA = "fastlane_response";
     public static final String BIKE = "bikeinsurance";
     public static final String CAR = "carinsurance";
     public static final String QUOTE = "quote";
@@ -57,7 +57,6 @@ public class Constants {
 
         return arrayListYear;
     }
-
 
 
     public static void hideKeyBoard(View view, Context context) {

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -84,5 +85,8 @@ public class BaseActivity extends AppCompatActivity {
         return !(emailEntered.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailEntered).matches());
     }
 
+    public void ShowError(String message, View view) {
+        Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
+    }
 
 }
