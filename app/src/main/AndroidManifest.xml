@@ -209,6 +209,25 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
             </activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".motorinsurance.MotorInsuranceActivity"
+            android:label="@string/title_activity_motor_insurance"
+            android:parentActivityName=".navigationview.HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.navigationview.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".motorinsurance.MotorPolicyDetailsActivity"
+            android:label="@string/title_activity_motor_policy_details"
+            android:parentActivityName=".motorinsurance.MotorInsuranceActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.policyboss.motorinsurance.MotorInsuranceActivity" />
+        </activity>
     </application>
 
 </manifest>

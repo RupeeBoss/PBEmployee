@@ -25,6 +25,8 @@ import com.android.policyboss.core.models.NotificationMasterEntity;
 import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.notification.NotificationActivity;
+import com.android.policyboss.motorinsurance.MotorInsuranceActivity;
+import com.android.policyboss.utility.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +100,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.txtCarInsurance:
                 txtCarInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
-                startActivity(new Intent(getActivity(), CarInsuranceActivity.class));
+                //startActivity(new Intent(getActivity(), CarInsuranceActivity.class));
+                startActivity(new Intent(getActivity(), MotorInsuranceActivity.class).putExtra(Constants.CAR,"CAR"));
                 break;
             case R.id.txtHealthInsurance:
                 txtHealthInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
@@ -106,7 +109,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 break;
             case R.id.txtBikeInsurance:
                 txtBikeInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
-                startActivity(new Intent(getActivity(), BikeInsuranceActivity.class));
+                //startActivity(new Intent(getActivity(), BikeInsuranceActivity.class));
+                startActivity(new Intent(getActivity(), MotorInsuranceActivity.class).putExtra(Constants.BIKE,"BIKE"));
                 break;
             case R.id.llTravelIns:
                 Toast.makeText(getActivity(), "Coming Soon...", Toast.LENGTH_SHORT).show();

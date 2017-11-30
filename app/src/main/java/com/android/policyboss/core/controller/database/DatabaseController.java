@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 /**
  * Created by Nilesh Birhade on 30-05-2017.
@@ -59,7 +58,7 @@ public class DatabaseController implements IDBController {
     }
 
     public int getModelID(String modelName) {
-        MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName).findFirst();
+        MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName.trim()).findFirst();
         return entity.getModel_ID();
     }
 
@@ -81,10 +80,26 @@ public class DatabaseController implements IDBController {
 
     }
 
+    public List<String> getFuelTypeByModelId(int modelID) {
+        List<String> fuelType = new ArrayList<>();
+
+        List<MasterDataEntity> list = realm.where(MasterDataEntity.class)
+                .equalTo("Model_ID", modelID)
+                .distinct("Fuel_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterDataEntity entity = list.get(i);
+            String variant = ""+entity.getFuel_ID();
+            fuelType.add(variant);
+        }
+
+        return fuelType;
+    }
+
     public int getVariantID(String variantName, String modelName, String makeName) {
-        MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName)
-                .equalTo("Variant_Name", variantName)
-                .equalTo("Make_Name", makeName).findFirst();
+        MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName.trim())
+                .equalTo("Variant_Name", variantName.trim())
+                .equalTo("Make_Name", makeName.trim()).findFirst();
 
         return entity.getVariant_ID();
     }
@@ -107,7 +122,7 @@ public class DatabaseController implements IDBController {
     }
 
     public int getBikeModelID(String modelName) {
-        MasterBikeDataEntity entity = realm.where(MasterBikeDataEntity.class).equalTo("Model_Name", modelName).findFirst();
+        MasterBikeDataEntity entity = realm.where(MasterBikeDataEntity.class).equalTo("Model_Name", modelName.trim()).findFirst();
         return entity.getModel_ID();
     }
 
@@ -129,10 +144,28 @@ public class DatabaseController implements IDBController {
 
     }
 
+    public List<String> getBikeFuelTypebyModelID(int modelID) {
+
+        List<String> fuelType = new ArrayList<>();
+
+        List<MasterBikeDataEntity> list = realm.where(MasterBikeDataEntity.class)
+                .equalTo("Model_ID", modelID)
+                .distinct("Fuel_ID");
+
+        for (int i = 0; i < list.size(); i++) {
+            MasterBikeDataEntity entity = list.get(i);
+            String variant = "" + entity.getFuel_ID();
+            fuelType.add(variant);
+        }
+
+        return fuelType;
+
+    }
+
     public int getBikeVariantID(String variantName, String modelName, String makeName) {
-        MasterBikeDataEntity entity = realm.where(MasterBikeDataEntity.class).equalTo("Model_Name", modelName)
-                .equalTo("Variant_Name", variantName)
-                .equalTo("Make_Name", makeName).findFirst();
+        MasterBikeDataEntity entity = realm.where(MasterBikeDataEntity.class).equalTo("Model_Name", modelName.trim())
+                .equalTo("Variant_Name", variantName.trim())
+                .equalTo("Make_Name", makeName.trim()).findFirst();
 
         return entity.getVariant_ID();
     }

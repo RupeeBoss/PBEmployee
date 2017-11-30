@@ -50,7 +50,11 @@
     <string name="popPremium1_totalLiab">Total Liability Premium(B)</string>
     <string name="dont_rem"><u><i>Don\'t Remember?</i></u></string>
 
-
+    <string name="dont_rem_reg"><u><i>Don\'t Remember Registration number?</i></u></string>
+    <string name="new_car"><u><i>Got a new Car!</i></u></string>
+    <string name="new_bike"><u><i>Got a new Bike!</i></u></string>
+    <string name="which_car_header">Which Car You Want to Insure?</string>
+    <string name="which_bike_header">Which Bike You Want to Insure?</string>
     <string-array name="policy_expiry">
         <item>Today</item>
         <item>Next 45 Days</item>
@@ -205,6 +209,8 @@
     <string name="title_activity_health_quotes">Health Quotes</string>
     <string name="title_activity_health_insurance_quotes">Health Quotes</string>
     <string name="title_activity_notification">Notification</string>
+    <string name="title_activity_motor_insurance">Motor Insurance</string>
+    <string name="title_activity_motor_policy_details">Policy Details</string>
 
 
 </resources>
