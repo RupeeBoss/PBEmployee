@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".splashscreen.SplashScreenActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,13 +43,15 @@
             android:name=".navigationview.HomeActivity"
             android:label="@string/title_activity_navigation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".carinsurance.CarInsuranceActivity"
             android:label="@string/title_activity_car_insurance"
             android:parentActivityName=".navigationview.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
@@ -58,7 +61,8 @@
             android:label="@string/title_activity_renewal_car"
             android:parentActivityName=".carinsurance.CarInsuranceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
@@ -67,18 +71,21 @@
             android:name=".carinsurance.CarVarientDetailsActivity"
             android:label="@string/title_activity_car_varient_details"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".carinsurance.CarAdditionalDetailsActivity"
             android:label="@string/title_activity_car_additional_details"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".carinsurance.CarDetailsActivity"
             android:label="@string/title_activity_car_details"
             android:parentActivityName=".carinsurance.CarInsuranceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
@@ -88,7 +95,8 @@
             android:label="@string/title_activity_fast_lane_car_details"
             android:parentActivityName=".carinsurance.CarInsuranceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
@@ -98,13 +106,15 @@
             android:label="@string/title_activity_pop_up_card_quote"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".carinsurance.CarQuoteGenerate"
             android:label="@string/title_activitycard_quote"
             android:parentActivityName=".carinsurance.CarInsuranceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.carinsurance.CarInsuranceActivity" />
@@ -113,13 +123,15 @@
             android:name=".carinsurance.PremiumPopUpActivity"
             android:label="@string/title_activity_premium_pop_up"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".healthinsurance.HealthInsuranceActivity"
             android:label="@string/title_activity_health_insurance"
             android:parentActivityName=".navigationview.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
@@ -129,7 +141,8 @@
             android:label="@string/title_activity_health_insurance_age_detail"
             android:parentActivityName=".healthinsurance.HealthInsuranceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.healthinsurance.HealthInsuranceActivity" />
@@ -138,23 +151,27 @@
             android:name=".webview.WebViewBuyInsurenceActivity"
             android:label="Buy insurence"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".login.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".personaldetail.CustomerDetailsActivity"
             android:label="@string/title_activity_customer_details"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".bikeinsurance.BikeInsuranceActivity"
             android:label="@string/title_activity_bike_insurance"
             android:parentActivityName=".navigationview.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
@@ -164,18 +181,21 @@
             android:label="@string/title_activity_bike_quote"
             android:parentActivityName=".navigationview.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".premiumbreakup.PremiumBreakupActivity"
             android:label="@string/title_activity_premium_breakup"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme" />
+            android:theme="@style/CustomTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".bikeinsurance.ModifyQuotesActivity"
             android:label="@string/title_activity_modify_quotes"
             android:parentActivityName=".bikeinsurance.BikeQuoteActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme">
+            android:theme="@style/CustomTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.bikeinsurance.BikeQuoteActivity" />
@@ -183,38 +203,43 @@
         <activity
             android:name=".webview.CommonWebViewActivity"
             android:label="@string/title_activity_common_web_view"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".healthinsurance.HealthInsuranceQuotes"
             android:label="@string/title_activity_health_insurance_quotes"
             android:parentActivityName=".personaldetail.CustomerDetailsActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.personaldetail.CustomerDetailsActivity" />
         </activity>
-        android:theme="@style/AppTheme" />
+
         <activity
             android:name=".bikeinsurance.PremiumBikePopUpActivity"
             android:label="@string/title_activity_premium_bike_pop_up"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme" />
+            android:theme="@style/CustomTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
         <activity
             android:name=".notification.NotificationActivity"
             android:label="@string/title_activity_notification"
             android:parentActivityName=".navigationview.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
-            </activity>
-            android:theme="@style/AppTheme" />
+        </activity>
+
         <activity
             android:name=".motorinsurance.MotorInsuranceActivity"
             android:label="@string/title_activity_motor_insurance"
             android:parentActivityName=".navigationview.HomeActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.navigationview.HomeActivity" />
@@ -223,7 +248,8 @@
             android:name=".motorinsurance.MotorPolicyDetailsActivity"
             android:label="@string/title_activity_motor_policy_details"
             android:parentActivityName=".motorinsurance.MotorInsuranceActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.policyboss.motorinsurance.MotorInsuranceActivity" />
