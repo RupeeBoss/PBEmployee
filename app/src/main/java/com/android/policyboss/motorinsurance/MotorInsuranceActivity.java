@@ -376,7 +376,30 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
                 if (autoCarMakeModel.getVisibility() == View.VISIBLE) {
                     if (modelId <= 0) {
                         autoCarMakeModel.requestFocus();
-                        ShowError("Select Model",autoCarMakeModel);
+                        ShowError("Select Model", autoCarMakeModel);
+                        return;
+
+                    }
+                }
+                if (llPolicyDetails.getVisibility() == View.VISIBLE) {
+                    if (etFirstRegDate.getText().toString().equals("")) {
+                        etFirstRegDate.requestFocus();
+                        ShowError("Select First Registration Date", etFirstRegDate);
+                        return;
+                    }
+                }
+                if (llPolicyDetails.getVisibility() == View.VISIBLE) {
+                    if (etManufactYearMonth.getText().toString().equals("")) {
+                        etManufactYearMonth.requestFocus();
+                        ShowError("Select Manufacturing Date", etManufactYearMonth);
+                        return;
+
+                    }
+                }
+                if (llPolicyDetails.getVisibility() == View.VISIBLE) {
+                    if (regplace == null || regplace.equals("")) {
+                        etManufactYearMonth.requestFocus();
+                        ShowError("Select Registration place", etManufactYearMonth);
                         return;
 
                     }

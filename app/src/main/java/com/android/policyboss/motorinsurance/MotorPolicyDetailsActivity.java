@@ -95,6 +95,7 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
             etPolicyExpDate.setText(currentDay);
             etManufactYearMonth.setText(changeDateFormat(fastLaneResponseEntity.getRegistration_Date()));
             acRegPlace.setText(databaseController.getCityName(fastLaneResponseEntity.getVehicleCity_Id()));
+            hideKeyBoard(acRegPlace, this);
         }
     }
 
@@ -195,6 +196,35 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCont:
+
+                if (etFirstRegDate.getText().toString().equals("")) {
+                    etFirstRegDate.requestFocus();
+                    ShowError("Select first registration date", etFirstRegDate);
+                    return;
+                }
+                if (etManufactYearMonth.getText().toString().equals("")) {
+                    etManufactYearMonth.requestFocus();
+                    ShowError("Select manufacturing date", etManufactYearMonth);
+                    return;
+
+                }
+                if (etPolicyExpDate.getText().toString().equals("")) {
+                    etPolicyExpDate.requestFocus();
+                    ShowError("Select policy expiry date", etManufactYearMonth);
+                    return;
+
+                }
+                if (spPrevInsurer.getSelectedItem().toString().contains("Select")) {
+                    etPolicyExpDate.requestFocus();
+                    ShowError("Select previous insurer", etManufactYearMonth);
+                    return;
+                }
+                if (regplace == null || regplace.equals("")) {
+                    etManufactYearMonth.requestFocus();
+                    ShowError("Select Registration place", etManufactYearMonth);
+                    return;
+
+                }
                 if (fromWhichClass.equals("BIKE")) {
                     setInputParametersReNewBike();
                     startActivity(new Intent(MotorPolicyDetailsActivity.this, CustomerDetailsActivity.class)
