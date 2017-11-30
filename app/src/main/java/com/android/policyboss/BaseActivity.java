@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import io.realm.Realm;
 
 /**
@@ -87,6 +91,22 @@ public class BaseActivity extends AppCompatActivity {
 
     public void ShowError(String message, View view) {
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
+    }
+    public int getDiffYears(Date first, Date last) {
+        Calendar a = getCalendar(first);
+        Calendar b = getCalendar(last);
+        int diff = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
+        if (a.get(Calendar.MONTH) > b.get(Calendar.MONTH) ||
+                (a.get(Calendar.MONTH) == b.get(Calendar.MONTH) && a.get(Calendar.DATE) > b.get(Calendar.DATE))) {
+            diff--;
+        }
+        return diff;
+    }
+
+    public static Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.setTime(date);
+        return cal;
     }
 
 }

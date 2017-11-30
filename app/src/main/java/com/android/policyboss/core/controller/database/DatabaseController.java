@@ -89,8 +89,21 @@ public class DatabaseController implements IDBController {
 
         for (int i = 0; i < list.size(); i++) {
             MasterDataEntity entity = list.get(i);
-            String variant = "" + entity.getFuel_Name();
-            fuelType.add(variant);
+            String fuelName = "" + entity.getFuel_Name();
+            fuelType.add(fuelName);
+        }
+
+        boolean isAddExternal = false;
+        for (int i = 0; i < fuelType.size(); i++) {
+            if (fuelType.equals("Petrol")) {
+                isAddExternal = true;
+                break;
+            }
+        }
+
+        if (isAddExternal) {
+            fuelType.add("External Fitted CNG");
+            fuelType.add("External Fitted LPG");
         }
 
         return fuelType;
@@ -1921,7 +1934,8 @@ public class DatabaseController implements IDBController {
         List<String> listFuelType = new ArrayList<>();
         // List<VariantMasterEntity> listVariantMaster = dbController.getMasterVariant();
 
-        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class).equalTo("Model_ID", modelID).distinct("Fuel_Name");
+        List<VariantMasterEntity> list = realm.where(VariantMasterEntity.class)
+                .equalTo("Model_ID", modelID).distinct("Fuel_Name");
 
         for (int i = 0; i < list.size(); i++) {
             listFuelType.add(list.get(i).getFuel_Name());
