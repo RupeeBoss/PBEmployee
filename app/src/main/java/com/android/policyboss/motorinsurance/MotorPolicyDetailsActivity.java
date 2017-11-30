@@ -34,7 +34,6 @@ import com.android.policyboss.utility.DateTimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import io.realm.Realm;
 
@@ -96,6 +95,7 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
             etPolicyExpDate.setText(currentDay);
             etManufactYearMonth.setText(changeDateFormat(fastLaneResponseEntity.getRegistration_Date()));
             acRegPlace.setText(databaseController.getCityName(fastLaneResponseEntity.getVehicleCity_Id()));
+            setNcbAdapter(getYearDiffForNCB(etFirstRegDate.getText().toString(), etPolicyExpDate.getText().toString()));
             hideKeyBoard(acRegPlace, this);
         }
     }
@@ -289,7 +289,8 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
                             String currentDay = simpleDateFormat.format(calendar.getTime());
                             etFirstRegDate.setText(currentDay);
                             etManufactYearMonth.setText(currentDay);
-
+                            int yearDiff = getYearDiffForNCB(currentDay, etPolicyExpDate.getText().toString());
+                            setNcbAdapter(yearDiff);
 
                         }
                     }
@@ -306,8 +307,10 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
                             calendar.set(year, monthOfYear, dayOfMonth);
                             String currentDay = simpleDateFormat.format(calendar.getTime());
                             etPolicyExpDate.setText(currentDay);
-
-
+                            if (etFirstRegDate.getText().toString() != null && !etFirstRegDate.getText().toString().equals("")) {
+                                int yearDiff = getYearDiffForNCB(currentDay, etFirstRegDate.getText().toString());
+                                setNcbAdapter(yearDiff);
+                            }
                         }
                     }
                 });
@@ -345,6 +348,14 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
 
         }
     };
+
+    private void setNcbAdapter(int yearDiff) {
+        if (yearDiff >= 5) {
+            spNcbPercent.setSelection(5);
+        } else {
+            spNcbPercent.setSelection(yearDiff);
+        }
+    }
 
     //endregion
 

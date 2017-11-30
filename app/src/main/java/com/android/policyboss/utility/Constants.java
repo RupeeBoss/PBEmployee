@@ -16,6 +16,8 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Constants {
+    public static final String EXTERNAL_LPG = "External Fitted LPG";
+    public static final String EXTERNAL_CNG = "External Fitted CNG";
     public static final String FASTLANE_DATA = "fastlane_response";
     public static final String BIKE = "bikeinsurance";
     public static final String CAR = "carinsurance";

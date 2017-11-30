@@ -10,6 +10,7 @@ import com.android.policyboss.core.models.MasterDataEntity;
 import com.android.policyboss.core.models.ModelMasterEntity;
 import com.android.policyboss.core.models.VariantMasterEntity;
 import com.android.policyboss.core.models.VehicleMasterEntity;
+import com.android.policyboss.utility.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -95,15 +96,15 @@ public class DatabaseController implements IDBController {
 
         boolean isAddExternal = false;
         for (int i = 0; i < fuelType.size(); i++) {
-            if (fuelType.equals("Petrol")) {
+            if (fuelType.get(i).equals("Petrol")) {
                 isAddExternal = true;
                 break;
             }
         }
 
         if (isAddExternal) {
-            fuelType.add("External Fitted CNG");
-            fuelType.add("External Fitted LPG");
+            fuelType.add(Constants.EXTERNAL_LPG);
+            fuelType.add(Constants.EXTERNAL_CNG);
         }
 
         return fuelType;

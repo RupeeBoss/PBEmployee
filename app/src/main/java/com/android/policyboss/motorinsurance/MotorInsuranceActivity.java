@@ -61,6 +61,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     LinearLayout llVarient, llPolicyDetails;
     int modelId = 0, varientId;
     BikeRequestEntity bikeRequestEntity, carRequestEntity;
+
     String regplace;
 
     @Override
@@ -121,6 +122,24 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
                     varientAdapter = new
                             ArrayAdapter(MotorInsuranceActivity.this, android.R.layout.simple_list_item_1, variantList);
                     spCarVarient.setAdapter(varientAdapter);
+                }
+            });
+
+
+            spCarFuelType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (fuelList.get(position).equals(Constants.EXTERNAL_LPG)
+                            || fuelList.get(position).equals(Constants.EXTERNAL_CNG)) {
+                        tilExternal.setVisibility(View.VISIBLE);
+                    } else {
+                        tilExternal.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    tilExternal.setVisibility(View.GONE);
                 }
             });
             //endregion
@@ -373,6 +392,13 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.btnCont:
 
+                if (tilExternal.getVisibility() == View.VISIBLE) {
+                    if (etExternallyFitted.getText().toString().equals("")) {
+                        etExternallyFitted.requestFocus();
+                        ShowError("Enter value for externally fitted CNG/LPG", etFirstRegDate);
+                        return;
+                    }
+                }
                 if (autoCarMakeModel.getVisibility() == View.VISIBLE) {
                     if (modelId <= 0) {
                         autoCarMakeModel.requestFocus();
