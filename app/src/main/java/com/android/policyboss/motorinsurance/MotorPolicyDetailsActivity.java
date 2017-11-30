@@ -96,7 +96,7 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
             etPolicyExpDate.setText(currentDay);
             etManufactYearMonth.setText(changeDateFormat(fastLaneResponseEntity.getRegistration_Date()));
             acRegPlace.setText(databaseController.getCityName(fastLaneResponseEntity.getVehicleCity_Id()));
-            hideKeyBoard(acRegPlace, this);
+            regplace = acRegPlace.getText().toString();
         }
     }
 
@@ -215,11 +215,13 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
                     return;
 
                 }
-                if (spPrevInsurer.getSelectedItem().toString().contains("Select")) {
+                if (spPrevInsurer.getSelectedItemPosition() == 0) {
                     etPolicyExpDate.requestFocus();
                     ShowError("Select previous insurer", etManufactYearMonth);
                     return;
                 }
+
+
                 if (regplace == null || regplace.equals("")) {
                     etManufactYearMonth.requestFocus();
                     ShowError("Select Registration place", etManufactYearMonth);
