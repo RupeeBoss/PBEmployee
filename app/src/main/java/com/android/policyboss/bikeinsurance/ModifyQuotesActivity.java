@@ -3,6 +3,8 @@ package com.android.policyboss.bikeinsurance;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -50,8 +52,63 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
             getSupportActionBar().setTitle("CAR INSURANCE");
             setCarSpinnerAdapter();
         }
-
+       // addTextWatcher();
     }
+
+    private void addTextWatcher() {
+
+        etElec.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String strEnteredVal = etElec.getText().toString();
+
+                if (!strEnteredVal.equals("")) {
+                    int num = Integer.parseInt(strEnteredVal);
+                    if (num < 25000) {
+                        etElec.setText("" + num);
+                    } else {
+                        etElec.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        etNonElec.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String strEnteredVal = etNonElec.getText().toString();
+
+                if (!strEnteredVal.equals("")) {
+                    int num = Integer.parseInt(strEnteredVal);
+                    if (num < 25000) {
+                        etNonElec.setText("" + num);
+                    } else {
+                        etNonElec.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
 
     private void hideLayouts() {
         tvSecMore.setVisibility(View.GONE);

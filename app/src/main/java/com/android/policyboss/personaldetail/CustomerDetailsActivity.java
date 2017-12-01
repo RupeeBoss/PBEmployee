@@ -62,9 +62,9 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
             fromWhichClass = BikeInsuranceActivity.BIKE_INSURENCE;
             getSupportActionBar().setTitle("BIKE QUOTES");
         }
-        etCustomerName.setText(new LoginFacade(CustomerDetailsActivity.this).getUser().getEmp_Name());
+      /*  etCustomerName.setText(new LoginFacade(CustomerDetailsActivity.this).getUser().getEmp_Name());
         etCustomerEmail.setText("rajeev.ranjan@rupeeboss.com");
-        etCustomerMobile.setText("9912341234");
+        etCustomerMobile.setText("9912341234");*/
     }
 
     private void init_widgets() {

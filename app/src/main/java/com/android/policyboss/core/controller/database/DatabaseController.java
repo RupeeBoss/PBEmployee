@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import io.realm.Realm;
 
@@ -27,7 +28,7 @@ public class DatabaseController implements IDBController {
     Realm realm;
     Context context;
     RealmDatabaseController dbController;
-    HashMap<String, Integer> hashMapInsurence;
+    Map<String, Integer> hashMapInsurence;
     HashMap<String, Integer> hashMapProfession;
     HashMap<String, Integer> hashmapCity;
     HashMap<String, String> hashMapBikeVarient;
@@ -1118,13 +1119,13 @@ public class DatabaseController implements IDBController {
     }
 
     public int getInsurenceID(String insurenceName) {
-        hashMapInsurence = new HashMap<String, Integer>();
+        hashMapInsurence = new TreeMap<String, Integer>();
         MapInsurence();
         return hashMapInsurence.get(insurenceName);
     }
 
     public List<String> getInsurerList() {
-        hashMapInsurence = new HashMap<String, Integer>();
+        hashMapInsurence = new TreeMap<String, Integer>();
         MapInsurence();
         ArrayList<String> insurenceList = new ArrayList<String>(hashMapInsurence.keySet());
         insurenceList.add(0, "Select Prev Insurer");

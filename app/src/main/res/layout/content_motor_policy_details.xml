@@ -115,6 +115,7 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <AutoCompleteTextView
+                            android:maxLines="1"
                             android:id="@+id/acRegPlace"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/place_black"

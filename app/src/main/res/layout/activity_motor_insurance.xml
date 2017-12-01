@@ -80,6 +80,7 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <EditText
+                            android:maxLines="1"
                             android:id="@+id/etRenewRegNo"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/car_black"
@@ -173,6 +174,7 @@
                         app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                         <AutoCompleteTextView
+                            android:maxLines="1"
                             android:id="@+id/autoCarMakeModel"
                             style="@style/EditTextStyle"
                             android:drawableLeft="@drawable/car_black"
@@ -271,6 +273,7 @@
                             app:hintTextAppearance="@style/TextAppearence.TextInputLayout.Blue">
 
                             <AutoCompleteTextView
+                                android:maxLines="1"
                                 android:id="@+id/acRegPlace"
                                 style="@style/EditTextStyle"
                                 android:drawableLeft="@drawable/place_black"
