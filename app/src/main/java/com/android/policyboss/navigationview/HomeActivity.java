@@ -1,5 +1,6 @@
 package com.android.policyboss.navigationview;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -156,13 +158,7 @@ public class HomeActivity extends BaseActivity {
                         break;
 
                     case R.id.nav_logout:
-                        SharedPreferences.Editor editor = Constants.getSharedPreferenceEditor(HomeActivity.this);
-                        editor.remove(Constants.USER_CREDENTIAL);
-                        editor.remove(Constants.USER_AUTO_LOGOFF);
-                        editor.remove(Constants.SHARED_PREF_ALL_MASTER);
-                        editor.commit();
-                        finish();
-                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                        logoutAlert();
                         break;
 
                     default:
@@ -340,5 +336,41 @@ public class HomeActivity extends BaseActivity {
         invalidateOptionsMenu();
     }
 
+    private void logoutAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Exit");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Are you sure you want exit policyboss?");
+
+        // Setting Icon to Dialog
+        // alertDialog.setIcon(R.drawable.delete);
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+                SharedPreferences.Editor editor = Constants.getSharedPreferenceEditor(HomeActivity.this);
+                editor.remove(Constants.USER_CREDENTIAL);
+                editor.remove(Constants.USER_AUTO_LOGOFF);
+                editor.remove(Constants.SHARED_PREF_ALL_MASTER);
+                editor.commit();
+                finish();
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+            }
+        });
+
+        // Setting Negative "NO" Button
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
 
 }

@@ -24,7 +24,8 @@
             style="@style/EditTextStyle"
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:drawableLeft="@drawable/person"
-            android:hint="Enter full name" />
+            android:hint="Enter full name"
+            android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -67,22 +68,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/gap"
-        android:layout_marginRight="@dimen/gap"
-        android:gravity="center"
+        android:layout_margin="@dimen/gap"
+        android:gravity="left"
         android:orientation="horizontal">
 
         <CheckBox
+            android:id="@+id/chk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true" />
 
         <TextView
+            android:id="@+id/txtAgree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I Agree, Terms &amp; Conditions and Privacy Policy."
+            android:text="@string/iagree"
             android:textColor="@color/blue"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/txtTermsCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_and_condition"
+            android:textColor="@color/blue"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/txtPrivacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy_policy"
+            android:textColor="@color/blue"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
     <Button

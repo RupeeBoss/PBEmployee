@@ -2,11 +2,14 @@ package com.android.policyboss.personaldetail;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
@@ -28,6 +31,7 @@ import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity;
 import com.android.policyboss.healthinsurance.HealthInsuranceQuotes;
 import com.android.policyboss.utility.Constants;
+import com.android.policyboss.webview.CommonWebViewActivity;
 
 import static com.android.policyboss.carinsurance.CarDetailsActivity.CAR_DETAIL;
 
@@ -39,6 +43,8 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
     String fromWhichClass = "";
     HealthRequestEntity healthRequestEntity;
     BikeRequestEntity bikeRequestEntity;
+    TextView txtAgree, txtTermsCondition, txtPrivacyPolicy;
+    CheckBox chk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,29 +77,58 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         etCustomerName = (EditText) findViewById(R.id.etCustomerName);
         etCustomerEmail = (EditText) findViewById(R.id.etCustomerEmail);
         etCustomerMobile = (EditText) findViewById(R.id.etCustomerMobile);
+        txtAgree = (TextView) findViewById(R.id.txtAgree);
+        txtTermsCondition = (TextView) findViewById(R.id.txtTermsCondition);
+        txtPrivacyPolicy = (TextView) findViewById(R.id.txtPrivacyPolicy);
         btnGetQuote = (Button) findViewById(R.id.btnGetQuote);
+        chk = (CheckBox) findViewById(R.id.chk);
+
         btnGetQuote.setOnClickListener(this);
+        txtAgree.setOnClickListener(this);
+        txtTermsCondition.setOnClickListener(this);
+        txtPrivacyPolicy.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.btnGetQuote) {
+        if (v.getId() == R.id.txtAgree) {
+
+            startActivity(new Intent(this, CommonWebViewActivity.class)
+                    .putExtra("URL", "http://www.policyboss.com/Home/IAgree")
+                    .putExtra("NAME", "")
+                    .putExtra("TITLE", "I Agree"));
+
+        } else if (v.getId() == R.id.txtTermsCondition) {
+            startActivity(new Intent(this, CommonWebViewActivity.class)
+                    .putExtra("URL", "http://www.policyboss.com/terms-condition")
+                    .putExtra("NAME", "")
+                    .putExtra("TITLE", "Terms And Conditions"));
+
+        } else if (v.getId() == R.id.txtPrivacyPolicy) {
+
+            startActivity(new Intent(this, CommonWebViewActivity.class)
+                    .putExtra("URL", "http://www.policyboss.com/privacy-policy")
+                    .putExtra("NAME", "")
+                    .putExtra("TITLE", "Privacy Policy"));
+
+        } else if (v.getId() == R.id.btnGetQuote) {
             //validation
-            if (etCustomerName.getText().toString().equals("")) {
+            if (etCustomerName.getText().toString().equals("") || etCustomerName.getText().toString().trim().length() == 0) {
                 etCustomerName.requestFocus();
-                etCustomerName.setError("Invalid NAme");
+                etCustomerName.setError("Invalid name");
                 return;
             }
             if (!isValideEmailID(etCustomerEmail)) {
-                etCustomerName.requestFocus();
-                etCustomerName.setError("Invalid EmailId");
+                etCustomerEmail.requestFocus();
+                etCustomerEmail.setError("Invalid email-id");
                 return;
             }
 
             if (!isValidePhoneNumber(etCustomerMobile)) {
-                etCustomerName.requestFocus();
-                etCustomerName.setError("Invalid Mobile Number");
+                etCustomerMobile.requestFocus();
+                etCustomerMobile.setError("Invalid mobile number");
                 return;
             }
 
@@ -145,8 +180,13 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 }
                 bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
                 bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
-                showDialog();
-                new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+
+                if (chk.isChecked()) {
+                    showDialog();
+                    new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+                } else {
+                    ShowError("Please accept terms and condition", chk);
+                }
             }
         }
     }

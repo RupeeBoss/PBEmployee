@@ -52,61 +52,6 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
             getSupportActionBar().setTitle("CAR INSURANCE");
             setCarSpinnerAdapter();
         }
-       // addTextWatcher();
-    }
-
-    private void addTextWatcher() {
-
-        etElec.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String strEnteredVal = etElec.getText().toString();
-
-                if (!strEnteredVal.equals("")) {
-                    int num = Integer.parseInt(strEnteredVal);
-                    if (num < 25000) {
-                        etElec.setText("" + num);
-                    } else {
-                        etElec.setText("");
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        etNonElec.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String strEnteredVal = etNonElec.getText().toString();
-
-                if (!strEnteredVal.equals("")) {
-                    int num = Integer.parseInt(strEnteredVal);
-                    if (num < 25000) {
-                        etNonElec.setText("" + num);
-                    } else {
-                        etNonElec.setText("");
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
 
@@ -175,12 +120,30 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
                     if (spVoluntaryAccessAmt.getSelectedItemPosition() != 0)
                         bikeRequestEntity.setVoluntary_deductible(Integer.parseInt(spVoluntaryAccessAmt.getSelectedItem().toString()));
 
-                    if (!etElec.getText().toString().equals(""))
+                    if (!etElec.getText().toString().equals("")) {
                         bikeRequestEntity.setElectrical_accessory("" + etElec.getText().toString());
+                    }
+
+                    if (etElec.getText().toString().length() != 0) {
+                        if (Integer.parseInt(etElec.getText().toString()) > 25000) {
+                            etElec.setError("Invalid amount below Rs.25000");
+
+                            etElec.setFocusable(true);
+                            return;
+                        }
+                    }
+
 
                     if (!etNonElec.getText().toString().equals(""))
                         bikeRequestEntity.setNon_electrical_accessory("" + etNonElec.getText().toString());
 
+                    if (etNonElec.getText().toString().length() != 0) {
+                        if (Integer.parseInt(etNonElec.getText().toString()) > 25000) {
+                            etNonElec.setError("Invalid amount below Rs.25000");
+                            etElec.setFocusable(true);
+                            return;
+                        }
+                    }
                     if (!etIdv.getText().toString().equals(""))
                         bikeRequestEntity.setVehicle_expected_idv(Integer.parseInt(etIdv.getText().toString()));
                     showDialog();
@@ -200,14 +163,32 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
                     if (spNamedPaCover.getSelectedItemPosition() != 0)
                         carRequestEntity.setPa_named_passenger_si(spNamedPaCover.getSelectedItem().toString());
                     carRequestEntity.setPa_paid_driver_si(rbpda.getText().toString().toLowerCase());
+
                     if (!etElec.getText().toString().equals(""))
                         carRequestEntity.setElectrical_accessory("" + etElec.getText().toString());
+
+                    if (etElec.getText().toString().length() != 0) {
+                        if (Integer.parseInt(etElec.getText().toString()) > 25000) {
+                            etElec.setError("Invalid amount below Rs.25000");
+                            etElec.setFocusable(true);
+                            return;
+                        }
+                    }
 
                     if (!etNonElec.getText().toString().equals(""))
                         carRequestEntity.setNon_electrical_accessory("" + etNonElec.getText().toString());
 
+                    if (etNonElec.getText().toString().length() != 0) {
+                        if (Integer.parseInt(etNonElec.getText().toString()) > 25000) {
+                            etNonElec.setError("Invalid amount below Rs.25000");
+                            etElec.setFocusable(true);
+                            return;
+                        }
+                    }
+
                     if (!etIdv.getText().toString().equals(""))
                         carRequestEntity.setVehicle_expected_idv(Integer.parseInt(etIdv.getText().toString()));
+
                     showDialog();
                     new CarController(this).getCarQuote(carRequestEntity, ModifyQuotesActivity.this);
                 }
@@ -221,12 +202,10 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
         if (response instanceof BikeUniqueResponse) {
             if (getIntent().hasExtra("BIKE")) {
                 finish();
-                /*startActivity(new Intent(this, BikeQuoteActivity.class)
-                        .putExtra("BIKE", bikeRequestEntity));*/
+                setResult(BikeQuoteActivity.BIKE_RESULT);
             } else if (getIntent().hasExtra("CAR")) {
                 finish();
-                /*startActivity(new Intent(this, BikeQuoteActivity.class)
-                        .putExtra("BIKE", carRequestEntity));*/
+                setResult(BikeQuoteActivity.CAR_RESULT);
             }
 
         }

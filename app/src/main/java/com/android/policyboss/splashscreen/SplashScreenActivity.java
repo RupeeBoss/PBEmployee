@@ -99,23 +99,21 @@ public class SplashScreenActivity extends BaseActivity implements IResponseSubcr
     @Override
     public void OnSuccess(APIResponse response, String message) {
 
-        if (response instanceof AllMastersResponse) {
+        if (response instanceof AllMastersResponse || response instanceof CarMasterResponse) {
             if (response.getStatusNo() == 0) {
-
                 finish();
                 startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-
-                //  startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-
             }
         }
 
-        if (response instanceof CarMasterResponse) {
+//        if (response instanceof CarMasterResponse) {
+//
+//            if (((CarMasterResponse) response).getMasterData() != null) {
+//                finish();
+//                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+//            }
+//        }
 
-            if (((CarMasterResponse) response).getMasterData() != null) {
-                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-            }
-        }
     }
 
     @Override

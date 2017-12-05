@@ -55,6 +55,12 @@
     <string name="new_bike"><u><i>Got a new Bike!</i></u></string>
     <string name="which_car_header">Which Car You Want to Insure?</string>
     <string name="which_bike_header">Which Bike You Want to Insure?</string>
+
+    <string name="iagree"><u>I Agree</u></string>
+    <string name="terms_and_condition"><u> Terms &amp; Conditions</u></string>
+    <string name="privacy_policy"><u> and Privacy Policy.</u></string>
+
+
     <string-array name="policy_expiry">
         <item>Today</item>
         <item>Next 45 Days</item>

@@ -2052,6 +2052,11 @@ public class DatabaseController implements IDBController {
         hasMapCarInsuranceImage.put(34, R.drawable.carins34);
         hasMapCarInsuranceImage.put(35, R.drawable.carins35);
 
+        hasMapCarInsuranceImage.put(36, R.drawable.carins35);
+        hasMapCarInsuranceImage.put(37, R.drawable.carins35);
+        hasMapCarInsuranceImage.put(38, R.drawable.carins35);
+        hasMapCarInsuranceImage.put(39, R.drawable.carins35);
+        hasMapCarInsuranceImage.put(40, R.drawable.carins35);
     }
 
     public static int getProfessionalID1(int pic) {

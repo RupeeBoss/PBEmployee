@@ -68,10 +68,13 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
             holder.txtSumAssured.setText("" + getRupeesRound(entity.getSumInsured()));
             holder.txtPolicyTerm.setText("" + entity.getPolicyTermYear());
 
-            Glide.with(mContext)
-                    .load(getProfessionalID1(entity.getInsurerId()))
-                    .into(holder.imgInsuranceCompLogo);
-
+            try {
+                Glide.with(mContext)
+                        .load(getProfessionalID1(entity.getInsurerId()))
+                        .into(holder.imgInsuranceCompLogo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             holder.btnBuyNow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,9 +93,8 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
         return listHealthQuotes.size();
     }
 
-    private long getRound(String strText)
-    {
-        return  Math.round(Double.parseDouble(strText));
+    private long getRound(String strText) {
+        return Math.round(Double.parseDouble(strText));
     }
 
 

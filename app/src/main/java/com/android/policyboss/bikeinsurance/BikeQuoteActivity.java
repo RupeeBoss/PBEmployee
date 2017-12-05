@@ -45,6 +45,9 @@ import io.realm.Realm;
 
 public class BikeQuoteActivity extends BaseActivity implements IResponseSubcriber {
 
+    public static int BIKE_RESULT = 1001;
+    public static int CAR_RESULT = 1002;
+
     BikePremiumResponse bikePremiumResponse;
     RecyclerView bikeQuoteRecycler;
     BikeQuoteAdapter mAdapter;
@@ -72,14 +75,22 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
             public void onClick(View view) {
 
                 if (getIntent().hasExtra("BIKE")) {
-                    bikeRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
-                    startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
-                            .putExtra("BIKE", bikeRequestEntity));
+
+                    if (bikePremiumResponse.getSummary().getPB_CRN() != null
+                            && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
+                        bikeRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
+
+                    startActivityForResult(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
+                            .putExtra("BIKE", bikeRequestEntity), BIKE_RESULT);
+
                 } else if (getIntent().hasExtra("CAR")) {
-                    if (bikePremiumResponse.getSummary().getPB_CRN() != null && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
+
+                    if (bikePremiumResponse.getSummary().getPB_CRN() != null
+                            && !bikePremiumResponse.getSummary().getPB_CRN().equals(""))
                         carRequestEntity.setCrn(Integer.parseInt(bikePremiumResponse.getSummary().getPB_CRN()));
-                    startActivity(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
-                            .putExtra("CAR", carRequestEntity));
+
+                    startActivityForResult(new Intent(BikeQuoteActivity.this, ModifyQuotesActivity.class)
+                            .putExtra("CAR", carRequestEntity), CAR_RESULT);
                 }
             }
         });
@@ -119,6 +130,16 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         } else if (getIntent().hasExtra("CAR")) {
             new CarController(BikeQuoteActivity.this).getCarPremium(this);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BIKE_RESULT) {
+            new BikeController(BikeQuoteActivity.this).getBikePremium(this);
+        } else if (requestCode == CAR_RESULT) {
+            new CarController(BikeQuoteActivity.this).getCarPremium(this);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void initialize() {
@@ -1343,6 +1364,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
     }
 
     //endregion
+
     @Override
     protected void onResume() {
 

@@ -5,12 +5,16 @@ import com.android.policyboss.core.RetroRequestBuilder;
 import com.android.policyboss.core.requestEntity.RegisterGarajRequestEntity;
 import com.android.policyboss.core.response.GarajRegisterResponse;
 import com.android.policyboss.core.response.LoginResponse;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.ResponseBody;
 
 import java.util.HashMap;
 
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
 
 /**
  * Created by Rajeev Ranjan on 24/05/2017.
@@ -30,7 +34,6 @@ public class GarageRequestBuilder extends GarageRetroRequestBuilder {
 
         @POST(SUB_URL + "/CreateGarage")
         Call<GarajRegisterResponse> register(@Body RegisterGarajRequestEntity entity);
-
 
     }
 }
