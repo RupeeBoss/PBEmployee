@@ -2,15 +2,10 @@
     <string name="app_name">Policyboss</string>
     <string name="title_activity_navigation">Policyboss</string>
 
-    <string name="openDrawer">Open navigation drawer</string>
-    <string name="closeDrawer">Close navigation drawer</string>
     <string name="copyright_content">Powered by PolicyBoss.com</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_activity_car_insurance">Car Details</string>
-    <string name="title_activity_renewal_car">Car details</string>
-    <string name="title_activity_car_varient_details">Car Insurance</string>
-    <string name="title_activity_car_additional_details">Car Insurance</string>
-
+    <string name="openDrawer">Open navigation drawer</string>
+    <string name="closeDrawer">Close navigation drawer</string>
     <string name="popUpCard_title1">What is covered?</string>
     <string name="popUpCard_body1">Own damage, third party liability,\nPersonal accident for owner driver.</string>
     <string name="popUpCard_body2">Coverages against riots, fire, theft,\nexplosion. </string>
@@ -48,7 +43,6 @@
     <string name="popPremium2_Legal"> Legal Liability to Paid Driver</string>
     <string name="popPremium2_Bi">Bi Fuel Kit Liability</string>
     <string name="popPremium1_totalLiab">Total Liability Premium(B)</string>
-    <string name="dont_rem"><u><i>Don\'t Remember?</i></u></string>
 
     <string name="dont_rem_reg"><u><i>Don\'t Remember Registration number?</i></u></string>
     <string name="new_car"><u><i>Got a new Car!</i></u></string>
@@ -61,10 +55,6 @@
     <string name="privacy_policy"><u> and Privacy Policy.</u></string>
 
 
-    <string-array name="policy_expiry">
-        <item>Today</item>
-        <item>Next 45 Days</item>
-    </string-array>
     <string-array name="ncb_percent">
         <item>0</item>
         <item>20</item>
@@ -81,13 +71,15 @@
         <item>Multi</item>
     </string-array>
 
-    <string name="title_activity_car_details">Car Details</string>
     <string name="title_activity_fast_lane_car_details">Car Details</string>
     <string name="title_activity_pop_up_card_quote">More details</string>
     <string name="title_activitycard_quote">Car Quote</string>
     <string name="title_activity_premium_pop_up">Premium Break up Details</string>
     <string name="title_activity_health_insurance">Health Insurance</string>
     <string name="title_activity_premium_bike_pop_up">Premium Break up Details</string>
+
+    <!--Health-->
+
 
     <!--Health-->
 
@@ -145,31 +137,21 @@
     </string-array>
 
 
+
+
+
     <string-array name="health_self_type">
         <item>Married</item>
         <item>UnMarried</item>
     </string-array>
     <string name="title_activity_health_insurance_age_detail">Age details</string>
-    <string name="title_activity_health_quote">Health Quotes</string>
     <string name="title_activity_login">Login</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
     <string name="title_activity_customer_details">Customer Details</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_bike_insurance">Bike Insurance </string>
     <string name="title_activity_bike_quote">Bike Insurance</string>
     <string name="title_activity_premium_breakup">Premium Breakup</string>
     <string name="title_activity_modify_quotes">Modify Your Quotes</string>
@@ -211,7 +193,6 @@
         <item>1500</item>
         <item>3000</item>
     </string-array>
-    <string name="title_activity_health_quotes">Health Quotes</string>
     <string name="title_activity_health_insurance_quotes">Health Quotes</string>
     <string name="title_activity_notification">Notification</string>
     <string name="title_activity_motor_insurance">Motor Insurance</string>

@@ -27,6 +27,17 @@ public class FastLaneResponse extends APIResponse {
     }
 
     public static class FLResponseBean implements Parcelable {
+        public static final Parcelable.Creator<FLResponseBean> CREATOR = new Parcelable.Creator<FLResponseBean>() {
+            @Override
+            public FLResponseBean createFromParcel(Parcel source) {
+                return new FLResponseBean(source);
+            }
+
+            @Override
+            public FLResponseBean[] newArray(int size) {
+                return new FLResponseBean[size];
+            }
+        };
         /**
          * Chassis_Number : MEEJSRGW4F4001351
          * Color : A STEEL
@@ -76,6 +87,35 @@ public class FastLaneResponse extends APIResponse {
         private int Variant_Id;
         private String Variant_Name;
         private int VehicleCity_Id;
+
+        public FLResponseBean() {
+        }
+
+        protected FLResponseBean(Parcel in) {
+            this.Chassis_Number = in.readString();
+            this.Color = in.readString();
+            this.Cubic_Capacity = in.readInt();
+            this.Engin_Number = in.readString();
+            this.ErrorMessage = in.readString();
+            this.FastLaneId = in.readInt();
+            this.FastLaneResponseVariable = in.readParcelable(FastLaneResponseVariableBean.class.getClassLoader());
+            this.Fuel_ID = in.readInt();
+            this.Fuel_Type = in.readString();
+            this.Make_ID = in.readInt();
+            this.Make_Name = in.readString();
+            this.Manufacture_Year = in.readString();
+            this.Model_ID = in.readInt();
+            this.Model_Name = in.readString();
+            this.Purchase_Date = in.readString();
+            this.RTO_Code = in.readInt();
+            this.RTO_Name = in.readString();
+            this.Registration_Date = in.readString();
+            this.Registration_Number = in.readString();
+            this.Seating_Capacity = in.readInt();
+            this.Variant_Id = in.readInt();
+            this.Variant_Name = in.readString();
+            this.VehicleCity_Id = in.readInt();
+        }
 
         public String getChassis_Number() {
             return Chassis_Number;
@@ -261,7 +301,50 @@ public class FastLaneResponse extends APIResponse {
             this.VehicleCity_Id = VehicleCity_Id;
         }
 
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.Chassis_Number);
+            dest.writeString(this.Color);
+            dest.writeInt(this.Cubic_Capacity);
+            dest.writeString(this.Engin_Number);
+            dest.writeString(this.ErrorMessage);
+            dest.writeInt(this.FastLaneId);
+            dest.writeParcelable(this.FastLaneResponseVariable, flags);
+            dest.writeInt(this.Fuel_ID);
+            dest.writeString(this.Fuel_Type);
+            dest.writeInt(this.Make_ID);
+            dest.writeString(this.Make_Name);
+            dest.writeString(this.Manufacture_Year);
+            dest.writeInt(this.Model_ID);
+            dest.writeString(this.Model_Name);
+            dest.writeString(this.Purchase_Date);
+            dest.writeInt(this.RTO_Code);
+            dest.writeString(this.RTO_Name);
+            dest.writeString(this.Registration_Date);
+            dest.writeString(this.Registration_Number);
+            dest.writeInt(this.Seating_Capacity);
+            dest.writeInt(this.Variant_Id);
+            dest.writeString(this.Variant_Name);
+            dest.writeInt(this.VehicleCity_Id);
+        }
+
         public static class FastLaneResponseVariableBean implements Parcelable {
+            public static final Creator<FastLaneResponseVariableBean> CREATOR = new Creator<FastLaneResponseVariableBean>() {
+                @Override
+                public FastLaneResponseVariableBean createFromParcel(Parcel source) {
+                    return new FastLaneResponseVariableBean(source);
+                }
+
+                @Override
+                public FastLaneResponseVariableBean[] newArray(int size) {
+                    return new FastLaneResponseVariableBean[size];
+                }
+            };
             /**
              * chasi_no : MEEJSRGW4F4001351
              * color : ASTEEL
@@ -313,6 +396,36 @@ public class FastLaneResponse extends APIResponse {
             private String state_cd;
             private String vehicle_cd;
             private String vh_class_desc;
+
+            public FastLaneResponseVariableBean() {
+            }
+
+            protected FastLaneResponseVariableBean(Parcel in) {
+                this.chasi_no = in.readString();
+                this.color = in.readString();
+                this.cubic_cap = in.readString();
+                this.eng_no = in.readString();
+                this.fla_cubic_cap = in.readString();
+                this.fla_fuel_type_desc = in.readString();
+                this.fla_maker_desc = in.readString();
+                this.fla_model_desc = in.readString();
+                this.fla_seat_cap = in.readString();
+                this.fla_variant = in.readString();
+                this.fla_vh_class_desc = in.readString();
+                this.fuel_type_desc = in.readString();
+                this.maker_desc = in.readString();
+                this.maker_model = in.readString();
+                this.manu_yr = in.readString();
+                this.purchase_dt = in.readString();
+                this.regn_dt = in.readString();
+                this.regn_no = in.readString();
+                this.rto_cd = in.readString();
+                this.rto_name = in.readString();
+                this.seat_cap = in.readString();
+                this.state_cd = in.readString();
+                this.vehicle_cd = in.readString();
+                this.vh_class_desc = in.readString();
+            }
 
             public String getChasi_no() {
                 return chasi_no;
@@ -538,121 +651,6 @@ public class FastLaneResponse extends APIResponse {
                 dest.writeString(this.vehicle_cd);
                 dest.writeString(this.vh_class_desc);
             }
-
-            public FastLaneResponseVariableBean() {
-            }
-
-            protected FastLaneResponseVariableBean(Parcel in) {
-                this.chasi_no = in.readString();
-                this.color = in.readString();
-                this.cubic_cap = in.readString();
-                this.eng_no = in.readString();
-                this.fla_cubic_cap = in.readString();
-                this.fla_fuel_type_desc = in.readString();
-                this.fla_maker_desc = in.readString();
-                this.fla_model_desc = in.readString();
-                this.fla_seat_cap = in.readString();
-                this.fla_variant = in.readString();
-                this.fla_vh_class_desc = in.readString();
-                this.fuel_type_desc = in.readString();
-                this.maker_desc = in.readString();
-                this.maker_model = in.readString();
-                this.manu_yr = in.readString();
-                this.purchase_dt = in.readString();
-                this.regn_dt = in.readString();
-                this.regn_no = in.readString();
-                this.rto_cd = in.readString();
-                this.rto_name = in.readString();
-                this.seat_cap = in.readString();
-                this.state_cd = in.readString();
-                this.vehicle_cd = in.readString();
-                this.vh_class_desc = in.readString();
-            }
-
-            public static final Creator<FastLaneResponseVariableBean> CREATOR = new Creator<FastLaneResponseVariableBean>() {
-                @Override
-                public FastLaneResponseVariableBean createFromParcel(Parcel source) {
-                    return new FastLaneResponseVariableBean(source);
-                }
-
-                @Override
-                public FastLaneResponseVariableBean[] newArray(int size) {
-                    return new FastLaneResponseVariableBean[size];
-                }
-            };
         }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.Chassis_Number);
-            dest.writeString(this.Color);
-            dest.writeInt(this.Cubic_Capacity);
-            dest.writeString(this.Engin_Number);
-            dest.writeString(this.ErrorMessage);
-            dest.writeInt(this.FastLaneId);
-            dest.writeParcelable(this.FastLaneResponseVariable, flags);
-            dest.writeInt(this.Fuel_ID);
-            dest.writeString(this.Fuel_Type);
-            dest.writeInt(this.Make_ID);
-            dest.writeString(this.Make_Name);
-            dest.writeString(this.Manufacture_Year);
-            dest.writeInt(this.Model_ID);
-            dest.writeString(this.Model_Name);
-            dest.writeString(this.Purchase_Date);
-            dest.writeInt(this.RTO_Code);
-            dest.writeString(this.RTO_Name);
-            dest.writeString(this.Registration_Date);
-            dest.writeString(this.Registration_Number);
-            dest.writeInt(this.Seating_Capacity);
-            dest.writeInt(this.Variant_Id);
-            dest.writeString(this.Variant_Name);
-            dest.writeInt(this.VehicleCity_Id);
-        }
-
-        public FLResponseBean() {
-        }
-
-        protected FLResponseBean(Parcel in) {
-            this.Chassis_Number = in.readString();
-            this.Color = in.readString();
-            this.Cubic_Capacity = in.readInt();
-            this.Engin_Number = in.readString();
-            this.ErrorMessage = in.readString();
-            this.FastLaneId = in.readInt();
-            this.FastLaneResponseVariable = in.readParcelable(FastLaneResponseVariableBean.class.getClassLoader());
-            this.Fuel_ID = in.readInt();
-            this.Fuel_Type = in.readString();
-            this.Make_ID = in.readInt();
-            this.Make_Name = in.readString();
-            this.Manufacture_Year = in.readString();
-            this.Model_ID = in.readInt();
-            this.Model_Name = in.readString();
-            this.Purchase_Date = in.readString();
-            this.RTO_Code = in.readInt();
-            this.RTO_Name = in.readString();
-            this.Registration_Date = in.readString();
-            this.Registration_Number = in.readString();
-            this.Seating_Capacity = in.readInt();
-            this.Variant_Id = in.readInt();
-            this.Variant_Name = in.readString();
-            this.VehicleCity_Id = in.readInt();
-        }
-
-        public static final Parcelable.Creator<FLResponseBean> CREATOR = new Parcelable.Creator<FLResponseBean>() {
-            @Override
-            public FLResponseBean createFromParcel(Parcel source) {
-                return new FLResponseBean(source);
-            }
-
-            @Override
-            public FLResponseBean[] newArray(int size) {
-                return new FLResponseBean[size];
-            }
-        };
     }
 }

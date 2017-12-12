@@ -40,27 +40,58 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class CreateLeadFragment extends BaseFragment implements View.OnClickListener, IResponseSubcriber {
-    EditText etPolicyExpire, etName, etMobile, etEmail;
-    TextView txtDrivingLicence, txtInsurance, txtRCbook;
-    Spinner spinnerCollection;
-    Button btnSubmit;
-
     final int INSURANCE = 1001;
     final int DL = 1002;
     final int RC = 1003;
-    LeadDetailRequest leadDetailRequest;
+    EditText etPolicyExpire, etName, etMobile, etEmail;
+    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
 
+        private EditText editText;
+
+        @Override
+        public void onClick(View view) {
+
+            if (view instanceof EditText) {
+                editText = (EditText) view;
+            }
+
+
+            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    if (editText != null) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+
+                        if (editText.getId() == etPolicyExpire.getId()) {
+
+                            try {
+                                java.util.Date _startdate = new java.util.Date(calendar.getTimeInMillis());
+                                etPolicyExpire.setText(new SimpleDateFormat("yyyy-MM-dd").format(_startdate));
+
+                            } catch (Exception io) {
+                                io.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    };
+    TextView txtDrivingLicence, txtInsurance, txtRCbook;
+    Spinner spinnerCollection;
+    Button btnSubmit;
+    LeadDetailRequest leadDetailRequest;
     EditText etState, etRTO, etSeries, etVehicleNumber;
     int EmployeeID;
     SharedPreferences sharedPreferences;
     ProgressDialog dialog;
-
     RadioButton rbPrivateCar, rb3WheelerCar, rbLCV, rb2Wheeler;
+
 
     public CreateLeadFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -217,12 +248,10 @@ public class CreateLeadFragment extends BaseFragment implements View.OnClickList
         }
     }
 
-
     private void openCamera(int type) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, type);
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -252,7 +281,6 @@ public class CreateLeadFragment extends BaseFragment implements View.OnClickList
         }
     }
 
-
     public boolean validateEmail(EditText editText) {
         String email = editText.getText().toString().trim();
         if (email.isEmpty() || !isValidEmail(email)) {
@@ -264,41 +292,6 @@ public class CreateLeadFragment extends BaseFragment implements View.OnClickList
     private boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
-
-    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
-
-        private EditText editText;
-
-        @Override
-        public void onClick(View view) {
-
-            if (view instanceof EditText) {
-                editText = (EditText) view;
-            }
-
-
-            DateTimePicker.showDataPickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    if (editText != null) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(year, monthOfYear, dayOfMonth);
-
-                        if (editText.getId() == etPolicyExpire.getId()) {
-
-                            try {
-                                java.util.Date _startdate = new java.util.Date(calendar.getTimeInMillis());
-                                etPolicyExpire.setText(new SimpleDateFormat("yyyy-MM-dd").format(_startdate));
-
-                            } catch (Exception io) {
-                                io.printStackTrace();
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    };
 
     @Override
     public void OnSuccess(APIResponse response, String message) {

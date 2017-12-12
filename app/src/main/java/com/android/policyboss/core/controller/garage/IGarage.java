@@ -1,7 +1,6 @@
 package com.android.policyboss.core.controller.garage;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.models.LeadDetailRequest;
 import com.android.policyboss.core.requestEntity.RegisterGarajRequestEntity;
 
 /**

@@ -1,24 +1,19 @@
 package com.android.policyboss.notification;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.NotificationMasterEntity;
-import com.google.gson.Gson;
 
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 import io.realm.Sort;
 
 public class NotificationActivity extends AppCompatActivity {
@@ -27,6 +22,7 @@ public class NotificationActivity extends AppCompatActivity {
     RecyclerView rvNotification;
     List<NotificationMasterEntity> NotificationLst;
     NotificationAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +45,12 @@ public class NotificationActivity extends AppCompatActivity {
         NotificationLst = realm.where(NotificationMasterEntity.class).findAllSorted("notifyid", Sort.DESCENDING);
 
 
-        Log.d("NOTIFYLST",NotificationLst.toString());
+        Log.d("NOTIFYLST", NotificationLst.toString());
 
-        if(NotificationLst.size() >0)
-        {
+        if (NotificationLst.size() > 0) {
             mAdapter = new NotificationAdapter(NotificationActivity.this, NotificationLst);
             rvNotification.setAdapter(mAdapter);
-        }
-        else{
+        } else {
             rvNotification.setAdapter(null);
             Snackbar.make(rvNotification, "No Data Available", Snackbar.LENGTH_SHORT).show();
         }

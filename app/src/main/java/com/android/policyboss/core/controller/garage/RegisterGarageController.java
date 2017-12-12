@@ -3,13 +3,9 @@ package com.android.policyboss.core.controller.garage;
 import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.createlead.ICreateLead;
-import com.android.policyboss.core.models.LeadDetailRequest;
 import com.android.policyboss.core.requestEntity.RegisterGarajRequestEntity;
-import com.android.policyboss.core.requestbuilders.CreateLeadRequestBuilder;
 import com.android.policyboss.core.requestbuilders.GarageRequestBuilder;
 import com.android.policyboss.core.response.GarajRegisterResponse;
-import com.android.policyboss.core.response.LeadCreateResponse;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

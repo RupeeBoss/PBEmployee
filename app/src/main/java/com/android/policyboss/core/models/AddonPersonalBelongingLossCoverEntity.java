@@ -8,6 +8,7 @@ public class AddonPersonalBelongingLossCoverEntity {
 
     private double min;
     private double max;
+    private boolean isSelected;
 
     public double getMin() {
         return min;
@@ -24,8 +25,6 @@ public class AddonPersonalBelongingLossCoverEntity {
     public void setMax(double max) {
         this.max = max;
     }
-
-    private boolean isSelected;
 
     public boolean isSelected() {
         return isSelected;

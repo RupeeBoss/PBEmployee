@@ -18,7 +18,7 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
 
     @Override
     public void onTokenRefresh() {
-       // super.onTokenRefresh();
+        // super.onTokenRefresh();
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
 
@@ -43,7 +43,7 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
         editor.putString(Constants.DEVICE_TOKEN, token);
         editor.commit();
 
-        Log.d("TOKEN",token);
+        Log.d("TOKEN", token);
 
     }
 }

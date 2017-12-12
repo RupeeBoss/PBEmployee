@@ -8,8 +8,8 @@ public class MotorQuotesReqEntity {
 
 
     /**
-     * VehicleNo : 
-     * CustomerReferenceID : 
+     * VehicleNo :
+     * CustomerReferenceID :
      * ProductID : 1
      * ExShowRoomPrice : 0
      * ExpectedIDV : 0
@@ -26,9 +26,9 @@ public class MotorQuotesReqEntity {
      * IsClaimInExpiringPolicy : false
      * ApplyAntiTheftDiscount : false
      * ApplyAutomobileAssociationDiscount : false
-     * AutomobileAssociationName : 
-     * AutomobileMembershipExpiryDate : 
-     * AutomobileAssociationMembershipNumber : 
+     * AutomobileAssociationName :
+     * AutomobileMembershipExpiryDate :
+     * AutomobileAssociationMembershipNumber :
      * PaidDriverCover : false
      * OwnerDOB : null
      * Preveious_Insurer_Id : 0
@@ -36,18 +36,18 @@ public class MotorQuotesReqEntity {
      * PolicyExpiryDate : null
      * VehicleRegisteredName : 1
      * Variant_ID : 690
-     * RegistrationNumber : 
-     * PlaceofRegistration : 
+     * RegistrationNumber :
+     * PlaceofRegistration :
      * VehicleType : 1
-     * Existing_CustomerReferenceID : 
+     * Existing_CustomerReferenceID :
      * ContactName : sagar
-     * ContactEmail : 
-     * ContactMobile : 
-     * LandmarkEmployeeCode : 
+     * ContactEmail :
+     * ContactMobile :
+     * LandmarkEmployeeCode :
      * SupportsAgentID : 123
      * SessionID : 59e979ed-dfc7-4d79-9f28-d427a554917e
      * SourceType : APP
-     * InsurerIDArray : 
+     * InsurerIDArray :
      */
 
     private String VehicleNo;

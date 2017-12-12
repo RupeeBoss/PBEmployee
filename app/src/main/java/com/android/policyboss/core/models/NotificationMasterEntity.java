@@ -16,11 +16,12 @@ public class NotificationMasterEntity extends RealmObject {
     private String title;
     private String imgUrl;
     private String date;
-    private  boolean isread;
+    private boolean isread;
 
     public String getImgUrl() {
         return imgUrl;
     }
+
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }

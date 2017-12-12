@@ -7,13 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.models.HealthQuotesEntity;
-import com.android.policyboss.core.models.MototrQuotesEntity;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -31,24 +28,6 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
     public HealthQuotesAdapter(Activity mContext, List<HealthQuotesEntity> quotes) {
         this.mContext = mContext;
         this.listHealthQuotes = quotes;
-    }
-
-    public class QuotesItem extends RecyclerView.ViewHolder {
-
-        ImageView imgInsuranceCompLogo;
-        TextView txtInsuranceCompName, txtTotalPremium, txtPolicyTerm, txtSumAssured;
-        Button btnBuyNow;
-
-        public QuotesItem(View itemView) {
-            super(itemView);
-            imgInsuranceCompLogo = (ImageView) itemView.findViewById(R.id.imgInsuranceCompLogo);
-            txtInsuranceCompName = (TextView) itemView.findViewById(R.id.txtInsuranceCompName);
-            txtTotalPremium = (TextView) itemView.findViewById(R.id.txtTotalPremium);
-            txtPolicyTerm = (TextView) itemView.findViewById(R.id.txtPolicyTerm);
-            txtSumAssured = (TextView) itemView.findViewById(R.id.txtSumAssured);
-            btnBuyNow = (Button) itemView.findViewById(R.id.btnBuyNow);
-
-        }
     }
 
     @Override
@@ -97,10 +76,27 @@ public class HealthQuotesAdapter extends RecyclerView.Adapter<HealthQuotesAdapte
         return Math.round(Double.parseDouble(strText));
     }
 
-
     private String getRupeesRound(double strText)
 
     {
         return "\u20B9 " + Math.round(strText);
+    }
+
+    public class QuotesItem extends RecyclerView.ViewHolder {
+
+        ImageView imgInsuranceCompLogo;
+        TextView txtInsuranceCompName, txtTotalPremium, txtPolicyTerm, txtSumAssured;
+        Button btnBuyNow;
+
+        public QuotesItem(View itemView) {
+            super(itemView);
+            imgInsuranceCompLogo = (ImageView) itemView.findViewById(R.id.imgInsuranceCompLogo);
+            txtInsuranceCompName = (TextView) itemView.findViewById(R.id.txtInsuranceCompName);
+            txtTotalPremium = (TextView) itemView.findViewById(R.id.txtTotalPremium);
+            txtPolicyTerm = (TextView) itemView.findViewById(R.id.txtPolicyTerm);
+            txtSumAssured = (TextView) itemView.findViewById(R.id.txtSumAssured);
+            btnBuyNow = (Button) itemView.findViewById(R.id.btnBuyNow);
+
+        }
     }
 }

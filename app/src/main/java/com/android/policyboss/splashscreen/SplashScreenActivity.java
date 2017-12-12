@@ -13,7 +13,6 @@ import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.fetchmaster.MasterController;
 import com.android.policyboss.core.controller.variant.VarientMasterController;
-import com.android.policyboss.core.models.MasterDataEntity;
 import com.android.policyboss.core.response.AllMastersResponse;
 import com.android.policyboss.core.response.CarMasterResponse;
 import com.android.policyboss.facade.LoginFacade;
@@ -21,12 +20,6 @@ import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.utility.Constants;
 import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import io.realm.Realm;
 

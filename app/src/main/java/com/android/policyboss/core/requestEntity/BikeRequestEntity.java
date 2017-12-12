@@ -12,6 +12,17 @@ import com.android.policyboss.utility.Constants;
 public class BikeRequestEntity implements Parcelable {
 
 
+    public static final Creator<BikeRequestEntity> CREATOR = new Creator<BikeRequestEntity>() {
+        @Override
+        public BikeRequestEntity createFromParcel(Parcel source) {
+            return new BikeRequestEntity(source);
+        }
+
+        @Override
+        public BikeRequestEntity[] newArray(int size) {
+            return new BikeRequestEntity[size];
+        }
+    };
     /**
      * product_id : 10
      * vehicle_id : 50783
@@ -140,6 +151,43 @@ public class BikeRequestEntity implements Parcelable {
         this.ip_address = "";
     }
 
+    protected BikeRequestEntity(Parcel in) {
+        this.product_id = in.readInt();
+        this.vehicle_id = in.readInt();
+        this.rto_id = in.readInt();
+        this.vehicle_insurance_type = in.readString();
+        this.vehicle_manf_date = in.readString();
+        this.vehicle_registration_date = in.readString();
+        this.policy_expiry_date = in.readString();
+        this.prev_insurer_id = in.readString();
+        this.vehicle_registration_type = in.readString();
+        this.vehicle_ncb_current = in.readString();
+        this.is_claim_exists = in.readString();
+        this.method_type = in.readString();
+        this.execution_async = in.readString();
+        this.electrical_accessory = in.readString();
+        this.non_electrical_accessory = in.readString();
+        this.registration_no = in.readString();
+        this.is_llpd = in.readString();
+        this.is_antitheft_fit = in.readString();
+        this.voluntary_deductible = in.readInt();
+        this.is_external_bifuel = in.readString();
+        this.external_bifuel_value = in.readString();
+        this.pa_owner_driver_si = in.readString();
+        this.pa_named_passenger_si = in.readString();
+        this.pa_unnamed_passenger_si = in.readString();
+        this.pa_paid_driver_si = in.readString();
+        this.vehicle_expected_idv = in.readInt();
+        this.first_name = in.readString();
+        this.middle_name = in.readString();
+        this.last_name = in.readString();
+        this.mobile = in.readString();
+        this.email = in.readString();
+        this.crn = in.readInt();
+        this.ip_address = in.readString();
+        this.secret_key = in.readString();
+        this.client_key = in.readString();
+    }
 
     public String getBirth_date() {
         return birth_date;
@@ -429,7 +477,6 @@ public class BikeRequestEntity implements Parcelable {
         this.client_key = client_key;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -473,57 +520,6 @@ public class BikeRequestEntity implements Parcelable {
         dest.writeString(this.secret_key);
         dest.writeString(this.client_key);
     }
-
-
-    protected BikeRequestEntity(Parcel in) {
-        this.product_id = in.readInt();
-        this.vehicle_id = in.readInt();
-        this.rto_id = in.readInt();
-        this.vehicle_insurance_type = in.readString();
-        this.vehicle_manf_date = in.readString();
-        this.vehicle_registration_date = in.readString();
-        this.policy_expiry_date = in.readString();
-        this.prev_insurer_id = in.readString();
-        this.vehicle_registration_type = in.readString();
-        this.vehicle_ncb_current = in.readString();
-        this.is_claim_exists = in.readString();
-        this.method_type = in.readString();
-        this.execution_async = in.readString();
-        this.electrical_accessory = in.readString();
-        this.non_electrical_accessory = in.readString();
-        this.registration_no = in.readString();
-        this.is_llpd = in.readString();
-        this.is_antitheft_fit = in.readString();
-        this.voluntary_deductible = in.readInt();
-        this.is_external_bifuel = in.readString();
-        this.external_bifuel_value = in.readString();
-        this.pa_owner_driver_si = in.readString();
-        this.pa_named_passenger_si = in.readString();
-        this.pa_unnamed_passenger_si = in.readString();
-        this.pa_paid_driver_si = in.readString();
-        this.vehicle_expected_idv = in.readInt();
-        this.first_name = in.readString();
-        this.middle_name = in.readString();
-        this.last_name = in.readString();
-        this.mobile = in.readString();
-        this.email = in.readString();
-        this.crn = in.readInt();
-        this.ip_address = in.readString();
-        this.secret_key = in.readString();
-        this.client_key = in.readString();
-    }
-
-    public static final Creator<BikeRequestEntity> CREATOR = new Creator<BikeRequestEntity>() {
-        @Override
-        public BikeRequestEntity createFromParcel(Parcel source) {
-            return new BikeRequestEntity(source);
-        }
-
-        @Override
-        public BikeRequestEntity[] newArray(int size) {
-            return new BikeRequestEntity[size];
-        }
-    };
 
     public String getIs_aai_member() {
         return is_aai_member;

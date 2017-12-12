@@ -27,6 +27,6 @@ public interface IDBController {
 
     List<String> getFuelType(int modelID);
 
-    int getFuelID(String fuelID,int modelID);
+    int getFuelID(String fuelID, int modelID);
 
 }

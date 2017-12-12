@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.policyboss.bikeinsurance.ModifyQuotesActivity">
+    tools:context="com.android.policyboss.motorinsurance.ModifyQuotesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:visibility="gone"

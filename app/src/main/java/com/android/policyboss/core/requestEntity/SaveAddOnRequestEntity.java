@@ -8,22 +8,6 @@ import com.android.policyboss.utility.Constants;
 
 public class SaveAddOnRequestEntity {
 
-    public SaveAddOnRequestEntity() {
-        this.addon_road_assist_cover = "no";
-        this.addon_engine_protector_cover = "no";
-        this.addon_key_lock_cover = "no";
-        this.addon_consumable_cover = "no";
-        this.addon_zero_dep_cover = "no";
-        this.addon_medical_expense_cover = "no";
-        this.addon_hospital_cash_cover = "no";
-        this.addon_ambulance_charge_cover = "no";
-        this.addon_ncb_protection_cover = "no";
-        this.addon_windshield_cover = "no";
-        this.data_type = "no";
-        this.secret_key = Constants.SECRET_KEY;
-        this.client_key = Constants.CLIENT_KEY;
-    }
-
     /**
      * addon_road_assist_cover : yes
      * addon_engine_protector_cover : yes
@@ -56,6 +40,22 @@ public class SaveAddOnRequestEntity {
     private String search_reference_number;
     private String secret_key;
     private String client_key;
+
+    public SaveAddOnRequestEntity() {
+        this.addon_road_assist_cover = "no";
+        this.addon_engine_protector_cover = "no";
+        this.addon_key_lock_cover = "no";
+        this.addon_consumable_cover = "no";
+        this.addon_zero_dep_cover = "no";
+        this.addon_medical_expense_cover = "no";
+        this.addon_hospital_cash_cover = "no";
+        this.addon_ambulance_charge_cover = "no";
+        this.addon_ncb_protection_cover = "no";
+        this.addon_windshield_cover = "no";
+        this.data_type = "no";
+        this.secret_key = Constants.SECRET_KEY;
+        this.client_key = Constants.CLIENT_KEY;
+    }
 
     public String getAddon_road_assist_cover() {
         return addon_road_assist_cover;

@@ -15,7 +15,6 @@ import android.util.Log;
 import com.android.policyboss.R;
 import com.android.policyboss.core.models.NotificationMasterEntity;
 import com.android.policyboss.login.LoginActivity;
-import com.android.policyboss.navigationview.HomeActivity;
 import com.android.policyboss.notification.NotificationActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -108,7 +107,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Map<String, String> myNotifyData;
 
-        public AddNotification(RemoteMessage remoteMessage){
+        public AddNotification(RemoteMessage remoteMessage) {
 
             this.myNotifyData = remoteMessage.getData();
         }
@@ -137,7 +136,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                });
 
 
-
                 //  remoteMessage.getNotification().getTag()
                 realm.executeTransactionAsync(new Realm.Transaction() {
                     @Override
@@ -162,8 +160,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         }
     }
-
-
 
 
 }

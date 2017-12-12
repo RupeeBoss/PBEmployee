@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.bike.BikeController;
 import com.android.policyboss.core.models.ResponseEntity;
 import com.android.policyboss.core.requestEntity.BikePremiumRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
@@ -30,12 +29,18 @@ import retrofit.Retrofit;
 
 public class CarController implements ICar {
 
-    private static final long SLEEP_DELAY = 6000;// 5 seconds delay.
     public static final long NO_OF_SERVER_HITS = 10;
+    private static final long SLEEP_DELAY = 6000;// 5 seconds delay.
     BikeQuotesRequestBuilder.BikeQuotesNetworkService bikeQuotesNetworkService;
     Context mContext;
     Handler handler;
     IResponseSubcriber iResponseSubcriber;
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            new CarController(mContext).getCarPremium(iResponseSubcriber);
+        }
+    };
 
     public CarController(Context context) {
         bikeQuotesNetworkService = new BikeQuotesRequestBuilder().getService();
@@ -76,13 +81,6 @@ public class CarController implements ICar {
             }
         });
     }
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            new CarController(mContext).getCarPremium(iResponseSubcriber);
-        }
-    };
 
     @Override
     public void getCarPremium(final IResponseSubcriber iResponseSubcriber) {

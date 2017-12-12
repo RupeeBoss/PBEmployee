@@ -1,7 +1,6 @@
 package com.android.policyboss.core.requestbuilders;
 
 import com.android.policyboss.core.RetroRequestBuilder;
-import com.android.policyboss.core.response.FastLaneResponse;
 import com.android.policyboss.core.response.LoginResponse;
 
 import java.util.HashMap;

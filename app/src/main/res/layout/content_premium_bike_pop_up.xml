@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.android.policyboss.bikeinsurance.PremiumBikePopUpActivity"
+    tools:context="com.android.policyboss.motorinsurance.PremiumBikePopUpActivity"
     tools:showIn="@layout/activity_premium_bike_pop_up">
 
 

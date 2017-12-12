@@ -18,7 +18,6 @@ import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.garage.RegisterGarageController;
 import com.android.policyboss.core.requestEntity.RegisterGarajRequestEntity;
 import com.android.policyboss.core.response.GarajRegisterResponse;
-import com.android.policyboss.facade.LoginFacade;
 
 /**
  * A simple {@link Fragment} subclass.

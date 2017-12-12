@@ -8,6 +8,7 @@ public class AddonLosstimeProtectionCoverEntity {
 
     private double min;
     private double max;
+    private boolean isSelected;
 
     public double getMin() {
         return min;
@@ -24,8 +25,6 @@ public class AddonLosstimeProtectionCoverEntity {
     public void setMax(double max) {
         this.max = max;
     }
-
-    private boolean isSelected;
 
     public boolean isSelected() {
         return isSelected;

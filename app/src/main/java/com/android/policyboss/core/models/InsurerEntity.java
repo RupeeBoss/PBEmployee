@@ -3,7 +3,18 @@ package com.android.policyboss.core.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class InsurerEntity implements Parcelable{
+public class InsurerEntity implements Parcelable {
+    public static final Creator<InsurerEntity> CREATOR = new Creator<InsurerEntity>() {
+        @Override
+        public InsurerEntity createFromParcel(Parcel in) {
+            return new InsurerEntity(in);
+        }
+
+        @Override
+        public InsurerEntity[] newArray(int size) {
+            return new InsurerEntity[size];
+        }
+    };
     /**
      * _id : 58be94835f761783caf9408d
      * Insurer_ID : 12
@@ -37,18 +48,6 @@ public class InsurerEntity implements Parcelable{
         Insurer_Code = in.readString();
         Insurer_Logo_Name_Mobile = in.readString();
     }
-
-    public static final Creator<InsurerEntity> CREATOR = new Creator<InsurerEntity>() {
-        @Override
-        public InsurerEntity createFromParcel(Parcel in) {
-            return new InsurerEntity(in);
-        }
-
-        @Override
-        public InsurerEntity[] newArray(int size) {
-            return new InsurerEntity[size];
-        }
-    };
 
     public String get_id() {
         return _id;

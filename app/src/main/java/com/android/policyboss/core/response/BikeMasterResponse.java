@@ -2,7 +2,6 @@ package com.android.policyboss.core.response;
 
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.models.MasterBikeDataEntity;
-import com.android.policyboss.core.models.MasterDataEntity;
 
 import java.util.List;
 

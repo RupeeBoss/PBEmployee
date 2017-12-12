@@ -8,5 +8,5 @@ import com.android.policyboss.core.models.LeadDetailRequest;
  */
 
 public interface ICreateLead {
-     void getLead(LeadDetailRequest leadDetailRequest, IResponseSubcriber iResponseSubcriber);
+    void getLead(LeadDetailRequest leadDetailRequest, IResponseSubcriber iResponseSubcriber);
 }

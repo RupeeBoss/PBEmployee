@@ -13,12 +13,8 @@ import com.android.policyboss.R;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.authentication.AuthenticationController;
-import com.android.policyboss.core.controller.database.DatabaseController;
-import com.android.policyboss.core.models.MasterDataEntity;
 import com.android.policyboss.core.response.LoginResponse;
 import com.android.policyboss.navigationview.HomeActivity;
-
-import java.util.List;
 
 import io.realm.Realm;
 

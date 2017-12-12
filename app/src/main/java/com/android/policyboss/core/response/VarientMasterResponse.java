@@ -3,7 +3,6 @@ package com.android.policyboss.core.response;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.models.VariantMasterEntity;
 
-
 import java.util.List;
 
 /**

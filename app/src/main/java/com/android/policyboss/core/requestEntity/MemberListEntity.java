@@ -4,6 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class MemberListEntity implements Parcelable {
+    public static final Parcelable.Creator<MemberListEntity> CREATOR = new Parcelable.Creator<MemberListEntity>() {
+        @Override
+        public MemberListEntity createFromParcel(Parcel source) {
+            return new MemberListEntity(source);
+        }
+
+        @Override
+        public MemberListEntity[] newArray(int size) {
+            return new MemberListEntity[size];
+        }
+    };
     /**
      * MemberDOB : 01-01-1989
      * MemberGender : M
@@ -18,6 +29,18 @@ public class MemberListEntity implements Parcelable {
     private String MemberType;
     private String MemberTypeID;
     private String MemberRelation;
+
+    public MemberListEntity() {
+    }
+
+    protected MemberListEntity(Parcel in) {
+        this.MemberDOB = in.readString();
+        this.MemberGender = in.readString();
+        this.MemberNumber = in.readString();
+        this.MemberType = in.readString();
+        this.MemberTypeID = in.readString();
+        this.MemberRelation = in.readString();
+    }
 
     /**
      * MemberNumber : 1
@@ -66,7 +89,6 @@ public class MemberListEntity implements Parcelable {
         this.MemberTypeID = MemberTypeID;
     }
 
-
     public String getMemberRelation() {
         return MemberRelation;
     }
@@ -89,28 +111,4 @@ public class MemberListEntity implements Parcelable {
         dest.writeString(this.MemberTypeID);
         dest.writeString(this.MemberRelation);
     }
-
-    public MemberListEntity() {
-    }
-
-    protected MemberListEntity(Parcel in) {
-        this.MemberDOB = in.readString();
-        this.MemberGender = in.readString();
-        this.MemberNumber = in.readString();
-        this.MemberType = in.readString();
-        this.MemberTypeID = in.readString();
-        this.MemberRelation = in.readString();
-    }
-
-    public static final Parcelable.Creator<MemberListEntity> CREATOR = new Parcelable.Creator<MemberListEntity>() {
-        @Override
-        public MemberListEntity createFromParcel(Parcel source) {
-            return new MemberListEntity(source);
-        }
-
-        @Override
-        public MemberListEntity[] newArray(int size) {
-            return new MemberListEntity[size];
-        }
-    };
 }

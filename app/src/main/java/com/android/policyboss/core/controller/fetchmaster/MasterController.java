@@ -6,14 +6,12 @@ import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.requestbuilders.MotorQuotesRequestBuilder;
 import com.android.policyboss.core.response.BikeMasterResponse;
 import com.android.policyboss.core.response.CarMasterResponse;
-import com.android.policyboss.facade.LoginFacade;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
-import io.realm.Realm;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;

@@ -14,8 +14,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import static com.android.policyboss.core.controller.database.DatabaseController.getProfessionalID1;
-
 /**
  * Created by IN-RB on 26-11-2017.
  */
@@ -30,20 +28,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         NotificationLst = notificationLst;
     }
 
-    public class NotificationItem extends RecyclerView.ViewHolder
-    {
-        public TextView txtTitle , txtMessage,txtDate;
-        public ImageView ivNotify;
-        public NotificationItem(View itemView) {
-            super(itemView);
-            txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
-            txtMessage = (TextView)itemView.findViewById(R.id.txtMessage);
-            txtDate = (TextView)itemView.findViewById(R.id.txtDate);
-            ivNotify = (ImageView) itemView.findViewById(R.id.ivNotify);
-        }
-    }
-
-
     @Override
     public NotificationAdapter.NotificationItem onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -56,18 +40,30 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(NotificationItem holder, int position) {
 
         final NotificationMasterEntity notificationEntity = NotificationLst.get(position);
-        holder.txtTitle.setText( "" +notificationEntity.getTitle());
-        holder.txtMessage.setText( "" +notificationEntity.getMessage());
-        holder.txtDate.setText( "" +notificationEntity.getDate());
+        holder.txtTitle.setText("" + notificationEntity.getTitle());
+        holder.txtMessage.setText("" + notificationEntity.getMessage());
+        holder.txtDate.setText("" + notificationEntity.getDate());
         Glide.with(mContext)
                 .load(notificationEntity.getImgUrl())
                 .into(holder.ivNotify);
 
     }
 
-
     @Override
     public int getItemCount() {
         return NotificationLst.size();
+    }
+
+    public class NotificationItem extends RecyclerView.ViewHolder {
+        public TextView txtTitle, txtMessage, txtDate;
+        public ImageView ivNotify;
+
+        public NotificationItem(View itemView) {
+            super(itemView);
+            txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
+            txtMessage = (TextView) itemView.findViewById(R.id.txtMessage);
+            txtDate = (TextView) itemView.findViewById(R.id.txtDate);
+            ivNotify = (ImageView) itemView.findViewById(R.id.ivNotify);
+        }
     }
 }

@@ -4,6 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class HealthQuotesEntity implements Parcelable {
+    public static final Parcelable.Creator<HealthQuotesEntity> CREATOR = new Parcelable.Creator<HealthQuotesEntity>() {
+        @Override
+        public HealthQuotesEntity createFromParcel(Parcel source) {
+            return new HealthQuotesEntity(source);
+        }
+
+        @Override
+        public HealthQuotesEntity[] newArray(int size) {
+            return new HealthQuotesEntity[size];
+        }
+    };
     /**
      * BroucherDownloadLink : /
      * CustomerReferenceID : 53313
@@ -53,6 +64,35 @@ public class HealthQuotesEntity implements Parcelable {
     private String QuoteStatus;
     private double ServiceTax;
     private double SumInsured;
+
+    public HealthQuotesEntity() {
+    }
+
+    protected HealthQuotesEntity(Parcel in) {
+        this.BroucherDownloadLink = in.readString();
+        this.CustomerReferenceID = in.readInt();
+        this.Deductible_Amount = in.readString();
+        this.Discount = in.readDouble();
+        this.DiscountPercent = in.readString();
+        this.GrossPremium = in.readDouble();
+        this.Group_name = in.readString();
+        this.InsurerId = in.readInt();
+        this.InsurerLogoName = in.readString();
+        this.InsurerName = in.readString();
+        this.IsOnlinePayment = in.readByte() != 0;
+        this.KeyFeatures = in.readString();
+        this.NetPremium = in.readDouble();
+        this.OtherPlanID = in.readString();
+        this.PlanID = in.readInt();
+        this.PlanName = in.readString();
+        this.PolicyTermYear = in.readInt();
+        this.Premium = in.readString();
+        this.ProposerPageUrl = in.readString();
+        this.QuoteId = in.readInt();
+        this.QuoteStatus = in.readString();
+        this.ServiceTax = in.readDouble();
+        this.SumInsured = in.readDouble();
+    }
 
     public String getBroucherDownloadLink() {
         return BroucherDownloadLink;
@@ -269,45 +309,4 @@ public class HealthQuotesEntity implements Parcelable {
         dest.writeDouble(this.ServiceTax);
         dest.writeDouble(this.SumInsured);
     }
-
-    public HealthQuotesEntity() {
-    }
-
-    protected HealthQuotesEntity(Parcel in) {
-        this.BroucherDownloadLink = in.readString();
-        this.CustomerReferenceID = in.readInt();
-        this.Deductible_Amount = in.readString();
-        this.Discount = in.readDouble();
-        this.DiscountPercent = in.readString();
-        this.GrossPremium = in.readDouble();
-        this.Group_name = in.readString();
-        this.InsurerId = in.readInt();
-        this.InsurerLogoName = in.readString();
-        this.InsurerName = in.readString();
-        this.IsOnlinePayment = in.readByte() != 0;
-        this.KeyFeatures = in.readString();
-        this.NetPremium = in.readDouble();
-        this.OtherPlanID = in.readString();
-        this.PlanID = in.readInt();
-        this.PlanName = in.readString();
-        this.PolicyTermYear = in.readInt();
-        this.Premium = in.readString();
-        this.ProposerPageUrl = in.readString();
-        this.QuoteId = in.readInt();
-        this.QuoteStatus = in.readString();
-        this.ServiceTax = in.readDouble();
-        this.SumInsured = in.readDouble();
-    }
-
-    public static final Parcelable.Creator<HealthQuotesEntity> CREATOR = new Parcelable.Creator<HealthQuotesEntity>() {
-        @Override
-        public HealthQuotesEntity createFromParcel(Parcel source) {
-            return new HealthQuotesEntity(source);
-        }
-
-        @Override
-        public HealthQuotesEntity[] newArray(int size) {
-            return new HealthQuotesEntity[size];
-        }
-    };
 }

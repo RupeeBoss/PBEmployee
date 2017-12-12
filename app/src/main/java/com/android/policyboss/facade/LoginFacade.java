@@ -24,6 +24,28 @@ public class LoginFacade {
         mContext = context;
     }
 
+    public static boolean getDayDifference(long storedDate) {
+        try {
+
+            SimpleDateFormat dates = new SimpleDateFormat("MM/dd/yyyy");
+
+            Date storeDate = dates.parse(dates.format(new Date(storedDate)));
+            Date currentDate = new Date();
+            //Comparing dates
+            long difference = Math.abs(currentDate.getTime() - storeDate.getTime());
+            long differenceDates = difference / (24 * 60 * 60 * 1000);
+
+            if (differenceDates > 0)
+                return true;
+            else
+                return false;
+
+        } catch (Exception exception) {
+
+        }
+        return false;
+    }
+
     public void storeUserCredentials(UserEntity entity) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(Constants.SHARED_PREFERENCE_POLICYBOSS, mContext.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -56,27 +78,5 @@ public class LoginFacade {
 
         return null;
 
-    }
-
-    public static boolean getDayDifference(long storedDate) {
-        try {
-
-            SimpleDateFormat dates = new SimpleDateFormat("MM/dd/yyyy");
-
-            Date storeDate = dates.parse(dates.format(new Date(storedDate)));
-            Date currentDate = new Date();
-            //Comparing dates
-            long difference = Math.abs(currentDate.getTime() - storeDate.getTime());
-            long differenceDates = difference / (24 * 60 * 60 * 1000);
-
-            if (differenceDates > 0)
-                return true;
-            else
-                return false;
-
-        } catch (Exception exception) {
-
-        }
-        return false;
     }
 }

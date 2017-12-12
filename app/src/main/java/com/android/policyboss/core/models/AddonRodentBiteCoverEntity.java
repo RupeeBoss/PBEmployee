@@ -8,6 +8,7 @@ public class AddonRodentBiteCoverEntity {
 
     private double min;
     private double max;
+    private boolean isSelected;
 
     public double getMin() {
         return min;
@@ -24,8 +25,6 @@ public class AddonRodentBiteCoverEntity {
     public void setMax(double max) {
         this.max = max;
     }
-
-    private boolean isSelected;
 
     public boolean isSelected() {
         return isSelected;

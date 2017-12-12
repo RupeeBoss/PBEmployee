@@ -1,7 +1,6 @@
 package com.android.policyboss.core.controller.bike;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.requestEntity.BikePremiumRequestEntity;
 import com.android.policyboss.core.requestEntity.BikeRequestEntity;
 import com.android.policyboss.core.requestEntity.SaveAddOnRequestEntity;
 
@@ -15,5 +14,5 @@ public interface IBike {
 
     void getBikePremium(IResponseSubcriber iResponseSubcriber);
 
-    void saveAddOn(SaveAddOnRequestEntity saveAddOnRequestEntity,IResponseSubcriber iResponseSubcriber);
+    void saveAddOn(SaveAddOnRequestEntity saveAddOnRequestEntity, IResponseSubcriber iResponseSubcriber);
 }

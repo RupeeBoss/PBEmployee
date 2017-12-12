@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.FastLaneCarDetails;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.database.DatabaseController;
@@ -48,6 +47,60 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     String insuranceType;
     ImageView backdrop;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(final View view) {
+            Constants.hideKeyBoard(view, MotorInsuranceActivity.this);
+
+            if (view.getId() == R.id.etFirstRegDate) {
+                DateTimePicker.firstRegNewDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
+                            etFirstRegDate.setText(currentDay);
+                            etManufactYearMonth.setText(currentDay);
+                        }
+                    }
+                });
+
+            } else if (view.getId() == R.id.etManufactYearMonth) {
+                if (etFirstRegDate.getText().toString().equals("") || etFirstRegDate.getText().toString() == null) {
+                    DateTimePicker.firstRegNewDatePicker(view.getContext(),
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                                    if (view1.isShown()) {
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.set(year, monthOfYear, dayOfMonth);
+                                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                                        etManufactYearMonth.setText(currentDay);
+                                    }
+
+                                }
+                            });
+                } else {
+                    DateTimePicker.manufactDatePicker(view.getContext(), getYear(etFirstRegDate.getText().toString()), getMonth(etFirstRegDate.getText().toString()), getDate(etFirstRegDate.getText().toString()),
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                                    if (view1.isShown()) {
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.set(year, monthOfYear, dayOfMonth);
+                                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                                        etManufactYearMonth.setText(currentDay);
+                                    }
+
+                                }
+                            });
+                }
+
+            }
+
+        }
+    };
     AutoCompleteTextView autoCarMakeModel, acRegPlace;
     EditText etRenewRegNo, etExternallyFitted, etFirstRegDate, etManufactYearMonth;
     Button btnGEtDetails, btnCont;
@@ -61,8 +114,28 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
     LinearLayout llVarient, llPolicyDetails;
     int modelId = 0, varientId;
     BikeRequestEntity bikeRequestEntity, carRequestEntity;
-
     String regplace;
+    TextWatcher renewtextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (s.length() == 10) {
+
+                Constants.hideKeyBoard(backdrop, MotorInsuranceActivity.this);
+                showDialog();
+                new FastlaneController(MotorInsuranceActivity.this).getCarDetails(s.toString(), MotorInsuranceActivity.this);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -243,6 +316,8 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
         }
     }
 
+    // region Date picker
+
     private void initView() {
         bikeRequestEntity = new BikeRequestEntity();
         carRequestEntity = new BikeRequestEntity();
@@ -271,6 +346,8 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
 
     }
 
+    //endregion
+
     private void setListeners() {
         etManufactYearMonth.setOnClickListener(datePickerDialog);
         etFirstRegDate.setOnClickListener(datePickerDialog);
@@ -280,65 +357,6 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
         tvNew.setOnClickListener(this);
         etRenewRegNo.addTextChangedListener(renewtextWatcher);
     }
-
-    // region Date picker
-
-    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
-        @Override
-        public void onClick(final View view) {
-            Constants.hideKeyBoard(view, MotorInsuranceActivity.this);
-
-            if (view.getId() == R.id.etFirstRegDate) {
-                DateTimePicker.firstRegNewDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                        if (view1.isShown()) {
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(year, monthOfYear, dayOfMonth);
-                            String currentDay = simpleDateFormat.format(calendar.getTime());
-                            etFirstRegDate.setText(currentDay);
-                            etManufactYearMonth.setText(currentDay);
-                        }
-                    }
-                });
-
-            } else if (view.getId() == R.id.etManufactYearMonth) {
-                if (etFirstRegDate.getText().toString().equals("") || etFirstRegDate.getText().toString() == null) {
-                    DateTimePicker.firstRegNewDatePicker(view.getContext(),
-                            new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                                    if (view1.isShown()) {
-                                        Calendar calendar = Calendar.getInstance();
-                                        calendar.set(year, monthOfYear, dayOfMonth);
-                                        String currentDay = simpleDateFormat.format(calendar.getTime());
-                                        etManufactYearMonth.setText(currentDay);
-                                    }
-
-                                }
-                            });
-                } else {
-                    DateTimePicker.manufactDatePicker(view.getContext(), getYear(etFirstRegDate.getText().toString()), getMonth(etFirstRegDate.getText().toString()), getDate(etFirstRegDate.getText().toString()),
-                            new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                                    if (view1.isShown()) {
-                                        Calendar calendar = Calendar.getInstance();
-                                        calendar.set(year, monthOfYear, dayOfMonth);
-                                        String currentDay = simpleDateFormat.format(calendar.getTime());
-                                        etManufactYearMonth.setText(currentDay);
-                                    }
-
-                                }
-                            });
-                }
-
-            }
-
-        }
-    };
-
-    //endregion
 
     public String getInsuranceType() {
         if (getIntent().hasExtra(Constants.CAR)) {
@@ -457,28 +475,6 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
 
         }
     }
-
-    TextWatcher renewtextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s.length() == 10) {
-
-                Constants.hideKeyBoard(backdrop, MotorInsuranceActivity.this);
-                showDialog();
-                new FastlaneController(MotorInsuranceActivity.this).getCarDetails(s.toString(), MotorInsuranceActivity.this);
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
 
     @Override
     public void OnSuccess(APIResponse response, String message) {

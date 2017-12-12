@@ -22,13 +22,12 @@ import retrofit.Retrofit;
 public class MotorQuoteController implements IMotorquote {
 
 
-
     MotorQuotesRequestBuilder.MotorQuotesNetworkService motorQuotesNetworkService;
     Context mContext;
 
 
     public MotorQuoteController(Context mContext) {
-        motorQuotesNetworkService = new  MotorQuotesRequestBuilder().getService();
+        motorQuotesNetworkService = new MotorQuotesRequestBuilder().getService();
         this.mContext = mContext;
     }
 

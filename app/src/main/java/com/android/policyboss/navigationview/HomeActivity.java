@@ -29,7 +29,6 @@ import com.android.policyboss.createlead.CreateLeadFragment;
 import com.android.policyboss.dashboard.DashboardFragment;
 import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.garaj.RegisterGarageFragment;
-import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
 import com.android.policyboss.login.LoginActivity;
 import com.android.policyboss.salessupport.SalesSupportFragment;
 import com.android.policyboss.utility.Constants;
@@ -38,29 +37,23 @@ import io.realm.Realm;
 
 public class HomeActivity extends BaseActivity {
 
-    private NavigationView navigationView;
-    private DrawerLayout drawer;
-    private View navHeader;
-    boolean doubleBackToExitPressedOnce = false;
-    private Handler mHandler;
-
-    // index to identify current nav menu item
-    public static int navItemIndex = 0;
-
-    // flag to load home fragment when user presses back key
-    private boolean shouldLoadHomeFragOnBackPress = true;
-
     // tags used to attach the fragments
     private static final String TAG_HOME = "Dashboard";
     private static final String TAG_CREATE_LEAD = "Create Lead";
     private static final String TAG_SALES_SUPPORT = "Sales support";
     private static final String TAG_REGISTER_GARAJ = "Register Garage";
-
-    private Toolbar toolbar;
-
+    // index to identify current nav menu item
+    public static int navItemIndex = 0;
     //set current selected fragment TAG
     public static String CURRENT_TAG = TAG_HOME;
-
+    boolean doubleBackToExitPressedOnce = false;
+    private NavigationView navigationView;
+    private DrawerLayout drawer;
+    private View navHeader;
+    private Handler mHandler;
+    // flag to load home fragment when user presses back key
+    private boolean shouldLoadHomeFragOnBackPress = true;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

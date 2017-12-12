@@ -3,7 +3,6 @@ package com.android.policyboss.core.controller.fetchmaster;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.android.policyboss.core.models.MakeMasterEntity;
 import com.android.policyboss.core.models.MasterDataEntity;
 
 import java.util.List;

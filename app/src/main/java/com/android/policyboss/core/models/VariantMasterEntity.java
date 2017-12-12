@@ -2,7 +2,7 @@ package com.android.policyboss.core.models;
 
 import io.realm.RealmObject;
 
-public class VariantMasterEntity extends RealmObject{
+public class VariantMasterEntity extends RealmObject {
 
     /**
      * Cubic_Capacity : 150

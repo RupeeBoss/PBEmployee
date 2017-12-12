@@ -19,20 +19,15 @@ import android.widget.Toast;
 
 import com.android.policyboss.BaseFragment;
 import com.android.policyboss.R;
-import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
-import com.android.policyboss.carinsurance.CarInsuranceActivity;
-import com.android.policyboss.core.models.NotificationMasterEntity;
 import com.android.policyboss.healthinsurance.HealthInsuranceActivity;
-import com.android.policyboss.navigationview.HomeActivity;
-import com.android.policyboss.notification.NotificationActivity;
 import com.android.policyboss.motorinsurance.MotorInsuranceActivity;
+import com.android.policyboss.notification.NotificationActivity;
 import com.android.policyboss.utility.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmQuery;
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.DrawableBanner;
 import ss.com.bannerslider.views.BannerSlider;
@@ -42,8 +37,8 @@ import ss.com.bannerslider.views.BannerSlider;
  */
 public class DashboardFragment extends BaseFragment implements View.OnClickListener {
 
-    LinearLayout txtCarInsurance, txtHealthInsurance, txtBikeInsurance, llTravelIns;
     public Realm realm;
+    LinearLayout txtCarInsurance, txtHealthInsurance, txtBikeInsurance, llTravelIns;
     TextView textNotifyItemCount;
     int mNotifyItemCount = 0;
 
@@ -101,7 +96,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             case R.id.txtCarInsurance:
                 txtCarInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
                 //startActivity(new Intent(getActivity(), CarInsuranceActivity.class));
-                startActivity(new Intent(getActivity(), MotorInsuranceActivity.class).putExtra(Constants.CAR,"CAR"));
+                startActivity(new Intent(getActivity(), MotorInsuranceActivity.class).putExtra(Constants.CAR, "CAR"));
                 break;
             case R.id.txtHealthInsurance:
                 txtHealthInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
@@ -110,7 +105,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             case R.id.txtBikeInsurance:
                 txtBikeInsurance.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.image_click));
                 //startActivity(new Intent(getActivity(), BikeInsuranceActivity.class));
-                startActivity(new Intent(getActivity(), MotorInsuranceActivity.class).putExtra(Constants.BIKE,"BIKE"));
+                startActivity(new Intent(getActivity(), MotorInsuranceActivity.class).putExtra(Constants.BIKE, "BIKE"));
                 break;
             case R.id.llTravelIns:
                 Toast.makeText(getActivity(), "Coming Soon...", Toast.LENGTH_SHORT).show();
@@ -126,21 +121,21 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         final MenuItem menuItem = menu.findItem(R.id.action_notification);
 
- //       final List<NotificationMasterEntity>   NotificationLst = realm.where(NotificationMasterEntity.class).findAll();
+        //       final List<NotificationMasterEntity>   NotificationLst = realm.where(NotificationMasterEntity.class).findAll();
 
 //            List<NotificationMasterEntity> NotifyLstCount = realm.where(NotificationMasterEntity.class).equalTo("isread", false).findAll();
 //            mNotifyItemCount = NotifyLstCount.size();
 
-            View actionView = MenuItemCompat.getActionView(menuItem);
+        View actionView = MenuItemCompat.getActionView(menuItem);
 
 //            textNotifyItemCount = (TextView) actionView.findViewById(R.id.notify_badge);
 //            textNotifyItemCount.setText( ""+ mNotifyItemCount);
 
-            actionView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    onOptionsItemSelected(menuItem);
+                onOptionsItemSelected(menuItem);
 
 
 //                    realm.executeTransaction(new Realm.Transaction() {
@@ -153,11 +148,11 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 //                        }
 //                    });
 
-                }
-            });
+            }
+        });
 
 
-       // setupBadge();
+        // setupBadge();
         return;
     }
 
@@ -168,7 +163,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         switch (item.getItemId()) {
 
             case R.id.action_notification:
-
 
 
                 intent = new Intent(getActivity(), NotificationActivity.class);

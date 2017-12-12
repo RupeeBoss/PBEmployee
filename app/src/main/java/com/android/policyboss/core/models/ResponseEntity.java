@@ -1,7 +1,6 @@
 package com.android.policyboss.core.models;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -44,6 +43,23 @@ public class ResponseEntity {
 
     //added by Nilesh : Require for applied premium tracking
     private List<AppliedAddonsPremiumBreakup> listAppliedAddons = new ArrayList<AppliedAddonsPremiumBreakup>();
+    private AddonEntity Addon_List;
+
+    protected ResponseEntity(Parcel in) {
+        Premium_Breakup = (PremiumBreakupEntity) in.readParcelable(PremiumBreakupEntity.class.getClassLoader());
+        Insurer = (InsurerEntity) in.readParcelable(InsurerEntity.class.getClassLoader());
+        Service_Log_Id = in.readString();
+        Service_Log_Unique_Id = in.readString();
+        Insurer_Transaction_Identifier = in.readString();
+        Error_Code = in.readString();
+        Created_On = in.readString();
+        Product_Id = in.readString();
+        Insurer_Id = in.readString();
+        StatusX = in.readString();
+        Plan_Id = in.readString();
+        Plan_Name = in.readString();
+        Call_Execution_Time = in.readString();
+    }
 
     /**
      * Service_Log_Id : 105851
@@ -65,25 +81,6 @@ public class ResponseEntity {
     public void setListAppliedAddons(List<AppliedAddonsPremiumBreakup> listAppliedAddons) {
         this.listAppliedAddons = listAppliedAddons;
     }
-
-    private AddonEntity Addon_List;
-
-    protected ResponseEntity(Parcel in) {
-        Premium_Breakup = (PremiumBreakupEntity) in.readParcelable(PremiumBreakupEntity.class.getClassLoader());
-        Insurer = (InsurerEntity) in.readParcelable(InsurerEntity.class.getClassLoader());
-        Service_Log_Id = in.readString();
-        Service_Log_Unique_Id = in.readString();
-        Insurer_Transaction_Identifier = in.readString();
-        Error_Code = in.readString();
-        Created_On = in.readString();
-        Product_Id = in.readString();
-        Insurer_Id = in.readString();
-        StatusX = in.readString();
-        Plan_Id = in.readString();
-        Plan_Name = in.readString();
-        Call_Execution_Time = in.readString();
-    }
-
 
     public AddonEntity getAddon_List() {
         return Addon_List;

@@ -37,6 +37,12 @@ public class BikeController implements IBike {
     Context mContext;
     Handler handler;
     IResponseSubcriber iResponseSubcriber;
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            new BikeController(mContext).getBikePremium(iResponseSubcriber);
+        }
+    };
 
     public BikeController(Context context) {
         bikeQuotesNetworkService = new BikeQuotesRequestBuilder().getService();
@@ -80,13 +86,6 @@ public class BikeController implements IBike {
             }
         });
     }
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            new BikeController(mContext).getBikePremium(iResponseSubcriber);
-        }
-    };
 
     @Override
     public void getBikePremium(final IResponseSubcriber iResponseSubcriber) {

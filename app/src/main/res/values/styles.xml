@@ -14,22 +14,9 @@
     </style>
 
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="Widget.CardContent" parent="android:Widget">
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:paddingTop">24dp</item>
-        <item name="android:paddingBottom">24dp</item>
-        <item name="android:orientation">vertical</item>
-    </style>
 
 
     <style name="TextAppearence.TextInputLayout.Blue" parent="@android:style/TextAppearance">
@@ -60,20 +47,6 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@android:color/white</item>
 
-    </style>
-
-    <style name="TextViewStyle" parent="@android:style/Widget.EditText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/textview_style</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:textColor">@color/application_secondary_text_color</item>
-    </style>
-
-    <style name="Autocomplete" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-        <item name="android:background">@drawable/autocomplete_dropdown</item>
-        <item name="colorControlNormal">@color/colorPrimary</item>
-        <item name="colorControlActivated">@color/blue</item>
     </style>
 
     <style name="CustomTheme" parent="Theme.AppCompat.Light.Dialog">

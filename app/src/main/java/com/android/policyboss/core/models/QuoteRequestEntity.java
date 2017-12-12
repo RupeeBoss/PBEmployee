@@ -9,6 +9,17 @@ import android.os.Parcelable;
 
 public class QuoteRequestEntity implements Parcelable {
 
+    public static final Parcelable.Creator<QuoteRequestEntity> CREATOR = new Parcelable.Creator<QuoteRequestEntity>() {
+        @Override
+        public QuoteRequestEntity createFromParcel(Parcel source) {
+            return new QuoteRequestEntity(source);
+        }
+
+        @Override
+        public QuoteRequestEntity[] newArray(int size) {
+            return new QuoteRequestEntity[size];
+        }
+    };
     /**
      * VehicleNo :
      * CustomerReferenceID :
@@ -92,74 +103,6 @@ public class QuoteRequestEntity implements Parcelable {
     private String SessionID;
     private String SourceType;
     private String InsurerIDArray;
-
-    public boolean isNew() {
-        return isNew;
-    }
-
-    public void setNew(boolean aNew) {
-        isNew = aNew;
-    }
-
-    public boolean isRenew() {
-        return isRenew;
-    }
-
-    public void setRenew(boolean renew) {
-        isRenew = renew;
-    }
-
-    public boolean isInfoCorrect() {
-        return isInfoCorrect;
-    }
-
-    public void setInfoCorrect(boolean infoCorrect) {
-        isInfoCorrect = infoCorrect;
-    }
-
-    public QuoteRequestEntity() {
-        VehicleNo = "";
-        CustomerReferenceID = "";
-        ProductID = 1;
-        ExShowRoomPrice = "";
-        ExpectedIDV = "";
-        this.IDVinExpiryPolicy = IDVinExpiryPolicy;
-        DateofPurchaseofCar = "";
-        this.VD_Amount = VD_Amount;
-        this.PACoverValue = PACoverValue;
-
-        Profession_Id = 6;
-        ValueOfElectricalAccessories = "0";
-        ValueOfNonElectricalAccessories = "0";
-        ValueOfBiFuelKit = "0";
-        CurrentNCB = "0";
-        IsClaimInExpiringPolicy = false;
-        ApplyAntiTheftDiscount = false;
-        ApplyAutomobileAssociationDiscount = false;
-        AutomobileAssociationName = "";
-        AutomobileMembershipExpiryDate = "";
-        AutomobileAssociationMembershipNumber = "";
-        PaidDriverCover = false;
-        OwnerDOB = null;
-        Preveious_Insurer_Id = "0";
-        //ManufacturingYear = "";
-        PolicyExpiryDate = "";
-        VehicleRegisteredName = 1;
-        //Variant_ID = variant_ID;
-        RegistrationNumber = "";
-        PlaceofRegistration = "";
-        VehicleType = "";
-        Existing_CustomerReferenceID = "";
-        ContactName = "Rajeev Ranjan";
-        ContactEmail = "pramod.parit@policyboss.com";
-        ContactMobile = "8093793198";
-        LandmarkEmployeeCode = "";
-        SupportsAgentID = 2;
-        SessionID = "";
-        SourceType = "APP";
-        InsurerIDArray = "";
-    }
-
     /**
      * ProductID : 1
      * ExShowRoomPrice :
@@ -205,6 +148,121 @@ public class QuoteRequestEntity implements Parcelable {
     private boolean isNew;
     private boolean isRenew;
     private boolean isInfoCorrect;
+    private boolean dontRem;
+
+    public QuoteRequestEntity() {
+        VehicleNo = "";
+        CustomerReferenceID = "";
+        ProductID = 1;
+        ExShowRoomPrice = "";
+        ExpectedIDV = "";
+        this.IDVinExpiryPolicy = IDVinExpiryPolicy;
+        DateofPurchaseofCar = "";
+        this.VD_Amount = VD_Amount;
+        this.PACoverValue = PACoverValue;
+
+        Profession_Id = 6;
+        ValueOfElectricalAccessories = "0";
+        ValueOfNonElectricalAccessories = "0";
+        ValueOfBiFuelKit = "0";
+        CurrentNCB = "0";
+        IsClaimInExpiringPolicy = false;
+        ApplyAntiTheftDiscount = false;
+        ApplyAutomobileAssociationDiscount = false;
+        AutomobileAssociationName = "";
+        AutomobileMembershipExpiryDate = "";
+        AutomobileAssociationMembershipNumber = "";
+        PaidDriverCover = false;
+        OwnerDOB = null;
+        Preveious_Insurer_Id = "0";
+        //ManufacturingYear = "";
+        PolicyExpiryDate = "";
+        VehicleRegisteredName = 1;
+        //Variant_ID = variant_ID;
+        RegistrationNumber = "";
+        PlaceofRegistration = "";
+        VehicleType = "";
+        Existing_CustomerReferenceID = "";
+        ContactName = "Rajeev Ranjan";
+        ContactEmail = "pramod.parit@policyboss.com";
+        ContactMobile = "8093793198";
+        LandmarkEmployeeCode = "";
+        SupportsAgentID = 2;
+        SessionID = "";
+        SourceType = "APP";
+        InsurerIDArray = "";
+    }
+
+    protected QuoteRequestEntity(Parcel in) {
+        this.VehicleNo = in.readString();
+        this.CustomerReferenceID = in.readString();
+        this.ProductID = in.readInt();
+        this.ExShowRoomPrice = in.readString();
+        this.ExpectedIDV = in.readString();
+        this.IDVinExpiryPolicy = in.readString();
+        this.DateofPurchaseofCar = in.readString();
+        this.VD_Amount = in.readString();
+        this.PACoverValue = in.readString();
+        this.VehicleCity_Id = in.readInt();
+        this.Profession_Id = in.readInt();
+        this.ValueOfElectricalAccessories = in.readString();
+        this.ValueOfNonElectricalAccessories = in.readString();
+        this.ValueOfBiFuelKit = in.readString();
+        this.CurrentNCB = in.readString();
+        this.IsClaimInExpiringPolicy = in.readByte() != 0;
+        this.ApplyAntiTheftDiscount = in.readByte() != 0;
+        this.ApplyAutomobileAssociationDiscount = in.readByte() != 0;
+        this.AutomobileAssociationName = in.readString();
+        this.AutomobileMembershipExpiryDate = in.readString();
+        this.AutomobileAssociationMembershipNumber = in.readString();
+        this.PaidDriverCover = in.readByte() != 0;
+        this.OwnerDOB = in.readString();
+        this.Preveious_Insurer_Id = in.readString();
+        this.ManufacturingYear = in.readInt();
+        this.PolicyExpiryDate = in.readString();
+        this.VehicleRegisteredName = in.readInt();
+        this.Variant_ID = in.readInt();
+        this.RegistrationNumber = in.readString();
+        this.PlaceofRegistration = in.readString();
+        this.VehicleType = in.readString();
+        this.Existing_CustomerReferenceID = in.readString();
+        this.ContactName = in.readString();
+        this.ContactEmail = in.readString();
+        this.ContactMobile = in.readString();
+        this.LandmarkEmployeeCode = in.readString();
+        this.SupportsAgentID = in.readInt();
+        this.SessionID = in.readString();
+        this.SourceType = in.readString();
+        this.InsurerIDArray = in.readString();
+        this.isNew = in.readByte() != 0;
+        this.isRenew = in.readByte() != 0;
+        this.isInfoCorrect = in.readByte() != 0;
+        this.dontRem = in.readByte() != 0;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean aNew) {
+        isNew = aNew;
+    }
+
+    public boolean isRenew() {
+        return isRenew;
+    }
+
+    public void setRenew(boolean renew) {
+        isRenew = renew;
+    }
+
+    public boolean isInfoCorrect() {
+        return isInfoCorrect;
+    }
+
+    public void setInfoCorrect(boolean infoCorrect) {
+        isInfoCorrect = infoCorrect;
+    }
 
     public boolean isDontRem() {
         return dontRem;
@@ -213,9 +271,6 @@ public class QuoteRequestEntity implements Parcelable {
     public void setDontRem(boolean dontRem) {
         this.dontRem = dontRem;
     }
-
-    private boolean dontRem;
-
 
     public String getVehicleNo() {
         return VehicleNo;
@@ -589,64 +644,4 @@ public class QuoteRequestEntity implements Parcelable {
         dest.writeByte(this.isInfoCorrect ? (byte) 1 : (byte) 0);
         dest.writeByte(this.dontRem ? (byte) 1 : (byte) 0);
     }
-
-
-    protected QuoteRequestEntity(Parcel in) {
-        this.VehicleNo = in.readString();
-        this.CustomerReferenceID = in.readString();
-        this.ProductID = in.readInt();
-        this.ExShowRoomPrice = in.readString();
-        this.ExpectedIDV = in.readString();
-        this.IDVinExpiryPolicy = in.readString();
-        this.DateofPurchaseofCar = in.readString();
-        this.VD_Amount = in.readString();
-        this.PACoverValue = in.readString();
-        this.VehicleCity_Id = in.readInt();
-        this.Profession_Id = in.readInt();
-        this.ValueOfElectricalAccessories = in.readString();
-        this.ValueOfNonElectricalAccessories = in.readString();
-        this.ValueOfBiFuelKit = in.readString();
-        this.CurrentNCB = in.readString();
-        this.IsClaimInExpiringPolicy = in.readByte() != 0;
-        this.ApplyAntiTheftDiscount = in.readByte() != 0;
-        this.ApplyAutomobileAssociationDiscount = in.readByte() != 0;
-        this.AutomobileAssociationName = in.readString();
-        this.AutomobileMembershipExpiryDate = in.readString();
-        this.AutomobileAssociationMembershipNumber = in.readString();
-        this.PaidDriverCover = in.readByte() != 0;
-        this.OwnerDOB = in.readString();
-        this.Preveious_Insurer_Id = in.readString();
-        this.ManufacturingYear = in.readInt();
-        this.PolicyExpiryDate = in.readString();
-        this.VehicleRegisteredName = in.readInt();
-        this.Variant_ID = in.readInt();
-        this.RegistrationNumber = in.readString();
-        this.PlaceofRegistration = in.readString();
-        this.VehicleType = in.readString();
-        this.Existing_CustomerReferenceID = in.readString();
-        this.ContactName = in.readString();
-        this.ContactEmail = in.readString();
-        this.ContactMobile = in.readString();
-        this.LandmarkEmployeeCode = in.readString();
-        this.SupportsAgentID = in.readInt();
-        this.SessionID = in.readString();
-        this.SourceType = in.readString();
-        this.InsurerIDArray = in.readString();
-        this.isNew = in.readByte() != 0;
-        this.isRenew = in.readByte() != 0;
-        this.isInfoCorrect = in.readByte() != 0;
-        this.dontRem = in.readByte() != 0;
-    }
-
-    public static final Parcelable.Creator<QuoteRequestEntity> CREATOR = new Parcelable.Creator<QuoteRequestEntity>() {
-        @Override
-        public QuoteRequestEntity createFromParcel(Parcel source) {
-            return new QuoteRequestEntity(source);
-        }
-
-        @Override
-        public QuoteRequestEntity[] newArray(int size) {
-            return new QuoteRequestEntity[size];
-        }
-    };
 }

@@ -13,34 +13,6 @@ import java.util.List;
  */
 
 public class HealthQuoteResponse extends APIResponse implements Parcelable {
-    private List<HealthQuotesEntity> HealthQuotes;
-
-    public List<HealthQuotesEntity> getHealthQuotes() {
-        return HealthQuotes;
-    }
-
-    public void setHealthQuotes(List<HealthQuotesEntity> HealthQuotes) {
-        this.HealthQuotes = HealthQuotes;
-    }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(this.HealthQuotes);
-    }
-
-    public HealthQuoteResponse() {
-    }
-
-    protected HealthQuoteResponse(Parcel in) {
-        this.HealthQuotes = in.createTypedArrayList(HealthQuotesEntity.CREATOR);
-    }
-
     public static final Parcelable.Creator<HealthQuoteResponse> CREATOR = new Parcelable.Creator<HealthQuoteResponse>() {
         @Override
         public HealthQuoteResponse createFromParcel(Parcel source) {
@@ -52,4 +24,31 @@ public class HealthQuoteResponse extends APIResponse implements Parcelable {
             return new HealthQuoteResponse[size];
         }
     };
+    private List<HealthQuotesEntity> HealthQuotes;
+
+    public HealthQuoteResponse() {
+    }
+
+
+    protected HealthQuoteResponse(Parcel in) {
+        this.HealthQuotes = in.createTypedArrayList(HealthQuotesEntity.CREATOR);
+    }
+
+    public List<HealthQuotesEntity> getHealthQuotes() {
+        return HealthQuotes;
+    }
+
+    public void setHealthQuotes(List<HealthQuotesEntity> HealthQuotes) {
+        this.HealthQuotes = HealthQuotes;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(this.HealthQuotes);
+    }
 }

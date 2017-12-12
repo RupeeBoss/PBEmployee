@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.android.policyboss.bikeinsurance.ModifyQuotesActivity"
+    tools:context="com.android.policyboss.motorinsurance.ModifyQuotesActivity"
     tools:showIn="@layout/activity_modify_quotes">
 
 

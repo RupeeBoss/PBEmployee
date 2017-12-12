@@ -9,8 +9,8 @@ import android.webkit.WebView;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.healthinsurance.HealthInsuranceQuotes;
+import com.android.policyboss.motorinsurance.CarQuoteGenerate;
 import com.android.policyboss.utility.MyWebViewClient;
 
 public class WebViewBuyInsurenceActivity extends BaseActivity {
@@ -53,6 +53,7 @@ public class WebViewBuyInsurenceActivity extends BaseActivity {
         Log.d("PROPOSAL_URL", url);
         webView.loadUrl(url);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

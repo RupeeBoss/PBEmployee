@@ -26,6 +26,7 @@ public class AddonZeroDepCoverEntity {
     public void setMax(double max) {
         this.max = max;
     }
+
     public boolean isSelected() {
         return isSelected;
     }

@@ -10,34 +10,17 @@ import java.util.List;
  */
 
 public class HealthRequestEntity implements Parcelable {
-    /**
-     * memberlist : [{"MemberDOB":"01-01-1975","MemberGender":"M","MemberNumber":1,"MemberRelation":null,"MemberType":"Adult","MemberTypeID":1},{"MemberDOB":"01-01-1977","MemberGender":"F","MemberNumber":2,"MemberRelation":null,"MemberType":"Adult","MemberTypeID":2},{"MemberDOB":"01-01-2013","MemberGender":"M","MemberNumber":5,"MemberRelation":null,"MemberType":"Child","MemberTypeID":3}]
-     * PlanID : 236
-     * SessionID : 1234556677
-     * SumInsured : 500000
-     */
+    public static final Parcelable.Creator<HealthRequestEntity> CREATOR = new Parcelable.Creator<HealthRequestEntity>() {
+        @Override
+        public HealthRequestEntity createFromParcel(Parcel source) {
+            return new HealthRequestEntity(source);
+        }
 
-
-    public HealthRequestEntity() {
-        PlanID = 0;
-        CityID = 0;
-        ContactEmail = "pramod.parit@rupeeboss.com";
-        ContactMobile = "9930089092";
-        ContactName = "pramod parit";
-        DeductibleAmount = 0;
-        ExistingCustomerReferenceID = 0;
-        HealthType = "Health";
-        MaritalStatusID = 1;
-        PolicyFor = "";
-        PolicyTermYear = 1;
-        ProductID = 2;
-        SessionID = "";
-        SourceType = "APP";
-        SumInsured = "";
-        SupportsAgentID = 2;
-        MemberList = null;
-    }
-
+        @Override
+        public HealthRequestEntity[] newArray(int size) {
+            return new HealthRequestEntity[size];
+        }
+    };
     /**
      * CityID : 579
      * ContactEmail : pramod.parit@policyboss.com
@@ -74,6 +57,54 @@ public class HealthRequestEntity implements Parcelable {
     private String SumInsured;
     private int SupportsAgentID;
     private List<MemberListEntity> MemberList;
+
+    /**
+     * memberlist : [{"MemberDOB":"01-01-1975","MemberGender":"M","MemberNumber":1,"MemberRelation":null,"MemberType":"Adult","MemberTypeID":1},{"MemberDOB":"01-01-1977","MemberGender":"F","MemberNumber":2,"MemberRelation":null,"MemberType":"Adult","MemberTypeID":2},{"MemberDOB":"01-01-2013","MemberGender":"M","MemberNumber":5,"MemberRelation":null,"MemberType":"Child","MemberTypeID":3}]
+     * PlanID : 236
+     * SessionID : 1234556677
+     * SumInsured : 500000
+     */
+
+
+    public HealthRequestEntity() {
+        PlanID = 0;
+        CityID = 0;
+        ContactEmail = "pramod.parit@rupeeboss.com";
+        ContactMobile = "9930089092";
+        ContactName = "pramod parit";
+        DeductibleAmount = 0;
+        ExistingCustomerReferenceID = 0;
+        HealthType = "Health";
+        MaritalStatusID = 1;
+        PolicyFor = "";
+        PolicyTermYear = 1;
+        ProductID = 2;
+        SessionID = "";
+        SourceType = "APP";
+        SumInsured = "";
+        SupportsAgentID = 2;
+        MemberList = null;
+    }
+
+    protected HealthRequestEntity(Parcel in) {
+        this.PlanID = in.readInt();
+        this.CityID = in.readInt();
+        this.ContactEmail = in.readString();
+        this.ContactMobile = in.readString();
+        this.ContactName = in.readString();
+        this.DeductibleAmount = in.readInt();
+        this.ExistingCustomerReferenceID = in.readInt();
+        this.HealthType = in.readString();
+        this.MaritalStatusID = in.readInt();
+        this.PolicyFor = in.readString();
+        this.PolicyTermYear = in.readInt();
+        this.ProductID = in.readInt();
+        this.SessionID = in.readString();
+        this.SourceType = in.readString();
+        this.SumInsured = in.readString();
+        this.SupportsAgentID = in.readInt();
+        this.MemberList = in.createTypedArrayList(MemberListEntity.CREATOR);
+    }
 
     public int getCityID() {
         return CityID;
@@ -203,7 +234,6 @@ public class HealthRequestEntity implements Parcelable {
         this.MemberList = MemberList;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -229,36 +259,4 @@ public class HealthRequestEntity implements Parcelable {
         dest.writeInt(this.SupportsAgentID);
         dest.writeTypedList(this.MemberList);
     }
-
-    protected HealthRequestEntity(Parcel in) {
-        this.PlanID = in.readInt();
-        this.CityID = in.readInt();
-        this.ContactEmail = in.readString();
-        this.ContactMobile = in.readString();
-        this.ContactName = in.readString();
-        this.DeductibleAmount = in.readInt();
-        this.ExistingCustomerReferenceID = in.readInt();
-        this.HealthType = in.readString();
-        this.MaritalStatusID = in.readInt();
-        this.PolicyFor = in.readString();
-        this.PolicyTermYear = in.readInt();
-        this.ProductID = in.readInt();
-        this.SessionID = in.readString();
-        this.SourceType = in.readString();
-        this.SumInsured = in.readString();
-        this.SupportsAgentID = in.readInt();
-        this.MemberList = in.createTypedArrayList(MemberListEntity.CREATOR);
-    }
-
-    public static final Parcelable.Creator<HealthRequestEntity> CREATOR = new Parcelable.Creator<HealthRequestEntity>() {
-        @Override
-        public HealthRequestEntity createFromParcel(Parcel source) {
-            return new HealthRequestEntity(source);
-        }
-
-        @Override
-        public HealthRequestEntity[] newArray(int size) {
-            return new HealthRequestEntity[size];
-        }
-    };
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.android.policyboss.core.models.MasterBikeDataEntity;
-import com.android.policyboss.core.models.MasterDataEntity;
 
 import java.util.List;
 

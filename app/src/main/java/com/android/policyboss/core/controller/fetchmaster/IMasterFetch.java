@@ -2,8 +2,6 @@ package com.android.policyboss.core.controller.fetchmaster;
 
 import com.android.policyboss.core.IResponseSubcriber;
 
-import io.realm.Realm;
-
 /**
  * Created by Nilesh Birhade on 29-11-2017.
  */

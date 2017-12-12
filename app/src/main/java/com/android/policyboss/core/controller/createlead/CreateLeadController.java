@@ -30,7 +30,6 @@ public class CreateLeadController implements ICreateLead {
     }
 
 
-
     @Override
     public void getLead(LeadDetailRequest leadDetailRequest, final IResponseSubcriber iResponseSubcriber) {
         createLeadNetworkService.getLead(leadDetailRequest).enqueue(new Callback<LeadCreateResponse>() {

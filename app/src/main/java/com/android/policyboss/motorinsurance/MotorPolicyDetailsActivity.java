@@ -38,8 +38,8 @@ import java.util.Calendar;
 import io.realm.Realm;
 
 public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber, CompoundButton.OnCheckedChangeListener {
-    public static final String BIKE_INSURENCE = "BikeInsuranceActivity";
-    public static final String CAR_DETAIL = "CarDetailsActivity.class";
+    //public static final String BIKE_INSURENCE = "BikeInsuranceActivity";
+    //public static final String CAR_DETAIL = "CarDetailsActivity.class";
 
     FastLaneResponse.FLResponseBean fastLaneResponseEntity;
     EditText etFirstRegDate, etPolicyExpDate, etManufactYearMonth;
@@ -49,6 +49,80 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
     LinearLayout llNcb;
     Button btnCont;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
+        @Override
+        public void onClick(final View view) {
+            Constants.hideKeyBoard(view, MotorPolicyDetailsActivity.this);
+
+            if (view.getId() == R.id.etFirstRegDate) {
+                DateTimePicker.firstRegReNewDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
+                            etFirstRegDate.setText(currentDay);
+                            etManufactYearMonth.setText(currentDay);
+                            int yearDiff = getYearDiffForNCB(currentDay, etPolicyExpDate.getText().toString());
+                            setNcbAdapter(yearDiff);
+
+                        }
+                    }
+
+
+                });
+
+            } else if (view.getId() == R.id.etPolicyExpDate) {
+                DateTimePicker.policyExpDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                        if (view1.isShown()) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(year, monthOfYear, dayOfMonth);
+                            String currentDay = simpleDateFormat.format(calendar.getTime());
+                            etPolicyExpDate.setText(currentDay);
+                            if (etFirstRegDate.getText().toString() != null && !etFirstRegDate.getText().toString().equals("")) {
+                                int yearDiff = getYearDiffForNCB(currentDay, etFirstRegDate.getText().toString());
+                                setNcbAdapter(yearDiff);
+                            }
+                        }
+                    }
+                });
+            } else if (view.getId() == R.id.etManufactYearMonth) {
+                if (etFirstRegDate.getText().toString().equals("") || etFirstRegDate.getText().toString() == null) {
+                    DateTimePicker.firstRegNewDatePicker(view.getContext(),
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                                    if (view1.isShown()) {
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.set(year, monthOfYear, dayOfMonth);
+                                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                                        etManufactYearMonth.setText(currentDay);
+                                    }
+
+                                }
+                            });
+                } else {
+                    DateTimePicker.manufactDatePicker(view.getContext(), getYear(etFirstRegDate.getText().toString()),
+                            getMonth(etFirstRegDate.getText().toString()), getDate(etFirstRegDate.getText().toString()),
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
+                                    if (view1.isShown()) {
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.set(year, monthOfYear, dayOfMonth);
+                                        String currentDay = simpleDateFormat.format(calendar.getTime());
+                                        etManufactYearMonth.setText(currentDay);
+                                    }
+                                }
+                            });
+                }
+            }
+
+        }
+    };
     ArrayAdapter<String> cityAdapter, prevInsAdapter, ncbPerctAdapter;
     DatabaseController databaseController;
     String regplace, fromWhichClass;
@@ -232,11 +306,11 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
                 if (fromWhichClass.equals("BIKE")) {
                     setInputParametersReNewBike();
                     startActivity(new Intent(MotorPolicyDetailsActivity.this, CustomerDetailsActivity.class)
-                            .putExtra(BIKE_INSURENCE, bikeRequestEntity));
+                            .putExtra(Constants.BIKE_INSURENCE, bikeRequestEntity));
                 } else if (fromWhichClass.equals("CAR") || fromWhichClass.equals("FASTLANE")) {
                     setInputParametersReNewCar();
                     startActivity(new Intent(MotorPolicyDetailsActivity.this, CustomerDetailsActivity.class)
-                            .putExtra(CAR_DETAIL, carRequestEntity));
+                            .putExtra(Constants.CAR_DETAIL, carRequestEntity));
                 }
                 break;
         }
@@ -265,6 +339,9 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
 
     }
 
+
+    // region Date picker
+
     private int getYearDiffForNCB(String firstDay, String lastDay) {
         try {
             return getDiffYears(simpleDateFormat.parse(firstDay), simpleDateFormat.parse(lastDay));
@@ -273,84 +350,6 @@ public class MotorPolicyDetailsActivity extends BaseActivity implements View.OnC
         }
         return 0;
     }
-
-
-    // region Date picker
-
-    protected View.OnClickListener datePickerDialog = new View.OnClickListener() {
-        @Override
-        public void onClick(final View view) {
-            Constants.hideKeyBoard(view, MotorPolicyDetailsActivity.this);
-
-            if (view.getId() == R.id.etFirstRegDate) {
-                DateTimePicker.firstRegReNewDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                        if (view1.isShown()) {
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(year, monthOfYear, dayOfMonth);
-                            String currentDay = simpleDateFormat.format(calendar.getTime());
-                            etFirstRegDate.setText(currentDay);
-                            etManufactYearMonth.setText(currentDay);
-                            int yearDiff = getYearDiffForNCB(currentDay, etPolicyExpDate.getText().toString());
-                            setNcbAdapter(yearDiff);
-
-                        }
-                    }
-
-
-                });
-
-            } else if (view.getId() == R.id.etPolicyExpDate) {
-                DateTimePicker.policyExpDatePicker(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                        if (view1.isShown()) {
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(year, monthOfYear, dayOfMonth);
-                            String currentDay = simpleDateFormat.format(calendar.getTime());
-                            etPolicyExpDate.setText(currentDay);
-                            if (etFirstRegDate.getText().toString() != null && !etFirstRegDate.getText().toString().equals("")) {
-                                int yearDiff = getYearDiffForNCB(currentDay, etFirstRegDate.getText().toString());
-                                setNcbAdapter(yearDiff);
-                            }
-                        }
-                    }
-                });
-            } else if (view.getId() == R.id.etManufactYearMonth) {
-                if (etFirstRegDate.getText().toString().equals("") || etFirstRegDate.getText().toString() == null) {
-                    DateTimePicker.firstRegNewDatePicker(view.getContext(),
-                            new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                                    if (view1.isShown()) {
-                                        Calendar calendar = Calendar.getInstance();
-                                        calendar.set(year, monthOfYear, dayOfMonth);
-                                        String currentDay = simpleDateFormat.format(calendar.getTime());
-                                        etManufactYearMonth.setText(currentDay);
-                                    }
-
-                                }
-                            });
-                } else {
-                    DateTimePicker.manufactDatePicker(view.getContext(), getYear(etFirstRegDate.getText().toString()),
-                            getMonth(etFirstRegDate.getText().toString()), getDate(etFirstRegDate.getText().toString()),
-                            new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view1, int year, int monthOfYear, int dayOfMonth) {
-                                    if (view1.isShown()) {
-                                        Calendar calendar = Calendar.getInstance();
-                                        calendar.set(year, monthOfYear, dayOfMonth);
-                                        String currentDay = simpleDateFormat.format(calendar.getTime());
-                                        etManufactYearMonth.setText(currentDay);
-                                    }
-                                }
-                            });
-                }
-            }
-
-        }
-    };
 
     private void setNcbAdapter(int yearDiff) {
         if (yearDiff >= 5) {

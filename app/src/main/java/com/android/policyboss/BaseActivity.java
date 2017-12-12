@@ -22,9 +22,31 @@ import io.realm.Realm;
 
 public class BaseActivity extends AppCompatActivity {
 
-    ProgressDialog dialog;
     public Realm realm;
+    ProgressDialog dialog;
 
+    public static boolean isValidVehicle(EditText editText) {
+        String phoneNumberPattern = "^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$";
+        String phoneNumberEntered = editText.getText().toString().trim();
+        return !(phoneNumberEntered.isEmpty() || !phoneNumberEntered.matches(phoneNumberPattern));
+    }
+
+    public static boolean isValidePhoneNumber(EditText editText) {
+        String phoneNumberPattern = "^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}$";
+        String phoneNumberEntered = editText.getText().toString().trim();
+        return !(phoneNumberEntered.isEmpty() || !phoneNumberEntered.matches(phoneNumberPattern));
+    }
+
+    public static boolean isValideEmailID(EditText editText) {
+        String emailEntered = editText.getText().toString().trim();
+        return !(emailEntered.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailEntered).matches());
+    }
+
+    public static Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.US);
+        cal.setTime(date);
+        return cal;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,26 +94,10 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public static boolean isValidVehicle(EditText editText) {
-        String phoneNumberPattern = "^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$";
-        String phoneNumberEntered = editText.getText().toString().trim();
-        return !(phoneNumberEntered.isEmpty() || !phoneNumberEntered.matches(phoneNumberPattern));
-    }
-
-    public static boolean isValidePhoneNumber(EditText editText) {
-        String phoneNumberPattern = "^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}$";
-        String phoneNumberEntered = editText.getText().toString().trim();
-        return !(phoneNumberEntered.isEmpty() || !phoneNumberEntered.matches(phoneNumberPattern));
-    }
-
-    public static boolean isValideEmailID(EditText editText) {
-        String emailEntered = editText.getText().toString().trim();
-        return !(emailEntered.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(emailEntered).matches());
-    }
-
     public void ShowError(String message, View view) {
         Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
     }
+
     public int getDiffYears(Date first, Date last) {
         Calendar a = getCalendar(first);
         Calendar b = getCalendar(last);
@@ -101,12 +107,6 @@ public class BaseActivity extends AppCompatActivity {
             diff--;
         }
         return diff;
-    }
-
-    public static Calendar getCalendar(Date date) {
-        Calendar cal = Calendar.getInstance(Locale.US);
-        cal.setTime(date);
-        return cal;
     }
 
 }

@@ -15,12 +15,6 @@ import java.util.List;
 public class MotorQuotesResponse extends APIResponse implements Parcelable {
 
 
-    private List<MototrQuotesEntity> MototrQuotes;
-
-    protected MotorQuotesResponse(Parcel in) {
-        MototrQuotes = in.createTypedArrayList(MototrQuotesEntity.CREATOR);
-    }
-
     public static final Creator<MotorQuotesResponse> CREATOR = new Creator<MotorQuotesResponse>() {
         @Override
         public MotorQuotesResponse createFromParcel(Parcel in) {
@@ -32,6 +26,11 @@ public class MotorQuotesResponse extends APIResponse implements Parcelable {
             return new MotorQuotesResponse[size];
         }
     };
+    private List<MototrQuotesEntity> MototrQuotes;
+
+    protected MotorQuotesResponse(Parcel in) {
+        MototrQuotes = in.createTypedArrayList(MototrQuotesEntity.CREATOR);
+    }
 
     public List<MototrQuotesEntity> getMototrQuotes() {
         return MototrQuotes;

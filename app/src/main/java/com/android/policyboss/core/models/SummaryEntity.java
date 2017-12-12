@@ -6,6 +6,17 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class SummaryEntity implements Parcelable {
+    public static final Creator<SummaryEntity> CREATOR = new Creator<SummaryEntity>() {
+        @Override
+        public SummaryEntity createFromParcel(Parcel in) {
+            return new SummaryEntity(in);
+        }
+
+        @Override
+        public SummaryEntity[] newArray(int size) {
+            return new SummaryEntity[size];
+        }
+    };
     /**
      * _id : 5a0ab49b1f4d2b19e098bf79
      * Request_Id : 8946
@@ -68,18 +79,6 @@ public class SummaryEntity implements Parcelable {
         vehicle_max_idv = in.readString();
         Actual_Time = in.readDouble();
     }
-
-    public static final Creator<SummaryEntity> CREATOR = new Creator<SummaryEntity>() {
-        @Override
-        public SummaryEntity createFromParcel(Parcel in) {
-            return new SummaryEntity(in);
-        }
-
-        @Override
-        public SummaryEntity[] newArray(int size) {
-            return new SummaryEntity[size];
-        }
-    };
 
     public String get_id() {
         return _id;
@@ -241,7 +240,7 @@ public class SummaryEntity implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(Request_Core  ,flags);
+        dest.writeParcelable(Request_Core, flags);
         dest.writeString(_id);
         dest.writeString(Request_Id);
         dest.writeString(Request_Unique_Id);

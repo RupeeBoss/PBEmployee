@@ -2,7 +2,6 @@ package com.android.policyboss.personaldetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,9 +13,6 @@ import android.widget.Toast;
 
 import com.android.policyboss.BaseActivity;
 import com.android.policyboss.R;
-import com.android.policyboss.bikeinsurance.BikeInsuranceActivity;
-import com.android.policyboss.bikeinsurance.BikeQuoteActivity;
-import com.android.policyboss.carinsurance.CarQuoteGenerate;
 import com.android.policyboss.core.APIResponse;
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.controller.bike.BikeController;
@@ -27,13 +23,12 @@ import com.android.policyboss.core.requestEntity.HealthRequestEntity;
 import com.android.policyboss.core.response.BikeUniqueResponse;
 import com.android.policyboss.core.response.HealthQuoteResponse;
 import com.android.policyboss.core.response.MotorQuotesResponse;
-import com.android.policyboss.facade.LoginFacade;
 import com.android.policyboss.healthinsurance.HealthInsuranceAgeDetailActivity;
 import com.android.policyboss.healthinsurance.HealthInsuranceQuotes;
+import com.android.policyboss.motorinsurance.BikeQuoteActivity;
+import com.android.policyboss.motorinsurance.CarQuoteGenerate;
 import com.android.policyboss.utility.Constants;
 import com.android.policyboss.webview.CommonWebViewActivity;
-
-import static com.android.policyboss.carinsurance.CarDetailsActivity.CAR_DETAIL;
 
 public class CustomerDetailsActivity extends BaseActivity implements View.OnClickListener, IResponseSubcriber {
 
@@ -55,17 +50,17 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init_widgets();
 
-        if (getIntent().getParcelableExtra(CAR_DETAIL) != null) {
-            carRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(CAR_DETAIL);
-            fromWhichClass = CAR_DETAIL;
+        if (getIntent().getParcelableExtra(Constants.CAR_DETAIL) != null) {
+            carRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(Constants.CAR_DETAIL);
+            fromWhichClass = Constants.CAR_DETAIL;
             getSupportActionBar().setTitle("CAR QUOTES");
         } else if (getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE) != null) {
             healthRequestEntity = (HealthRequestEntity) getIntent().getParcelableExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE);
             fromWhichClass = HealthInsuranceAgeDetailActivity.HEALTH_QUOTE;
             getSupportActionBar().setTitle("HEALTH QUOTES");
-        } else if (getIntent().getParcelableExtra(BikeInsuranceActivity.BIKE_INSURENCE) != null) {
-            bikeRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(BikeInsuranceActivity.BIKE_INSURENCE);
-            fromWhichClass = BikeInsuranceActivity.BIKE_INSURENCE;
+        } else if (getIntent().getParcelableExtra(Constants.BIKE_INSURENCE) != null) {
+            bikeRequestEntity = (BikeRequestEntity) getIntent().getParcelableExtra(Constants.BIKE_INSURENCE);
+            fromWhichClass = Constants.BIKE_INSURENCE;
             getSupportActionBar().setTitle("BIKE QUOTES");
         }
       /*  etCustomerName.setText(new LoginFacade(CustomerDetailsActivity.this).getUser().getEmp_Name());
@@ -134,7 +129,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
 
 
             //server hit and redirect to quote
-            if (fromWhichClass.equals(CAR_DETAIL)) {
+            if (fromWhichClass.equals(Constants.CAR_DETAIL)) {
                 //motor
                 String[] fullName = etCustomerName.getText().toString().split(" ");
 
@@ -162,7 +157,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                 healthRequestEntity.setContactName(etCustomerName.getText().toString());
                 showDialog();
                 new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
-            } else if (fromWhichClass.equals(BikeInsuranceActivity.BIKE_INSURENCE)) {
+            } else if (fromWhichClass.equals(Constants.BIKE_INSURENCE)) {
                 //bike
 
                 String[] fullName = etCustomerName.getText().toString().split(" ");
@@ -209,7 +204,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                         .putExtra(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE, (HealthQuoteResponse) response));
             }
         } else if (response instanceof BikeUniqueResponse) {
-            if (fromWhichClass.equals(CAR_DETAIL)) {
+            if (fromWhichClass.equals(Constants.CAR_DETAIL)) {
                 startActivity(new Intent(this, BikeQuoteActivity.class)
                         .putExtra("CAR", carRequestEntity));
             } else {

@@ -3,10 +3,7 @@ package com.android.policyboss.core.controller.authentication;
 import android.content.Context;
 
 import com.android.policyboss.core.IResponseSubcriber;
-import com.android.policyboss.core.controller.fastlane.IFastLane;
 import com.android.policyboss.core.requestbuilders.AuthenticationRequestBuilder;
-import com.android.policyboss.core.requestbuilders.FastLaneRequestBuilder;
-import com.android.policyboss.core.response.FastLaneResponse;
 import com.android.policyboss.core.response.LoginResponse;
 import com.android.policyboss.facade.LoginFacade;
 
