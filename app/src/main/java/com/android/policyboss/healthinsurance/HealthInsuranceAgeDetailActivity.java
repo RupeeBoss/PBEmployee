@@ -407,6 +407,7 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
                     entity.setMemberDOB(etSelfDOB.getText().toString());
                     if (rbSelfMale.isChecked()) {
                         entity.setMemberGender("M");
+
                     } else {
                         entity.setMemberGender("F");
                     }

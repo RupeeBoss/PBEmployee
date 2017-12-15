@@ -100,7 +100,10 @@ public class DatabaseController implements IDBController {
 
     public int getModelID(String modelName) {
         MasterDataEntity entity = realm.where(MasterDataEntity.class).equalTo("Model_Name", modelName.trim()).findFirst();
-        return entity.getModel_ID();
+        if (entity != null)
+            return entity.getModel_ID();
+        else
+            return 0;
     }
 
     public List<String> getVariantbyModelID(int modelID) {
@@ -157,7 +160,10 @@ public class DatabaseController implements IDBController {
                 .equalTo("Variant_Name", variantName.trim())
                 .equalTo("Make_Name", makeName.trim()).findFirst();
 
-        return entity.getVariant_ID();
+        if (entity != null)
+            return entity.getVariant_ID();
+        else
+            return 0;
     }
 
     //region master Bike
@@ -177,7 +183,10 @@ public class DatabaseController implements IDBController {
 
     public int getBikeModelID(String modelName) {
         MasterBikeDataEntity entity = realm.where(MasterBikeDataEntity.class).equalTo("Model_Name", modelName.trim()).findFirst();
-        return entity.getModel_ID();
+        if (entity != null)
+            return entity.getModel_ID();
+        else
+            return 0;
     }
 
     public List<String> getBikeVariantbyModelID(int modelID) {
@@ -225,7 +234,10 @@ public class DatabaseController implements IDBController {
                 .equalTo("Variant_Name", variantName.trim())
                 .equalTo("Make_Name", makeName.trim()).findFirst();
 
-        return entity.getVariant_ID();
+        if (entity != null)
+            return entity.getVariant_ID();
+        else
+            return 0;
     }
 
     public void MapAddons() {
