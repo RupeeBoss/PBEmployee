@@ -151,13 +151,33 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
         rbFamilySpouseFemale = (RadioButton) findViewById(R.id.rbFamilySpouseFemale);
         rbFamilySelfFemale = (RadioButton) findViewById(R.id.rbFamilySelfFemale);
 
+        rbFamilySelfMale.setOnClickListener(rbClick);
+        rbFamilySelfFemale.setOnClickListener(rbClick);
+        rbFamilySpouseMale.setOnClickListener(rbClick);
+        rbFamilySpouseFemale.setOnClickListener(rbClick);
 
-//        rbFamilySelfMale.setOnCheckedChangeListener(onCheckedChangeListener);
-//        rbFamilySelfFemale.setOnCheckedChangeListener(onCheckedChangeListener);
-//
-//        rbFamilySpouseMale.setOnCheckedChangeListener(onCheckedChangeListener);
-//        rbFamilySpouseFemale.setOnCheckedChangeListener(onCheckedChangeListener);
     }
+
+    View.OnClickListener rbClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.rbFamilySelfMale:
+                    rbFamilySpouseFemale.setChecked(true);
+                    break;
+                case R.id.rbFamilySelfFemale:
+                    rbFamilySpouseMale.setChecked(true);
+                    break;
+
+                case R.id.rbFamilySpouseMale:
+                    rbFamilySelfFemale.setChecked(true);
+                    break;
+                case R.id.rbFamilySpouseFemale:
+                    rbFamilySelfMale.setChecked(true);
+                    break;
+            }
+        }
+    };
 
     CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
