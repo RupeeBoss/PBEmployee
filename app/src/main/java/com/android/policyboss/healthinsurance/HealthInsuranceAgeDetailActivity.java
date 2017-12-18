@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -46,7 +47,7 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
     RadioButton rbFamilySelfMale, rbFamilySpouseMale;
 
     EditText etFamilyKid1DOB, etFamilyKid2DOB, etFamilyKid3DOB, etFamilyKid4DOB;
-    RadioButton rbFamilyKid1MaleDOB, rbFamilyKid2Male, rbFamilyKid3Male, rbFamilyKid4Male;
+    RadioButton rbFamilyKid1MaleDOB, rbFamilySelfFemale, rbFamilySpouseFemale, rbFamilyKid2Male, rbFamilyKid3Male, rbFamilyKid4Male;
 
     //parents
     EditText etParentFatherDOB, etParentMotherDOB;
@@ -147,9 +148,46 @@ public class HealthInsuranceAgeDetailActivity extends BaseActivity implements Vi
         rbFamilyKid2Male = (RadioButton) findViewById(R.id.rbFamilyKid2Male);
         rbFamilyKid3Male = (RadioButton) findViewById(R.id.rbFamilyKid3Male);
         rbFamilyKid4Male = (RadioButton) findViewById(R.id.rbFamilyKid4Male);
+        rbFamilySpouseFemale = (RadioButton) findViewById(R.id.rbFamilySpouseFemale);
+        rbFamilySelfFemale = (RadioButton) findViewById(R.id.rbFamilySelfFemale);
 
 
+//        rbFamilySelfMale.setOnCheckedChangeListener(onCheckedChangeListener);
+//        rbFamilySelfFemale.setOnCheckedChangeListener(onCheckedChangeListener);
+//
+//        rbFamilySpouseMale.setOnCheckedChangeListener(onCheckedChangeListener);
+//        rbFamilySpouseFemale.setOnCheckedChangeListener(onCheckedChangeListener);
     }
+
+    CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            switch (buttonView.getId()) {
+                case R.id.rbFamilySelfMale:
+                    if (!rbFamilySpouseFemale.isChecked())
+                        rbFamilySpouseFemale.setChecked(true);
+                    else
+                        rbFamilySpouseFemale.setChecked(false);
+
+                    break;
+                case R.id.rbFamilySelfFemale:
+                    if (!rbFamilySpouseMale.isChecked())
+                        rbFamilySpouseMale.setChecked(true);
+                    else
+                        rbFamilySpouseMale.setChecked(false);
+                    break;
+
+//                case R.id.rbFamilySpouseMale:
+//                    if (!rbFamilySelfFemale.isChecked())
+//                        rbFamilySelfFemale.setChecked(true);
+//                    break;
+//                case R.id.rbFamilySpouseFemale:
+//                    if (!rbFamilySelfMale.isChecked())
+//                        rbFamilySelfMale.setChecked(true);
+//                    break;
+            }
+        }
+    };
 
     private void HideandShow(CoverModelInfo modelInfo) {
 

@@ -135,7 +135,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:checked="true"
                                 android:text="Male" />
 
                             <RadioButton
@@ -186,7 +185,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-
                                 android:text="Male" />
 
                             <RadioButton
@@ -194,7 +192,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:checked="true"
                                 android:text="Female" />
                         </RadioGroup>
 
@@ -241,7 +238,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:checked="true"
                                 android:text="Male" />
 
                             <RadioButton
@@ -293,7 +289,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:checked="true"
                                 android:text="Male" />
 
                             <RadioButton
@@ -344,7 +339,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:checked="true"
                                 android:text="Male" />
 
                             <RadioButton
@@ -396,7 +390,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:checked="true"
                                 android:text="Male" />
 
                             <RadioButton
