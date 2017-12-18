@@ -109,6 +109,8 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                     .putExtra("TITLE", "Privacy Policy"));
 
         } else if (v.getId() == R.id.btnGetQuote) {
+
+            hideKeyBoard(btnGetQuote, this);
             //validation
             if (etCustomerName.getText().toString().equals("") || etCustomerName.getText().toString().trim().length() == 0) {
                 etCustomerName.requestFocus();
@@ -128,60 +130,64 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
             }
 
 
-            //server hit and redirect to quote
-            if (fromWhichClass.equals(Constants.CAR_DETAIL)) {
-                //motor
-                String[] fullName = etCustomerName.getText().toString().split(" ");
+            if (chk.isChecked()) {
+                //server hit and redirect to quote
+                if (fromWhichClass.equals(Constants.CAR_DETAIL)) {
+                    //motor
+                    String[] fullName = etCustomerName.getText().toString().split(" ");
 
-                if (fullName.length == 1) {
-                    carRequestEntity.setFirst_name(fullName[0]);
-                } else if (fullName.length == 2) {
-                    carRequestEntity.setFirst_name(fullName[0]);
-                    carRequestEntity.setLast_name(fullName[1]);
+                    if (fullName.length == 1) {
+                        carRequestEntity.setFirst_name(fullName[0]);
+                    } else if (fullName.length == 2) {
+                        carRequestEntity.setFirst_name(fullName[0]);
+                        carRequestEntity.setLast_name(fullName[1]);
 
-                } else if (fullName.length == 3) {
-                    carRequestEntity.setFirst_name(fullName[0]);
-                    carRequestEntity.setMiddle_name(fullName[1]);
-                    carRequestEntity.setLast_name(fullName[2]);
-                }
-                carRequestEntity.setMobile(etCustomerMobile.getText().toString());
-                carRequestEntity.setEmail(etCustomerEmail.getText().toString());
-                showDialog();
-                //new MotorQuoteController(this).getQuoteDetails(entity, this);
-                new CarController(this).getCarQuote(carRequestEntity, this);
-
-            } else if (fromWhichClass.equals(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE)) {
-                //health
-                healthRequestEntity.setContactEmail(etCustomerEmail.getText().toString());
-                healthRequestEntity.setContactMobile(etCustomerMobile.getText().toString());
-                healthRequestEntity.setContactName(etCustomerName.getText().toString());
-                showDialog();
-                new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
-            } else if (fromWhichClass.equals(Constants.BIKE_INSURENCE)) {
-                //bike
-
-                String[] fullName = etCustomerName.getText().toString().split(" ");
-
-                if (fullName.length == 1) {
-                    bikeRequestEntity.setFirst_name(fullName[0]);
-                } else if (fullName.length == 2) {
-                    bikeRequestEntity.setFirst_name(fullName[0]);
-                    bikeRequestEntity.setLast_name(fullName[1]);
-
-                } else if (fullName.length == 3) {
-                    bikeRequestEntity.setFirst_name(fullName[0]);
-                    bikeRequestEntity.setMiddle_name(fullName[1]);
-                    bikeRequestEntity.setLast_name(fullName[2]);
-                }
-                bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
-                bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
-
-                if (chk.isChecked()) {
+                    } else if (fullName.length == 3) {
+                        carRequestEntity.setFirst_name(fullName[0]);
+                        carRequestEntity.setMiddle_name(fullName[1]);
+                        carRequestEntity.setLast_name(fullName[2]);
+                    }
+                    carRequestEntity.setMobile(etCustomerMobile.getText().toString());
+                    carRequestEntity.setEmail(etCustomerEmail.getText().toString());
                     showDialog();
-                    new BikeController(this).getBikeQuote(bikeRequestEntity, this);
-                } else {
-                    ShowError("Please accept terms and condition", chk);
+                    //new MotorQuoteController(this).getQuoteDetails(entity, this);
+                    new CarController(this).getCarQuote(carRequestEntity, this);
+
+                } else if (fromWhichClass.equals(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE)) {
+                    //health
+                    healthRequestEntity.setContactEmail(etCustomerEmail.getText().toString());
+                    healthRequestEntity.setContactMobile(etCustomerMobile.getText().toString());
+                    healthRequestEntity.setContactName(etCustomerName.getText().toString());
+                    showDialog();
+                    new HealthQuoteController(this).getHealthQuotes(healthRequestEntity, this);
+                } else if (fromWhichClass.equals(Constants.BIKE_INSURENCE)) {
+                    //bike
+
+                    String[] fullName = etCustomerName.getText().toString().split(" ");
+
+                    if (fullName.length == 1) {
+                        bikeRequestEntity.setFirst_name(fullName[0]);
+                    } else if (fullName.length == 2) {
+                        bikeRequestEntity.setFirst_name(fullName[0]);
+                        bikeRequestEntity.setLast_name(fullName[1]);
+
+                    } else if (fullName.length == 3) {
+                        bikeRequestEntity.setFirst_name(fullName[0]);
+                        bikeRequestEntity.setMiddle_name(fullName[1]);
+                        bikeRequestEntity.setLast_name(fullName[2]);
+                    }
+                    bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
+                    bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
+
+                    if (chk.isChecked()) {
+                        showDialog();
+                        new BikeController(this).getBikeQuote(bikeRequestEntity, this);
+                    } else {
+                        ShowError("Please accept terms and condition", chk);
+                    }
                 }
+            } else {
+                ShowError("Accept terms and condition", chk);
             }
         }
     }
