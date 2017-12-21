@@ -358,13 +358,66 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
             if (mobileAddOn.getAddonKey().matches("addon_road_assist_cover")) {
                 for (ResponseEntity entity :
                         bikePremiumResponse.getResponse()) {
+//                    if (entity.getAddon_List() != null) {
+//                        if (entity.getAddon_List().getAddon_road_assist_cover() != 0) {
+//
+//
+//
+//
+//                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+//
+//                            if (mobileAddOn.isSelected()) {
+//                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+//                                appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_road_assist_cover"));
+//                                appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_road_assist_cover());
+//                                listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
+//
+//                                double addonNetPremium = (Double.parseDouble(entity.getPremium_Breakup().getNet_premium())
+//                                        + entity.getAddon_List().getAddon_road_assist_cover());
+//                                double ST = getAddonPrice(addonNetPremium);
+//
+//                                double finalPremium = addonNetPremium + ST;
+//
+//                                entity.setListAppliedAddons(listAppliedAddonPremium);
+//
+//                                entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
+//
+//                                isAddonApplied = true;
+//
+//                                listAppliedAddons.add(entity);
+//                            } else {
+//                                double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
+//                                        - entity.getAddon_List().getAddon_road_assist_cover();
+//
+//                                double finalPremium = (netPremium * GST_APPLY) + netPremium;
+//                                entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
+//
+//                                if (entity.getListAppliedAddons() != null) {
+//                                    for (int j = entity.getListAppliedAddons().size() - 1; j >= 0; j--) {
+//                                        AppliedAddonsPremiumBreakup a = entity.getListAppliedAddons().get(j);
+//                                        if (a.getAddonName().equals(databaseController.getAddonName("addon_road_assist_cover"))) {
+//                                            entity.getListAppliedAddons().remove(j);
+//                                            listAppliedAddons.add(entity);
+//                                        }
+//                                    }
+//                                }
+//                                entity.setListAppliedAddons(listAppliedAddonPremium);
+//                            }
+//
+//                        }
+//                    }
+
                     if (entity.getAddon_List() != null) {
+
+                        List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                         if (entity.getAddon_List().getAddon_road_assist_cover() != 0) {
 
-                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+                            isAddonApplied = true;
+                            AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
 
-                            if (mobileAddOn.isSelected()) {
-                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+                            if (mobileAddOn.isSelected) {
+
                                 appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_road_assist_cover"));
                                 appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_road_assist_cover());
                                 listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -375,14 +428,14 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                 double finalPremium = addonNetPremium + ST;
 
-                                entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                 entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                entity.setListAppliedAddons(listAppliedAddonPremium);
                                 isAddonApplied = true;
-
                                 listAppliedAddons.add(entity);
+
                             } else {
+
                                 double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
                                         - entity.getAddon_List().getAddon_road_assist_cover();
 
@@ -398,24 +451,29 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                         }
                                     }
                                 }
+
                                 entity.setListAppliedAddons(listAppliedAddonPremium);
                             }
-
                         }
+
                     }
                 }
 
                 if (mobileAddOn.getAddonKey().matches("addon_ncb_protection_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_ncb_protection_cover() != 0) {
 
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-
                                 isAddonApplied = true;
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_ncb_protection_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_ncb_protection_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -426,11 +484,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
+                                    isAddonApplied = true;
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -448,6 +507,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -460,12 +520,15 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_engine_protector_cover() != 0) {
 
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
 
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_engine_protector_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_engine_protector_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -476,12 +539,10 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
 
                                 } else {
@@ -505,7 +566,6 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
-
                         }
                     }
                 }
@@ -513,12 +573,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_invoice_price_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_invoice_price_cover() != 0) {
 
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_invoice_price_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_invoice_price_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -529,13 +594,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -553,6 +617,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -563,11 +628,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_key_lock_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_key_lock_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_key_lock_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_key_lock_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -578,13 +649,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -613,12 +683,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_consumable_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_consumable_cover() != 0) {
 
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_consumable_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_consumable_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -629,13 +704,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -653,6 +727,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -664,10 +739,15 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_daily_allowance_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_daily_allowance_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_daily_allowance_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -678,13 +758,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -702,6 +781,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -712,11 +792,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_windshield_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_windshield_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_windshield_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_windshield_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -727,13 +813,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -751,6 +836,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -761,11 +847,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_passenger_assistance_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_passenger_assistance_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_passenger_assistance_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_passenger_assistance_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -776,13 +868,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -800,6 +891,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -810,11 +902,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_tyre_coverage_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_tyre_coverage_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_tyre_coverage_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_tyre_coverage_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -825,13 +923,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -849,6 +946,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -859,11 +957,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_personal_belonging_loss_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_personal_belonging_loss_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_personal_belonging_loss_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_personal_belonging_loss_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -874,13 +978,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -888,6 +991,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
+
                                     if (entity.getListAppliedAddons() != null) {
                                         for (int j = entity.getListAppliedAddons().size() - 1; j >= 0; j--) {
                                             AppliedAddonsPremiumBreakup a = entity.getListAppliedAddons().get(j);
@@ -897,6 +1001,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -907,11 +1012,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_inconvenience_allowance_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_inconvenience_allowance_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_inconvenience_allowance_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_inconvenience_allowance_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -922,13 +1033,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -946,6 +1056,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -956,11 +1067,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_medical_expense_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_medical_expense_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_medical_expense_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_medical_expense_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -971,13 +1088,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -995,6 +1111,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -1005,11 +1122,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_hospital_cash_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
-                            if (entity.getAddon_List().getAddon_hospital_cash_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
+                            if (entity.getAddon_List().getAddon_medical_expense_cover() != 0) {
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_hospital_cash_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_hospital_cash_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -1020,13 +1143,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -1034,6 +1156,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
+
                                     if (entity.getListAppliedAddons() != null) {
                                         for (int j = entity.getListAppliedAddons().size() - 1; j >= 0; j--) {
                                             AppliedAddonsPremiumBreakup a = entity.getListAppliedAddons().get(j);
@@ -1043,6 +1166,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -1053,11 +1177,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_ambulance_charge_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_ambulance_charge_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_ambulance_charge_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_ambulance_charge_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -1068,13 +1198,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
-
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -1082,6 +1211,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = (netPremium * GST_APPLY) + netPremium;
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
+
                                     if (entity.getListAppliedAddons() != null) {
                                         for (int j = entity.getListAppliedAddons().size() - 1; j >= 0; j--) {
                                             AppliedAddonsPremiumBreakup a = entity.getListAppliedAddons().get(j);
@@ -1091,6 +1221,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -1101,11 +1232,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_rodent_bite_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_rodent_bite_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_rodent_bite_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_rodent_bite_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -1116,12 +1253,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -1139,6 +1276,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -1149,11 +1287,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_losstime_protection_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_losstime_protection_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_losstime_protection_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_losstime_protection_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -1164,12 +1308,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -1187,6 +1331,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -1197,11 +1342,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_hydrostatic_lock_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_hydrostatic_lock_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_hydrostatic_lock_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_hydrostatic_lock_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -1212,12 +1363,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -1235,8 +1386,8 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
-                                    entity.setListAppliedAddons(listAppliedAddonPremium);
 
+                                    entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
                         }
@@ -1246,11 +1397,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_guaranteed_auto_protection_cover")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_guaranteed_auto_protection_cover() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_guaranteed_auto_protection_cover"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_guaranteed_auto_protection_cover());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -1261,12 +1418,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -1284,6 +1441,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }
@@ -1294,11 +1452,17 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                 if (mobileAddOn.getAddonKey().matches("addon_final_premium")) {
                     for (ResponseEntity entity :
                             bikePremiumResponse.getResponse()) {
+
                         if (entity.getAddon_List() != null) {
+                            List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
+
                             if (entity.getAddon_List().getAddon_final_premium() != 0) {
-                                List<AppliedAddonsPremiumBreakup> listAppliedAddonPremium = new ArrayList<AppliedAddonsPremiumBreakup>();
-                                if (mobileAddOn.isSelected()) {
-                                    AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                isAddonApplied = true;
+                                AppliedAddonsPremiumBreakup appliedAddonsPremiumBreakup = new AppliedAddonsPremiumBreakup();
+
+                                if (mobileAddOn.isSelected) {
+
                                     appliedAddonsPremiumBreakup.setAddonName(databaseController.getAddonName("addon_final_premium"));
                                     appliedAddonsPremiumBreakup.setPriceAddon(entity.getAddon_List().getAddon_final_premium());
                                     listAppliedAddonPremium.add(appliedAddonsPremiumBreakup);
@@ -1309,12 +1473,12 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                                     double finalPremium = addonNetPremium + ST;
 
+
                                     entity.getPremium_Breakup().setFinal_premium(String.valueOf(finalPremium));
-
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
-
                                     isAddonApplied = true;
                                     listAppliedAddons.add(entity);
+
                                 } else {
 
                                     double netPremium = (Double.parseDouble(entity.getPremium_Breakup().getFinal_premium()) / GST_REMOVE)
@@ -1332,6 +1496,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
                                             }
                                         }
                                     }
+
                                     entity.setListAppliedAddons(listAppliedAddonPremium);
                                 }
                             }

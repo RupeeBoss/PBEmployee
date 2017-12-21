@@ -235,7 +235,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
                     fuelList = databaseController.getBikeFuelTypebyModelID(modelId);
                     variantList = databaseController.getBikeVariantbyModelID(modelId);
 
-                    spCarFuelType.setVisibility(View.VISIBLE);
+                   // spCarFuelType.setVisibility(View.VISIBLE);
                     spCarVarient.setVisibility(View.VISIBLE);
 
                     fuelAdapter = new
@@ -308,6 +308,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
             backdrop.setImageDrawable(getResources().getDrawable(R.drawable.car_images));
             autoCarMakeModel.setHint("Which car do you drive ?");
         } else {
+            spCarFuelType.setVisibility(View.GONE);
             backdrop.setImageDrawable(getResources().getDrawable(R.drawable.bike_homepage_banner));
             tvNew.setText(getResources().getString(R.string.new_bike));
             tvNew.setPaintFlags(tvNew.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
