@@ -26,8 +26,8 @@ public class BaseActivity extends AppCompatActivity {
     ProgressDialog dialog;
 
     public static boolean isValidVehicle(EditText editText) {
-        String phoneNumberPattern = "^[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}$";
-        String phoneNumberEntered = editText.getText().toString().trim();
+        String phoneNumberPattern = "^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$";
+        String phoneNumberEntered = editText.getText().toString().toUpperCase().trim();
         return !(phoneNumberEntered.isEmpty() || !phoneNumberEntered.matches(phoneNumberPattern));
     }
 

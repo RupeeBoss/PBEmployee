@@ -124,10 +124,15 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() == 10) {
-
-                Constants.hideKeyBoard(backdrop, MotorInsuranceActivity.this);
-                showDialog();
-                new FastlaneController(MotorInsuranceActivity.this).getCarDetails(s.toString(), MotorInsuranceActivity.this);
+                if (isValidVehicle(etRenewRegNo)) {
+                    Constants.hideKeyBoard(backdrop, MotorInsuranceActivity.this);
+                    showDialog();
+                    new FastlaneController(MotorInsuranceActivity.this).getCarDetails(s.toString(), MotorInsuranceActivity.this);
+                } else {
+                    etRenewRegNo.requestFocus();
+                    etRenewRegNo.setError("Enter Valid Registration No");
+                    return;
+                }
             }
         }
 
@@ -329,7 +334,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
         backdrop = (ImageView) findViewById(R.id.backdrop);
 
         etRenewRegNo = (EditText) findViewById(R.id.etRenewRegNo);
-        etRenewRegNo.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        etRenewRegNo.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(10)});
         etExternallyFitted = (EditText) findViewById(R.id.etExternallyFitted);
         autoCarMakeModel = (AutoCompleteTextView) findViewById(R.id.autoCarMakeModel);
         btnGEtDetails = (Button) findViewById(R.id.btnGEtDetails);
@@ -398,7 +403,7 @@ public class MotorInsuranceActivity extends BaseActivity implements View.OnClick
                 llPolicyDetails.setVisibility(View.VISIBLE);
                 break;
             case R.id.btnGEtDetails:
-                if (etRenewRegNo.getText().toString().equals("") || etRenewRegNo.getText().toString().length() != 10) {
+                if (!isValidVehicle(etRenewRegNo)) {
                     etRenewRegNo.requestFocus();
                     etRenewRegNo.setError("Enter Valid Registration No");
                     return;

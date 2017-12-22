@@ -44,6 +44,24 @@ public class ResponseEntity {
     //added by Nilesh : Require for applied premium tracking
     private List<AppliedAddonsPremiumBreakup> listAppliedAddons = new ArrayList<AppliedAddonsPremiumBreakup>();
     private AddonEntity Addon_List;
+    private boolean isAddonApplied;
+    private String final_premium_with_addon;
+
+    public boolean isAddonApplied() {
+        return isAddonApplied;
+    }
+
+    public void setAddonApplied(boolean addonApplied) {
+        isAddonApplied = addonApplied;
+    }
+
+    public String getFinal_premium_with_addon() {
+        return final_premium_with_addon;
+    }
+
+    public void setFinal_premium_with_addon(String final_premium_with_addon) {
+        this.final_premium_with_addon = final_premium_with_addon;
+    }
 
     protected ResponseEntity(Parcel in) {
         Premium_Breakup = (PremiumBreakupEntity) in.readParcelable(PremiumBreakupEntity.class.getClassLoader());
