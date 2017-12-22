@@ -31,7 +31,7 @@ import retrofit.Retrofit;
 public class CarController implements ICar {
 
     public static final long NO_OF_SERVER_HITS = 10;
-    private static final long SLEEP_DELAY = 6000;// 5 seconds delay.
+    private static final long SLEEP_DELAY = 5000;// 5 seconds delay.
     BikeQuotesRequestBuilder.BikeQuotesNetworkService bikeQuotesNetworkService;
     Context mContext;
     Handler handler;
@@ -61,6 +61,7 @@ public class CarController implements ICar {
                     edit.putString(Constants.CARQUOTE_UNIQUEID,
                             UNIQUE);
                     edit.commit();
+                    Constants.getSharedPreferenceEditor(mContext).remove(Constants.QUOTE_COUNTER).commit();
                     iResponseSubcriber.OnSuccess(response.body(), "");
 
                 } else {

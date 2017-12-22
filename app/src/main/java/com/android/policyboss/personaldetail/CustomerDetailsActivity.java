@@ -151,7 +151,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                     carRequestEntity.setEmail(etCustomerEmail.getText().toString());
                     showDialog();
                     //new MotorQuoteController(this).getQuoteDetails(entity, this);
-                    Constants.getSharedPreferenceEditor(this).remove(Constants.QUOTE_COUNTER).commit();
+
                     new CarController(this).getCarQuote(carRequestEntity, this);
 
                 } else if (fromWhichClass.equals(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE)) {
@@ -181,7 +181,6 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                     bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
 
                     showDialog();
-                    Constants.getSharedPreferenceEditor(this).remove(Constants.QUOTE_COUNTER).commit();
                     new BikeController(this).getBikeQuote(bikeRequestEntity, this);
                 }
             } else {

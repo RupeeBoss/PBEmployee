@@ -63,6 +63,7 @@ public class BikeController implements IBike {
                     edit.putString(Constants.BIKEQUOTE_UNIQUEID,
                             UNIQUE);
                     edit.commit();
+                    Constants.getSharedPreferenceEditor(mContext).remove(Constants.QUOTE_COUNTER).commit();
                     iResponseSubcriber.OnSuccess(response.body(), "");
 
                 } else {

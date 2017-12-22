@@ -3,6 +3,7 @@ package com.android.policyboss.motorinsurance;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,10 +45,22 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
         if (getIntent().hasExtra("BIKE")) {
             bikeRequestEntity = getIntent().getParcelableExtra("BIKE");
             setBikeSpinnerAdapter();
+            if (bikeRequestEntity.getElectrical_accessory() != null && !bikeRequestEntity.getElectrical_accessory().equals(""))
+                etElec.setText(bikeRequestEntity.getElectrical_accessory());
+            if (bikeRequestEntity.getNon_electrical_accessory() != null && !bikeRequestEntity.getNon_electrical_accessory().equals(""))
+                etElec.setText(bikeRequestEntity.getNon_electrical_accessory());
+            if (bikeRequestEntity.getVehicle_expected_idv() != 0)
+                etElec.setText("" + bikeRequestEntity.getVehicle_expected_idv());
             hideLayouts();
         } else if (getIntent().hasExtra("CAR")) {
             carRequestEntity = getIntent().getParcelableExtra("CAR");
             getSupportActionBar().setTitle("CAR INSURANCE");
+            if (carRequestEntity.getElectrical_accessory() != null && !carRequestEntity.getElectrical_accessory().equals(""))
+                etElec.setText(carRequestEntity.getElectrical_accessory());
+            if (carRequestEntity.getNon_electrical_accessory() != null && !carRequestEntity.getNon_electrical_accessory().equals(""))
+                etElec.setText(carRequestEntity.getNon_electrical_accessory());
+            if (carRequestEntity.getVehicle_expected_idv() != 0)
+                etElec.setText("" + carRequestEntity.getVehicle_expected_idv());
             setCarSpinnerAdapter();
         }
     }
@@ -211,6 +224,18 @@ public class ModifyQuotesActivity extends BaseActivity implements IResponseSubcr
 
     @Override
     public void OnFailure(Throwable t) {
+        cancelDialog();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
     }
 }
