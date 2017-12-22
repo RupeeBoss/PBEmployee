@@ -25,36 +25,120 @@ public class SaveAddOnRequestEntity {
      * client_key : CLIENT-CNTP6NYE-CU9N-DUZW-CSPI-SH1IS4DOVHB9
      */
 
-
+    private String addon_zero_dep_cover;
     private String addon_road_assist_cover;
+    private String addon_ncb_protection_cover;
     private String addon_engine_protector_cover;
+    private String addon_invoice_price_cover;
     private String addon_key_lock_cover;
     private String addon_consumable_cover;
-    private String addon_zero_dep_cover;
+    private String addon_daily_allowance_cover;
+    private String addon_windshield_cover;
+    private String addon_passenger_assistance_cover;
+    private String addon_tyre_coverage_cover;
+    private String addon_personal_belonging_loss_cover;
+    private String addon_inconvenience_allowance_cover;
     private String addon_medical_expense_cover;
     private String addon_hospital_cash_cover;
     private String addon_ambulance_charge_cover;
-    private String addon_ncb_protection_cover;
-    private String addon_windshield_cover;
+    private String addon_rodent_bite_cover;
+    private String addon_losstime_protection_cover;
+    private String addon_hydrostatic_lock_cover;
+    private String addon_guaranteed_auto_protection_cover;
+    private String addon_final_premium;
+
+
     private String data_type;
     private String search_reference_number;
     private String secret_key;
     private String client_key;
 
-    public SaveAddOnRequestEntity() {
-        this.addon_road_assist_cover = "no";
-        this.addon_engine_protector_cover = "no";
-        this.addon_key_lock_cover = "no";
-        this.addon_consumable_cover = "no";
-        this.addon_zero_dep_cover = "no";
-        this.addon_medical_expense_cover = "no";
-        this.addon_hospital_cash_cover = "no";
-        this.addon_ambulance_charge_cover = "no";
-        this.addon_ncb_protection_cover = "no";
-        this.addon_windshield_cover = "no";
-        this.data_type = "no";
-        this.secret_key = Constants.SECRET_KEY;
-        this.client_key = Constants.CLIENT_KEY;
+    public String getAddon_invoice_price_cover() {
+        return addon_invoice_price_cover;
+    }
+
+    public void setAddon_invoice_price_cover(String addon_invoice_price_cover) {
+        this.addon_invoice_price_cover = addon_invoice_price_cover;
+    }
+
+    public String getAddon_daily_allowance_cover() {
+        return addon_daily_allowance_cover;
+    }
+
+    public void setAddon_daily_allowance_cover(String addon_daily_allowance_cover) {
+        this.addon_daily_allowance_cover = addon_daily_allowance_cover;
+    }
+
+    public String getAddon_passenger_assistance_cover() {
+        return addon_passenger_assistance_cover;
+    }
+
+    public void setAddon_passenger_assistance_cover(String addon_passenger_assistance_cover) {
+        this.addon_passenger_assistance_cover = addon_passenger_assistance_cover;
+    }
+
+    public String getAddon_tyre_coverage_cover() {
+        return addon_tyre_coverage_cover;
+    }
+
+    public void setAddon_tyre_coverage_cover(String addon_tyre_coverage_cover) {
+        this.addon_tyre_coverage_cover = addon_tyre_coverage_cover;
+    }
+
+    public String getAddon_personal_belonging_loss_cover() {
+        return addon_personal_belonging_loss_cover;
+    }
+
+    public void setAddon_personal_belonging_loss_cover(String addon_personal_belonging_loss_cover) {
+        this.addon_personal_belonging_loss_cover = addon_personal_belonging_loss_cover;
+    }
+
+    public String getAddon_inconvenience_allowance_cover() {
+        return addon_inconvenience_allowance_cover;
+    }
+
+    public void setAddon_inconvenience_allowance_cover(String addon_inconvenience_allowance_cover) {
+        this.addon_inconvenience_allowance_cover = addon_inconvenience_allowance_cover;
+    }
+
+    public String getAddon_rodent_bite_cover() {
+        return addon_rodent_bite_cover;
+    }
+
+    public void setAddon_rodent_bite_cover(String addon_rodent_bite_cover) {
+        this.addon_rodent_bite_cover = addon_rodent_bite_cover;
+    }
+
+    public String getAddon_losstime_protection_cover() {
+        return addon_losstime_protection_cover;
+    }
+
+    public void setAddon_losstime_protection_cover(String addon_losstime_protection_cover) {
+        this.addon_losstime_protection_cover = addon_losstime_protection_cover;
+    }
+
+    public String getAddon_hydrostatic_lock_cover() {
+        return addon_hydrostatic_lock_cover;
+    }
+
+    public void setAddon_hydrostatic_lock_cover(String addon_hydrostatic_lock_cover) {
+        this.addon_hydrostatic_lock_cover = addon_hydrostatic_lock_cover;
+    }
+
+    public String getAddon_guaranteed_auto_protection_cover() {
+        return addon_guaranteed_auto_protection_cover;
+    }
+
+    public void setAddon_guaranteed_auto_protection_cover(String addon_guaranteed_auto_protection_cover) {
+        this.addon_guaranteed_auto_protection_cover = addon_guaranteed_auto_protection_cover;
+    }
+
+    public String getAddon_final_premium() {
+        return addon_final_premium;
+    }
+
+    public void setAddon_final_premium(String addon_final_premium) {
+        this.addon_final_premium = addon_final_premium;
     }
 
     public String getAddon_road_assist_cover() {
@@ -145,8 +229,37 @@ public class SaveAddOnRequestEntity {
         this.data_type = data_type;
     }
 
+    public SaveAddOnRequestEntity() {
+        this.addon_zero_dep_cover = "no";
+        this.addon_road_assist_cover = "no";
+        this.addon_ncb_protection_cover = "no";
+        this.addon_engine_protector_cover = "no";
+        this.addon_invoice_price_cover = "no";
+        this.addon_key_lock_cover = "no";
+        this.addon_consumable_cover = "no";
+        this.addon_daily_allowance_cover = "no";
+        this.addon_windshield_cover = "no";
+        this.addon_passenger_assistance_cover = "no";
+        this.addon_tyre_coverage_cover = "no";
+        this.addon_personal_belonging_loss_cover = "no";
+        this.addon_inconvenience_allowance_cover = "no";
+        this.addon_medical_expense_cover = "no";
+        this.addon_hospital_cash_cover = "no";
+        this.addon_ambulance_charge_cover = "no";
+        this.addon_rodent_bite_cover = "no";
+        this.addon_losstime_protection_cover = "no";
+        this.addon_hydrostatic_lock_cover = "no";
+        this.addon_guaranteed_auto_protection_cover = "no";
+        this.addon_final_premium = "no";
+        this.data_type = "no";
+        this.search_reference_number = "";
+        this.secret_key = Constants.SECRET_KEY;
+        this.client_key = Constants.CLIENT_KEY;
+    }
+
     public String getSearch_reference_number() {
         return search_reference_number;
+
     }
 
     public void setSearch_reference_number(String search_reference_number) {

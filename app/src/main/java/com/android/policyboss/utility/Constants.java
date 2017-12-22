@@ -16,6 +16,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Constants {
+    public static final Double GST = 0.18;
     public static final String BIKE_INSURENCE = "BikeInsuranceActivity";
     public static final String CAR_DETAIL = "CarDetailsActivity.class";
     public static final String EXTERNAL_LPG = "External Fitted LPG";

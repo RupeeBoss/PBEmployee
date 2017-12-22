@@ -3,6 +3,7 @@ package com.android.policyboss.core.controller.car;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.util.Log;
 
 import com.android.policyboss.core.IResponseSubcriber;
 import com.android.policyboss.core.models.ResponseEntity;
@@ -92,6 +93,7 @@ public class CarController implements ICar {
 
         entity.setSearch_reference_number(Constants.getSharedPreference(mContext).getString(Constants.CARQUOTE_UNIQUEID, ""));
 
+        Log.d("trackIssue", " counter = " + Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0));
         if (Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) < NO_OF_SERVER_HITS) {
             Constants.getSharedPreferenceEditor(mContext).putInt(Constants.QUOTE_COUNTER,
                     Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0) + 1)
@@ -102,6 +104,7 @@ public class CarController implements ICar {
             @Override
             public void onResponse(Response<BikePremiumResponse> response, Retrofit retrofit) {
                 if (response.body() != null) {
+
 
                     BikePremiumResponse bikePremiumResponse = new BikePremiumResponse();
                     if (response.body() != null) {
@@ -115,6 +118,9 @@ public class CarController implements ICar {
                         bikePremiumResponse.setResponse(list);
                         bikePremiumResponse.setSummary(response.body().getSummary());
                     }
+                    Log.d("trackIssue", "Summary  = " + bikePremiumResponse.getSummary().getStatusX() +
+                            " ,counter  = " + Constants.getSharedPreference(mContext).getInt(Constants.QUOTE_COUNTER, 0));
+
                     iResponseSubcriber.OnSuccess(bikePremiumResponse, response.body().getMessage());
 
                     if (!response.body().getSummary().getStatusX().equals("complete")) {

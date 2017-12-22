@@ -151,6 +151,7 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                     carRequestEntity.setEmail(etCustomerEmail.getText().toString());
                     showDialog();
                     //new MotorQuoteController(this).getQuoteDetails(entity, this);
+                    Constants.getSharedPreferenceEditor(this).remove(Constants.QUOTE_COUNTER).commit();
                     new CarController(this).getCarQuote(carRequestEntity, this);
 
                 } else if (fromWhichClass.equals(HealthInsuranceAgeDetailActivity.HEALTH_QUOTE)) {
@@ -179,12 +180,9 @@ public class CustomerDetailsActivity extends BaseActivity implements View.OnClic
                     bikeRequestEntity.setMobile(etCustomerMobile.getText().toString());
                     bikeRequestEntity.setEmail(etCustomerEmail.getText().toString());
 
-                    if (chk.isChecked()) {
-                        showDialog();
-                        new BikeController(this).getBikeQuote(bikeRequestEntity, this);
-                    } else {
-                        ShowError("Please accept terms and condition", chk);
-                    }
+                    showDialog();
+                    Constants.getSharedPreferenceEditor(this).remove(Constants.QUOTE_COUNTER).commit();
+                    new BikeController(this).getBikeQuote(bikeRequestEntity, this);
                 }
             } else {
                 ShowError("Accept terms and condition", chk);

@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -236,12 +237,23 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         for (int i = 0; i < listMobileAddOn.size(); i++) {
             MobileAddOn mobileAddOn = listMobileAddOn.get(i);
 
+            if (mobileAddOn.getAddonKey().matches("addon_zero_dep_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_zero_dep_cover("yes");
+            }
             if (mobileAddOn.getAddonKey().matches("addon_road_assist_cover") && mobileAddOn.isSelected) {
                 entity.setAddon_road_assist_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_ncb_protection_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_ncb_protection_cover("yes");
             }
             if (mobileAddOn.getAddonKey().matches("addon_engine_protector_cover") && mobileAddOn.isSelected) {
                 entity.setAddon_engine_protector_cover("yes");
             }
+
+            if (mobileAddOn.getAddonKey().matches("addon_invoice_price_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_invoice_price_cover("yes");
+            }
+
             if (mobileAddOn.getAddonKey().matches("addon_key_lock_cover") && mobileAddOn.isSelected) {
                 entity.setAddon_key_lock_cover("yes");
             }
@@ -249,28 +261,48 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
             if (mobileAddOn.getAddonKey().matches("addon_consumable_cover") && mobileAddOn.isSelected) {
                 entity.setAddon_consumable_cover("yes");
             }
-            if (mobileAddOn.getAddonKey().matches("addon_zero_dep_cover") && mobileAddOn.isSelected) {
-                entity.setAddon_zero_dep_cover("yes");
+            if (mobileAddOn.getAddonKey().matches("addon_daily_allowance_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_daily_allowance_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_windshield_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_windshield_cover("yes");
+            }
+
+            if (mobileAddOn.getAddonKey().matches("addon_passenger_assistance_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_passenger_assistance_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_tyre_coverage_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_tyre_coverage_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_personal_belonging_loss_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_personal_belonging_loss_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_inconvenience_allowance_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_inconvenience_allowance_cover("yes");
             }
             if (mobileAddOn.getAddonKey().matches("addon_medical_expense_cover") && mobileAddOn.isSelected) {
                 entity.setAddon_medical_expense_cover("yes");
             }
-
             if (mobileAddOn.getAddonKey().matches("addon_hospital_cash_cover") && mobileAddOn.isSelected) {
                 entity.setAddon_hospital_cash_cover("yes");
             }
             if (mobileAddOn.getAddonKey().matches("addon_ambulance_charge_cover") && mobileAddOn.isSelected) {
                 entity.setAddon_ambulance_charge_cover("yes");
             }
-            if (mobileAddOn.getAddonKey().matches("addon_ncb_protection_cover") && mobileAddOn.isSelected) {
-                entity.setAddon_ncb_protection_cover("yes");
+            if (mobileAddOn.getAddonKey().matches("addon_rodent_bite_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_rodent_bite_cover("yes");
             }
-
-            if (mobileAddOn.getAddonKey().matches("addon_windshield_cover") && mobileAddOn.isSelected) {
-                entity.setAddon_windshield_cover("yes");
+            if (mobileAddOn.getAddonKey().matches("addon_losstime_protection_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_losstime_protection_cover("yes");
             }
-            if (mobileAddOn.getAddonKey().matches("data_type") && mobileAddOn.isSelected) {
-                entity.setData_type("yes");
+            if (mobileAddOn.getAddonKey().matches("addon_hydrostatic_lock_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_hydrostatic_lock_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_guaranteed_auto_protection_cover") && mobileAddOn.isSelected) {
+                entity.setAddon_guaranteed_auto_protection_cover("yes");
+            }
+            if (mobileAddOn.getAddonKey().matches("addon_final_premium") && mobileAddOn.isSelected) {
+                entity.setAddon_final_premium("yes");
             }
             /*if (mobileAddOn.getAddonKey().matches("search_reference_number") && mobileAddOn.isSelected) {
                 entity.setSearch_reference_number("yes");
@@ -287,9 +319,6 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
 
     private void applyPositiveAddons() {
-        Double GST_APPLY = .18;
-        Double GST_REMOVE = 1.18;
-        List<ResponseEntity> listAppliedAddons = new ArrayList<>();
 
         for (ResponseEntity entity : bikePremiumResponse.getResponse()) { // itrate for each quote
             double addonValue = 0;
@@ -649,7 +678,7 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
 
                 //region update response entity
                 double finalPremWithoutGST = addonValue + Double.parseDouble(entity.getPremium_Breakup().getNet_premium());
-                double finalPremWithGST = finalPremWithoutGST + getAddonPrice(finalPremWithoutGST);
+                double finalPremWithGST = finalPremWithoutGST + (finalPremWithoutGST * Constants.GST);
                 entity.setFinal_premium_with_addon("" + finalPremWithGST);
                 entity.setListAppliedAddons(listAppliedAddonPremium);
                 //endregion
@@ -1917,7 +1946,8 @@ public class BikeQuoteActivity extends BaseActivity implements IResponseSubcribe
         if (response instanceof BikePremiumResponse) {
             bikePremiumResponse = (BikePremiumResponse) response;
             rebindAdapter(bikePremiumResponse);
-
+            Log.d("trackIssue", "Summary  = " + bikePremiumResponse.getSummary().getStatusX() +
+                    " ,counter = " + Constants.getSharedPreference(this).getInt(Constants.QUOTE_COUNTER, 0));
             if (bikePremiumResponse.getSummary().getStatusX().equals("complete")
                     || Constants.getSharedPreference(this).getInt(Constants.QUOTE_COUNTER, 0) >= CarController.NO_OF_SERVER_HITS) {
 
